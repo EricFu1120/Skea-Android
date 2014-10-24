@@ -6,12 +6,19 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_register">RegisterActivity</string>
-    <string name="title_activity_improve_personal_data">ImprovePersonalData</string>
-    <string name="title_activity_init_personal_data">InitPersonalDataActivity</string>
+    <string name="title_activity_improve_personal_data">Improve Personal Data</string>
+    <string name="title_activity_init_personal_data">Init Personal Data Activity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_setting">Setting Activity</string>
     <string name="title_activity_record">RecordActivity</string>
-    <string name="title_activity_exercise">ExerciseActivity</string>
-    <string name="title_activity_update_user_info">UpdateUserInfo</string>
+    <string name="title_activity_exercise">Exercise  Activity</string>
+    <string name="title_activity_update_user_info">Update User Info</string>
+    <string name="action_connect_bluetooth">Connect Bluetooth</string>
+    <string name="last_result">Last Result</string>
+    <string name="level">Level</string>
+    <string name="score">score</string>
+    <string name="info">Info</string>
+    <string name="record">Record</string>
+    <string name="settings">Settings</string>
 
 </resources>
