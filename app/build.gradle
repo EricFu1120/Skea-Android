@@ -25,5 +25,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':Lib-Android-Async-Http')
     compile project(':Lib-Sugar')
-    compile project(':libWidgets')
+    compile project(':Lib-Widgets')
 }
