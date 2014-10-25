@@ -502,7 +502,7 @@ public final class ObjectAnimator extends ValueAnimator {
 
     @Override
     public String toString() {
-        String returnVal = "ObjectAnimator@" + Integer.toHexString(hashCode()) + ", target " +
+        String returnVal = "ObjectAnimator@" + Integer.toHexString(((Object)this).hashCode()) + ", target " +
             mTarget;
         if (mValues != null) {
             for (int i = 0; i < mValues.length; ++i) {

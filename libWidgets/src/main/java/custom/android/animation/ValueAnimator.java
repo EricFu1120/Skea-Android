@@ -16,6 +16,7 @@
 
 package custom.android.animation;
 
+import android.animation.TimeInterpolator;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -1253,7 +1254,7 @@ public class ValueAnimator extends Animator {
 
     @Override
     public String toString() {
-        String returnVal = "ValueAnimator@" + Integer.toHexString(hashCode());
+        String returnVal = "ValueAnimator@" + Integer.toHexString(((Object) this).hashCode());
         if (mValues != null) {
             for (int i = 0; i < mValues.length; ++i) {
                 returnVal += "\n    " + mValues[i].toString();

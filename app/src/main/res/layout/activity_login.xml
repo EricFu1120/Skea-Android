@@ -11,6 +11,8 @@
     tools:context=".LoginActivity">
 
     <!-- Login progress -->
+
+
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -31,10 +33,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:scaleType="centerInside"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/logo"
+                    android:layout_gravity="center_horizontal" />
+
                 <AutoCompleteTextView
                     android:id="@+id/email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
+                    android:drawableLeft="@drawable/icon_email"
+                    android:drawablePadding="10dp"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
@@ -43,7 +55,9 @@
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
+                    android:drawableLeft="@drawable/icon_password"
+                    android:drawablePadding="10dp"
                     android:hint="@string/prompt_password"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
@@ -52,13 +66,31 @@
                     android:maxLines="1"
                     android:singleLine="true"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/forget_password"
+                    android:id="@+id/forget_password"
+                    android:textColor="@color/main_blue"
+                    android:layout_gravity="right" />
+
                 <Button
-                    android:id="@+id/email_sign_in_button"
+                    android:id="@+id/login_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/action_sign_in"
+                    android:text="@string/login"
+                    android:textStyle="bold"/>
+
+                <Button
+                    android:id="@+id/register_button"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/register"
                     android:textStyle="bold"/>
 
             </LinearLayout>

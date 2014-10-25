@@ -54,6 +54,10 @@
             android:name=".ui.user.UpdateUserInfoActivity"
             android:label="@string/title_activity_update_user_info" >
         </activity>
+        <activity
+            android:name=".ui.user.UserInfoActivity"
+            android:label="@string/title_activity_user_info" >
+        </activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
