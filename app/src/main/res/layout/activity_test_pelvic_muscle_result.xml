@@ -13,25 +13,45 @@
         android:layout_height="wrap_content">
 
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:layout_toLeftOf="@+id/risk_factor"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Pelvic floor muscle risk factor"
-            android:textColor="#FFFFFF"
-            android:id="@+id/textView"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Pelvic floor muscle"
+                android:textColor="#FFFFFF"
+                android:id="@+id/textView"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_below="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="risk factor"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
 
         <ImageView
             android:layout_width="88dp"
             android:layout_height="88dp"
-            android:layout_marginRight="64dp"
+            android:layout_marginRight="32dp"
             android:layout_alignParentRight="true"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_risk_factor_low"
@@ -39,143 +59,77 @@
             android:layout_centerVertical="true" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/suggestions"
+        android:background="@drawable/bg_title"
         android:paddingLeft="25dp"
-        android:paddingBottom="25dp"
-        android:paddingTop="25dp"
-        android:paddingRight="10dp"
-        android:background="@color/main_light_grey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/suggest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:layout_alignParentTop="true"
-            android:textColor="@color/main_blue"
-            android:text="Sug." />
-        '
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:text="1. 每一次完成盆底肌健康测试，会评估出“游戏强度level等级”；
-2. 如果用户不更改，则以后的锻炼就按照此参数计算；如果用户更改，则按照用户自定义参数计算;"
-            android:layout_toRightOf="@+id/suggest"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/sport"
-            android:layout_marginLeft="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:layout_centerVertical="true"
-            android:textColor="@color/main_blue"
-            android:text="Sport." />
-
-        <LinearLayout
-            android:id="@+id/level_container"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_toRightOf="@+id/sport"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/prompt_level"
-                android:layout_width="0dp"
-                android:paddingLeft="20dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:gravity="center_vertical|left"
-                android:textSize="14dp"
-                android:text="Recommended Exercise"
-                android:layout_height="40dp" />
-
-            <TextView
-                android:id="@+id/level"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center_vertical|left"
-                android:textSize="14dp"
-                android:background="@null"
-                android:text="Level 4"
-                android:drawableRight="@drawable/arrow_right"
-                android:drawablePadding="10dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:layout_toRightOf="@+id/prompt_level" />
-
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/split_line"
-            android:layout_toRightOf="@+id/sport"
-            android:layout_marginLeft="10dp"
-            android:layout_below="@id/level_container"
-            style="@style/SplitLine" />
-
-        <LinearLayout
-            android:id="@+id/cycle_container"
-            android:layout_below="@+id/split_line"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_toRightOf="@+id/sport"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:layout_marginLeft="5dp"
-                android:gravity="center_vertical|left"
-                android:textSize="14dp"
-                android:text="Exercise Cycle"
-                android:layout_height="40dp"
-                android:id="@+id/" />
-
-            <TextView
-                android:id="@+id/cycle"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:textSize="14dp"
-                android:background="@null"
-                android:text="30 Days"
-                android:drawableRight="@drawable/arrow_right"
-                android:drawablePadding="10dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:layout_toRightOf="@+id/prompt_level" />
-
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <View style="@style/SplitLine" />
-
-    <Button
-        android:id="@+id/test"
-        style="?android:textAppearanceSmall"
+        android:gravity="center_vertical|left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:textColor="#000000"
+        android:text="Suggestions" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="25dp"
+        android:text="1. 每一次完成盆底肌健康测试，会评估出“游戏强度level等级”；
+2. 如果用户不更改，则以后的锻炼就按照此参数计算；如果用户更改，则按照用户自定义参数计算;"
+        android:layout_toRightOf="@+id/suggest"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/exercise"
+        android:background="@drawable/bg_title"
+        android:paddingLeft="25dp"
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical|left"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="Exercise" />
+
+
+    <TextView
+        android:id="@+id/level"
+        android:paddingLeft="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical|left"
+        android:textSize="14dp"
+        android:background="@null"
+        android:text="Level 4"
+        android:drawableRight="@drawable/arrow_right"
+        android:drawablePadding="10dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:layout_toRightOf="@+id/prompt_level" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/reevaluate"
+        android:layout_margin="25dp"
+        android:background="@drawable/btn_blue"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Test Again"
-        android:textStyle="bold" />
+        android:text="Re-evaluate" />
 
 
 </LinearLayout>
