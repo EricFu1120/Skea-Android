@@ -58,6 +58,10 @@
             android:name=".ui.user.UserInfoActivity"
             android:label="@string/title_activity_user_info" >
         </activity>
+        <activity
+            android:name=".ui.user.TestPelvicMuscleResultActivity"
+            android:label="@string/title_activity_test_pelvic_muscle_result" >
+        </activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->

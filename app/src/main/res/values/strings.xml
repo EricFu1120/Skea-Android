@@ -15,5 +15,6 @@
     <string name="title_activity_update_user_info">Update User Info</string>
     <string name="action_connect_bluetooth">Connect Bluetooth</string>
     <string name="title_activity_user_info">UserInfoActivity</string>
+    <string name="title_activity_test_pelvic_muscle_result">TestPelvicMuscleResultActivity</string>
 
 </resources>
