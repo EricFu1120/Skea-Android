@@ -15,9 +15,6 @@
 
 package custom.android.widget.supertooltips;
 
-import custom.android.widget.supertooltips.exception.NoOverflowMenuRuntimeException;
-import custom.android.widget.supertooltips.exception.NoTitleViewRuntimeException;
-import custom.android.widget.supertooltips.exception.ViewNotFoundRuntimeException;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;

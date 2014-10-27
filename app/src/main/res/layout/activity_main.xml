@@ -53,10 +53,8 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/startView"
         android:layout_marginTop="5dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/">
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:layout_weight="1"

@@ -1,4 +1,4 @@
-package custom.android.widget.supertooltips.exception;
+package custom.android.widget.supertooltips;
 
 /**
  * A {@link RuntimeException} that is thrown if the overflow menu is not

@@ -31,10 +31,6 @@
             android:label="@string/title_activity_register" >
         </activity>
         <activity
-            android:name=".ui.ImprovePersonalData"
-            android:label="@string/title_activity_improve_personal_data" >
-        </activity>
-        <activity
             android:name=".ui.user.InitUserInfoActivity"
             android:label="@string/title_activity_init_personal_data" >
         </activity>
