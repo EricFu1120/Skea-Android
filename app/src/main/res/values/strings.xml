@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Skea</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_improve_personal_data">Improve Personal Data</string>
+    <string name="title_activity_init_personal_data">Init Personal Data Activity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_setting">Setting Activity</string>
+    <string name="title_activity_record">RecordActivity</string>
+    <string name="title_activity_exercise">Exercise  Activity</string>
+    <string name="title_activity_update_user_info">Update User Info</string>
+    <string name="action_connect_bluetooth">Connect Bluetooth</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
+    <string name="title_activity_test_pelvic_muscle_result">TestPelvicMuscleResultActivity</string>
+    <string name="title_activity_top_setting">TopSettingActivity</string>
+    <string name="title_activity_skea_config">SkeaConfigActivity</string>
+
+</resources>
