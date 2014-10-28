@@ -16,5 +16,7 @@
     <string name="action_connect_bluetooth">Connect Bluetooth</string>
     <string name="title_activity_user_info">UserInfoActivity</string>
     <string name="title_activity_test_pelvic_muscle_result">TestPelvicMuscleResultActivity</string>
+    <string name="title_activity_top_setting">TopSettingActivity</string>
+    <string name="title_activity_skea_config">SkeaConfigActivity</string>
 
 </resources>
