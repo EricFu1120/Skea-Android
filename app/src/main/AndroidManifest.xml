@@ -35,7 +35,7 @@
             android:label="@string/title_activity_init_personal_data" >
         </activity>
         <activity
-            android:name=".ui.setting.SettingActivity"
+            android:name=".ui.user.UserInfoActivity"
             android:label="@string/title_activity_setting" >
         </activity>
         <activity
@@ -51,8 +51,8 @@
             android:label="@string/title_activity_update_user_info" >
         </activity>
         <activity
-            android:name=".ui.user.UserInfoActivity"
-            android:label="@string/title_activity_user_info" >
+            android:name=".ui.setting.SettingActivity"
+            android:label="@string/title_activity_second_setting" >
         </activity>
         <activity
             android:name=".ui.user.TestPelvicMuscleResultActivity"
@@ -62,6 +62,7 @@
             android:name=".ui.setting.SkeaConfigActivity"
             android:label="@string/title_activity_skea_config" >
         </activity>
+
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->

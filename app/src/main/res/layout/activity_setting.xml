@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="me.linkcube.skea.ui.setting.SettingActivity">
+    tools:context="me.linkcube.skea.ui.user.UserInfoActivity">
 
     <View style="@style/SplitLine" />
 
