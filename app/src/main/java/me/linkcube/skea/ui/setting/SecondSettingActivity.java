@@ -1,24 +1,24 @@
-package me.linkcube.skea.ui.user;
+package me.linkcube.skea.ui.setting;
 
-import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import me.linkcube.skea.R;
 
-public class UserInfoActivity extends Activity {
+public class SecondSettingActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
+        setContentView(R.layout.activity_second_setting);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.user_info, menu);
+        getMenuInflater().inflate(R.menu.second_setting, menu);
         return true;
     }
 

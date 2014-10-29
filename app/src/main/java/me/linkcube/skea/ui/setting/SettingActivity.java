@@ -2,11 +2,12 @@ package me.linkcube.skea.ui.setting;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import me.linkcube.skea.R;
 
-public class SettingActivity extends Activity {
+public class SettingActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
