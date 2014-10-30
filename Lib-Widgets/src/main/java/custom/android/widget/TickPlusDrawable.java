@@ -12,10 +12,10 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import custom.android.util.Property;
-import custom.android.animation.AnimatorSet;
-import custom.android.animation.ArgbEvaluator;
-import custom.android.animation.ObjectAnimator;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ArgbEvaluator;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.util.Property;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 
