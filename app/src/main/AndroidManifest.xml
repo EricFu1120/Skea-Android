@@ -69,11 +69,22 @@
         <activity
             android:name=".ui.test.SettingExerciseLevel"
             android:label="@string/title_activity_setting_exercise_level"
-            android:parentActivityName="me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity" >
+            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity" >
+
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myfirstapp.MainActivity" />
+                android:value=".ui.user.TestPelvicMuscleResultActivity" />
+        </activity>
+        <activity
+            android:name=".ui.test.SettingExerciseCycle"
+            android:label="@string/title_activity_setting_exercise_cycle"
+            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.user.TestPelvicMuscleResultActivity" />
         </activity>
     </application>
 
