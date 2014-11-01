@@ -110,7 +110,8 @@
         android:paddingLeft="25dp"
         android:singleLine="true"
         android:text="Level 4"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        android:onClick="startSettingExerciseLevel"/>
 
     <TextView
         android:id="@+id/exercise_cycle_tv"
