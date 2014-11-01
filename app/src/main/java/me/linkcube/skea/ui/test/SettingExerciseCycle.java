@@ -1,12 +1,17 @@
 package me.linkcube.skea.ui.test;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
 public class SettingExerciseCycle extends ActionBarActivity {
+
+
+    private String exerciseCycleString="30 Days";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +38,14 @@ public class SettingExerciseCycle extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //返回用户设置的训练周期
+        Intent resultIntent=new Intent();
+        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_CYCLE,exerciseCycleString);
+        setResult(RESULT_OK,resultIntent);
     }
 }
