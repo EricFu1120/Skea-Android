@@ -80,7 +80,6 @@
         android:layout_marginLeft="25dp"
         android:text="1. 每一次完成盆底肌健康测试，会评估出“游戏强度level等级”；
 2. 如果用户不更改，则以后的锻炼就按照此参数计算；如果用户更改，则按照用户自定义参数计算;"
-        android:layout_toRightOf="@+id/suggest"
         android:layout_height="wrap_content" />
 
 

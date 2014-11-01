@@ -62,7 +62,10 @@
             android:name=".ui.setting.SkeaConfigActivity"
             android:label="@string/title_activity_skea_config" >
         </activity>
-
+        <activity
+            android:name=".ui.test.ReEvaluationActivity"
+            android:label="@string/title_activity_re_evaluation" >
+        </activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
