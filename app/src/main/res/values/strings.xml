@@ -18,6 +18,6 @@
     <string name="title_activity_test_pelvic_muscle_result">TestPelvicMuscleResultActivity</string>
     <string name="title_activity_top_setting">TopSettingActivity</string>
     <string name="title_activity_skea_config">SkeaConfigActivity</string>
-    <string name="title_activity_second_setting">SecondSettingActivity</string>
+
 
 </resources>
