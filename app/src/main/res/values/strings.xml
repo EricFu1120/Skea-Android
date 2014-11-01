@@ -18,5 +18,6 @@
     <string name="title_activity_top_setting">TopSettingActivity</string>
     <string name="title_activity_skea_config">SkeaConfigActivity</string>
     <string name="title_activity_re_evaluation">ReEvaluationActivity</string>
+    <string name="title_activity_setting_exercise_level">SettingExerciseLevel</string>
 
 </resources>
