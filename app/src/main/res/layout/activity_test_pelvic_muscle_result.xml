@@ -126,7 +126,8 @@
         android:paddingLeft="25dp"
         android:singleLine="true"
         android:text="Exercise Cycle  30 days"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        android:onClick="startSettingExerciseCycle"/>
 
 
     <View

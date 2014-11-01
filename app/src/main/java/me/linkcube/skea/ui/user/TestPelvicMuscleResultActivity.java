@@ -7,15 +7,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.test.SettingExerciseCycle;
 import me.linkcube.skea.ui.test.SettingExerciseLevel;
 
 public class TestPelvicMuscleResultActivity extends Activity {
     public  static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_level";
+    public  static final String EXERCISE_CYCLE = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_level";
     private static final int SETTING_LEVEL_REQUEST_CODE = 1;
+    private static final int SETTING_CYCLE_REQUEST_CODE = 2;
+
 
 
     private TextView exerciseLevel;
+    private TextView exerciseCycle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +32,7 @@ public class TestPelvicMuscleResultActivity extends Activity {
 
     private void init() {
         exerciseLevel = (TextView) findViewById(R.id.level);
+        exerciseCycle = (TextView) findViewById(R.id.exercise_cycle_tv);
     }
 
     /**
@@ -36,6 +44,19 @@ public class TestPelvicMuscleResultActivity extends Activity {
         startActivityForResult(intent, SETTING_LEVEL_REQUEST_CODE);
 
     }
+
+
+    /**
+     * 启动设置训练周期
+     */
+    private void startSettingExerciseCycle() {
+        Intent intent = new Intent();
+        intent.setClass(getApplicationContext(), SettingExerciseCycle.class);
+        startActivityForResult(intent, SETTING_CYCLE_REQUEST_CODE);
+
+    }
+
+
 
 
     @Override
@@ -66,9 +87,15 @@ public class TestPelvicMuscleResultActivity extends Activity {
                 if (resultCode == RESULT_OK) {
 
                     exerciseLevel.setText(data.getStringExtra(EXERCISE_LEVEL));
-
-
                 }
+
+            case 2:
+                //得到训练强度值
+                if (resultCode == RESULT_OK) {
+
+                    exerciseCycle.setText(data.getStringExtra(EXERCISE_CYCLE));
+                }
+
 
 
                 break;
