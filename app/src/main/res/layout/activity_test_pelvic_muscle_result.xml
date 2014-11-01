@@ -7,128 +7,142 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:layout_height="wrap_content"
         android:background="@color/main_dark_grey"
-        android:layout_height="wrap_content">
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/risk_factor"
-            android:orientation="vertical"
-            android:layout_centerVertical="true">
+            android:orientation="vertical">
 
 
             <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Pelvic floor muscle"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#FFFFFF"
-                android:id="@+id/textView"
                 android:textStyle="bold" />
 
 
             <TextView
-                android:layout_below="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="risk factor"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
 
 
         <ImageView
+            android:id="@+id/risk_factor"
             android:layout_width="88dp"
             android:layout_height="88dp"
-            android:layout_marginRight="32dp"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="32dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/icon_risk_factor_low"
-            android:id="@+id/risk_factor"
-            android:layout_centerVertical="true" />
+            android:src="@drawable/icon_risk_factor_low" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/suggestions"
-        android:background="@drawable/bg_title"
-        android:paddingLeft="25dp"
-        android:gravity="center_vertical|left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:textStyle="bold"
         android:layout_alignParentTop="true"
+        android:background="@drawable/bg_title"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="25dp"
+        android:text="Suggestions"
         android:textColor="#000000"
-        android:text="Suggestions" />
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
 
     <TextView
         android:layout_width="match_parent"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:text="1. 每一次完成盆底肌健康测试，会评估出“游戏强度level等级”；
-2. 如果用户不更改，则以后的锻炼就按照此参数计算；如果用户更改，则按照用户自定义参数计算;"
-        android:layout_height="wrap_content" />
+2. 如果用户不更改，则以后的锻炼就按照此参数计算；如果用户更改，则按照用户自定义参数计算;" />
 
 
     <TextView
         android:id="@+id/exercise"
-        android:background="@drawable/bg_title"
-        android:paddingLeft="25dp"
         android:layout_width="wrap_content"
-        android:gravity="center_vertical|left"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
         android:layout_centerVertical="true"
-        android:textStyle="bold"
+        android:background="@drawable/bg_title"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="25dp"
+        android:text="Exercise"
         android:textColor="#000000"
-        android:text="Exercise" />
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
 
     <TextView
         android:id="@+id/level"
-        android:paddingLeft="25dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginRight="10dp"
-        android:gravity="center_vertical|left"
-        android:textSize="14dp"
         android:background="@null"
-        android:text="Level 4"
-        android:drawableRight="@drawable/arrow_right"
         android:drawablePadding="10dp"
+        android:drawableRight="@drawable/arrow_right"
+        android:gravity="center_vertical|left"
         android:maxLines="1"
+        android:paddingLeft="25dp"
         android:singleLine="true"
-        android:layout_toRightOf="@+id/prompt_level" />
+        android:text="Level 4"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/exercise_cycle_tv"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginRight="10dp"
+        android:background="@null"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/arrow_right"
+        android:gravity="center_vertical|left"
+        android:maxLines="1"
+        android:paddingLeft="25dp"
+        android:singleLine="true"
+        android:text="Exercise Cycle  30 days"
+        android:textSize="14dp" />
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/reevaluate"
-        android:layout_margin="25dp"
-        android:background="@drawable/btn_blue"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:textSize="20dp"
         android:layout_height="wrap_content"
+        android:layout_margin="25dp"
         android:layout_marginTop="16dp"
-        android:text="Re-evaluate" />
+        android:background="@drawable/btn_blue"
+        android:text="Re-evaluate"
+        android:textSize="20dp" />
 
 
 </LinearLayout>
