@@ -87,6 +87,6 @@
             android:text="Me"
             android:drawableTop="@drawable/icon_settings"
             android:drawablePadding="5dp"
-            android:id="@+id/settingsTextView" />
+            android:id="@+id/meTextView" />
     </LinearLayout>
 </RelativeLayout>
