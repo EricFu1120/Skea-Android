@@ -86,6 +86,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.TestPelvicMuscleResultActivity" />
         </activity>
+        <activity
+            android:name=".ui.info.InformationActivity"
+            android:label="@string/title_activity_information"
+            android:parentActivityName=".ui.MainActivity">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
+        </activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
