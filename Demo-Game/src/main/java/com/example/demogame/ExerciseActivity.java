@@ -5,13 +5,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.demogame.view.BarView;
+import com.example.demogame.view.BarViewAnimator;
+import com.example.demogame.view.BaseViewAnimator;
+
 
 public class ExerciseActivity extends ActionBarActivity {
+
+    private BarView barView;
+
+    private BarViewAnimator barViewAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
+        barView = (BarView)findViewById(R.id.bar_view);
+        barViewAnimator = new BarViewAnimator();
     }
 
 
@@ -28,7 +38,9 @@ public class ExerciseActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_pause) {
+            barViewAnimator.setDuration(7000);
+            barViewAnimator.animate(barView);
             return true;
         }
         return super.onOptionsItemSelected(item);

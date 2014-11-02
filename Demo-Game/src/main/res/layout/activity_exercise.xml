@@ -1,105 +1,133 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/bg_exercise"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
+
 
     <RelativeLayout
-        android:layout_marginRight="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:id="@+id/time_left_container">
-
-        <ImageView
-            android:layout_width="96dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/bg_hexagon"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time Left"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:id="@+id/time_left_title" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/time_left_title"
-                android:text="2:15"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/main_blue"
-                android:id="@+id/time_left" />
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginRight="16dp"
-        android:layout_below="@+id/time_left_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:id="@+id/">
-
-        <ImageView
-            android:layout_width="96dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/bg_hexagon"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Score"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:id="@+id/score_title" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/score_title"
-                android:text="11678"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/main_blue"
-                android:id="@+id/score" />
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <ImageView
         android:layout_width="match_parent"
-        android:src="@drawable/laser_active"
-        android:layout_height="wrap_content"
-        android:id="@+id/laser"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp" />
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        tools:context=".MainActivity">
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_marginRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:id="@+id/time_left_container">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg_hexagon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time Left"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/time_left_title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/time_left_title"
+                    android:text="2:15"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_blue"
+                    android:id="@+id/time_left" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginRight="16dp"
+            android:layout_below="@+id/time_left_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg_hexagon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Score"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/score_title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/score_title"
+                    android:text="11678"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_blue"
+                    android:id="@+id/score" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <com.example.demogame.view.BarView xmlns:app="http://schemas.android.com/apk/res/com.example.demogame"
+            android:id="@+id/bar_view"
+            android:background="#ccc"
+            android:layout_width="70dp"
+            android:layout_height="300dp"
+            android:paddingLeft="20dp"
+            android:layout_centerHorizontal="true"
+            app:exampleDimension="24sp"
+            app:exampleColor="#33b5e5"
+            app:exampleString="Hello, BarView"
+            app:exampleDrawable="@android:drawable/ic_menu_add" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/transparent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/laser_active"
+            android:layout_height="wrap_content"
+            android:id="@+id/laser"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import com.nineoldandroids.animation.ObjectAnimator;
 
 /**
- * Created by Ervin on 14/10/31.
+ * Created by Ervin on 14/11/2.
  */
-public class BarViewAnimator extends BaseViewAnimator {
+public class BarViewGlowAnimator extends BaseViewAnimator {
 
     @Override
     protected void prepare(View target) {
@@ -16,7 +16,6 @@ public class BarViewAnimator extends BaseViewAnimator {
         int distance = parent.getHeight();
         getAnimatorAgent().playTogether(
                 ObjectAnimator.ofFloat(target, "alpha", 0, 1), ObjectAnimator.ofFloat(target, "translationY", -target.getHeight() + 100, distance - 100));
+
     }
-
-
 }
