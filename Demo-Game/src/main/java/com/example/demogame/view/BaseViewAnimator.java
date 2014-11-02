@@ -1,6 +1,7 @@
 package com.example.demogame.view;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 
 import com.nineoldandroids.animation.Animator.AnimatorListener;
@@ -19,6 +20,12 @@ public abstract class BaseViewAnimator {
 	}
 
 	protected abstract void prepare(View target);
+
+    protected abstract ViewGroup getFrontParent();
+
+    protected abstract ViewGroup getBehindParent();
+
+    protected abstract ViewGroup getMainParent();
 
 	public void animate(View target) {
 		reset(target);

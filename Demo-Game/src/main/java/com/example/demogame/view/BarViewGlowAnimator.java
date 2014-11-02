@@ -10,12 +10,29 @@ import com.nineoldandroids.animation.ObjectAnimator;
  */
 public class BarViewGlowAnimator extends BaseViewAnimator {
 
+    private View target;
+
     @Override
     protected void prepare(View target) {
-        ViewGroup parent = (ViewGroup) target.getParent().getParent();
-        int distance = parent.getHeight();
+        this.target = target;
+        int distance = getMainParent().getHeight();
         getAnimatorAgent().playTogether(
-                ObjectAnimator.ofFloat(target, "alpha", 0, 1), ObjectAnimator.ofFloat(target, "translationY", -target.getHeight() + 100, distance - 100));
+                ObjectAnimator.ofFloat(target, "alpha", 0, 1), ObjectAnimator.ofFloat(target, "translationY", -target.getHeight(), distance));
 
+    }
+
+    @Override
+    protected ViewGroup getFrontParent() {
+        return (ViewGroup) getMainParent().getChildAt(0);
+    }
+
+    @Override
+    protected ViewGroup getBehindParent() {
+        return (ViewGroup) getMainParent().getChildAt(1);
+    }
+
+    @Override
+    protected ViewGroup getMainParent() {
+        return (ViewGroup) target.getParent().getParent();
     }
 }

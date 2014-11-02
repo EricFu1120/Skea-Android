@@ -7,21 +7,26 @@ import android.view.MenuItem;
 
 import com.example.demogame.view.BarView;
 import com.example.demogame.view.BarViewAnimator;
+import com.example.demogame.view.BarViewGlowAnimator;
 import com.example.demogame.view.BaseViewAnimator;
 
 
 public class ExerciseActivity extends ActionBarActivity {
 
-    private BarView barView;
+    private BarView barView, barViewGlow;
 
     private BarViewAnimator barViewAnimator;
+
+    private BarViewGlowAnimator barViewGlowAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         barView = (BarView)findViewById(R.id.bar_view);
+        barViewGlow = (BarView) findViewById(R.id.bar_view_glow);
         barViewAnimator = new BarViewAnimator();
+        barViewGlowAnimator = new BarViewGlowAnimator();
     }
 
 
@@ -39,8 +44,8 @@ public class ExerciseActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_pause) {
-            barViewAnimator.setDuration(7000);
-            barViewAnimator.animate(barView);
+            barViewAnimator.setDuration(7000).animate(barView);
+            barViewGlowAnimator.setDuration(7000).animate(barViewGlow);
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -1,16 +1,44 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg_exercise"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
+
+        <com.example.demogame.view.BarView xmlns:app="http://schemas.android.com/apk/res/com.example.demogame"
+            android:id="@+id/bar_view_glow"
+            android:layout_width="70dp"
+            android:layout_height="300dp"
+            android:paddingLeft="20dp"
+            android:layout_centerHorizontal="true"
+            app:exampleDimension="24sp"
+            app:exampleColor="#33b5e5"
+            app:exampleString="Hello, BarView"
+            app:exampleDrawable="@drawable/bar_long_glow" />
+
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:src="@drawable/laser_active"
+            android:layout_height="30dp"
+            android:id="@+id/laser"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:background="@drawable/bg_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp">
 
         <RelativeLayout
             android:layout_marginRight="16dp"
@@ -102,32 +130,13 @@
 
         <com.example.demogame.view.BarView xmlns:app="http://schemas.android.com/apk/res/com.example.demogame"
             android:id="@+id/bar_view"
-            android:background="#ccc"
             android:layout_width="70dp"
             android:layout_height="300dp"
-            android:paddingLeft="20dp"
             android:layout_centerHorizontal="true"
             app:exampleDimension="24sp"
             app:exampleColor="#33b5e5"
             app:exampleString="Hello, BarView"
-            app:exampleDrawable="@android:drawable/ic_menu_add" />
+            app:exampleDrawable="@drawable/bar_long" />
     </RelativeLayout>
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/transparent"
-        android:layout_weight="1">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:src="@drawable/laser_active"
-            android:layout_height="wrap_content"
-            android:id="@+id/laser"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>
