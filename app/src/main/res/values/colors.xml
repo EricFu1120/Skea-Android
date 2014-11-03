@@ -7,5 +7,10 @@
     <color name="main_light_grey">#e5e5e5</color>
     <!-- 应用主色调 蓝色 -->
     <color name="main_blue">#50c0ed</color>
+    <!-- 应用主色调 ＸＸ色 -->
+    <color name="main_dark">#3b3c41</color>
+    <!--白色-->
+    <color name="main_white">#ffffff</color>
+
 
 </resources>
