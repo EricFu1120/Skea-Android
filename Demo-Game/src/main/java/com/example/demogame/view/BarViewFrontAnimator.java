@@ -8,7 +8,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 /**
  * Created by Ervin on 14/10/31.
  */
-public class BarViewAnimator extends BaseViewAnimator {
+public class BarViewFrontAnimator extends BaseViewAnimator {
 
     private View target;
 
@@ -18,7 +18,7 @@ public class BarViewAnimator extends BaseViewAnimator {
         ViewGroup parent = getMainParent();
         int distance = parent.getHeight();
         getAnimatorAgent().playTogether(
-                ObjectAnimator.ofFloat(target, "alpha", 0, 1), ObjectAnimator.ofFloat(target, "translationY", -target.getHeight(), distance));
+                ObjectAnimator.ofFloat(target, "alpha", 0.2f, 1), ObjectAnimator.ofFloat(target, "translationY", -target.getHeight(), distance));
     }
 
     @Override
