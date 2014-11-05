@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.example.demogame.view.BarViewWrapper;
-
 import java.util.List;
 
 /**

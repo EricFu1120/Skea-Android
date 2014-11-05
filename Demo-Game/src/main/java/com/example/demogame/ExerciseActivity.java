@@ -23,7 +23,7 @@ public class ExerciseActivity extends ActionBarActivity {
 
     private BarViewGroup group;
 
-//    private ViewGroup frontParent, behindParent;
+    private ViewGroup frontParent, behindParent;
 
     private ExerciseManager manager;
 
@@ -36,10 +36,13 @@ public class ExerciseActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
         listView = (ListView) findViewById(R.id.listView);
-        adapter = new BarViewAdapter(this, false);
-        listView.setAdapter(adapter);
-//        frontParent = (ViewGroup) findViewById(R.id.frontParent);
-//        behindParent = (ViewGroup) findViewById(R.id.behindParent);
+        frontParent = (ViewGroup) findViewById(R.id.frontParent);
+        behindParent = (ViewGroup) findViewById(R.id.behindParent);
+//        listView = new ListViewWrapper().getListView(listView,frontParent);
+//        adapter = new BarViewAdapter(this, false);
+//        listView.setAdapter(adapter);
+//        listView.setSelection(1);
+
 //        group = new BarViewGroup(this, BarViewGroup.BAR_VIEW_LONG, frontParent, behindParent);
 //        manager = new ExerciseManager(this, frontParent, behindParent);
 //        barView = (BarView) findViewById(R.id.bar_view);
@@ -60,7 +63,11 @@ public class ExerciseActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_pause) {
-            listView.smoothScrollBy(300,7000);
+            listView = new ListViewWrapper().getListView(listView,frontParent);
+            adapter = new BarViewAdapter(this, false);
+            listView.setAdapter(adapter);
+            listView.setSelection(1);
+            listView.smoothScrollBy(-300,7000);
 //            if (manager == null)
 //                manager = new ExerciseManager(this, frontParent, behindParent);
 //            group.animate();

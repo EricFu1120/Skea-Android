@@ -1,4 +1,4 @@
-package com.example.demogame.view;
+package com.example.demogame;
 
 import android.content.Context;
 import android.widget.ImageView;
