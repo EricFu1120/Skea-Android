@@ -16,6 +16,7 @@ import me.linkcube.skea.ui.setting.SettingActivity;
 import me.linkcube.skea.ui.setting.SkeaConfigActivity;
 
 public class UserInfoActivity extends ActionBarActivity {
+    private final String urlString="http://www.linkcube.me";
     private TextView test_pelvic_muscle;
     private TextView skea_settings;
     private TextView purchase_product;
@@ -65,7 +66,7 @@ public class UserInfoActivity extends ActionBarActivity {
                     startActivity(new Intent().setClass(getApplicationContext(), SkeaConfigActivity.class));
                     break;
                 case R.id.purchase_product:
-                    Uri uri=Uri.parse("http://www.linkcube.me");//网址前没有加http
+                    Uri uri=Uri.parse(urlString);//网址要加http
                     Intent intent=new Intent(Intent.ACTION_VIEW,uri);
                     startActivity(intent);
                     break;
