@@ -5,9 +5,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.ViewGroup;
 
-import com.example.demogame.view.BarViewWrapper;
+import com.example.demogame.view.BarViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +28,7 @@ public class ExerciseManager {
 
     private int slot;
 
-    private BarViewWrapper wrapper1, wrapper2;
+    private BarViewGroup wrapper1, wrapper2;
 
     private Handler handler = new Handler() {
         @Override
@@ -58,18 +57,18 @@ public class ExerciseManager {
         this.context = context;
         this.front = front;
         this.behind = behind;
-        wrapper1 = new BarViewWrapper(context, 1, front, behind);
-        wrapper2 = new BarViewWrapper(context, 0, front, behind);
-//        shortList = new ArrayList<BarViewWrapper>();
-//        mediumList = new ArrayList<BarViewWrapper>();
-//        longList = new ArrayList<BarViewWrapper>();
+        wrapper1 = new BarViewGroup(context, 1, front, behind);
+        wrapper2 = new BarViewGroup(context, 0, front, behind);
+//        shortList = new ArrayList<BarViewGroup>();
+//        mediumList = new ArrayList<BarViewGroup>();
+//        longList = new ArrayList<BarViewGroup>();
     }
 
     public void start() {
         timeCounter = new TimeCounter(handler);
         timeCounter.startTimingTask();
 
-//        BarViewWrapper wrapper1 = getBarViewWrapper(0);
+//        BarViewGroup wrapper1 = getBarViewWrapper(0);
 
         wrapper1.animate();
         wrapper2.animate();
@@ -95,24 +94,24 @@ public class ExerciseManager {
         barLongNum = barMediumNum = barShortNum = num;
     }
 
-    private List<BarViewWrapper> shortList, mediumList, longList;
+    private List<BarViewGroup> shortList, mediumList, longList;
 
-    private BarViewWrapper getBarViewWrapper(int type) {
-        BarViewWrapper wrapper = null;
+    private BarViewGroup getBarViewWrapper(int type) {
+        BarViewGroup wrapper = null;
         switch (type) {
-            case BarViewWrapper.BAR_VIEW_LONG:
+            case BarViewGroup.BAR_VIEW_LONG:
                 barLongNum = barLongNum - 1;
                 break;
-            case BarViewWrapper.BAR_VIEW_MEDIUM:
+            case BarViewGroup.BAR_VIEW_MEDIUM:
                 barMediumNum = barMediumNum - 1;
                 break;
-            case BarViewWrapper.BAR_VIEW_SHORT:
+            case BarViewGroup.BAR_VIEW_SHORT:
                 barShortNum = barShortNum - 1;
                 break;
             default:
                 break;
         }
-        wrapper = new BarViewWrapper(context, type, front, behind);
+        wrapper = new BarViewGroup(context, type, front, behind);
         slot = 2 + 7;
         return wrapper;
     }
