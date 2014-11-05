@@ -47,12 +47,12 @@ public class RecordActivity extends Activity {
         duration_tv = (TextView) findViewById(R.id.duration_tv);
 
         //设置文字特效
-        setTextViewTextWithSpannableString("Today(Level 4)","",Color.WHITE,Color.BLUE,1.5f,level_tv);
-        setTextViewTextWithSpannableString("","Good!",Color.WHITE,Color.YELLOW,3.0f,evaluate_tv);
-        setTextViewTextWithSpannableString("Explosive force :","Great",Color.WHITE,Color.BLUE,1.5f,explosive_force_tv);
-        setTextViewTextWithSpannableString("Persistance :","Fair",Color.WHITE,Color.BLUE,1.5f,persistance_tv);
-        setTextViewTextWithSpannableString("Score :","1573",Color.BLACK,Color.BLUE,1.5f,score_tv);
-        setTextViewTextWithSpannableString("Time :","24 Min",Color.BLACK,Color.BLUE,1.5f,duration_tv);
+        setTextViewTextWithSpannableString("Today(Level 4)","",Color.WHITE,Color.BLUE,2.0f,level_tv);
+        setTextViewTextWithSpannableString("","Good!",Color.WHITE,Color.YELLOW,3.5f,evaluate_tv);
+        setTextViewTextWithSpannableString("Explosive force :","Great",Color.WHITE,Color.BLUE,2.0f,explosive_force_tv);
+        setTextViewTextWithSpannableString("Persistance :","Fair",Color.WHITE,Color.BLUE,2.0f,persistance_tv);
+        setTextViewTextWithSpannableString("Score :","1573",Color.BLACK,Color.BLUE,2.0f,score_tv);
+        setTextViewTextWithSpannableString("Time :","24 Min",Color.BLACK,Color.BLUE,2.0f,duration_tv);
 
 
 
@@ -75,7 +75,9 @@ public class RecordActivity extends Activity {
      *                     TextView
      */
     private void setTextViewTextWithSpannableString(String title, String context, int titleColor, int contextColor, float size, TextView tv) {
+
         mSpanableString = new SpannableString(title + context);
+
         int title_length = title.length();
         int context_length = context.length();
         //设置字体大小（相对值,单位：像素） 参数表示为默认字体大小的多少倍
