@@ -1,7 +1,5 @@
 package com.example.demogame.view;
 
-import android.util.Log;
-
 import com.example.demogame.core.Bar;
 import com.example.demogame.core.BarConst;
 
@@ -43,10 +41,8 @@ public class BarGenerator {
         for (int i = 0; i < barNum; i++) {
             bars.add(getRandomBarType(i));
             if (i != barNum - 1)
-                bars.add(new Bar(BarConst.BAR_SLOT));
+                bars.add(new Bar(BarConst.TYPE.SLOT));
         }
-        Log.d("user level is ", "" + level);
-        Log.d("create bars size = ", "" + bars.size());
     }
 
     public List<Bar> getBars() {
@@ -57,13 +53,13 @@ public class BarGenerator {
         barNum = barUnitNum * 3;
         barArray = new int[barNum];
         for (int i = 0; i < barUnitNum; i++) {
-            barArray[i] = BarConst.BAR_LONG;
+            barArray[i] = BarConst.TYPE.LONG;
         }
         for (int i = barUnitNum; i < 2 * barUnitNum; i++) {
-            barArray[i] = BarConst.BAR_MEDIUM;
+            barArray[i] = BarConst.TYPE.MEDIUM;
         }
         for (int i = 2 * barUnitNum; i < 3 * barUnitNum; i++) {
-            barArray[i] = BarConst.BAR_SHORT;
+            barArray[i] = BarConst.TYPE.SHORT;
         }
     }
 

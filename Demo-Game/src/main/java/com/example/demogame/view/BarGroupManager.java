@@ -46,9 +46,9 @@ public class BarGroupManager {
 //        {
 //
 //        }
-        int exercise = DensityUtils.dip2px(context, BarConst.BAR_UNIT_HEIGHT * (5 + 7 + 12) * 15);
+        int exercise = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT * (5 + 7 + 12) * 15);
         int blank = DensityUtils.dip2px(context, parent.getHeight()) * 2;
-        int slot = DensityUtils.dip2px(context, BarConst.BAR_UNIT_HEIGHT * 2) * 44;
+        int slot = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT * 2) * 44;
         return exercise + blank + slot;
 
     }

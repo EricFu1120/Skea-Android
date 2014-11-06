@@ -5,18 +5,33 @@ package com.example.demogame.core;
  */
 public class BarConst {
 
-    public final static int TYPE_COUNT = 4;
+    public static class TYPE {
 
-    public final static int BAR_LONG = 3;
+        public final static int LONG = 3;
 
-    public final static int BAR_MEDIUM = 2;
+        public final static int MEDIUM = 2;
 
-    public final static int BAR_SHORT = 1;
+        public final static int SHORT = 1;
 
-    public final static int BAR_SLOT = 0;
+        public final static int SLOT = 0;
 
-    public static final int BAR_UNIT_HEIGHT = 40;
+    }
 
-    public static final int BAR_WIDTH = 70;
+    public static class VIEW {
 
+        public static final int UNIT_HEIGHT = 40;
+
+        public static final int UNIT_WIDTH = 70;
+    }
+
+    public static class LEVEL {
+
+        public static final int[] NUM = new int[]{15, 20, 30, 40};
+
+        /**
+         * 每种类型和上面的TYPE是对应的
+         */
+        public static final int[] TIME = new int[]{2, 5, 7, 12};
+
+    }
 }

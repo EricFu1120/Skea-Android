@@ -7,13 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.demogame.core.ExerciseManager;
+import com.example.demogame.core.ExerciseController;
 import com.example.demogame.view.BarGroupManager;
-import com.example.demogame.view.BarViewAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,24 +19,13 @@ import java.util.TimerTask;
 
 public class ExerciseActivity extends ActionBarActivity {
 
-//    private BarView barView, barViewGlow;
-
-//    private BarViewFrontAnimator barViewFrontAnimator;
-//
-//    private BarViewBehindAnimator barViewBehindAnimator;
-
     private ViewGroup frontParent, behindParent;
 
-    private ExerciseManager manager;
-
-    private ListView listView;
-
-    private BarViewAdapter adapter;
+    private ExerciseController controller;
 
     private TextView scrollXView, scrollYView;
 
     private float scrollX, scrollY;
-
 
     private LinearLayout frontGroup;
 
@@ -61,19 +48,6 @@ public class ExerciseActivity extends ActionBarActivity {
         frontParent = (ViewGroup) findViewById(R.id.frontParent);
         behindParent = (ViewGroup) findViewById(R.id.behindParent);
         timer = new Timer();
-//        new BarGroupManager().getBarGroup(frontGroup,frontParent,false);
-//        listView = new ListViewWrapper().getListView(listView,frontParent);
-//        adapter = new BarViewAdapter(this, false);
-//        listView.setAdapter(adapter);
-//        listView.setSelection(1);
-
-//        frontGroup = new BarViewGroup(this, BarViewGroup.BAR_VIEW_LONG, frontParent, behindParent);
-//        manager = new ExerciseManager(this, frontParent, behindParent);
-//        barView = (BarView) findViewById(R.id.bar_view);
-//        barViewGlow = (BarView) findViewById(R.id.bar_view_glow);
-//        barViewFrontAnimator = new BarViewFrontAnimator();
-//        barViewBehindAnimator = new BarViewBehindAnimator();
-
     }
 
 
@@ -92,17 +66,6 @@ public class ExerciseActivity extends ActionBarActivity {
             if (scroll) {
                 BarGroupManager.getInstance().getBarGroup(frontGroup, frontParent, false);
                 BarGroupManager.getInstance().getBarGroup(behindGroup, behindParent, true);
-//                timer.cancel();
-//                timer.schedule(new TimerTask() {
-//                    @Override
-//                    public void run() {
-//                        frontGroup.scrollBy(0,-80);
-//                    }
-//                }, 1000,100);
-//                listView = new ListViewWrapper().getListView(listView, frontParent);
-//                adapter = new BarViewAdapter(this, false);
-//                listView.setAdapter(adapter);
-//                listView.setSelection(BarGenerator.getInstance().getBars().size() + 1);
                 scroll = false;
             } else {
                 Log.d("frontGroup height = ", "" + BarGroupManager.getInstance().getBarGroupHeight(this));
