@@ -1,10 +1,13 @@
-package com.example.demogame;
+package com.example.demogame.view;
 
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.example.demogame.core.Bar;
+import com.example.demogame.core.BarConst;
 
 import java.util.List;
 
@@ -57,6 +60,7 @@ public class BarViewAdapter extends BaseAdapter {
         convertView = new BarViewWrapper().getImageView(mContext, type, glow);
         return convertView;
     }
+
 
 
 }

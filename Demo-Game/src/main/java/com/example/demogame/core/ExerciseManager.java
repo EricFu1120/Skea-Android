@@ -5,8 +5,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.ViewGroup;
 
-import com.example.demogame.view.BarViewGroup;
-
 import java.util.List;
 
 /**
@@ -28,7 +26,6 @@ public class ExerciseManager {
 
     private int slot;
 
-    private BarViewGroup wrapper1, wrapper2;
 
     private Handler handler = new Handler() {
         @Override
@@ -37,7 +34,6 @@ public class ExerciseManager {
             if (slot > 0) {
                 slot--;
             } else {
-                wrapper2.animate();
             }
         }
     };
@@ -57,8 +53,6 @@ public class ExerciseManager {
         this.context = context;
         this.front = front;
         this.behind = behind;
-        wrapper1 = new BarViewGroup(context, 1, front, behind);
-        wrapper2 = new BarViewGroup(context, 0, front, behind);
 //        shortList = new ArrayList<BarViewGroup>();
 //        mediumList = new ArrayList<BarViewGroup>();
 //        longList = new ArrayList<BarViewGroup>();
@@ -70,8 +64,6 @@ public class ExerciseManager {
 
 //        BarViewGroup wrapper1 = getBarViewWrapper(0);
 
-        wrapper1.animate();
-        wrapper2.animate();
     }
 
     private void initBarsNum(int level) {
@@ -94,26 +86,6 @@ public class ExerciseManager {
         barLongNum = barMediumNum = barShortNum = num;
     }
 
-    private List<BarViewGroup> shortList, mediumList, longList;
 
-    private BarViewGroup getBarViewWrapper(int type) {
-        BarViewGroup wrapper = null;
-        switch (type) {
-            case BarViewGroup.BAR_VIEW_LONG:
-                barLongNum = barLongNum - 1;
-                break;
-            case BarViewGroup.BAR_VIEW_MEDIUM:
-                barMediumNum = barMediumNum - 1;
-                break;
-            case BarViewGroup.BAR_VIEW_SHORT:
-                barShortNum = barShortNum - 1;
-                break;
-            default:
-                break;
-        }
-        wrapper = new BarViewGroup(context, type, front, behind);
-        slot = 2 + 7;
-        return wrapper;
-    }
 
 }

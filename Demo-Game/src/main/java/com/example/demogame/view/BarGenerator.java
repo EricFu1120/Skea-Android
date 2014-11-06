@@ -1,6 +1,9 @@
-package com.example.demogame;
+package com.example.demogame.view;
 
 import android.util.Log;
+
+import com.example.demogame.core.Bar;
+import com.example.demogame.core.BarConst;
 
 import java.util.ArrayList;
 import java.util.List;

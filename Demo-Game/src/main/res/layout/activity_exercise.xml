@@ -12,6 +12,25 @@
         android:layout_height="match_parent"
         android:background="@color/transparent">
 
+        <ScrollView
+            android:layout_width="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent"
+            android:id="@+id/behind_scrollView"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/behind_group"
+                android:layout_width="wrap_content"
+                android:minHeight="70dp"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
         <ImageView
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="50dp"
@@ -26,16 +45,9 @@
 
     <RelativeLayout
         android:id="@+id/frontParent"
-        android:background="@drawable/bg_exercise"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="80dp">
-
-        <ListView
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:id="@+id/listView"
-            android:layout_centerHorizontal="true" />
 
         <RelativeLayout
             android:layout_marginRight="16dp"
@@ -124,6 +136,49 @@
 
 
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="scrollX"
+            android:textColor="@color/white"
+            android:id="@+id/scrollX"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="scrollY"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/scrollX"
+            android:textColor="@color/white"
+            android:id="@+id/scrollY"
+            android:layout_centerHorizontal="true" />
+
+        <ScrollView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/exercise_group"
+                android:layout_width="wrap_content"
+                android:minHeight="70dp"
+                android:layout_height="match_parent">
+
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
 
 
     </RelativeLayout>
