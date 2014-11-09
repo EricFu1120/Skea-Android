@@ -9,10 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.demogame.core.Bar;
 import com.example.demogame.core.ExerciseController;
+import com.example.demogame.core.ScoreCounter;
 
 
-public class ExerciseActivity extends ActionBarActivity {
+public class ExerciseActivity extends ActionBarActivity implements ExerciseController.ScoreCallback{
 
     private ViewGroup frontParent, behindParent;
 
@@ -39,6 +41,7 @@ public class ExerciseActivity extends ActionBarActivity {
         frontParent = (ViewGroup) findViewById(R.id.frontParent);
         behindParent = (ViewGroup) findViewById(R.id.behindParent);
         controller = new ExerciseController(this);
+        controller.registerShrinkCallback(this);
     }
 
 
@@ -69,4 +72,18 @@ public class ExerciseActivity extends ActionBarActivity {
     }
 
 
+    @Override
+    public void startScore(Bar bar) {
+        ScoreCounter.getInstance().startScore(bar);
+    }
+
+    @Override
+    public void tickScore() {
+        ScoreCounter.getInstance().tickScore();
+    }
+
+    @Override
+    public void stopScore() {
+        ScoreCounter.getInstance().stopScore();
+    }
 }

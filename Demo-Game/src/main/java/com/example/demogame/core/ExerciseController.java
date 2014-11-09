@@ -34,6 +34,13 @@ public class ExerciseController {
 
     private boolean active = false;
 
+    private ScoreCallback callback;
+
+    /**
+     * 用来分割计时点
+     */
+    private int count;
+
     public ExerciseController(Context context) {
         //TODO get user's level
         speed = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT);
@@ -89,24 +96,23 @@ public class ExerciseController {
                     Log.d("checkActivePosition", "" + "bar type" + list.get(activePosition).getType());
                     Log.d("checkActivePosition", "" + "activePosition = " + activePosition);
                     Log.d("checkActivePosition", "" + "nextPosition = " + nextPosition);
+                    if (callback != null)
+                        callback.startScore(list.get(activePosition));
                 } else {
+                    count++;
+                    if (count % 5 == 0) {
+                        count = 1;
+                    }
                     active = true;
                 }
             } else {
-                activePosition = -1;
                 active = false;
+                if (callback != null)
+                    callback.stopScore();
             }
         } else {
             timer.cancel();
         }
-    }
-
-
-    /**
-     * @return -1 if there is no bar in active status
-     */
-    public int getActivePosition() {
-        return activePosition;
     }
 
     public void pause() {
@@ -121,13 +127,18 @@ public class ExerciseController {
         timer.schedule(timerTask, 0, UNIT_TIME);
     }
 
-    public interface OnScoreListener {
-        void startScore();
+    public interface ScoreCallback {
 
-        void pauseScore();
+        void startScore(Bar bar);
 
-        void endScore();
+        void tickScore();
+
+        void stopScore();
+
     }
 
+    public void registerShrinkCallback(ScoreCallback callback) {
+        this.callback = callback;
+    }
 
 }
