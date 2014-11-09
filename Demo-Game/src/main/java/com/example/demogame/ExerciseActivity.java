@@ -20,11 +20,7 @@ public class ExerciseActivity extends ActionBarActivity {
 
     private ViewGroup frontParent, behindParent;
 
-    private ExerciseController controller;
-
     private TextView scrollXView, scrollYView;
-
-    private float scrollX, scrollY;
 
     private LinearLayout frontGroup;
 
@@ -34,7 +30,7 @@ public class ExerciseActivity extends ActionBarActivity {
 
     private ScrollView behindScrollView;
 
-    private Timer timer;
+    private ExerciseController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +42,7 @@ public class ExerciseActivity extends ActionBarActivity {
         frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
         frontParent = (ViewGroup) findViewById(R.id.frontParent);
         behindParent = (ViewGroup) findViewById(R.id.behindParent);
-        timer = new Timer();
+        controller = new ExerciseController(this);
     }
 
 
@@ -67,14 +63,7 @@ public class ExerciseActivity extends ActionBarActivity {
                 scroll = false;
             } else {
                 BarGroupManager.getInstance().prepare(this, frontScrollView, behindScrollView);
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        frontScrollView.scrollBy(0, -20);
-                        behindScrollView.scrollBy(0, -20);
-                    }
-                }, 0, 50);
-//                scroll = true;
+                controller.start();
             }
 
             return true;

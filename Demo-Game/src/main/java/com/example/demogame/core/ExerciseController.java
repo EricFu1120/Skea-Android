@@ -18,8 +18,6 @@ public class ExerciseController {
 
     private Timer timer;
 
-    private TimerTask timerTask;
-
     private final int speed;
 
     private final int UNIT_TIME = 100;
@@ -32,13 +30,30 @@ public class ExerciseController {
 
     private List<Bar> list;
 
+    private TimerTask timerTask;
+
     public ExerciseController(Context context) {
         //TODO get user's level
         speed = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT);
         list = BarGenerator.getInstance().getBars();
         nextPosition = list.size() - 1;
         Log.d("The speed of bar is ", "" + speed);
+        timer = new Timer();
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                BarGroupManager.getInstance().scrollBy(-speed);
+                offset = offset + speed;
+                checkActivePosition();
+            }
+        };
 
+    }
+
+    private void test() {
+        for (int i = 0; i < list.size(); i++) {
+
+        }
     }
 
     /**
@@ -52,45 +67,35 @@ public class ExerciseController {
 
     }
 
-
-    public void startTimerTask() {
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                BarGroupManager.getInstance().scrollBy(-speed);
-                offset = offset + speed;
-                checkActivePosition();
-            }
-        }, 0, UNIT_TIME);
-    }
-
     public void checkActivePosition() {
-        Bar bar = list.get(nextPosition);
         //确定激活的Bar
         if (nextPosition >= 0) {
+            Bar bar = list.get(nextPosition);
             if (bar.getBeginActiveOffset() <= offset && bar.getEndActiviteOffset() >= offset && activePosition == -1) {
                 activePosition = nextPosition;
                 nextPosition = activePosition - 2;
+                Log.d("checkActivePosition", "" + "bar type" + list.get(activePosition).getType());
                 Log.d("checkActivePosition", "" + "activePosition = " + activePosition);
                 Log.d("checkActivePosition", "" + "nextPosition = " + nextPosition);
             } else {
                 activePosition = -1;
             }
         } else {
-            //TODO 所有Bar都落完了
+            timer.cancel();
         }
     }
 
-    public void endTimerTask() {
 
-    }
-
-    public void pasue() {
-
+    public void pause() {
+        timerTask.cancel();
     }
 
     public void start() {
+        timer.schedule(timerTask, 0, UNIT_TIME);
+    }
 
+    public void resume() {
+        timer.schedule(timerTask, 0, UNIT_TIME);
     }
 
 

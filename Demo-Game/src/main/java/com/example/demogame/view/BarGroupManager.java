@@ -92,7 +92,7 @@ public class BarGroupManager {
         list = BarGenerator.getInstance().getBars();
         frontGroup.addView(getHeaderOrFooterView(frontParent, true));
         behindGroup.addView(getHeaderOrFooterView(behindParent, false));
-        for (int i = 0; i < list.size() - 1; i++) {
+        for (int i = 0; i < list.size(); i++) {
             frontGroup.addView(new BarViewWrapper().getImageView(context, list.get(i).getType(), false));
             behindGroup.addView(new BarViewWrapper().getImageView(context, list.get(i).getType(), true));
         }
