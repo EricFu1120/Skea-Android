@@ -50,9 +50,10 @@ public class ExerciseController {
 
     }
 
-    private void test() {
-        for (int i = 0; i < list.size(); i++) {
-
+    public void test() {
+        for (int i = list.size() - 1; i >= 0; i--) {
+            Log.d("test", "" + list.get(i).getBeginActiveOffset());
+            Log.d("test", "" + list.get(i).getEndActiviteOffset());
         }
     }
 
@@ -71,20 +72,32 @@ public class ExerciseController {
         //确定激活的Bar
         if (nextPosition >= 0) {
             Bar bar = list.get(nextPosition);
-            if (bar.getBeginActiveOffset() <= offset && bar.getEndActiviteOffset() >= offset && activePosition == -1) {
-                activePosition = nextPosition;
-                nextPosition = activePosition - 2;
-                Log.d("checkActivePosition", "" + "bar type" + list.get(activePosition).getType());
-                Log.d("checkActivePosition", "" + "activePosition = " + activePosition);
-                Log.d("checkActivePosition", "" + "nextPosition = " + nextPosition);
+            if (bar.getBeginActiveOffset() <= offset && bar.getEndActiviteOffset() >= offset) {
+                if (!active) {
+                    activePosition = nextPosition;
+                    nextPosition = activePosition - 2;
+                    Log.d("checkActivePosition", "" + "bar type" + list.get(activePosition).getType());
+                    Log.d("checkActivePosition", "" + "activePosition = " + activePosition);
+                    Log.d("checkActivePosition", "" + "nextPosition = " + nextPosition);
+                } else {
+                    active = true;
+                }
             } else {
-                activePosition = -1;
+                active = false;
             }
         } else {
             timer.cancel();
         }
     }
 
+    /**
+     *
+     */
+    private boolean active = false;
+
+    public boolean isActive() {
+        return active;
+    }
 
     public void pause() {
         timerTask.cancel();

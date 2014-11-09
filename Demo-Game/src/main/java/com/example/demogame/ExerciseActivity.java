@@ -64,6 +64,7 @@ public class ExerciseActivity extends ActionBarActivity {
             } else {
                 BarGroupManager.getInstance().prepare(this, frontScrollView, behindScrollView);
                 controller.start();
+//                controller.test();
             }
 
             return true;

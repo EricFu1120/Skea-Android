@@ -12,10 +12,6 @@ import com.example.demogame.R;
 import com.example.demogame.core.Bar;
 import com.example.demogame.core.BarConst;
 
-
-import static com.example.demogame.core.BarConst.TYPE.*;
-import static com.example.demogame.core.BarConst.LEVEL.*;
-
 import java.util.List;
 
 /**
@@ -54,7 +50,7 @@ public class BarGroupManager {
         int level = 1;
 
         int exercise = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT * (5 + 7 + 12) * 15);
-        int blank = DensityUtils.dip2px(context, getBlankHeight(front) * 2);
+        int blank = DensityUtils.dip2px(context, getBlankHeight(front));
         int slot = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT * 2) * 44;
         return exercise + blank + slot;
 
@@ -101,7 +97,8 @@ public class BarGroupManager {
         for (int i = list.size() - 1; i >= 0; i--) {
             Bar bar = list.get(i);
             if (i == list.size() - 1) {
-                bar.setBeginActiveOffset(DensityUtils.dip2px(context, getBlankHeight(true)));
+                bar.setBeginActiveOffset(getBlankHeight(true));
+                Log.d("test activeOffset", "" + bar.getBeginActiveOffset());
                 bar.setEndActiviteOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
             } else {
                 bar.setBeginActiveOffset(list.get(i + 1).getEndActiviteOffset());
