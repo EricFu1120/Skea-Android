@@ -34,15 +34,17 @@ public class ScoreCounter {
     }
 
     public void tickScore() {
-        segments.add(getScore());
+        segments.add(count);
         count = 0;
     }
 
-    public void stopScore() {
-        bar.setScore(count);
+    public int stopScore() {
+        int score = getScore();
+        bar.setScore(score);
         segments.clear();
         count = 0;
         lock = false;
+        return score;
     }
 
     public void receiveSignal() {

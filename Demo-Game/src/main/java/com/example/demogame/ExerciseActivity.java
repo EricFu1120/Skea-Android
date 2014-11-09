@@ -14,11 +14,7 @@ import com.example.demogame.core.ExerciseController;
 import com.example.demogame.core.ScoreCounter;
 
 
-public class ExerciseActivity extends ActionBarActivity implements ExerciseController.ScoreCallback{
-
-    private ViewGroup frontParent, behindParent;
-
-    private TextView scrollXView, scrollYView;
+public class ExerciseActivity extends ActionBarActivity implements ExerciseController.ScoreCallback {
 
     private LinearLayout frontGroup;
 
@@ -38,8 +34,6 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
         behindScrollView = (ScrollView) findViewById(R.id.behind_scrollView);
         behindGroup = (LinearLayout) findViewById(R.id.behind_group);
         frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
-        frontParent = (ViewGroup) findViewById(R.id.frontParent);
-        behindParent = (ViewGroup) findViewById(R.id.behindParent);
         controller = new ExerciseController(this);
         controller.registerShrinkCallback(this);
     }
@@ -61,7 +55,7 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
                 controller.init(this, frontGroup, behindGroup);
                 scroll = false;
             } else {
-               controller.prepare(this, frontScrollView, behindScrollView);
+                controller.prepare(this, frontScrollView, behindScrollView);
                 controller.start();
 //                controller.test();
             }
@@ -84,6 +78,7 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
 
     @Override
     public void stopScore() {
-        ScoreCounter.getInstance().stopScore();
+        int score = ScoreCounter.getInstance().stopScore();
+        //TODO 更新UI分数
     }
 }
