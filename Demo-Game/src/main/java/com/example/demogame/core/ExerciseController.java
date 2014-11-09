@@ -41,6 +41,8 @@ public class ExerciseController {
      */
     private int count;
 
+    private int second;
+
     public ExerciseController(Context context) {
         //TODO get user's level
         speed = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT);
@@ -100,8 +102,14 @@ public class ExerciseController {
                         callback.startScore(list.get(activePosition));
                 } else {
                     count++;
+                    second++;
                     if (count % 5 == 0) {
-                        count = 1;
+                        count = 0;
+                    }
+                    if (second % 10 == 0) {
+                        second = 0;
+                        if (callback != null)
+                            callback.tickSecond();
                     }
                     active = true;
                 }
@@ -132,6 +140,8 @@ public class ExerciseController {
         void startScore(Bar bar);
 
         void tickScore();
+
+        void tickSecond();
 
         void stopScore();
 

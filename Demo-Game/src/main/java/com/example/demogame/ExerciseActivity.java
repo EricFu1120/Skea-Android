@@ -77,6 +77,11 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
     }
 
     @Override
+    public void tickSecond() {
+        //TODO 更新UI倒计时
+    }
+
+    @Override
     public void stopScore() {
         int score = ScoreCounter.getInstance().stopScore();
         //TODO 更新UI分数
