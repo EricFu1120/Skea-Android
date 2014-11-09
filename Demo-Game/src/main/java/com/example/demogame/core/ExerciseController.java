@@ -2,10 +2,10 @@ package com.example.demogame.core;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.example.demogame.DensityUtils;
-import com.example.demogame.view.BarGenerator;
-import com.example.demogame.view.BarGroupManager;
 
 import java.util.List;
 import java.util.Timer;
@@ -32,6 +32,8 @@ public class ExerciseController {
 
     private TimerTask timerTask;
 
+    private boolean active = false;
+
     public ExerciseController(Context context) {
         //TODO get user's level
         speed = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT);
@@ -48,6 +50,14 @@ public class ExerciseController {
             }
         };
 
+    }
+
+    public void init(Context context, LinearLayout frontGroup, LinearLayout behindGroup) {
+        BarGroupManager.getInstance().initBarGroup(context, frontGroup, behindGroup);
+    }
+
+    public void prepare(Context context, ScrollView frontScrollView, ScrollView behindScrollView) {
+        BarGroupManager.getInstance().prepare(context, frontScrollView, behindScrollView);
     }
 
     public void test() {
@@ -83,6 +93,7 @@ public class ExerciseController {
                     active = true;
                 }
             } else {
+                activePosition = -1;
                 active = false;
             }
         } else {
@@ -90,13 +101,12 @@ public class ExerciseController {
         }
     }
 
-    /**
-     *
-     */
-    private boolean active = false;
 
-    public boolean isActive() {
-        return active;
+    /**
+     * @return -1 if there is no bar in active status
+     */
+    public int getActivePosition() {
+        return activePosition;
     }
 
     public void pause() {
@@ -111,13 +121,12 @@ public class ExerciseController {
         timer.schedule(timerTask, 0, UNIT_TIME);
     }
 
+    public interface OnScoreListener {
+        void startScore();
 
-    public interface OnExcerciseStateChangedListener {
-        void onStart();
+        void pauseScore();
 
-        void onPause();
-
-        void onEnd();
+        void endScore();
     }
 
 

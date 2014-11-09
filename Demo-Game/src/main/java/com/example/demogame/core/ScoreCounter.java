@@ -5,4 +5,17 @@ package com.example.demogame.core;
  */
 public class ScoreCounter {
 
+    public int score;
+
+    public Bar bar;
+
+    public ScoreCounter(Bar bar) {
+        this.bar = bar;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+
 }

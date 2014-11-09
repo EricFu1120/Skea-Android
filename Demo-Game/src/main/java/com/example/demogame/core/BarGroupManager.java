@@ -1,4 +1,4 @@
-package com.example.demogame.view;
+package com.example.demogame.core;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,8 +9,7 @@ import android.widget.ScrollView;
 
 import com.example.demogame.DensityUtils;
 import com.example.demogame.R;
-import com.example.demogame.core.Bar;
-import com.example.demogame.core.BarConst;
+import com.example.demogame.view.BarViewWrapper;
 
 import java.util.List;
 

@@ -1,7 +1,4 @@
-package com.example.demogame.view;
-
-import com.example.demogame.core.Bar;
-import com.example.demogame.core.BarConst;
+package com.example.demogame.core;
 
 import java.util.ArrayList;
 import java.util.List;

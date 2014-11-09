@@ -10,10 +10,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.demogame.core.ExerciseController;
-import com.example.demogame.view.BarGroupManager;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class ExerciseActivity extends ActionBarActivity {
@@ -59,10 +55,10 @@ public class ExerciseActivity extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.action_pause) {
             if (scroll) {
-                BarGroupManager.getInstance().initBarGroup(this, frontGroup, behindGroup);
+                controller.init(this, frontGroup, behindGroup);
                 scroll = false;
             } else {
-                BarGroupManager.getInstance().prepare(this, frontScrollView, behindScrollView);
+               controller.prepare(this, frontScrollView, behindScrollView);
                 controller.start();
 //                controller.test();
             }
