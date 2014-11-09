@@ -26,7 +26,7 @@ public class BarConst {
 
     public static class LEVEL {
 
-        public static final int[] NUM = new int[]{15, 20, 30, 40};
+        public static final int[] NUM = new int[]{0, 15, 20, 30, 40};
 
         /**
          * 每种类型和上面的TYPE是对应的

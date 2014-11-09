@@ -2,7 +2,6 @@ package com.example.demogame;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -64,20 +63,17 @@ public class ExerciseActivity extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.action_pause) {
             if (scroll) {
-                BarGroupManager.getInstance().getBarGroup(frontGroup, frontParent, false);
-                BarGroupManager.getInstance().getBarGroup(behindGroup, behindParent, true);
+                BarGroupManager.getInstance().initBarGroup(this, frontGroup, behindGroup);
                 scroll = false;
             } else {
-                Log.d("frontGroup height = ", "" + BarGroupManager.getInstance().getBarGroupHeight(this));
-                frontScrollView.scrollBy(0, BarGroupManager.getInstance().getBarGroupHeight(this));
-                behindScrollView.scrollBy(0, BarGroupManager.getInstance().getBarGroupHeight(this));
+                BarGroupManager.getInstance().prepare(this, frontScrollView, behindScrollView);
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        frontScrollView.scrollBy(0, -30);
-                        behindScrollView.scrollBy(0, -30);
+                        frontScrollView.scrollBy(0, -20);
+                        behindScrollView.scrollBy(0, -20);
                     }
-                }, 1000, 100);
+                }, 0, 50);
 //                scroll = true;
             }
 

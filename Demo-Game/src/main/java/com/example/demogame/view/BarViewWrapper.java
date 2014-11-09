@@ -66,4 +66,8 @@ public class BarViewWrapper {
         }
     }
 
+    public int getHeight() {
+        return height;
+    }
+
 }

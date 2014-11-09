@@ -163,8 +163,9 @@
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:id="@+id/scrollView"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/scrollX"
+            android:layout_toEndOf="@+id/scrollX">
 
             <LinearLayout
                 android:orientation="vertical"
