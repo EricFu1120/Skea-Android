@@ -1,16 +1,16 @@
 package me.linkcube.skea.ui.user;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.widget.Button;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.test.ReEvaluationActivity;
 import me.linkcube.skea.ui.test.SettingExerciseCycle;
 import me.linkcube.skea.ui.test.SettingExerciseLevel;
 
@@ -22,8 +22,10 @@ public class TestPelvicMuscleResultActivity extends ActionBarActivity{
 
 
 
+    //声明控件
     private TextView exerciseLevel;
     private TextView exerciseCycle;
+    private Button reevaluate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +36,42 @@ public class TestPelvicMuscleResultActivity extends ActionBarActivity{
         init();
     }
 
+    /**得到相关控件，注册事件*/
     private void init() {
+
         exerciseLevel = (TextView) findViewById(R.id.level);
         exerciseCycle = (TextView) findViewById(R.id.exercise_cycle_tv);
+        reevaluate=(Button) findViewById(R.id.reevaluate);
+
+        exerciseLevel.setOnClickListener(testPelvicViewClickListener);
+        exerciseCycle.setOnClickListener(testPelvicViewClickListener);
+        reevaluate.setOnClickListener(testPelvicViewClickListener);
     }
+    View.OnClickListener testPelvicViewClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.level:
+                    startSettingExerciseLevel();
+                    break;
+
+                case R.id.exercise_cycle_tv:
+                    startSettingExerciseCycle();
+                    break;
+                case R.id.reevaluate:
+                    startActivity(new Intent().setClass(getApplicationContext(), ReEvaluationActivity.class));
+                    break;
+
+                default:
+
+            }
+        }
+    };
 
     /**
      * 启动设置训练强度
      */
-    private void startSettingExerciseLevel() {
+    private  void startSettingExerciseLevel() {
         Intent intent = new Intent();
         intent.setClass(getApplicationContext(), SettingExerciseLevel.class);
         startActivityForResult(intent, SETTING_LEVEL_REQUEST_CODE);
