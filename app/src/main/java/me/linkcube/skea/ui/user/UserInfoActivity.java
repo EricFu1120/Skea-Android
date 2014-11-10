@@ -62,7 +62,7 @@ public class UserInfoActivity extends ActionBarActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.test_pelvic_muscle:
-
+                    startActivity(new Intent().setClass(getApplicationContext(), TestPelvicMuscleResultActivity.class));
                     break;
                 case R.id.skea_settings:
                     startActivity(new Intent().setClass(getApplicationContext(), SkeaConfigActivity.class));
