@@ -14,6 +14,8 @@ public class SkeaConfigActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skea_config);
+        //返回导航
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
