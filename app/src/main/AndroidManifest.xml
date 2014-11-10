@@ -64,11 +64,17 @@
         </activity>
         <activity
             android:name=".ui.setting.SettingActivity"
-            android:label="@string/title_activity_me" >
+            android:label="@string/title_activity_setting" >
         </activity>
         <activity
             android:name=".ui.user.TestPelvicMuscleResultActivity"
-            android:label="@string/title_activity_test_pelvic_muscle_result" >
+            android:label="@string/title_activity_test_pelvic_muscle_result"
+            android:icon="@drawable/icon_test_pelvic_muscle"
+            android:parentActivityName=".ui.user.UserInfoActivity">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.user.UserInfoActivity" />
         </activity>
         <activity
             android:name=".ui.setting.SkeaConfigActivity"

@@ -14,13 +14,14 @@
     <string name="title_activity_exercise">Exercise  Activity</string>
     <string name="title_activity_update_user_info">Update User Info</string>
     <string name="action_connect_bluetooth">Connect Bluetooth</string>
-    <string name="title_activity_test_pelvic_muscle_result">TestPelvicMuscleResultActivity</string>
+    <string name="title_activity_test_pelvic_muscle_result">TestPelvicMuscleResult</string>
     <string name="title_activity_top_setting">TopSettingActivity</string>
     <string name="title_activity_skea_config">SkeaConfigActivity</string>
     <string name="title_activity_re_evaluation">ReEvaluationActivity</string>
     <string name="title_activity_setting_exercise_level">SettingExerciseLevel</string>
     <string name="title_activity_setting_exercise_cycle">SettingExerciseCycle</string>
+    <string name="title_activity_setting">Settings</string>
     <string name="title_activity_information">Information</string>
-    <string name="action_settings">Settings</string>
+
 
 </resources>

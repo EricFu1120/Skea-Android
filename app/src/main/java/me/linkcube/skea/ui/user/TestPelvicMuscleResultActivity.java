@@ -3,6 +3,7 @@ package me.linkcube.skea.ui.user;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -13,7 +14,7 @@ import me.linkcube.skea.R;
 import me.linkcube.skea.ui.test.SettingExerciseCycle;
 import me.linkcube.skea.ui.test.SettingExerciseLevel;
 
-public class TestPelvicMuscleResultActivity extends Activity {
+public class TestPelvicMuscleResultActivity extends ActionBarActivity{
     public  static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_level";
     public  static final String EXERCISE_CYCLE = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_level";
     private static final int SETTING_LEVEL_REQUEST_CODE = 1;
@@ -28,6 +29,9 @@ public class TestPelvicMuscleResultActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_pelvic_muscle_result);
+        //ActionBar实现后退导航
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        init();
     }
 
     private void init() {
