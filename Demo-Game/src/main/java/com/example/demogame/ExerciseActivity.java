@@ -86,4 +86,5 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
         int score = ScoreCounter.getInstance().stopScore();
         //TODO 更新UI分数
     }
+
 }
