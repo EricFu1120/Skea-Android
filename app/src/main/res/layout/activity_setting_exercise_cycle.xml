@@ -1,16 +1,70 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="me.linkcube.skea.ui.test.SettingExerciseCycle">
+    <RadioGroup
+        android:id="@+id/exercise_cycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:checkedButton="@+id/cycle4_rb"
+        >
+        <View style="@style/SplitLine"
+            android:layout_marginTop="50dp"/>
+        <RadioButton
+            android:id="@+id/cycle1_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5 Days"
+            android:textSize="25sp"/>
+        <View style="@style/SplitLine" />
+        <RadioButton
+            android:id="@+id/cycle2_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10 Days"
+            android:textSize="25sp"/>
+        <View style="@style/SplitLine" />
+        <RadioButton
+            android:id="@+id/cycle3_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="15 Days"
+            android:textSize="25sp"/>
+        <View style="@style/SplitLine" />
+        <RadioButton
+            android:id="@+id/cycle4_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20 Days     ( Recommended )"
+            android:textSize="25sp"/>
+        <View style="@style/SplitLine" />
+        <RadioButton
+            android:id="@+id/cycle5_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="25 Days"
+            android:textSize="25sp"/>
 
-    <TextView
-        android:text="@string/hello_world"
+        <View style="@style/SplitLine" />
+        <RadioButton
+            android:id="@+id/cycle6_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30 Days"
+            android:textSize="25sp"/>
+        <View style="@style/SplitLine" />
+    </RadioGroup>
+    <Button
+
+        android:id="@+id/sumit_cycle_bt"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="Summit"/>
 
-</RelativeLayout>
+
+</LinearLayout>
