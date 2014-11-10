@@ -82,7 +82,13 @@
         </activity>
         <activity
             android:name=".ui.test.ReEvaluationActivity"
-            android:label="@string/title_activity_re_evaluation" >
+            android:label="@string/title_activity_re_evaluation"
+            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.user.TestPelvicMuscleResultActivity" />
         </activity>
         <activity
             android:name=".ui.test.SettingExerciseLevel"
