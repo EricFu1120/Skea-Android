@@ -4,11 +4,15 @@ package me.linkcube.skea.ui.test;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RadioGroup;
+import  android.widget.Button;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.MainActivity;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
 public class SettingExerciseLevel extends ActionBarActivity {
@@ -17,6 +21,7 @@ public class SettingExerciseLevel extends ActionBarActivity {
     private String exerciseLevelString = "Level 4";
     //控件声明
     private RadioGroup exerciseLevel;
+    private Button sumit_level_bt;
 
 
     @Override
@@ -25,6 +30,7 @@ public class SettingExerciseLevel extends ActionBarActivity {
         setContentView(R.layout.activity_setting_exercise_level);
         //ActionBar实现后退导航
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        init();
 
 
     }
@@ -32,15 +38,13 @@ public class SettingExerciseLevel extends ActionBarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //返回用户设置的训练强度
-        Intent resultIntent=new Intent();
-        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_LEVEL,exerciseLevelString);
-        setResult(RESULT_OK,resultIntent);
+
     }
 
     public void init() {
         //得到控件
         exerciseLevel = (RadioGroup) findViewById(R.id.exercise_level);
+        sumit_level_bt=(Button) findViewById(R.id.sumit_level_bt);
         //注册事件
         exerciseLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -73,8 +77,26 @@ public class SettingExerciseLevel extends ActionBarActivity {
                 }
             }
         });
+
+        sumit_level_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitButtonClick();
+            }
+        });
     }
 
+
+    private void submitButtonClick(){
+        //返回用户设置的训练强度
+        Intent resultIntent=new Intent();
+        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_LEVEL,exerciseLevelString);
+        Log.i("CXC","---level:"+exerciseLevelString);
+        setResult(RESULT_OK, resultIntent);
+        this.finish();
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
