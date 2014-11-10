@@ -64,7 +64,13 @@
         </activity>
         <activity
             android:name=".ui.setting.SettingActivity"
-            android:label="@string/title_activity_setting" >
+            android:label="@string/title_activity_setting"
+            android:parentActivityName=".ui.user.UserInfoActivity">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.user.UserInfoActivity" />
+
         </activity>
         <activity
             android:name=".ui.user.TestPelvicMuscleResultActivity"

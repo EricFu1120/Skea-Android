@@ -12,6 +12,9 @@ public class SettingActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        //返回导航
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
