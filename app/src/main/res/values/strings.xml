@@ -4,13 +4,13 @@
     <string name="app_name">Skea</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="hello_world">Hello world!</string>
-action_settings    <string name="action_level_save">Save</string>
+    <string name="action_level_save">Save</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_improve_personal_data">Improve Personal Data</string>
     <string name="title_activity_init_personal_data">Init Personal Data Activity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_setting">Setting Activity</string>
-    <string name="title_activity_record">RecordActivity</string>
+    <string name="title_activity_me">Me</string>
+    <string name="title_activity_record">Results</string>
     <string name="title_activity_exercise">Exercise  Activity</string>
     <string name="title_activity_update_user_info">Update User Info</string>
     <string name="action_connect_bluetooth">Connect Bluetooth</string>
@@ -20,7 +20,7 @@ action_settings    <string name="action_level_save">Save</string>
     <string name="title_activity_re_evaluation">ReEvaluationActivity</string>
     <string name="title_activity_setting_exercise_level">SettingExerciseLevel</string>
     <string name="title_activity_setting_exercise_cycle">SettingExerciseCycle</string>
-    <string name="title_activity_information">InformationActivity</string>
+    <string name="title_activity_information">Information</string>
     <string name="action_settings">Settings</string>
 
 </resources>

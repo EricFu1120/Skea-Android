@@ -36,11 +36,23 @@
         </activity>
         <activity
             android:name=".ui.user.UserInfoActivity"
-            android:label="@string/title_activity_setting" >
+            android:label="@string/title_activity_me"
+            android:icon="@drawable/icon_settings"
+            android:parentActivityName=".ui.MainActivity">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
         </activity>
         <activity
             android:name=".ui.record.RecordActivity"
-            android:label="@string/title_activity_record" >
+            android:label="@string/title_activity_record"
+            android:icon="@drawable/icon_records"
+            android:parentActivityName=".ui.MainActivity">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
         </activity>
         <activity
             android:name=".ui.exercise.ExerciseActivity"
@@ -52,7 +64,7 @@
         </activity>
         <activity
             android:name=".ui.setting.SettingActivity"
-            android:label="@string/title_activity_setting" >
+            android:label="@string/title_activity_me" >
         </activity>
         <activity
             android:name=".ui.user.TestPelvicMuscleResultActivity"
@@ -89,6 +101,7 @@
         <activity
             android:name=".ui.info.InformationActivity"
             android:label="@string/title_activity_information"
+            android:icon="@drawable/icon_info"
             android:parentActivityName=".ui.MainActivity">
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data

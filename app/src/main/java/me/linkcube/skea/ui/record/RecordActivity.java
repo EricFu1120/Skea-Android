@@ -2,6 +2,7 @@ package me.linkcube.skea.ui.record;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +28,7 @@ import org.w3c.dom.Text;
 
 import me.linkcube.skea.R;
 
-public class RecordActivity extends Activity {
+public class RecordActivity extends ActionBarActivity {
     //声明控件
     private TextView level_tv;
     private TextView evaluate_tv;
@@ -62,6 +63,8 @@ public class RecordActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
+        //ActionBar实现后退导航
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
     }
 
