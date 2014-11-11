@@ -76,6 +76,32 @@
 
     <View style="@style/SplitLine" />
 
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/clause_checkbox"
+            android:button="@drawable/checkbox"
+            android:checked="true"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:text="@string/clause"
+            android:textColorLink="@color/main_blue"
+            android:id="@+id/clause_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/register_button"
