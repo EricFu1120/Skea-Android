@@ -2,6 +2,7 @@ package me.linkcube.skea.ui.test;
 
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.RadioGroup;
 import  android.widget.Button;
 
+import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.MainActivity;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
@@ -33,6 +35,11 @@ public class SettingExerciseLevel extends ActionBarActivity {
         init();
 
 
+    }
+
+    public void configureActionBar()
+    {
+        ActionBar actionBar = getSupportActionBar();
     }
 
     @Override
@@ -107,12 +114,10 @@ public class SettingExerciseLevel extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == android.R.id.home) {
+            //TODO 尝试setResult();
+            Toaster.showLong(this,"click home");
         }
         return super.onOptionsItemSelected(item);
 
