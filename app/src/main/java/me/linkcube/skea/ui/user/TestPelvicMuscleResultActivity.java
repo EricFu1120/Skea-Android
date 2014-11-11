@@ -156,13 +156,12 @@ public class TestPelvicMuscleResultActivity extends ActionBarActivity {
                 //得到训练强度值
                 if (resultCode == RESULT_OK) {
 
-                    exerciseLevel.setText(data.getStringExtra(EXERCISE_LEVEL));
-                    Log.i("CXC","++++:level:"+data.getStringExtra(EXERCISE_LEVEL));
+                    exerciseLevel.setText("Level "+data.getIntExtra(EXERCISE_LEVEL,4));
+                    Log.i("CXC","++++:level:"+data.getIntExtra(EXERCISE_LEVEL,4));
                 }
-
                 break;
             case SETTING_CYCLE_REQUEST_CODE:
-                //得到训练强度值
+                //得到训练周期值
                 if (resultCode == RESULT_OK) {
 
                     exerciseCycle.setText("Exercise Cycle "+data.getStringExtra(EXERCISE_CYCLE));

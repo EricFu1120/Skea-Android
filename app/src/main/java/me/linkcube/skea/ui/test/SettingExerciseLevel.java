@@ -2,6 +2,7 @@ package me.linkcube.skea.ui.test;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,9 +18,10 @@ import me.linkcube.skea.R;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
 public class SettingExerciseLevel extends ActionBarActivity {
+
     //训练强度
 
-    private String exerciseLevelString = "Level 4";
+    private int exerciseLevelIndex = 4;
     //控件声明
     private RadioGroup exerciseLevel;
 
@@ -48,6 +50,7 @@ public class SettingExerciseLevel extends ActionBarActivity {
     }
 
     public void init() {
+
         //得到控件
         exerciseLevel = (RadioGroup) findViewById(R.id.exercise_level);
 
@@ -57,25 +60,25 @@ public class SettingExerciseLevel extends ActionBarActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.level1_rb:
-                        exerciseLevelString = "Level 1";
+                        exerciseLevelIndex = 1;
 
 
                         break;
                     case R.id.level2_rb:
-                        exerciseLevelString = "Level 2";
+                        exerciseLevelIndex = 2;
 
                         break;
                     case R.id.level3_rb:
 
-                        exerciseLevelString = "Level 3";
+                        exerciseLevelIndex = 3;
                         break;
                     case R.id.level4_rb:
 
-                        exerciseLevelString = "Level 4";
+                        exerciseLevelIndex = 4;
                         break;
                     case R.id.level5_rb:
 
-                        exerciseLevelString = "Level 5";
+                        exerciseLevelIndex = 5;
                         break;
                     default:
 
@@ -90,8 +93,8 @@ public class SettingExerciseLevel extends ActionBarActivity {
     private void returnMessage(){
         //返回用户设置的训练强度
         Intent resultIntent=new Intent();
-        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_LEVEL,exerciseLevelString);
-        Log.i("CXC","---level:"+exerciseLevelString);
+        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_LEVEL,exerciseLevelIndex);
+        Log.i("CXC","---level:"+ exerciseLevelIndex);
         setResult(RESULT_OK, resultIntent);
         this.finish();
     }
