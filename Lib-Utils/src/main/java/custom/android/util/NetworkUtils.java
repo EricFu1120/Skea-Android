@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * 判断网络状况�?
+ * 判断网络状况
  * 
  * @author Ervin
  * 

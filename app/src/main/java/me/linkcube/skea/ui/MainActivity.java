@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    int getLayoutResourceId() {
+    public int getLayoutResourceId() {
         return R.layout.activity_main;
     }
 
@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * 配置ActionBar
      */
     @Override
-    protected void configureActionBar() {
+    public void configureActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayUseLogoEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(false);
