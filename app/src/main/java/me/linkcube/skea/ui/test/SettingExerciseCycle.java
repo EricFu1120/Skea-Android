@@ -17,7 +17,7 @@ import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 public class SettingExerciseCycle extends CustomActionBarActivity {
 
     //训练周期
-    private String exerciseCycleString = "20 Days";
+    private int exerciseCycleInt = 20;
 
     //控件声明
     private RadioGroup exerciseCycle;
@@ -41,30 +41,30 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.cycle1_rb:
-                        exerciseCycleString = "5 Days";
+                        exerciseCycleInt = 5;
 
 
                         break;
                     case R.id.cycle2_rb:
-                        exerciseCycleString = "10 Days";
+                        exerciseCycleInt = 10;
 
                         break;
                     case R.id.cycle3_rb:
 
-                        exerciseCycleString = "15 Days";
+                        exerciseCycleInt = 15;
                         break;
                     case R.id.cycle4_rb:
 
-                        exerciseCycleString = "20 Days";
+                        exerciseCycleInt= 20;
                         break;
                     case R.id.cycle5_rb:
 
-                        exerciseCycleString = "25 Days";
+                        exerciseCycleInt = 25;
                         break;
 
                     case R.id.cycle6_rb:
 
-                        exerciseCycleString = "30 Days";
+                        exerciseCycleInt = 30;
                         break;
                     default:
 
@@ -76,16 +76,16 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
         sumit_cycle_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitButtonClick();
+                returnMessage();
             }
         });
     }
 
 
-    private void submitButtonClick() {
+    private void returnMessage() {
         //返回用户设置的训练强度
         Intent resultIntent = new Intent();
-        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_CYCLE, exerciseCycleString);
+        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_CYCLE, exerciseCycleInt);
         setResult(RESULT_OK, resultIntent);
         this.finish();
 
@@ -106,7 +106,8 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == android.R.id.home) {
+            returnMessage();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -117,7 +118,7 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
         super.onDestroy();
         //返回用户设置的训练周期
         Intent resultIntent = new Intent();
-        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_CYCLE, exerciseCycleString);
+        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_CYCLE, exerciseCycleInt);
         setResult(RESULT_OK, resultIntent);
     }
 }
