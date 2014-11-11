@@ -4,7 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -26,6 +28,8 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
 
     private ExerciseController controller;
 
+    private Button shrink;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,13 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
         frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
         controller = new ExerciseController(this);
         controller.registerShrinkCallback(this);
+        shrink = (Button) findViewById(R.id.shrink_button);
+        shrink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
@@ -64,6 +75,7 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 
     @Override
