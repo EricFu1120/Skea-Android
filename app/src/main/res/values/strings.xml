@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Skea</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Skea</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_level_save">Save</string>
     <string name="title_activity_register">RegisterActivity</string>

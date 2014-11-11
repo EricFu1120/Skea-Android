@@ -48,6 +48,14 @@
         android:layout_centerInParent="true"
         android:src="@drawable/btn_start" />
 
+    <ImageView
+        android:layout_alignTop="@+id/startView"
+        android:layout_alignLeft="@+id/startView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/btn_start_shadow" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
