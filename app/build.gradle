@@ -2,11 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-<<<<<<< HEAD
+
     buildToolsVersion '20.0.0'
-=======
-    buildToolsVersion "19.1.0"
->>>>>>> bd59b32bd90bb0badf39c5ea2a6cf0f5d2ade9ce
+
     defaultConfig {
         applicationId 'me.linkcube.skea'
         minSdkVersion 8
