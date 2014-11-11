@@ -50,6 +50,8 @@ public class TestPelvicMuscleResultActivity extends CustomActionBarActivity {
         exerciseCycle = (TextView) findViewById(R.id.exercise_cycle_tv);
         reevaluate = (Button) findViewById(R.id.reevaluate);
 
+
+
         exerciseLevel.setOnClickListener(testPelvicViewClickListener);
         exerciseCycle.setOnClickListener(testPelvicViewClickListener);
         reevaluate.setOnClickListener(testPelvicViewClickListener);
