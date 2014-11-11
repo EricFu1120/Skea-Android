@@ -165,8 +165,8 @@ public class TestPelvicMuscleResultActivity extends CustomActionBarActivity {
                 //得到训练周期值
                 if (resultCode == RESULT_OK) {
 
-                    exerciseCycle.setText("Exercise Cycle "+data.getStringExtra(EXERCISE_CYCLE));
-                    Log.i("CXC","++++:cycle:"+data.getStringExtra(EXERCISE_CYCLE));
+                    exerciseCycle.setText("Exercise Cycle "+data.getIntExtra(EXERCISE_CYCLE,20)+" Days");
+                    Log.i("CXC","++++:cycle:"+data.getIntExtra(EXERCISE_CYCLE,20));
                 }
 
 
