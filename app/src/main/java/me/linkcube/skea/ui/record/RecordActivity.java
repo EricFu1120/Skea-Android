@@ -26,9 +26,10 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import org.w3c.dom.Text;
 
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 
-public class RecordActivity extends ActionBarActivity {
+public class RecordActivity extends CustomActionBarActivity {
     //声明控件
     private TextView level_tv;
     private TextView evaluate_tv;

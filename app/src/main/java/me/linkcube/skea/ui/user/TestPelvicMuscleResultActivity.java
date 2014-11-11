@@ -14,12 +14,13 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.app.Dialog;
 
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.test.ReEvaluationActivity;
 import me.linkcube.skea.ui.test.SettingExerciseCycle;
 import me.linkcube.skea.ui.test.SettingExerciseLevel;
 
-public class TestPelvicMuscleResultActivity extends ActionBarActivity {
+public class TestPelvicMuscleResultActivity extends CustomActionBarActivity {
     public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_level";
     public static final String EXERCISE_CYCLE = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_cycle";
     private static final int SETTING_LEVEL_REQUEST_CODE = 1;

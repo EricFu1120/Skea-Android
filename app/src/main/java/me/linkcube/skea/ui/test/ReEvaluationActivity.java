@@ -4,9 +4,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 
-public class ReEvaluationActivity extends ActionBarActivity {
+public class ReEvaluationActivity extends CustomActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,11 +11,12 @@ import android.net.Uri;
 
 import org.w3c.dom.Text;
 
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.setting.SettingActivity;
 import me.linkcube.skea.ui.setting.SkeaConfigActivity;
 
-public class UserInfoActivity extends ActionBarActivity {
+public class UserInfoActivity extends CustomActionBarActivity {
     private final String urlString="http://www.linkcube.me";
     private TextView test_pelvic_muscle;
     private TextView skea_settings;

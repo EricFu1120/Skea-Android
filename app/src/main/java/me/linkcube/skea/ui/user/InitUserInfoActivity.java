@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 
-public class InitUserInfoActivity extends Activity {
+public class InitUserInfoActivity extends CustomActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

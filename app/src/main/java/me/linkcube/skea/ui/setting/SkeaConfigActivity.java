@@ -9,9 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SeekBar;
 
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 
-public class SkeaConfigActivity extends ActionBarActivity {
+public class SkeaConfigActivity extends CustomActionBarActivity {
     /**Skea Config 本地持久化文件名*/
     private static final String  SKEA_CONFIG_XML_FILE="Skea_Config_XML_File";
     /**Feedback Sensitivity Key*/
