@@ -14,7 +14,7 @@ import me.linkcube.skea.ui.info.InformationActivity;
 import me.linkcube.skea.ui.record.RecordActivity;
 import me.linkcube.skea.ui.user.UserInfoActivity;
 
-public class MainActivity extends CustomActionBarActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     //声明控件
@@ -34,14 +34,18 @@ public class MainActivity extends CustomActionBarActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        configureActionBar();
         initViews();
+    }
+
+    @Override
+    int getLayoutResourceId() {
+        return R.layout.activity_main;
     }
 
     /**
      * 配置ActionBar
      */
+    @Override
     protected void configureActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayUseLogoEnabled(false);

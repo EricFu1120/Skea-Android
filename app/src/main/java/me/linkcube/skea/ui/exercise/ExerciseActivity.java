@@ -1,19 +1,27 @@
 package me.linkcube.skea.ui.exercise;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.BaseActivity;
 
-public class ExerciseActivity extends CustomActionBarActivity {
+public class ExerciseActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercise);
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_exercise;
+    }
+
+    @Override
+    public void configureActionBar() {
+
     }
 
 

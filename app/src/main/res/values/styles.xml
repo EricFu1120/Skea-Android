@@ -3,10 +3,15 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarStyle">@style/AppActionBar</item>
+        <item name="titleTextStyle">@style/ActionBarTitle</item>
     </style>
 
     <style name="AppActionBar" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/main_dark_grey</item>
+    </style>
+
+    <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="SplitLine" >
