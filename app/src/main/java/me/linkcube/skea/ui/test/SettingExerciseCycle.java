@@ -1,6 +1,8 @@
 package me.linkcube.skea.ui.test;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,13 +17,21 @@ import me.linkcube.skea.R;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
 public class SettingExerciseCycle extends CustomActionBarActivity {
+    /**Exercise Cycle  File 本地持久化文件名*/
+    private static final String  SKEA_EXERCISE_CYCLE_FILE="Setting_Exercise_Cycle_File";
+    /**Exercise Cycle Key*/
+    private static final String  SKEA_EXERCISE_CYCLE_KEY="Setting_Exercise_Cycle_Key";
+
+    private int exerciseCycleNum=20;
+
+    private SharedPreferences mSharedPreferences=null;
+    private SharedPreferences.Editor mEditor=null;
 
     //训练周期
     private int exerciseCycleInt = 20;
 
     //控件声明
     private RadioGroup exerciseCycle;
-    private Button sumit_cycle_bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +44,36 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
     public void init() {
         //得到控件
         exerciseCycle = (RadioGroup) findViewById(R.id.exercise_cycle);
-        sumit_cycle_bt = (Button) findViewById(R.id.sumit_cycle_bt);
+
+        //得到之前存储值，并设置
+        mSharedPreferences=getSharedPreferences(SKEA_EXERCISE_CYCLE_FILE, Activity.MODE_PRIVATE);
+        if(mSharedPreferences!=null){//不是第一次运行
+            int id;
+            switch (mSharedPreferences.getInt(SKEA_EXERCISE_CYCLE_KEY,20)){
+                case 5:
+                    id=R.id.cycle1_rb;
+                    break;
+                case 10:
+                    id=R.id.cycle2_rb;
+                    break;
+                case 15:
+                    id=R.id.cycle3_rb;
+                    break;
+                case 20:
+                    id=R.id.cycle4_rb;
+                    break;
+                case 25:
+                    id=R.id.cycle5_rb;
+                    break;
+                case 30:
+                    id=R.id.cycle6_rb;
+                    break;
+                default:
+                    id=R.id.cycle4_rb;
+            }
+            exerciseCycle.check(id);
+
+        }
         //注册事件
         exerciseCycle.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -73,12 +112,7 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
             }
         });
 
-        sumit_cycle_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                returnMessage();
-            }
-        });
+
     }
 
 
@@ -116,9 +150,10 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //返回用户设置的训练周期
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_CYCLE, exerciseCycleInt);
-        setResult(RESULT_OK, resultIntent);
+        //写入本地文件
+        mSharedPreferences = getSharedPreferences(SKEA_EXERCISE_CYCLE_FILE, Activity.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putInt(SKEA_EXERCISE_CYCLE_KEY, exerciseCycleInt);
+        mEditor.commit();
     }
 }

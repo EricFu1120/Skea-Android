@@ -24,7 +24,7 @@ public class SettingExerciseLevel extends CustomActionBarActivity {
     /**Exercise Level  File 本地持久化文件名*/
     private static final String  SKEA_EXERCISE_LEVEL_FILE="Setting_Exercise_Level_File";
     /**Exercise Level Key*/
-    private static final String  SKEA_EXERCISE_LEVEL_KEY="Setting_Exercise_Level_key";
+    private static final String  SKEA_EXERCISE_LEVEL_KEY="Setting_Exercise_Level_Key";
 
     private SharedPreferences mSharedPreferences=null;
     private SharedPreferences.Editor mEditor=null;
