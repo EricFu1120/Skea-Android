@@ -14,7 +14,6 @@ import  android.widget.Button;
 
 import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
-import me.linkcube.skea.ui.MainActivity;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
 public class SettingExerciseLevel extends ActionBarActivity {
@@ -23,7 +22,7 @@ public class SettingExerciseLevel extends ActionBarActivity {
     private String exerciseLevelString = "Level 4";
     //控件声明
     private RadioGroup exerciseLevel;
-    private Button sumit_level_bt;
+
 
 
     @Override
@@ -51,7 +50,7 @@ public class SettingExerciseLevel extends ActionBarActivity {
     public void init() {
         //得到控件
         exerciseLevel = (RadioGroup) findViewById(R.id.exercise_level);
-        sumit_level_bt=(Button) findViewById(R.id.sumit_level_bt);
+
         //注册事件
         exerciseLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -84,25 +83,17 @@ public class SettingExerciseLevel extends ActionBarActivity {
                 }
             }
         });
-
-        sumit_level_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submitButtonClick();
-            }
-        });
     }
 
 
-    private void submitButtonClick(){
+    /**向父Activity返回消息*/
+    private void returnMessage(){
         //返回用户设置的训练强度
         Intent resultIntent=new Intent();
         resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_LEVEL,exerciseLevelString);
         Log.i("CXC","---level:"+exerciseLevelString);
         setResult(RESULT_OK, resultIntent);
         this.finish();
-
-
     }
 
     @Override
@@ -117,11 +108,12 @@ public class SettingExerciseLevel extends ActionBarActivity {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             //TODO 尝试setResult();
-            Toaster.showLong(this,"click home");
+            returnMessage();
+           //Toaster.showLong(this,"click home");
+           return true;
         }
         return super.onOptionsItemSelected(item);
 
     }
-
 
 }
