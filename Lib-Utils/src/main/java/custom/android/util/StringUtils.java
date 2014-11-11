@@ -275,7 +275,7 @@ public class StringUtils {
 	}
 	
 	/**
-	 * 判断是不是邮箱格�?
+	 * 判断是不是邮箱格式
 	 * 
 	 * @param str
 	 * @return
