@@ -3,18 +3,18 @@ package me.linkcube.skea.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.info.InformationActivity;
 import me.linkcube.skea.ui.record.RecordActivity;
 import me.linkcube.skea.ui.user.UserInfoActivity;
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     //声明控件
@@ -34,15 +34,19 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        configureActionBar();
         initViews();
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_main;
     }
 
     /**
      * 配置ActionBar
      */
-    protected void configureActionBar() {
+    @Override
+    public void configureActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayUseLogoEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(false);

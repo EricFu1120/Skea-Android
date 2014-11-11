@@ -83,7 +83,7 @@
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
         <activity
-            android:name=".ui.setting.SkeaConfigActivity"
+            android:name=".ui.setting.ConfigSkeaActivity"
             android:label="@string/title_activity_skea_config"
             android:parentActivityName=".ui.user.UserInfoActivity">
             <!-- Parent activity meta-data to support API level 7+ -->

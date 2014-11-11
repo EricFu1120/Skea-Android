@@ -3,11 +3,7 @@ package me.linkcube.skea.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -15,6 +11,9 @@ import android.os.Build.VERSION;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,6 +27,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 
 
@@ -35,7 +35,7 @@ import me.linkcube.skea.R;
  * A login screen that offers login via email/password.
 
  */
-public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
+public class LoginActivity extends CustomActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -91,7 +91,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     private void populateAutoComplete() {
         if (VERSION.SDK_INT >= 14) {
             // Use ContactsContract.Profile (API 14+)
-            getLoaderManager().initLoader(0, null, this);
+            getSupportLoaderManager().initLoader(0, null, this);
         } else if (VERSION.SDK_INT >= 8) {
             // Use AccountManager (API 8+)
             new SetupEmailAutoCompleteTask().execute(null, null);

@@ -10,10 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
-public class SettingExerciseCycle extends ActionBarActivity {
+public class SettingExerciseCycle extends CustomActionBarActivity {
 
     //训练周期
     private String exerciseCycleString = "20 Days";

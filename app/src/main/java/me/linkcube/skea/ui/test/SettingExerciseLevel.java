@@ -13,12 +13,17 @@ import android.view.View;
 import android.widget.RadioGroup;
 import  android.widget.Button;
 
+import custom.android.app.CustomActionBarActivity;
 import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
+<<<<<<< HEAD
 public class SettingExerciseLevel extends ActionBarActivity {
 
+=======
+public class SettingExerciseLevel extends CustomActionBarActivity {
+>>>>>>> bd59b32bd90bb0badf39c5ea2a6cf0f5d2ade9ce
     //训练强度
 
     private int exerciseLevelIndex = 4;

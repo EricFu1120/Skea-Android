@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import custom.android.app.CustomFragment;
 import me.linkcube.skea.R;
 
 /**
@@ -19,7 +20,7 @@ import me.linkcube.skea.R;
  * create an instance of this fragment.
  *
  */
-public class TestPelvicMuscleFragment extends Fragment {
+public class TestPelvicMuscleFragment extends CustomFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

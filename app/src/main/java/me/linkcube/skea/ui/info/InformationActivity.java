@@ -1,18 +1,31 @@
 package me.linkcube.skea.ui.info;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import me.linkcube.skea.R;
 
-public class InformationActivity extends ActionBarActivity {
+import custom.android.app.CustomActionBarActivity;
+import me.linkcube.skea.R;
+import me.linkcube.skea.ui.BaseActivity;
+
+public class InformationActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
-        //ActionBar实现后退导航
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_information;
+    }
+
+    @Override
+    public void configureActionBar() {
+        ActionBar actionBar = getSupportActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

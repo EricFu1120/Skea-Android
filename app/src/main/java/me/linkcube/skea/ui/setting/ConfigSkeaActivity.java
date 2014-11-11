@@ -3,15 +3,17 @@ package me.linkcube.skea.ui.setting;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SeekBar;
 
+import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.BaseActivity;
 
-public class SkeaConfigActivity extends ActionBarActivity {
+public class ConfigSkeaActivity extends BaseActivity {
     /**Skea Config 本地持久化文件名*/
     private static final String  SKEA_CONFIG_XML_FILE="Skea_Config_XML_File";
     /**Feedback Sensitivity Key*/
@@ -29,11 +31,24 @@ public class SkeaConfigActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skea_config);
+        setContentView(R.layout.activity_config_skea);
         //返回导航
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
     }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_config_skea;
+    }
+
+    @Override
+    public void configureActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.drawable.menu_action_back_black);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+    }
+
     /**初始化，并注册事件*/
     private void init(){
 
@@ -99,20 +114,12 @@ public class SkeaConfigActivity extends ActionBarActivity {
         }
     };
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.skea_config, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == android.R.id.home) {
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
