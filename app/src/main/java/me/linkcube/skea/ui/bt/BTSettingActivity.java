@@ -32,7 +32,7 @@ import static com.ervinwang.bthelper.Const.Device.*;
 public class BTSettingActivity extends CustomFragmentActivity implements
 		OnClickListener, OnDeviceItemClickListener, OnBTDiscoveryListener {
 
-	private ImageButton back_imgBtn;
+	//private ImageButton back_imgBtn;
 	private ToggleButton bluetoothTb;
 
 	private Button discoverDevicesBtn, bluetoothHelpBtn;
@@ -86,8 +86,7 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 	}
 
 	private void initViews() {
-		//back_imgBtn = (ImageButton) findViewById(R.id.back_imgBtn);
-		back_imgBtn.setOnClickListener(this);
+	
 		bluetoothTb = (ToggleButton) findViewById(R.id.bluetooth_tb);
 		deviceLv = (BTDeviceListView) findViewById(R.id.device_lv);
 		deviceLv.setOnDeviceItemClickListener(this);

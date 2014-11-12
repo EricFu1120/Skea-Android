@@ -5,6 +5,7 @@
     <string name="title_activity_main">Skea</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_level_save">Save</string>
+    <string name="title_activity_btsetting">Blue Tooth</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_improve_personal_data">Improve Personal Data</string>
     <string name="title_activity_init_personal_data">Init Personal Data Activity</string>
