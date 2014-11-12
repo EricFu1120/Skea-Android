@@ -95,15 +95,6 @@
         </activity>
 
         <activity
-            android:name=".ui.test.ExerciseCycleSettingActivity"
-            android:label="@string/title_activity_setting_exercise_cycle"
-            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.user.TestPelvicMuscleResultActivity" />
-        </activity>
-
-        <activity
             android:name=".ui.info.InformationActivity"
             android:icon="@drawable/icon_info"
             android:label="@string/title_activity_information"

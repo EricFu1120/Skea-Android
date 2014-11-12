@@ -112,21 +112,6 @@
         android:text="Level 4"
         android:textSize="14dp" />
 
-    <TextView
-        android:id="@+id/exercise_cycle_tv"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginRight="10dp"
-        android:background="@null"
-        android:drawablePadding="10dp"
-        android:drawableRight="@drawable/arrow_right"
-        android:gravity="center_vertical|left"
-        android:maxLines="1"
-        android:paddingLeft="25dp"
-        android:singleLine="true"
-        android:text="Exercise Cycle  30 days"
-        android:textSize="14dp" />
-
 
     <View
         android:layout_width="match_parent"

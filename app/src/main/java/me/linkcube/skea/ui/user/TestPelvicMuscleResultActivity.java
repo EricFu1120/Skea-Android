@@ -14,20 +14,16 @@ import android.widget.Button;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.BaseActivity;
-import me.linkcube.skea.ui.test.ExerciseCycleSettingActivity;
 import me.linkcube.skea.ui.test.ExerciseLevelSettingActivity;
 import me.linkcube.skea.ui.test.ReEvaluationActivity;
 
 public class TestPelvicMuscleResultActivity extends BaseActivity {
     public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_level";
-    public static final String EXERCISE_CYCLE = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_cycle";
     private static final int SETTING_LEVEL_REQUEST_CODE = 1;
-    private static final int SETTING_CYCLE_REQUEST_CODE = 2;
 
 
     //声明控件
     private TextView exerciseLevel;
-    private TextView exerciseCycle;
     private Button reevaluate;
 
     @Override
@@ -47,13 +43,11 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
     private void initViews() {
 
         exerciseLevel = (TextView) findViewById(R.id.level);
-        exerciseCycle = (TextView) findViewById(R.id.exercise_cycle_tv);
         reevaluate = (Button) findViewById(R.id.reevaluate);
 
 
 
         exerciseLevel.setOnClickListener(testPelvicViewClickListener);
-        exerciseCycle.setOnClickListener(testPelvicViewClickListener);
         reevaluate.setOnClickListener(testPelvicViewClickListener);
     }
 
@@ -65,9 +59,6 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
                     startSettingExerciseLevel();
                     break;
 
-                case R.id.exercise_cycle_tv:
-                    startSettingExerciseCycle();
-                    break;
                 case R.id.reevaluate:
 
                     reEvaluateButtonClick();
@@ -89,42 +80,6 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
 
     }
 
-
-    /**
-     * 启动设置训练周期
-     */
-    private void startSettingExerciseCycle() {
-        Dialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle("Warning")
-                .setMessage("重新计算锻练数据，还是把历史数据累加 ？")
-                .setPositiveButton("重新计算", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Todo...重新计算在这里做处理ＸＸＸＸＸＸＸＸＸ
-
-                        Intent intent = new Intent();
-                        intent.setClass(getApplicationContext(), ExerciseCycleSettingActivity.class);
-                        startActivityForResult(intent, SETTING_CYCLE_REQUEST_CODE);
-                    }
-                })
-                .setNegativeButton("累加", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        //Todo...累加在这里做处理ＸＸＸＸＸＸＸＸＸＸＸＸ
-
-
-
-                        Intent intent = new Intent();
-                        intent.setClass(getApplicationContext(), ExerciseCycleSettingActivity.class);
-                        startActivityForResult(intent, SETTING_CYCLE_REQUEST_CODE);
-
-                    }
-                })
-                .show();
-
-
-    }
 
     private void reEvaluateButtonClick() {
 
@@ -163,16 +118,7 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
                     Log.i("CXC","++++:level:"+data.getIntExtra(EXERCISE_LEVEL,4));
                 }
                 break;
-            case SETTING_CYCLE_REQUEST_CODE:
-                //得到训练周期值
-                if (resultCode == RESULT_OK) {
 
-                    exerciseCycle.setText("Exercise Cycle "+data.getIntExtra(EXERCISE_CYCLE,20)+" Days");
-                    Log.i("CXC","++++:cycle:"+data.getIntExtra(EXERCISE_CYCLE,20));
-                }
-
-
-                break;
             default:
 
         }
