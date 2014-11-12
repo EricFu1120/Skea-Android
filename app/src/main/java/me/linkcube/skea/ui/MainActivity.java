@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.bt.BTSettingActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
 import me.linkcube.skea.ui.record.RecordActivity;
 import me.linkcube.skea.ui.user.UserInfoActivity;
@@ -104,6 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         int id = item.getItemId();
         if (id == R.id.action_connect_bluetooth) {
             //TODO 进入蓝牙连接页面
+            startActivity(new Intent(this, BTSettingActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

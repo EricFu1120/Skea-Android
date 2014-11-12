@@ -2,7 +2,7 @@
 
     <string name="title_activity_connect_device">ConnectDeviceActivity</string>
     <string name="action_connect_bluetooth">Connect Bluetooth</string>
-
+    <string name="title_activity_btsetting">Blue Tooth</string>
     <!-- Toast-蓝牙设置 -->
     <string name="dialog_bonding_bluetooth">正在绑定玩具...</string>
     <string name="toast_toy_unbonded">绑定拉玩具失败</string>

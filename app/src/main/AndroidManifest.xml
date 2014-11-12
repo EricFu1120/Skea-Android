@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.linkcube.skea">
 
+    <!--BlueTooth 权限-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -128,6 +132,9 @@
             android:name=".ui.init.GuideActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:label="@string/title_activity_guide"/>
+        <activity
+            android:name=".ui.bt.BTSettingActivity"
+            android:label="@string/title_activity_btsetting"/>
 
     </application>
 
