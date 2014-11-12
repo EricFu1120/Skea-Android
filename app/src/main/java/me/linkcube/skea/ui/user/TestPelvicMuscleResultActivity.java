@@ -1,16 +1,11 @@
 package me.linkcube.skea.ui.user;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.BaseActivity;
@@ -44,7 +39,6 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
 
         exerciseLevel = (TextView) findViewById(R.id.level);
         reevaluate = (Button) findViewById(R.id.reevaluate);
-
 
 
         exerciseLevel.setOnClickListener(testPelvicViewClickListener);
@@ -86,26 +80,6 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
         startActivity(new Intent().setClass(getApplicationContext(), ReEvaluationActivity.class));
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.test_pelvic_muscle_result, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -114,8 +88,8 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
                 //得到训练强度值
                 if (resultCode == RESULT_OK) {
 
-                    exerciseLevel.setText("Level "+data.getIntExtra(EXERCISE_LEVEL,4));
-                    Log.i("CXC","++++:level:"+data.getIntExtra(EXERCISE_LEVEL,4));
+                    exerciseLevel.setText("Level " + data.getIntExtra(EXERCISE_LEVEL, 4));
+                    Log.i("CXC", "++++:level:" + data.getIntExtra(EXERCISE_LEVEL, 4));
                 }
                 break;
 

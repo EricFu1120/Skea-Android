@@ -66,6 +66,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         recordsTextView.setOnClickListener(this);
         meTextView.setOnClickListener(this);
         findViewById(R.id.login).setOnClickListener(this);
+        findViewById(R.id.register).setOnClickListener(this);
     }
 
 
@@ -83,6 +84,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.login:
                 startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case R.id.register:
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
             default:
         }

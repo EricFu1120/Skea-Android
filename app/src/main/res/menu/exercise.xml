@@ -1,8 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="me.linkcube.skea.ui.exercise.ExerciseActivity" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="me.linkcube.skea.ui.MainActivity" >
+
     <item android:id="@+id/action_connect_bluetooth"
-        android:title="@string/action_level_save"
+        android:title="@string/action_connect_bluetooth"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        android:icon="@drawable/menu_action_bluetooth_connected"
+        app:showAsAction="always" />
 </menu>

@@ -69,7 +69,7 @@
 
         <activity
             android:name=".ui.setting.ConfigSkeaActivity"
-            android:label="@string/title_activity_skea_config"
+            android:label="@string/title_activity_config_skea"
             android:parentActivityName=".ui.user.UserInfoActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -126,6 +126,7 @@
 
         <activity
             android:name=".ui.init.GuideActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
             android:label="@string/title_activity_guide"/>
 
     </application>

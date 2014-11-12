@@ -4,7 +4,7 @@
     tools:context="me.linkcube.skea.ui.record.RecordActivity" >
 
     <item android:id="@+id/action_date"
-        android:title="@string/action_level_save"
+        android:title="@string/action_connect_bluetooth"
         android:orderInCategory="100"
         android:icon="@drawable/menu_action_date"
         app:showAsAction="always" />
