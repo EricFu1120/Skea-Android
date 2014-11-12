@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.linkcube.skea" >
+    package="me.linkcube.skea">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.LoginActivity"
             android:label="@string/app_name"
@@ -14,17 +14,13 @@
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="@string/title_activity_main">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName=".ui.LoginActivity" >
+            android:parentActivityName=".ui.LoginActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -34,7 +30,7 @@
         <activity
             android:name=".ui.user.UserInfoActivity"
             android:label="@string/title_activity_me"
-            android:parentActivityName=".ui.MainActivity" >
+            android:parentActivityName=".ui.MainActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -44,7 +40,7 @@
         <activity
             android:name=".ui.record.RecordActivity"
             android:label="@string/title_activity_record"
-            android:parentActivityName=".ui.MainActivity" >
+            android:parentActivityName=".ui.MainActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -57,7 +53,7 @@
         <activity
             android:name=".ui.setting.SettingActivity"
             android:label="@string/title_activity_setting"
-            android:parentActivityName=".ui.user.UserInfoActivity" >
+            android:parentActivityName=".ui.user.UserInfoActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -67,7 +63,7 @@
         <activity
             android:name=".ui.user.TestPelvicMuscleResultActivity"
             android:label="@string/title_activity_test_pelvic_muscle_result"
-            android:parentActivityName=".ui.user.UserInfoActivity" >
+            android:parentActivityName=".ui.user.UserInfoActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -77,7 +73,7 @@
         <activity
             android:name=".ui.setting.ConfigSkeaActivity"
             android:label="@string/title_activity_skea_config"
-            android:parentActivityName=".ui.user.UserInfoActivity" >
+            android:parentActivityName=".ui.user.UserInfoActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -87,7 +83,7 @@
         <activity
             android:name=".ui.test.ReEvaluationActivity"
             android:label="@string/title_activity_re_evaluation"
-            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity" >
+            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -97,7 +93,7 @@
         <activity
             android:name=".ui.test.ExerciseLevelSettingActivity"
             android:label="@string/title_activity_setting_exercise_level"
-            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity" >
+            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -107,7 +103,7 @@
         <activity
             android:name=".ui.test.ExerciseCycleSettingActivity"
             android:label="@string/title_activity_setting_exercise_cycle"
-            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity" >
+            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -118,7 +114,7 @@
             android:name=".ui.info.InformationActivity"
             android:icon="@drawable/icon_info"
             android:label="@string/title_activity_information"
-            android:parentActivityName=".ui.MainActivity" >
+            android:parentActivityName=".ui.MainActivity">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -127,16 +123,28 @@
         </activity>
         <activity
             android:name=".ui.setting.LanguageSettingActivity"
-            android:label="@string/title_activity_language_setting" >
+            android:parentActivityName=".ui.setting.SettingActivity">
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.setting.SettingActivity" />
         </activity>
         <activity
             android:name=".ui.init.SplashActivity"
-            android:label="@string/title_activity_splash" >
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:label="@string/title_activity_splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
+
         <activity
             android:name=".ui.init.GuideActivity"
-            android:label="@string/title_activity_guide" >
-        </activity>
+            android:label="@string/title_activity_guide"></activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
