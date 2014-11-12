@@ -18,6 +18,7 @@ public abstract class BaseActivity extends CustomActionBarActivity {
 
     public abstract int getLayoutResourceId();
 
-    public abstract void configureActionBar();
+    public void configureActionBar() {
+    }
 
 }

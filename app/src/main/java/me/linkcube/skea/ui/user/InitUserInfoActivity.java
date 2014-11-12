@@ -7,13 +7,18 @@ import android.view.MenuItem;
 
 import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.BaseActivity;
 
-public class InitUserInfoActivity extends CustomActionBarActivity {
+public class InitUserInfoActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_init_personal_data);
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_init_personal_data;
     }
 
 

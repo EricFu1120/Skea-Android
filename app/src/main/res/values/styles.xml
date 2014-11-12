@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarStyle">@style/AppActionBar</item>
         <item name="titleTextStyle">@style/ActionBarTitle</item>
+        <item name="displayOptions">homeAsUp|disableHome</item>
         <item name="homeAsUpIndicator">@drawable/actionbar_up_indicator</item>
     </style>
 
