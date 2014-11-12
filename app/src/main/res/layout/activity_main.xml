@@ -97,4 +97,13 @@
             android:drawablePadding="5dp"
             android:id="@+id/meTextView" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:id="@+id/login"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/lastResultTextView"
+        android:layout_toStartOf="@+id/lastResultTextView" />
 </RelativeLayout>

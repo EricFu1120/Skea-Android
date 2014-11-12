@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import custom.android.app.CustomActionBarActivity;
@@ -30,6 +31,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * Me
      */
     private TextView meTextView;
+
+    private Button loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         infoTextView.setOnClickListener(this);
         recordsTextView.setOnClickListener(this);
         meTextView.setOnClickListener(this);
+        findViewById(R.id.login).setOnClickListener(this);
     }
 
 
@@ -70,13 +74,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.infoTextView:
-                startActivity(new Intent().setClass(getApplicationContext(), InformationActivity.class));
+                startActivity(new Intent(this, InformationActivity.class));
                 break;
             case R.id.recordsTextView:
-                startActivity(new Intent().setClass(getApplicationContext(), RecordActivity.class));
+                startActivity(new Intent(this, RecordActivity.class));
                 break;
             case R.id.meTextView:
-                startActivity(new Intent().setClass(getApplicationContext(), UserInfoActivity.class));
+                startActivity(new Intent(this, UserInfoActivity.class));
+                break;
+            case R.id.login:
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
             default:
         }
@@ -93,6 +100,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_connect_bluetooth) {
+            //TODO 进入蓝牙连接页面
             return true;
         }
         return super.onOptionsItemSelected(item);
