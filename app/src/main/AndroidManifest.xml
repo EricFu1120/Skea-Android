@@ -129,6 +129,14 @@
             android:name=".ui.setting.LanguageSettingActivity"
             android:label="@string/title_activity_language_setting" >
         </activity>
+        <activity
+            android:name=".ui.init.SplashActivity"
+            android:label="@string/title_activity_splash" >
+        </activity>
+        <activity
+            android:name=".ui.init.GuideActivity"
+            android:label="@string/title_activity_guide" >
+        </activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
