@@ -1,6 +1,5 @@
 <resources>
 
-    <string name="title_activity_connect_device">ConnectDeviceActivity</string>
     <string name="action_connect_bluetooth">Connect Bluetooth</string>
     <string name="title_activity_btsetting">Blue Tooth</string>
     <!-- Toast-蓝牙设置 -->

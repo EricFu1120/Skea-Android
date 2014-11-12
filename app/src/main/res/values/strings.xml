@@ -3,7 +3,6 @@
 
     <string name="app_name">Skea</string>
     <string name="title_activity_main">Skea</string>
-    <string name="hello_world">Hello world!</string>
     <!-- 分隔符 -->
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_me">Me</string>
