@@ -7,129 +7,120 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".ui.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Light"
             android:windowSoftInputMode="adjustResize|stateVisible" />
+
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main">
+            android:label="@string/title_activity_main"/>
 
-        </activity>
         <activity
             android:name=".ui.RegisterActivity"
             android:label="@string/title_activity_register"
             android:parentActivityName=".ui.LoginActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.LoginActivity" />
         </activity>
+
         <activity
             android:name=".ui.user.UserInfoActivity"
             android:label="@string/title_activity_me"
             android:parentActivityName=".ui.MainActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
+
         <activity
             android:name=".ui.record.RecordActivity"
             android:label="@string/title_activity_record"
             android:parentActivityName=".ui.MainActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
+
         <activity
             android:name=".ui.exercise.ExerciseActivity"
             android:label="@string/title_activity_exercise" />
+
         <activity
             android:name=".ui.setting.SettingActivity"
             android:label="@string/title_activity_setting"
             android:parentActivityName=".ui.user.UserInfoActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
+
         <activity
             android:name=".ui.user.TestPelvicMuscleResultActivity"
             android:label="@string/title_activity_test_pelvic_muscle_result"
             android:parentActivityName=".ui.user.UserInfoActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
+
         <activity
             android:name=".ui.setting.ConfigSkeaActivity"
             android:label="@string/title_activity_skea_config"
             android:parentActivityName=".ui.user.UserInfoActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
+
         <activity
             android:name=".ui.test.ReEvaluationActivity"
             android:label="@string/title_activity_re_evaluation"
             android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.TestPelvicMuscleResultActivity" />
         </activity>
+
         <activity
             android:name=".ui.test.ExerciseLevelSettingActivity"
             android:label="@string/title_activity_setting_exercise_level"
             android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.TestPelvicMuscleResultActivity" />
         </activity>
+
         <activity
             android:name=".ui.test.ExerciseCycleSettingActivity"
             android:label="@string/title_activity_setting_exercise_cycle"
             android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.TestPelvicMuscleResultActivity" />
         </activity>
+
         <activity
             android:name=".ui.info.InformationActivity"
             android:icon="@drawable/icon_info"
             android:label="@string/title_activity_information"
             android:parentActivityName=".ui.MainActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
+
         <activity
             android:name=".ui.setting.LanguageSettingActivity"
             android:parentActivityName=".ui.setting.SettingActivity">
-
-            <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.setting.SettingActivity" />
         </activity>
+
         <activity
             android:name=".ui.init.SplashActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar"
@@ -144,10 +135,10 @@
 
         <activity
             android:name=".ui.init.GuideActivity"
-            android:label="@string/title_activity_guide"></activity>
+            android:label="@string/title_activity_guide"/>
+
     </application>
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
