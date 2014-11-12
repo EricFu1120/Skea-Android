@@ -129,7 +129,7 @@ public class ExerciseCycleSettingActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.setting_exercise_cycle, menu);
+        getMenuInflater().inflate(R.menu.exercise_cycle_setting, menu);
         return true;
     }
 

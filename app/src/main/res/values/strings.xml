@@ -22,6 +22,7 @@
     <string name="title_activity_setting_exercise_cycle">SettingExerciseCycle</string>
     <string name="title_activity_setting">Settings</string>
     <string name="title_activity_information">Information</string>
-
+    <string name="title_activity_language_setting">LanguageSettingActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

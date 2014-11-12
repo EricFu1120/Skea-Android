@@ -27,7 +27,7 @@ dependencies {
     compile project(':Lib-Android-Async-Http')
     compile project(':Lib-Sugar')
     compile project(':Lib-Widgets')
-    compile 'com.android.support:appcompat-v7:20.0.0'
     compile files('libs/achartengine-1.1.0.jar')
     compile project(':Lib-App')
+    compile 'com.android.support:appcompat-v7:20.0.0'
 }
