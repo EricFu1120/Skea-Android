@@ -32,7 +32,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     private TextView meTextView;
 
-    private Button loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
