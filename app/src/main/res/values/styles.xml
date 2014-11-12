@@ -3,13 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarStyle">@style/AppActionBar</item>
-        <item name="titleTextStyle">@style/ActionBarTitle</item>
-        <item name="displayOptions">homeAsUp|disableHome</item>
-        <item name="homeAsUpIndicator">@drawable/actionbar_up_indicator</item>
     </style>
 
     <style name="AppActionBar" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/main_dark_grey</item>
+        <item name="titleTextStyle">@style/ActionBarTitle</item>
     </style>
 
     <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
@@ -18,20 +16,18 @@
 
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
         <item name="actionBarStyle">@style/AppActionBar.Light</item>
-        <item name="titleTextStyle">@style/ActionBarTitle.Light</item>
-        <item name="homeAsUpIndicator">@drawable/menu_action_back_black</item>
-
     </style>
 
     <style name="AppActionBar.Light" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/main_light_grey</item>
+        <item name="titleTextStyle">@style/ActionBarTitle.Light</item>
     </style>
 
     <style name="ActionBarTitle.Light" parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="SplitLine" >
+    <style name="SplitLine">
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:background">@color/main_dark_grey</item>

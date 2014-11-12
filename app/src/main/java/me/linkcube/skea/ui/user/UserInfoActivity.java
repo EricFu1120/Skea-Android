@@ -32,14 +32,6 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         return R.layout.activity_user_info;
     }
 
-    @Override
-    public void configureActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayUseLogoEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(false);
-    }
-
     /**
      * 初始化，并注册相应事件
      */
