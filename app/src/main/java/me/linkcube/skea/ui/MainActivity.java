@@ -53,6 +53,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayUseLogoEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setHomeAsUpIndicator(null);
         actionBar.setDisplayShowHomeEnabled(false);
     }
 
