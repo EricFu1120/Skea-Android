@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -180,23 +181,29 @@
                     android:textSize="20sp"
                     android:layout_marginTop="10dp"
                     android:text="Mental Status" />
-
-                <Button
-                    android:id="@+id/submit_bt"
-                    style="?android:textAppearanceSmall"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="25dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/btn_blue"
-                    android:text="Submit"
-                    android:textSize="20dp" />
+                    android:drawableLeft="@drawable/bookmark"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
+                    android:textColor="@color/main_blue" />
 
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
+    <Button
+        android:id="@+id/submit_bt"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_blue"
+        android:text="Submit"
+        android:textSize="20dp" />
 
 
 </LinearLayout>
