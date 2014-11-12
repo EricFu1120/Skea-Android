@@ -106,4 +106,14 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/lastResultTextView"
         android:layout_toStartOf="@+id/lastResultTextView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/register"
+        android:layout_toStartOf="@+id/lastResultTextView"
+        android:layout_below="@+id/login"
+        android:layout_alignRight="@+id/login"
+        android:layout_alignEnd="@+id/login" />
 </RelativeLayout>
