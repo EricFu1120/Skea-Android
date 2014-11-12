@@ -5,22 +5,20 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
-import android.app.Dialog;
 
-import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.BaseActivity;
+import me.linkcube.skea.ui.test.ExerciseCycleSettingActivity;
+import me.linkcube.skea.ui.test.ExerciseLevelSettingActivity;
 import me.linkcube.skea.ui.test.ReEvaluationActivity;
-import me.linkcube.skea.ui.test.SettingExerciseCycle;
-import me.linkcube.skea.ui.test.SettingExerciseLevel;
 
-public class TestPelvicMuscleResultActivity extends CustomActionBarActivity {
+public class TestPelvicMuscleResultActivity extends BaseActivity {
     public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_level";
     public static final String EXERCISE_CYCLE = "me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity.Exercise_cycle";
     private static final int SETTING_LEVEL_REQUEST_CODE = 1;
@@ -35,16 +33,18 @@ public class TestPelvicMuscleResultActivity extends CustomActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_pelvic_muscle_result);
-        //ActionBar实现后退导航
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        init();
+        initViews();
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_test_pelvic_muscle_result;
     }
 
     /**
      * 得到相关控件，注册事件
      */
-    private void init() {
+    private void initViews() {
 
         exerciseLevel = (TextView) findViewById(R.id.level);
         exerciseCycle = (TextView) findViewById(R.id.exercise_cycle_tv);
@@ -84,7 +84,7 @@ public class TestPelvicMuscleResultActivity extends CustomActionBarActivity {
      */
     private void startSettingExerciseLevel() {
         Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), SettingExerciseLevel.class);
+        intent.setClass(getApplicationContext(), ExerciseLevelSettingActivity.class);
         startActivityForResult(intent, SETTING_LEVEL_REQUEST_CODE);
 
     }
@@ -103,7 +103,7 @@ public class TestPelvicMuscleResultActivity extends CustomActionBarActivity {
                         //Todo...重新计算在这里做处理ＸＸＸＸＸＸＸＸＸ
 
                         Intent intent = new Intent();
-                        intent.setClass(getApplicationContext(), SettingExerciseCycle.class);
+                        intent.setClass(getApplicationContext(), ExerciseCycleSettingActivity.class);
                         startActivityForResult(intent, SETTING_CYCLE_REQUEST_CODE);
                     }
                 })
@@ -116,7 +116,7 @@ public class TestPelvicMuscleResultActivity extends CustomActionBarActivity {
 
 
                         Intent intent = new Intent();
-                        intent.setClass(getApplicationContext(), SettingExerciseCycle.class);
+                        intent.setClass(getApplicationContext(), ExerciseCycleSettingActivity.class);
                         startActivityForResult(intent, SETTING_CYCLE_REQUEST_CODE);
 
                     }

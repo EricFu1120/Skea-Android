@@ -4,30 +4,30 @@ package me.linkcube.skea.ui.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RadioGroup;
-import  android.widget.Button;
 
-import custom.android.app.CustomActionBarActivity;
-import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.BaseActivity;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
 
-public class SettingExerciseLevel extends CustomActionBarActivity {
-    /**Exercise Level  File 本地持久化文件名*/
-    private static final String  SKEA_EXERCISE_LEVEL_FILE="Setting_Exercise_Level_File";
-    /**Exercise Level Key*/
-    private static final String  SKEA_EXERCISE_LEVEL_KEY="Setting_Exercise_Level_Key";
+public class ExerciseLevelSettingActivity extends BaseActivity {
+    /**
+     * Exercise Level  File 本地持久化文件名
+     */
+    private static final String SKEA_EXERCISE_LEVEL_FILE = "Setting_Exercise_Level_File";
+    /**
+     * Exercise Level Key
+     */
+    private static final String SKEA_EXERCISE_LEVEL_KEY = "Setting_Exercise_Level_Key";
 
-    private SharedPreferences mSharedPreferences=null;
-    private SharedPreferences.Editor mEditor=null;
+    private SharedPreferences mSharedPreferences = null;
+    private SharedPreferences.Editor mEditor = null;
 
 
     //训练强度
@@ -36,61 +36,60 @@ public class SettingExerciseLevel extends CustomActionBarActivity {
     private RadioGroup exerciseLevel;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting_exercise_level);
-        //ActionBar实现后退导航
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        init();
-
-
+        setContentView(R.layout.activity_exercise_level_setting);
+        initViews();
     }
 
-    public void configureActionBar()
-    {
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_exercise_level_setting;
+    }
+
+    public void configureActionBar() {
         ActionBar actionBar = getSupportActionBar();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mSharedPreferences=getSharedPreferences(SKEA_EXERCISE_LEVEL_FILE, Activity.MODE_PRIVATE);
-        mEditor=mSharedPreferences.edit();
-        mEditor.putInt(SKEA_EXERCISE_LEVEL_KEY,exerciseLevelIndex);
+        mSharedPreferences = getSharedPreferences(SKEA_EXERCISE_LEVEL_FILE, Activity.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putInt(SKEA_EXERCISE_LEVEL_KEY, exerciseLevelIndex);
         mEditor.commit();
 
 
     }
 
-    public void init() {
+    public void initViews() {
 
 
         //得到控件
         exerciseLevel = (RadioGroup) findViewById(R.id.exercise_level);
         //得到之前存储值，并设置
-        mSharedPreferences=getSharedPreferences(SKEA_EXERCISE_LEVEL_FILE, Activity.MODE_PRIVATE);
-        if(mSharedPreferences!=null){//不是第一次运行
+        mSharedPreferences = getSharedPreferences(SKEA_EXERCISE_LEVEL_FILE, Activity.MODE_PRIVATE);
+        if (mSharedPreferences != null) {//不是第一次运行
             int id;
-            switch (mSharedPreferences.getInt(SKEA_EXERCISE_LEVEL_KEY,4)){
+            switch (mSharedPreferences.getInt(SKEA_EXERCISE_LEVEL_KEY, 4)) {
                 case 1:
-                    id=R.id.level1_rb;
+                    id = R.id.level1_rb;
                     break;
                 case 2:
-                    id=R.id.level2_rb;
+                    id = R.id.level2_rb;
                     break;
                 case 3:
-                    id=R.id.level3_rb;
+                    id = R.id.level3_rb;
                     break;
                 case 4:
-                    id=R.id.level4_rb;
+                    id = R.id.level4_rb;
                     break;
                 case 5:
-                    id=R.id.level5_rb;
+                    id = R.id.level5_rb;
                     break;
                 default:
-                    id=R.id.level4_rb;
+                    id = R.id.level4_rb;
             }
             exerciseLevel.check(id);
 
@@ -132,12 +131,14 @@ public class SettingExerciseLevel extends CustomActionBarActivity {
     }
 
 
-    /**向父Activity返回消息*/
-    private void returnMessage(){
+    /**
+     * 向父Activity返回消息
+     */
+    private void returnMessage() {
         //返回用户设置的训练强度
-        Intent resultIntent=new Intent();
-        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_LEVEL,exerciseLevelIndex);
-        Log.i("CXC","---level:"+ exerciseLevelIndex);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_LEVEL, exerciseLevelIndex);
+        Log.i("CXC", "---level:" + exerciseLevelIndex);
         setResult(RESULT_OK, resultIntent);
         this.finish();
     }
@@ -145,7 +146,7 @@ public class SettingExerciseLevel extends CustomActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.setting_exercise_level, menu);
+        getMenuInflater().inflate(R.menu.exercise_level_setting, menu);
         return true;
     }
 
@@ -155,8 +156,8 @@ public class SettingExerciseLevel extends CustomActionBarActivity {
         if (id == android.R.id.home) {
             //TODO 尝试setResult();
             returnMessage();
-           //Toaster.showLong(this,"click home");
-           return true;
+            //Toaster.showLong(this,"click home");
+            return true;
         }
         return super.onOptionsItemSelected(item);
 

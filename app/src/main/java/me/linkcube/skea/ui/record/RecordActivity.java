@@ -1,8 +1,6 @@
 package me.linkcube.skea.ui.record;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,12 +22,10 @@ import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import org.w3c.dom.Text;
-
-import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.BaseActivity;
 
-public class RecordActivity extends CustomActionBarActivity {
+public class RecordActivity extends BaseActivity {
     //声明控件
     private TextView level_tv;
     private TextView evaluate_tv;
@@ -63,16 +59,18 @@ public class RecordActivity extends CustomActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record);
-        //ActionBar实现后退导航
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        init();
+        initViews();
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_record;
     }
 
     /**
      * 初始化，并注册相应事件
      */
-    private void init() {
+    private void initViews() {
 
         //得到控件
         level_tv = (TextView) findViewById(R.id.level_tv);
@@ -160,7 +158,7 @@ public class RecordActivity extends CustomActionBarActivity {
                 LayoutParams.MATCH_PARENT));
 
         // 加载数据
-        // just for test
+        // just for abc_activity
         series.add(10.0, 25.0);
         series.add(20.0, 48.0);
         series.add(30.0, 15.0);
@@ -202,7 +200,7 @@ public class RecordActivity extends CustomActionBarActivity {
         // this order: top, left, bottom, right
         //mRenderer.setMargins(new int[] { 15, 40, 15, 15 });
         // 设置空白边缘颜色
-        mRenderer.setMarginsColor(android.R.color.transparent);
+        mRenderer.setMarginsColor(getResources().getColor(android.R.color.transparent));
         // 放大，缩小按钮是否显示
         // mRenderer.setZoomButtonsVisible(true);
 

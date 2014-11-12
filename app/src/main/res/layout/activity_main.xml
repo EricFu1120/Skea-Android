@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Me"
-            android:drawableTop="@drawable/icon_settings"
+            android:drawableTop="@drawable/icon_me"
             android:drawablePadding="5dp"
             android:id="@+id/meTextView" />
     </LinearLayout>

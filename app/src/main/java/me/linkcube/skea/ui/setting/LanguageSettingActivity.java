@@ -1,24 +1,24 @@
-package me.linkcube.skea.ui.user;
+package me.linkcube.skea.ui.setting;
 
-import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import me.linkcube.skea.R;
 
-public class UpdateUserInfoActivity extends Activity {
+public class LanguageSettingActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_user_info);
+        setContentView(R.layout.activity_language_setting);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.update_user_info, menu);
+        getMenuInflater().inflate(R.menu.language_setting, menu);
         return true;
     }
 
@@ -28,7 +28,7 @@ public class UpdateUserInfoActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_connect_bluetooth) {
+        if (id == R.id.action_settings) {
             return true;
         }
         return super.onOptionsItemSelected(item);

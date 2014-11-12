@@ -2,6 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+<<<<<<< HEAD
     <!-- TextView -->
     <dimen name="TextSize.Default">16.0dip</dimen>
     <dimen name="TextSize.Small">14.0dip</dimen>
@@ -27,4 +28,7 @@
     <dimen name="ListCellTextSize">20sp</dimen>
 
 
+=======
+    <dimen name="activity_item_height">48dp</dimen>
+>>>>>>> dd887738208c716f52910c093fa5da6379914860
 </resources>

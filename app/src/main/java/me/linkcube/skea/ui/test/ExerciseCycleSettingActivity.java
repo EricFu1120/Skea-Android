@@ -3,20 +3,16 @@ package me.linkcube.skea.ui.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.RadioGroup;
 
-import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
+import me.linkcube.skea.ui.BaseActivity;
 import me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity;
 
-public class SettingExerciseCycle extends CustomActionBarActivity {
+public class ExerciseCycleSettingActivity extends BaseActivity {
     /**Exercise Cycle  File 本地持久化文件名*/
     private static final String  SKEA_EXERCISE_CYCLE_FILE="Setting_Exercise_Cycle_File";
     /**Exercise Cycle Key*/
@@ -36,13 +32,22 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD:app/src/main/java/me/linkcube/skea/ui/test/SettingExerciseCycle.java
         setContentView(R.layout.activity_setting_exercise_cycle);
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         init();
+=======
+        initViews();
+>>>>>>> dd887738208c716f52910c093fa5da6379914860:app/src/main/java/me/linkcube/skea/ui/test/ExerciseCycleSettingActivity.java
     }
 
-    public void init() {
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_exercise_cycle_setting;
+    }
+
+    public void initViews() {
         //得到控件
         exerciseCycle = (RadioGroup) findViewById(R.id.exercise_cycle);
 
@@ -131,7 +136,7 @@ public class SettingExerciseCycle extends CustomActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.setting_exercise_cycle, menu);
+        getMenuInflater().inflate(R.menu.exercise_cycle_setting, menu);
         return true;
     }
 

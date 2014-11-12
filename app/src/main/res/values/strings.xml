@@ -22,9 +22,16 @@
     <string name="title_activity_setting_exercise_cycle">SettingExerciseCycle</string>
     <string name="title_activity_setting">Settings</string>
     <string name="title_activity_information">Information</string>
+<<<<<<< HEAD
     <string name="title_activity_connect_device">ConnectDeviceActivity</string>
     <string name="action_settings">Settings</string>
 
+=======
+    <string name="title_activity_language_setting">LanguageSettingActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_guide">GuideActivity</string>
+>>>>>>> dd887738208c716f52910c093fa5da6379914860
 
 
     <!-- Toast-蓝牙设置 -->

@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/AppActionBar</item>
+    </style>
+
+    <style name="AppActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/main_dark_grey</item>
+        <item name="android:titleTextStyle">@style/ActionBarTitle</item>
+    </style>
+
+    <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
+        <item name="android:actionBarStyle">@style/AppActionBar.Light</item>
+    </style>
+
+    <style name="AppActionBar.Light" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/main_light_grey</item>
+        <item name="android:titleTextStyle">@style/ActionBarTitle.Light</item>
+    </style>
+
+    <style name="ActionBarTitle.Light" parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="SplitLine">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@color/main_dark_grey</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+</resources>
