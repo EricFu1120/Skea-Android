@@ -86,7 +86,7 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 	}
 
 	private void initViews() {
-	
+
 		bluetoothTb = (ToggleButton) findViewById(R.id.bluetooth_tb);
 		deviceLv = (BTDeviceListView) findViewById(R.id.device_lv);
 		deviceLv.setOnDeviceItemClickListener(this);
