@@ -160,7 +160,7 @@ public class RecordActivity extends CustomActionBarActivity {
                 LayoutParams.MATCH_PARENT));
 
         // 加载数据
-        // just for test
+        // just for abc_activity
         series.add(10.0, 25.0);
         series.add(20.0, 48.0);
         series.add(30.0, 15.0);
