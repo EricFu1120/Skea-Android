@@ -12,5 +12,30 @@
     <!--白色-->
     <color name="main_white">#ffffff</color>
 
+    <color name="light_grey">#DFDFDF</color>
+
+
+    <!-- Common -->
+    <color name="black">#FF000000</color>
+
+
+    <!-- TextColor -->
+    <color name="text_white">#FFFFFFFF</color>
+    <color name="text_black">#FF000000</color>
+    <color name="text_pink">#FFF22B89</color>
+    <color name="text_light_grey">#DFDFDF</color>
+    <color name="text_grey">#BFBFBF</color>
+    <color name="text_dark_grey">#A4A4A4</color>
+    <color name="text_green">#00FF00</color>
+
+
+    <!-- ListView -->
+    <color name="listview_divider">#BFBFBF</color>
+    <color name="listview_cell_bg">#FFFFFFFF</color>
+    <color name="listview_cell_text">#FF333333</color>
+    <color name="listview_cell_sub_text">#A4A4A4</color>
+
+
+
 
 </resources>

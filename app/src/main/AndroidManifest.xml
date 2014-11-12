@@ -1,77 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.linkcube.skea">
+    package="me.linkcube.skea" >
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.LoginActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize|stateVisible" />
-
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main">
+            android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.RegisterActivity"
             android:label="@string/title_activity_register" />
-
         <activity
             android:name=".ui.user.InitUserInfoActivity"
             android:label="@string/title_activity_init_personal_data" />
-
         <activity
             android:name=".ui.user.UserInfoActivity"
             android:label="@string/title_activity_me" />
-
         <activity
             android:name=".ui.record.RecordActivity"
             android:label="@string/title_activity_record" />
-
         <activity
             android:name=".ui.exercise.ExerciseActivity"
             android:label="@string/title_activity_exercise" />
-
         <activity
             android:name=".ui.user.UpdateUserInfoActivity"
             android:label="@string/title_activity_update_user_info" />
-
         <activity
             android:name=".ui.setting.SettingActivity"
             android:label="@string/title_activity_setting" />
-
         <activity
             android:name=".ui.user.TestPelvicMuscleResultActivity"
             android:label="@string/title_activity_test_pelvic_muscle_result" />
         <activity
             android:name=".ui.setting.ConfigSkeaActivity"
             android:label="@string/title_activity_skea_config" />
-
         <activity
             android:name=".ui.test.ReEvaluationActivity"
             android:label="@string/title_activity_re_evaluation" />
-
         <activity
             android:name=".ui.test.SettingExerciseLevel"
             android:label="@string/title_activity_setting_exercise_level" />
         <activity
             android:name=".ui.test.SettingExerciseCycle"
             android:label="@string/title_activity_setting_exercise_cycle" />
-
         <activity
             android:name=".ui.info.InformationActivity"
             android:label="@string/title_activity_information" />
+        <activity
+            android:name=".ui.bluetooth.ConnectDeviceActivity"
+            android:label="@string/title_activity_connect_device" >
+        </activity>
+        <activity
+            android:name=".ui.bt.BTSettingActivity"
+            android:label="@string/title_activity_connect_device" >
+        </activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
