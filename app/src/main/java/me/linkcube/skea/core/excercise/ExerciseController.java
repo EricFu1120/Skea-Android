@@ -5,11 +5,11 @@ import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import com.example.demogame.DensityUtils;
-
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import custom.android.util.DensityUtils;
 
 /**
  * Created by Ervin on 14/11/2.
