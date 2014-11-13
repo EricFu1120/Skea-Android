@@ -6,12 +6,10 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.R;
-import me.linkcube.skea.ui.bt.BTSettingActivity;
+import me.linkcube.skea.ui.bluetooth.BTSettingActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
 import me.linkcube.skea.ui.record.RecordActivity;
 import me.linkcube.skea.ui.user.UserInfoActivity;

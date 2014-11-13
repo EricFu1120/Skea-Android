@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.bt;
+package me.linkcube.skea.ui.bluetooth;
 
 import java.util.List;
 

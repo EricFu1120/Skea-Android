@@ -12,7 +12,7 @@ import android.widget.ScrollView;
 import me.linkcube.skea.R;
 import me.linkcube.skea.core.excercise.Bar;
 import me.linkcube.skea.core.excercise.ExerciseController;
-import me.linkcube.skea.core.excercise.ScoreCounter;
+import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
 
 
 public class ExerciseActivity extends ActionBarActivity implements ExerciseController.ScoreCallback {
@@ -79,12 +79,12 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
 
     @Override
     public void startScore(Bar bar) {
-        ScoreCounter.getInstance().startScore(bar);
+        ExerciseScoreCounter.getInstance().startScore(bar);
     }
 
     @Override
     public void tickScore() {
-        ScoreCounter.getInstance().tickScore();
+        ExerciseScoreCounter.getInstance().tickScore();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
 
     @Override
     public void stopScore() {
-        int score = ScoreCounter.getInstance().stopScore();
+        int score = ExerciseScoreCounter.getInstance().stopScore();
         //TODO 更新UI分数
     }
 

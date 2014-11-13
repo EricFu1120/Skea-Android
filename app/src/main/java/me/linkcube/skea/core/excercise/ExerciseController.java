@@ -72,7 +72,7 @@ public class ExerciseController {
     public void test() {
         for (int i = list.size() - 1; i >= 0; i--) {
             Log.d("test", "" + list.get(i).getBeginActiveOffset());
-            Log.d("test", "" + list.get(i).getEndActiviteOffset());
+            Log.d("test", "" + list.get(i).getEndActiveOffset());
         }
     }
 
@@ -91,7 +91,7 @@ public class ExerciseController {
         //确定激活的Bar
         if (nextPosition >= 0) {
             Bar bar = list.get(nextPosition);
-            if (bar.getBeginActiveOffset() <= offset && bar.getEndActiviteOffset() >= offset) {
+            if (bar.getBeginActiveOffset() <= offset && bar.getEndActiveOffset() >= offset) {
                 if (!active) {
                     activePosition = nextPosition;
                     nextPosition = activePosition - 2;

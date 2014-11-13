@@ -2,7 +2,7 @@ package me.linkcube.skea.core.excercise;
 
 import android.content.Context;
 
-import com.example.demogame.DensityUtils;
+import custom.android.util.DensityUtils;
 
 /**
  * Created by Ervin on 14/11/4.
@@ -17,7 +17,7 @@ public class Bar {
 
     private int beginActiveOffset;
 
-    private int endActiviteOffset;
+    private int endActiveOffset;
 
     public Bar(int type) {
         this.type = type;
@@ -51,11 +51,11 @@ public class Bar {
         this.beginActiveOffset = beginActiveOffset;
     }
 
-    public int getEndActiviteOffset() {
-        return endActiviteOffset;
+    public int getEndActiveOffset() {
+        return endActiveOffset;
     }
 
-    public void setEndActiviteOffset(int endActiviteOffset) {
-        this.endActiviteOffset = endActiviteOffset;
+    public void setEndActiveOffset(int endActiveOffset) {
+        this.endActiveOffset = endActiveOffset;
     }
 }

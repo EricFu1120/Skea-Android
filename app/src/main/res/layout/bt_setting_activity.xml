@@ -65,7 +65,7 @@
 
     <View style="@style/Setting.Item.Divider" />
 
-    <me.linkcube.skea.ui.bt.BTDeviceListView
+    <me.linkcube.skea.ui.bluetooth.BTDeviceListView
         android:id="@+id/device_lv"
         style="@style/ListView"
         android:layout_height="0dp"

@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.bt;
+package me.linkcube.skea.ui.bluetooth;
 
 import java.util.List;
 
@@ -23,7 +23,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ToggleButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import me.linkcube.skea.R;

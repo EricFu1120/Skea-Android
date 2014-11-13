@@ -133,7 +133,7 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:label="@string/title_activity_guide"/>
         <activity
-            android:name=".ui.bt.BTSettingActivity"
+            android:name=".ui.bluetooth.BTSettingActivity"
             android:label="@string/title_activity_btsetting"/>
 
     </application>

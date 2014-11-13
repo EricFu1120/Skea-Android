@@ -98,10 +98,10 @@ public class BarGroupManager {
             if (i == list.size() - 1) {
                 bar.setBeginActiveOffset(getBlankHeight(true));
                 Log.d("test activeOffset", "" + bar.getBeginActiveOffset());
-                bar.setEndActiviteOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
+                bar.setEndActiveOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
             } else {
-                bar.setBeginActiveOffset(list.get(i + 1).getEndActiviteOffset());
-                bar.setEndActiviteOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
+                bar.setBeginActiveOffset(list.get(i + 1).getEndActiveOffset());
+                bar.setEndActiveOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
             }
         }
 

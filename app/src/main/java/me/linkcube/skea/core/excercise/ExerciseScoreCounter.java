@@ -6,9 +6,9 @@ import java.util.List;
 /**
  * Created by Ervin on 14/11/1.
  */
-public class ScoreCounter {
+public class ExerciseScoreCounter {
 
-    private static ScoreCounter instance;
+    private static ExerciseScoreCounter instance;
 
     private int count = 0;
 
@@ -18,13 +18,13 @@ public class ScoreCounter {
 
     private boolean lock;
 
-    public static ScoreCounter getInstance() {
+    public static ExerciseScoreCounter getInstance() {
         if (instance == null)
-            instance = new ScoreCounter();
+            instance = new ExerciseScoreCounter();
         return instance;
     }
 
-    private ScoreCounter() {
+    private ExerciseScoreCounter() {
         segments = new ArrayList<Segment>();
     }
 
