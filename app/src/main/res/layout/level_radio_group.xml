@@ -1,70 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="wrap_content">
 
-    <RadioButton
-        android:id="@+id/level1_rb"
-        android:checked="true"
-        android:button="@null"
-        android:background="@drawable/radio_button"
-        android:layout_width="@dimen/radio_button_size"
-        android:layout_height="@dimen/radio_button_size" />
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:orientation="horizontal"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <View
-        android:background="@color/main_light_grey"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="1dp" />
+        <RadioButton
+            android:id="@+id/level1_rb"
+            android:checked="true"
+            android:button="@null"
+            android:background="@drawable/radio_button"
+            android:layout_width="@dimen/radio_button_size"
+            android:layout_height="@dimen/radio_button_size" />
 
-    <RadioButton
-        android:id="@+id/level2_rb"
-        android:button="@null"
-        android:background="@drawable/radio_button"
-        android:layout_width="@dimen/radio_button_size"
-        android:layout_height="@dimen/radio_button_size" />
+        <View
+            android:background="@color/main_light_grey"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
 
-    <View
-        android:background="@color/main_light_grey"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="1dp" />
+        <RadioButton
+            android:id="@+id/level2_rb"
+            android:button="@null"
+            android:background="@drawable/radio_button"
+            android:layout_width="@dimen/radio_button_size"
+            android:layout_height="@dimen/radio_button_size" />
 
-    <RadioButton
-        android:id="@+id/level3_rb"
-        android:button="@null"
-        android:background="@drawable/radio_button"
-        android:layout_width="@dimen/radio_button_size"
-        android:layout_height="@dimen/radio_button_size" />
+        <View
+            android:background="@color/main_light_grey"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
 
-    <View
-        android:background="@color/main_light_grey"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="1dp" />
+        <RadioButton
+            android:id="@+id/level3_rb"
+            android:button="@null"
+            android:background="@drawable/radio_button"
+            android:layout_width="@dimen/radio_button_size"
+            android:layout_height="@dimen/radio_button_size" />
 
-    <RadioButton
-        android:id="@+id/level4_rb"
-        android:button="@null"
-        android:background="@drawable/radio_button"
-        android:layout_width="@dimen/radio_button_size"
-        android:layout_height="@dimen/radio_button_size" />
+        <View
+            android:background="@color/main_light_grey"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
 
-    <View
-        android:background="@color/main_light_grey"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="1dp" />
+        <RadioButton
+            android:id="@+id/level4_rb"
+            android:button="@null"
+            android:background="@drawable/radio_button"
+            android:layout_width="@dimen/radio_button_size"
+            android:layout_height="@dimen/radio_button_size" />
 
-    <RadioButton
-        android:id="@+id/level5_rb"
-        android:button="@null"
-        android:background="@drawable/radio_button"
-        android:layout_width="@dimen/radio_button_size"
-        android:layout_height="@dimen/radio_button_size" />
+        <View
+            android:background="@color/main_light_grey"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
 
+        <RadioButton
+            android:id="@+id/level5_rb"
+            android:button="@null"
+            android:background="@drawable/radio_button"
+            android:layout_width="@dimen/radio_button_size"
+            android:layout_height="@dimen/radio_button_size" />
 
-</RadioGroup>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="@dimen/radio_button_text_size"
+            android:gravity="center_horizontal"
+            android:id="@+id/level1_tv"
+            android:text="level 1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:textSize="@dimen/radio_button_text_size"
+            android:gravity="center_horizontal"
+            android:id="@+id/level2_tv"
+            android:text="level 1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:textSize="@dimen/radio_button_text_size"
+            android:gravity="center_horizontal"
+            android:id="@+id/level3_tv"
+            android:text="level 1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:textSize="@dimen/radio_button_text_size"
+            android:gravity="center_horizontal"
+            android:id="@+id/level4_tv"
+            android:text="level 1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:textSize="@dimen/radio_button_text_size"
+            android:gravity="center_horizontal"
+            android:id="@+id/level5_tv"
+            android:text="level 1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

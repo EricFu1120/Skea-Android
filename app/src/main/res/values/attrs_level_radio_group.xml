@@ -1,0 +1,9 @@
+<resources>
+    <declare-styleable name="LevelRadioGroup">
+        <attr name="level1" format="string|reference" />
+        <attr name="level2" format="string|reference" />
+        <attr name="level3" format="string|reference" />
+        <attr name="level4" format="string|reference" />
+        <attr name="level5" format="string|reference" />
+    </declare-styleable>
+</resources>

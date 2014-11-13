@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="me.linkcube.skea.ui.test.ReEvaluationActivity">
 
     <ScrollView
@@ -141,7 +140,12 @@
                     android:layout_marginTop="10dp"
                     android:text="Reproductive History" />
 
-                <me.linkcube.skea.view.LevelRadioGroup
+                <me.linkcube.skea.view.LevelRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    app:level1="0"
+                    app:level2="1"
+                    app:level3="2"
+                    app:level4="3"
+                    app:level5=">3"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
@@ -153,7 +157,12 @@
                     android:textSize="20sp"
                     android:text="Sexual Activity" />
 
-                <me.linkcube.skea.view.LevelRadioGroup
+                <me.linkcube.skea.view.LevelRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    app:level1="Almost\nNever"
+                    app:level2="Rare\n(>4 yearly)"
+                    app:level3="Ocassional\n(>1 monthly)"
+                    app:level4="Active\n(>1 weekly)"
+                    app:level5="Pretty Active\n(>3 weekly)"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
@@ -175,7 +184,12 @@
                     android:layout_marginTop="10dp"
                     android:text="Urinary Incontinence" />
 
-                <me.linkcube.skea.view.LevelRadioGroup
+                <me.linkcube.skea.view.LevelRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    app:level1="Never"
+                    app:level2="Rare\n(>4 yearly)"
+                    app:level3="Ocassional\n(>1 monthly)"
+                    app:level4="Often\n(>1 weekly)"
+                    app:level5="Pretty Often\n(>3 weekly)"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
@@ -198,7 +212,12 @@
                     android:layout_marginTop="10dp"
                     android:text="Mental Status" />
 
-                <me.linkcube.skea.view.LevelRadioGroup
+                <me.linkcube.skea.view.LevelRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    app:level1="Very\nRestful"
+                    app:level2="Restful"
+                    app:level3="Normal"
+                    app:level4="Stressful"
+                    app:level5="Very\nStressful"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
@@ -224,7 +243,7 @@
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="16dp"
         android:background="@drawable/btn_blue"
         android:text="Submit"
         android:textSize="20dp" />
