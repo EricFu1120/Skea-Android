@@ -48,6 +48,14 @@
         android:layout_centerInParent="true"
         android:src="@drawable/btn_start" />
 
+    <ImageView
+        android:layout_alignTop="@+id/startView"
+        android:layout_alignLeft="@+id/startView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/btn_start_shadow" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -84,9 +92,28 @@
             android:gravity="center"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/settings"
-            android:drawableTop="@drawable/icon_settings"
+            android:text="Me"
+            android:drawableTop="@drawable/icon_me"
             android:drawablePadding="5dp"
-            android:id="@+id/settingsTextView" />
+            android:id="@+id/meTextView" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:id="@+id/login"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/lastResultTextView"
+        android:layout_toStartOf="@+id/lastResultTextView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/register"
+        android:layout_toStartOf="@+id/lastResultTextView"
+        android:layout_below="@+id/login"
+        android:layout_alignRight="@+id/login"
+        android:layout_alignEnd="@+id/login" />
 </RelativeLayout>

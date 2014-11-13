@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="me.linkcube.skea.ui.init.SplashActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:src="@drawable/logo" />
+
+    <View
+        android:id="@+id/split"
+        android:layout_marginTop="5dp"
+        android:layout_alignLeft="@+id/logo"
+        android:layout_alignRight="@+id/logo"
+        android:layout_below="@+id/logo"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        style="@style/SplitLine" />
+
+    <TextView
+        android:id="@+id/produce"
+        android:layout_below="@+id/split"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/main_light_grey"
+        android:text="Produced by Linkcube Group Co.,Ltd."
+        android:layout_alignRight="@+id/logo" />
+
+    <ImageView
+        android:layout_width="72dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/produce"
+        android:src="@drawable/ic_launcher" />
+
+</RelativeLayout>

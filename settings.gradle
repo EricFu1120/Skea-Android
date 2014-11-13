@@ -1,2 +1,3 @@
-include ':app', ':Lib-Android-Async-Http', ':Lib-Widgets', ':Demo-Game'
+include ':app', ':Lib-Android-Async-Http', ':Lib-Widgets', ':Lib-App'
 include ':Lib-Sugar'
+include ':Lib-Utils'

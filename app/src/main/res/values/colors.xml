@@ -7,5 +7,33 @@
     <color name="main_light_grey">#e5e5e5</color>
     <!-- 应用主色调 蓝色 -->
     <color name="main_blue">#50c0ed</color>
+    <!-- 应用主色调 ＸＸ色 -->
+    <color name="main_dark">#3b3c41</color>
+    <!--白色-->
+    <color name="main_white">#ffffff</color>
+
+    <color name="light_grey">#DFDFDF</color>
+
+
+
+
+    <!-- TextColor -->
+    <color name="text_white">#FFFFFFFF</color>
+    <color name="text_black">#FF000000</color>
+    <color name="text_pink">#FFF22B89</color>
+    <color name="text_light_grey">#DFDFDF</color>
+    <color name="text_grey">#BFBFBF</color>
+    <color name="text_dark_grey">#A4A4A4</color>
+    <color name="text_green">#00FF00</color>
+
+
+    <!-- ListView -->
+    <color name="listview_divider">#BFBFBF</color>
+    <color name="listview_cell_bg">#FFFFFFFF</color>
+    <color name="listview_cell_text">#FF333333</color>
+    <color name="listview_cell_sub_text">#A4A4A4</color>
+
+
+
 
 </resources>

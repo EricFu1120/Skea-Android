@@ -1,8 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="me.linkcube.skea.ui.exercise.ExerciseActivity" >
-    <item android:id="@+id/action_connect_bluetooth"
-        android:title="@string/action_settings"
+    tools:context=".MainActivity" >
+    <item android:id="@+id/action_pause"
+        android:title="@string/action_pause"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        android:icon="@drawable/button_pause"
+        app:showAsAction="always" />
 </menu>
