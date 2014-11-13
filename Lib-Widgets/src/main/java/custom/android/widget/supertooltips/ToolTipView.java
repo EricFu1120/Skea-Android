@@ -30,15 +30,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.view.ViewHelper;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-import custom.android.animation.Animator;
-import custom.android.animation.AnimatorListenerAdapter;
-import custom.android.animation.AnimatorSet;
-import custom.android.animation.ObjectAnimator;
-import custom.android.view.ViewHelper;
 import custom.android.widget.R;
+
 
 /**
  * A ViewGroup to visualize ToolTips. Use
