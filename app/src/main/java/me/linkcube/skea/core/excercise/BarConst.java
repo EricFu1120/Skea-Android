@@ -19,7 +19,14 @@ public class BarConst {
 
     public static class VIEW {
 
-        public static final int UNIT_HEIGHT = 40;
+        /**
+         * 每五十毫秒走的px
+         */
+        public static final int UNIT_SPEED = 5;
+
+        public static final int SPEED = 100;
+
+//        public static final int UNIT_HEIGHT = 40;
 
         public static final int UNIT_WIDTH = 70;
     }

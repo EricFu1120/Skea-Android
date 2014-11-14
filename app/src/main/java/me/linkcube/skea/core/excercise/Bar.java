@@ -11,7 +11,7 @@ public class Bar {
 
     private int type;
 
-    private int score;
+    private float score;
 
     private int height;
 
@@ -31,16 +31,16 @@ public class Bar {
         this.type = type;
     }
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(float score) {
         this.score = score;
     }
 
     public int getHeight(Context context) {
-        return DensityUtils.dip2px(context, BarConst.LEVEL.TIME[type] * BarConst.VIEW.UNIT_HEIGHT);
+        return BarConst.LEVEL.TIME[type] * BarConst.VIEW.SPEED;
     }
 
     public int getBeginActiveOffset() {

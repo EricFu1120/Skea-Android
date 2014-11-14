@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import custom.android.util.DensityUtils;
+import custom.android.util.Timber;
 
 /**
  * Created by Ervin on 14/11/2.
@@ -18,9 +19,7 @@ public class ExerciseController {
 
     private Timer timer;
 
-    private final int speed;
-
-    private final int UNIT_TIME = 100;
+    private final int UNIT_TIME = 50;
 
     private int offset;
 
@@ -34,7 +33,9 @@ public class ExerciseController {
 
     private boolean active = false;
 
-    private ScoreCallback callback;
+    private int leftTime;
+
+    private ExerciseScoreCallback callback;
 
     /**
      * 用来分割计时点
@@ -45,16 +46,16 @@ public class ExerciseController {
 
     public ExerciseController(Context context) {
         //TODO get user's level
-        speed = DensityUtils.dip2px(context, BarConst.VIEW.UNIT_HEIGHT);
+        leftTime = BarGroupManager.getInstance().getBarGroupHeight(context, true) / BarConst.VIEW.SPEED;
+        Log.d("left time = ", "" + leftTime);
         list = BarGenerator.getInstance().getBars();
         nextPosition = list.size() - 1;
-        Log.d("The speed of bar is ", "" + speed);
         timer = new Timer();
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                BarGroupManager.getInstance().scrollBy(-speed);
-                offset = offset + speed;
+                BarGroupManager.getInstance().scrollBy(-BarConst.VIEW.UNIT_SPEED);
+                offset = offset + BarConst.VIEW.UNIT_SPEED;
                 checkActivePosition();
             }
         };
@@ -89,37 +90,48 @@ public class ExerciseController {
 
     public void checkActivePosition() {
         //确定激活的Bar
+        count++;
+        second++;
         if (nextPosition >= 0) {
             Bar bar = list.get(nextPosition);
             if (bar.getBeginActiveOffset() <= offset && bar.getEndActiveOffset() >= offset) {
                 if (!active) {
                     activePosition = nextPosition;
                     nextPosition = activePosition - 2;
-                    Log.d("checkActivePosition", "" + "bar type" + list.get(activePosition).getType());
-                    Log.d("checkActivePosition", "" + "activePosition = " + activePosition);
-                    Log.d("checkActivePosition", "" + "nextPosition = " + nextPosition);
-                    if (callback != null)
+                    Log.d("checkActivePosition", "bar type" + list.get(activePosition).getType());
+                    Log.d("checkActivePosition", "activePosition = " + activePosition);
+                    Log.d("checkActivePosition", "nextPosition = " + nextPosition);
+                    if (callback != null) {
                         callback.startScore(list.get(activePosition));
-                } else {
-                    count++;
-                    second++;
-                    if (count % 5 == 0) {
                         count = 0;
                     }
-                    if (second % 10 == 0) {
-                        second = 0;
-                        if (callback != null)
-                            callback.tickSecond();
-                    }
-                    active = true;
                 }
+            } else if (activePosition != -1 && list.get(activePosition).getBeginActiveOffset() <= offset && list.get(activePosition).getEndActiveOffset() >= offset) {
+                active = true;
+//                Log.d("checkActivePosition", "activePosition = " + activePosition);
             } else {
                 active = false;
-                if (callback != null)
+                if (callback != null && activePosition != -1)
+                    callback.tickScore();
                     callback.stopScore();
+
+                activePosition = -1;
             }
         } else {
             timer.cancel();
+        }
+
+        if (count != 0 && count % 10 == 0) {
+            count = 0;
+            if (callback != null)
+                callback.tickScore();
+        }
+        if (second % 20 == 0) {
+            second = 0;
+            if (callback != null) {
+                leftTime -= 1;
+                callback.tickSecond(leftTime);
+            }
         }
     }
 
@@ -135,19 +147,19 @@ public class ExerciseController {
         timer.schedule(timerTask, 0, UNIT_TIME);
     }
 
-    public interface ScoreCallback {
+    public interface ExerciseScoreCallback {
 
         void startScore(Bar bar);
 
         void tickScore();
 
-        void tickSecond();
+        void tickSecond(int leftTime);
 
         void stopScore();
 
     }
 
-    public void registerShrinkCallback(ScoreCallback callback) {
+    public void registerShrinkCallback(ExerciseScoreCallback callback) {
         this.callback = callback;
     }
 
