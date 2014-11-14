@@ -34,7 +34,7 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 	//private ImageButton back_imgBtn;
 	private ToggleButton bluetoothTb;
 
-	private Button discoverDevicesBtn, bluetoothHelpBtn;
+//	private Button discoverDevicesBtn, bluetoothHelpBtn;
 
 	private BTDeviceListView deviceLv;
 
@@ -89,13 +89,13 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 		bluetoothTb = (ToggleButton) findViewById(R.id.bluetooth_tb);
 		deviceLv = (BTDeviceListView) findViewById(R.id.device_lv);
 		deviceLv.setOnDeviceItemClickListener(this);
-		discoverDevicesBtn = (Button) findViewById(R.id.discover_devices_btn);
-		discoverDevicesBtn.setOnClickListener(this);
-		if (BTHelper.isBluetoothEnabled()) {
-			showBondedDevices();
-		}
-		bluetoothHelpBtn = (Button) findViewById(R.id.bluetooth_help_btn);
-		bluetoothHelpBtn.setOnClickListener(this);
+//		discoverDevicesBtn = (Button) findViewById(R.id.discover_devices_btn);
+//		discoverDevicesBtn.setOnClickListener(this);
+//		if (BTHelper.isBluetoothEnabled()) {
+//			showBondedDevices();
+//		}
+//		bluetoothHelpBtn = (Button) findViewById(R.id.bluetooth_help_btn);
+//		bluetoothHelpBtn.setOnClickListener(this);
 	}
 
 	private void showBondedDevices() {
@@ -114,12 +114,12 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 	private void startDiscoverBluetoothDevices() {
 		BluetoothAdapter madapter = BluetoothAdapter.getDefaultAdapter();
 		madapter.startDiscovery();
-		discoverDevicesBtn.setText(R.string.searching);
+//		discoverDevicesBtn.setText(R.string.searching);
 	}
 
-	private void finishDiscoverBluetoothDevices() {
-		discoverDevicesBtn.setText(R.string.search_toy);
-	}
+//	private void finishDiscoverBluetoothDevices() {
+//		discoverDevicesBtn.setText(R.string.search_toy);
+//	}
 
 	private void bondDevice(BluetoothDevice device, int position) {
 		if (BTManager.getInstance().bondDevice(device)) {
@@ -145,7 +145,7 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 				boolean isChecked) {
 			BTHelper.setBluetoothEnabled(isChecked);
 			if (!isChecked) {
-				discoverDevicesBtn.setText(R.string.search_toy);
+//				discoverDevicesBtn.setText(R.string.search_toy);
 			} else {
 				showBondedDevices();
 			}
@@ -154,30 +154,30 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 
 	@Override
 	public void onClick(View v) {
-
-		switch (v.getId()) {
-		case R.id.discover_devices_btn:
-			if (BTHelper.isBluetoothEnabled()) {
-				startDiscoverBluetoothDevices();
-			} else {
-				Toaster.showShort(
-						this,
-						getResources().getString(
-								R.string.toast_pls_open_bluetooth));
-			}
-			break;
-		case R.id.bluetooth_help_btn:
-			break;
-//		case R.id.back_imgBtn:
-//			if (isToyConnected()) {
-//				setResult(RESULT_OK);
-//				this.finish();
+//
+//		switch (v.getId()) {
+//		case R.id.discover_devices_btn:
+//			if (BTHelper.isBluetoothEnabled()) {
+//				startDiscoverBluetoothDevices();
+//			} else {
+//				Toaster.showShort(
+//						this,
+//						getResources().getString(
+//								R.string.toast_pls_open_bluetooth));
 //			}
 //			break;
-		default:
-			break;
-		}
-
+//		case R.id.bluetooth_help_btn:
+//			break;
+////		case R.id.back_imgBtn:
+////			if (isToyConnected()) {
+////				setResult(RESULT_OK);
+////				this.finish();
+////			}
+////			break;
+//		default:
+//			break;
+//		}
+//
 	}
 
 	private boolean isToyConnected() {
@@ -246,7 +246,7 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 	@Override
 	public void onBTDiscoveryFinished() {
 		Timber.d("搜索蓝牙设备完毕！");
-		finishDiscoverBluetoothDevices();
+//		finishDiscoverBluetoothDevices();
         Toaster.showShort(this,R.string.toast_searching_toy_over);
         Toaster.showShort(this,
 				getResources().getString(R.string.toast_searching_toy_over));

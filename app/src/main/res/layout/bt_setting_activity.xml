@@ -2,9 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:gravity="center_horizontal"
     android:orientation="vertical" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+
+        android:text="Connecting your Skea ..."
+        android:textSize="@dimen/TextSize.Super" />
 
 
     <LinearLayout
@@ -22,7 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
-            android:text="蓝牙"
+            android:text="Bluetooth"
+            android:textColor="@color/main_blue"
             android:textSize="@dimen/TextSize.Large" />
 
         <ToggleButton
@@ -39,32 +46,6 @@
 
     <View style="@style/Setting.Item.Divider" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/light_grey"
-        android:orientation="horizontal"
-        android:padding="@dimen/SettingPadding" >
-
-        <TextView
-            style="@style/Setting.Item.TextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="@string/devices_available"
-            android:textSize="@dimen/SettingSubTextSize" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="@string/click_and_connect"
-            android:textSize="@dimen/SettingSubTextSize" />
-    </LinearLayout>
-
-    <View style="@style/Setting.Item.Divider" />
-
     <me.linkcube.skea.ui.bluetooth.BTDeviceListView
         android:id="@+id/device_lv"
         style="@style/ListView"
@@ -72,27 +53,16 @@
         android:layout_weight="1"
         android:padding="@dimen/SettingPadding" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
 
-        <Button
-            android:id="@+id/discover_devices_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="10dp"
-            android:text="@string/search_toy" />
+        android:text="Please turn on your Skea and put it near your phone"
+        android:padding="15dp"
+        android:textColor="@color/main_dark_grey"
+        android:textSize="@dimen/TextSize.Large"/>
 
-        <Button
-            android:id="@+id/bluetooth_help_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/discover_devices_btn"
-            android:text="sos"
-            android:textColor="@color/black"
-            android:visibility="visible" />
-    </RelativeLayout>
 
 </LinearLayout>
