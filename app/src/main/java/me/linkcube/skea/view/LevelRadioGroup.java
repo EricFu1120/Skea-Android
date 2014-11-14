@@ -64,19 +64,19 @@ public class LevelRadioGroup extends LinearLayout {
                     return;
                 switch (checkedId) {
                     case R.id.level1_rb:
-                        listener.onLevelSelected(1);
+                        listener.onLevelSelected(0);
                         break;
                     case R.id.level2_rb:
-                        listener.onLevelSelected(2);
+                        listener.onLevelSelected(1);
                         break;
                     case R.id.level3_rb:
-                        listener.onLevelSelected(3);
+                        listener.onLevelSelected(2);
                         break;
                     case R.id.level4_rb:
-                        listener.onLevelSelected(4);
+                        listener.onLevelSelected(3);
                         break;
                     case R.id.level5_rb:
-                        listener.onLevelSelected(5);
+                        listener.onLevelSelected(4);
                         break;
                     default:
                         break;
@@ -89,9 +89,12 @@ public class LevelRadioGroup extends LinearLayout {
         this.listener = listener;
     }
 
+
+
     public interface OnLevelSelectedListener {
 
         void onLevelSelected(int level);
+
 
     }
 }
