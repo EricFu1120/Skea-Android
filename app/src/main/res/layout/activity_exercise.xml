@@ -175,16 +175,17 @@
                 android:layout_height="match_parent">
 
 
-
             </LinearLayout>
 
 
         </ScrollView>
 
-        <Button
+        <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Shrink"
+            android:textOn="shrink"
+            android:textOff="relax"
             android:id="@+id/shrink_button"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"

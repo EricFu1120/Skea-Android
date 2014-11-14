@@ -46,19 +46,19 @@ public class BarViewWrapper {
     private void initVarViewAttrs(int type, boolean glow) {
         switch (type) {
             case BarConst.TYPE.LONG:
-                height = DensityUtils.dip2px(mContext, 12 * BarConst.VIEW.UNIT_HEIGHT);
+                height = 12 * BarConst.VIEW.SPEED;
                 resId = glow ? R.drawable.bar_long_glow : R.drawable.bar_long;
                 break;
             case BarConst.TYPE.MEDIUM:
-                height = DensityUtils.dip2px(mContext, 7 * BarConst.VIEW.UNIT_HEIGHT);
+                height = 7 * BarConst.VIEW.SPEED;
                 resId = glow ? R.drawable.bar_medium_glow : R.drawable.bar_medium;
                 break;
             case BarConst.TYPE.SHORT:
-                height = DensityUtils.dip2px(mContext, 5 * BarConst.VIEW.UNIT_HEIGHT);
+                height = 5 * BarConst.VIEW.SPEED;
                 resId = glow ? R.drawable.bar_short_glow : R.drawable.bar_short;
                 break;
             case BarConst.TYPE.SLOT:
-                height = DensityUtils.dip2px(mContext, 2 * BarConst.VIEW.UNIT_HEIGHT);
+                height = 2 * BarConst.VIEW.SPEED;
                 resId = -1;
                 break;
             default:

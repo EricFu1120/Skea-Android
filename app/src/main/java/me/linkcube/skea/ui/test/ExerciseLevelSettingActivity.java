@@ -103,8 +103,6 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
                 switch (checkedId) {
                     case R.id.level1_rb:
                         exerciseLevelIndex = 1;
-
-
                         break;
                     case R.id.level2_rb:
                         exerciseLevelIndex = 2;

@@ -6,30 +6,17 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.bluetooth.BTSettingActivity;
+import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
 import me.linkcube.skea.ui.record.RecordActivity;
 import me.linkcube.skea.ui.user.UserInfoActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-
-
-    //声明控件
-    /**
-     * Info
-     */
-    private TextView infoTextView;
-    /**
-     * Records
-     */
-    private TextView recordsTextView;
-    /**
-     * Me
-     */
-    private TextView meTextView;
 
 
     @Override
@@ -58,12 +45,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * 初始化控件，注册相应事件
      */
     private void initViews() {
-        infoTextView = (TextView) findViewById(R.id.infoTextView);
-        recordsTextView = (TextView) findViewById(R.id.recordsTextView);
-        meTextView = (TextView) findViewById(R.id.meTextView);
-        infoTextView.setOnClickListener(this);
-        recordsTextView.setOnClickListener(this);
-        meTextView.setOnClickListener(this);
+        findViewById(R.id.infoTextView).setOnClickListener(this);
+        findViewById(R.id.recordsTextView).setOnClickListener(this);
+        findViewById(R.id.meTextView).setOnClickListener(this);
+        findViewById(R.id.startButton).setOnClickListener(this);
         findViewById(R.id.login).setOnClickListener(this);
         findViewById(R.id.register).setOnClickListener(this);
     }
@@ -77,6 +62,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.recordsTextView:
                 startActivity(new Intent(this, RecordActivity.class));
+                break;
+            case R.id.startButton:
+                startActivity(new Intent(this, ExerciseActivity.class));
                 break;
             case R.id.meTextView:
                 startActivity(new Intent(this, UserInfoActivity.class));
