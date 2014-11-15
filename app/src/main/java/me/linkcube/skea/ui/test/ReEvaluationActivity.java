@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
+import custom.android.app.dialog.SimpleDialogFragment;
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.BaseActivity;
 import me.linkcube.skea.view.LevelRadioGroup;
@@ -15,6 +17,11 @@ public class ReEvaluationActivity extends BaseActivity  {
     private LevelRadioGroup sex_activity_lrg;
     private LevelRadioGroup urinary_incontinence_lrg;
     private LevelRadioGroup mental_status_lrg;
+
+
+    private RelativeLayout birthday_layout;
+    private RelativeLayout height_layout;
+    private RelativeLayout weight_layout;
 
     private Button submit_bt;
 
@@ -37,6 +44,12 @@ public class ReEvaluationActivity extends BaseActivity  {
         urinary_incontinence_lrg=(LevelRadioGroup) findViewById(R.id.urinary_incontinence_lrg);
         mental_status_lrg=(LevelRadioGroup) findViewById(R.id.mental_status_lrg);
         submit_bt=(Button)findViewById(R.id.submit_bt);
+
+        birthday_layout=(RelativeLayout) findViewById(R.id.birthday_layout);
+        height_layout=(RelativeLayout) findViewById(R.id.height_layout);
+        weight_layout=(RelativeLayout) findViewById(R.id.weight_layout);
+
+
 
         //注册事件
         reproduct_history_lrg.setOnOnLevelSelectedListener(new LevelRadioGroup.OnLevelSelectedListener() {
@@ -71,20 +84,11 @@ public class ReEvaluationActivity extends BaseActivity  {
             }
         });
 
-        submit_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO
-                /**
-                 *
-                 * 在这里得出测试结果
-                 *
-                 * **/
+        submit_bt.setOnClickListener(evaluationClickListener);
+        birthday_layout.setOnClickListener(evaluationClickListener);
+        height_layout.setOnClickListener(evaluationClickListener);
+        weight_layout.setOnClickListener(evaluationClickListener);
 
-
-                getResult();
-             }
-        });
 
 
     }
@@ -96,6 +100,32 @@ public class ReEvaluationActivity extends BaseActivity  {
 
 
     }
+
+    View.OnClickListener evaluationClickListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.birthday_layout:
+                    //todo
+                    
+                    break;
+                case R.id.height_layout:
+
+                    break;
+                case R.id.weight_layout:
+
+                    break;
+                case R.id.submit_bt:
+                    //todo
+                    getResult();
+
+                    break;
+                default:
+
+            }
+
+        }
+    };
 
 
     @Override
