@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/AppActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="AppActionBar" parent="Widget.AppCompat.ActionBar">
@@ -16,10 +17,11 @@
 
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/AppActionBar.Light</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="AppActionBar.Light" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/main_light_grey</item>
+        <item name="android:background">@color/main_bg</item>
         <item name="android:titleTextStyle">@style/ActionBarTitle.Light</item>
     </style>
 
