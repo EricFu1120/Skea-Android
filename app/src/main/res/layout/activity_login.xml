@@ -19,6 +19,7 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -39,6 +40,7 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -61,6 +63,7 @@
         android:singleLine="true" />
 
     <View
+        android:background="@color/main_dark_grey"
         style="@style/SplitLine"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />

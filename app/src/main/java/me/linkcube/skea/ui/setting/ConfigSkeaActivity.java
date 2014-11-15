@@ -39,7 +39,7 @@ public class ConfigSkeaActivity extends BaseActivity {
 
     @Override
     public int getLayoutResourceId() {
-        return R.layout.activity_config_skea;
+        return R.layout.activity_skea_setting;
     }
 
     /**

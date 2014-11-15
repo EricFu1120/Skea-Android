@@ -51,8 +51,8 @@
 
         <ImageView
             android:id="@+id/risk_factor"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="32dp"
@@ -69,7 +69,7 @@
         android:paddingLeft="25dp"
         android:text="Suggestions"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
 
@@ -78,6 +78,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
+        android:background="@color/white"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
         android:text="1. 每一次完成盆底肌健康测试，会评估出“游戏强度level等级”；
@@ -94,16 +95,16 @@
         android:paddingLeft="25dp"
         android:text="Exercise"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
 
     <TextView
         android:id="@+id/level"
         android:layout_width="match_parent"
+        android:paddingRight="10dp"
         android:layout_height="@dimen/activity_item_height"
-        android:layout_marginRight="10dp"
-        android:background="@null"
+        android:background="@color/white"
         android:drawablePadding="10dp"
         android:drawableRight="@drawable/menu_action_right"
         android:gravity="center_vertical|left"

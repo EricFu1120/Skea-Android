@@ -1,5 +1,6 @@
 package me.linkcube.skea.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
@@ -148,6 +149,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 finish();
                 break;
             case R.id.register_button:
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
             default:
                 break;

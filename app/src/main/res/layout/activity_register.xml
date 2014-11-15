@@ -19,6 +19,7 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -39,6 +40,7 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -62,6 +64,7 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -85,6 +88,7 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -93,6 +97,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -101,15 +106,21 @@
             android:background="@drawable/selector_checkbox"
             android:button="@null"
             android:checked="true"
-            android:layout_marginLeft="20dp"
-            android:layout_width="24dp"
-            android:layout_height="24dp" />
+            android:layout_marginLeft="24dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
 
         <TextView
             android:layout_marginLeft="10dp"
             android:autoLink="none"
+            android:text="同意"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:autoLink="none"
             android:text="@string/clause"
-            android:textColorLink="@color/main_blue"
+            android:textColor="@color/main_blue"
             android:id="@+id/clause_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
