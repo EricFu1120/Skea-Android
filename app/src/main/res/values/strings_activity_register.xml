@@ -1,5 +1,5 @@
 <resources>
     
-    <string name="clause">Agree to Skea\'s <a href="http://use.localhost.com">Conditions of Use</a> and <a href="http://notice.localhost.com">Privacy Notice</a></string>
+    <string name="clause"><u>用户协议</u></string>
 
 </resources>

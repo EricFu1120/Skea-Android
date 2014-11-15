@@ -25,7 +25,7 @@ public abstract class BaseActivity extends CustomActionBarActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayUseLogoEnabled(false);
-        actionBar.setHomeAsUpIndicator(R.drawable.actionbar_up_indicator);
+        actionBar.setHomeAsUpIndicator(R.drawable.layer_actionbar_up_indicator_white);
     }
 
 }

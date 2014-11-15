@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/main_bg"
     tools:context=".LoginActivity">
 
 
@@ -14,20 +13,22 @@
         android:layout_height="100dp"
         android:scaleType="centerInside"
         android:id="@+id/imageView"
-        android:src="@drawable/logo"
+        android:padding="15dp"
+        android:src="@drawable/logo_skea"
         android:layout_gravity="center_horizontal" />
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
     <AutoCompleteTextView
         android:id="@+id/email"
         android:background="@null"
-        android:paddingLeft="10dp"
+        android:paddingLeft="30dp"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/activity_item_height"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:drawableLeft="@drawable/icon_email"
@@ -39,14 +40,15 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:paddingLeft="10dp"
+        android:layout_height="@dimen/activity_item_height"
+        android:paddingLeft="30dp"
         android:layout_marginLeft="10dp"
         android:background="@null"
         android:layout_marginRight="10dp"
@@ -62,6 +64,7 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -69,10 +72,10 @@
         android:id="@+id/confirm_password"
         android:layout_width="match_parent"
         android:background="@null"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/activity_item_height"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingLeft="10dp"
+        android:paddingLeft="30dp"
         android:drawableLeft="@drawable/icon_password"
         android:drawablePadding="10dp"
         android:hint="@string/prompt_password"
@@ -85,6 +88,7 @@
 
     <View
         style="@style/SplitLine"
+        android:background="@color/main_dark_grey"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -93,21 +97,30 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <CheckBox
             android:id="@+id/clause_checkbox"
-            android:button="@drawable/checkbox"
+            android:background="@drawable/selector_checkbox"
+            android:button="@null"
             android:checked="true"
-            android:layout_width="32dp"
-            android:layout_height="32dp" />
+            android:layout_marginLeft="24dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
 
         <TextView
             android:layout_marginLeft="10dp"
             android:autoLink="none"
+            android:text="同意"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:autoLink="none"
             android:text="@string/clause"
-            android:textColorLink="@color/main_blue"
+            android:textColor="@color/main_blue"
             android:id="@+id/clause_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -120,7 +133,7 @@
         android:id="@+id/register_button"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/activity_item_height"
         android:layout_margin="10dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/btn_blue"
@@ -137,7 +150,7 @@
         android:layout_gravity="bottom"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/activity_item_height"
         android:layout_margin="10dp"
         android:background="@drawable/btn_gray"
         android:text="@string/login"

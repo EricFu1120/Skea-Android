@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- 应用主色调 浅灰色 -->
-    <color name="main_dark_grey">#4c535b</color>
+    <!-- 应用主色调 深灰色 -->
+    <color name="main_dark_grey">#3B3C41</color>
     <!-- 应用主色调 浅灰色 -->
     <color name="main_light_grey">#e5e5e5</color>
     <!-- 应用主色调 蓝色 -->
     <color name="main_blue">#50c0ed</color>
     <!-- 应用主色调 ＸＸ色 -->
     <color name="main_dark">#3b3c41</color>
+
+    <color name="main_bg">#f9f9f9</color>
+
     <!--白色-->
     <color name="main_white">#ffffff</color>
 

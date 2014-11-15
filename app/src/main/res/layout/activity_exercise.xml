@@ -14,6 +14,7 @@
 
         <ScrollView
             android:layout_width="70dp"
+            android:scrollbars="none"
             android:layout_centerHorizontal="true"
             android:layout_height="match_parent"
             android:id="@+id/behind_scrollView"
@@ -31,14 +32,6 @@
 
         </ScrollView>
 
-        <ImageView
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
-            android:layout_width="match_parent"
-            android:src="@drawable/laser_active"
-            android:layout_height="30dp"
-            android:id="@+id/laser"
-            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -47,7 +40,7 @@
         android:id="@+id/frontParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="80dp">
+        android:layout_marginBottom="65dp">
 
         <RelativeLayout
             android:layout_marginRight="16dp"
@@ -82,7 +75,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/time_left_title"
-                    android:text="2:15"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/main_blue"
@@ -126,7 +118,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/score_title"
-                    android:text="11678"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/main_blue"
@@ -137,35 +128,34 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="scrollX"
-            android:textColor="@color/white"
-            android:id="@+id/scrollX"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+        TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="scrollX"
+        android:textColor="@color/white"
+        android:id="@+id/scrollX"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="scrollY"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/scrollX"
-            android:textColor="@color/white"
-            android:id="@+id/scrollY"
-            android:layout_centerHorizontal="true" />
+        TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="scrollY"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/scrollX"
+        android:textColor="@color/white"
+        android:id="@+id/scrollY"
+        android:layout_centerHorizontal="true" />
 
         <ScrollView
             android:layout_width="70dp"
+            android:scrollbars="none"
             android:layout_height="match_parent"
             android:id="@+id/scrollView"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/scrollX"
-            android:layout_toEndOf="@+id/scrollX">
+            android:layout_alignParentTop="true">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -193,5 +183,14 @@
 
 
     </RelativeLayout>
+
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:src="@drawable/laser_active"
+        android:layout_height="30dp"
+        android:id="@+id/laser"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
