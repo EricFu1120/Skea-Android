@@ -16,7 +16,7 @@
         android:layout_marginRight="10dp"
         android:button="@null"
         android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/checkbox"
+        android:drawableLeft="@drawable/selector_checkbox"
         android:text="Level 1"
         android:textSize="22sp" />
 
@@ -30,7 +30,7 @@
         android:layout_marginRight="10dp"
         android:button="@null"
         android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/checkbox"
+        android:drawableLeft="@drawable/selector_checkbox"
         android:text="Level 2"
         android:textSize="22sp" />
 
@@ -44,7 +44,7 @@
         android:layout_marginRight="10dp"
         android:button="@null"
         android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/checkbox"
+        android:drawableLeft="@drawable/selector_checkbox"
         android:text="Level 3"
         android:textSize="22sp" />
 
@@ -58,7 +58,7 @@
         android:layout_marginRight="10dp"
         android:button="@null"
         android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/checkbox"
+        android:drawableLeft="@drawable/selector_checkbox"
         android:text="Level 4 ( Recommended )"
         android:textSize="22sp" />
 
@@ -72,7 +72,7 @@
         android:layout_marginRight="10dp"
         android:button="@null"
         android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/checkbox"
+        android:drawableLeft="@drawable/selector_checkbox"
         android:text="Level 5"
         android:textSize="22sp" />
 

@@ -73,7 +73,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/correct_rate_gradient" />
+                    android:src="@drawable/bg_correct_rate_gradient" />
 
                 <TextView
                     android:id="@+id/correct_rate_tv"

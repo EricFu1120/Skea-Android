@@ -1,7 +1,5 @@
 package me.linkcube.skea.ui;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.text.Spannable;
@@ -9,7 +7,6 @@ import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +38,7 @@ public class RegisterActivity extends BaseActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayUseLogoEnabled(false);
-        actionBar.setHomeAsUpIndicator(R.drawable.actionbar_up_indicator_black);
+        actionBar.setHomeAsUpIndicator(R.drawable.layer_actionbar_up_indicator_black);
     }
 
     // 直接拷贝这些代码到你希望的位置，然后在TextView设置了文本之后调用就ok了

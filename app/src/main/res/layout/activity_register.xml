@@ -98,7 +98,7 @@
 
         <CheckBox
             android:id="@+id/clause_checkbox"
-            android:background="@drawable/checkbox"
+            android:background="@drawable/selector_checkbox"
             android:button="@null"
             android:checked="true"
             android:layout_marginLeft="20dp"

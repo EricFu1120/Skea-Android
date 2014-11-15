@@ -35,7 +35,8 @@
         android:adjustViewBounds="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="center"
+        android:scaleType="centerInside"
+        android:layout_centerInParent="true"
         android:layout_below="@+id/levelTextView"
         android:layout_above="@+id/container"
         android:src="@drawable/btn_start_shadow" />
@@ -44,11 +45,11 @@
         android:id="@+id/startButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="center"
+        android:scaleType="centerInside"
         android:layout_centerInParent="true"
         android:layout_below="@+id/levelTextView"
         android:layout_above="@+id/container"
-        android:src="@drawable/button_start" />
+        android:src="@drawable/btn_start" />
 
 
     <LinearLayout

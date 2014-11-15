@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="#ffffff"
-            android:button="@drawable/toggle"
+            android:button="@drawable/selecotr_toggle"
             android:textOff=""
             android:textOn="" />
     </LinearLayout>

@@ -27,21 +27,21 @@
             android:id="@+id/no_rb"
             android:checked="true"
             android:button="@null"
-            android:background="@drawable/radio_button"
+            android:background="@drawable/selector_radio_button_left"
             android:layout_width="@dimen/radio_button_size"
             android:layout_height="@dimen/radio_button_size" />
 
         <View
-            android:background="@color/main_light_grey"
+            android:background="@drawable/radio_button_line"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="1dp" />
+            android:layout_height="24dp" />
 
 
         <RadioButton
             android:id="@+id/yes_rb"
             android:button="@null"
-            android:background="@drawable/radio_button"
+            android:background="@drawable/selector_radio_button_right"
             android:layout_width="@dimen/radio_button_size"
             android:layout_height="@dimen/radio_button_size" />
 
@@ -81,7 +81,7 @@
         android:id="@+id/introduction_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/bookmark"
+        android:drawableLeft="@drawable/icon_bookmark"
         android:drawablePadding="10dp"
         android:gravity="top"
         android:layout_marginTop="10dp"
