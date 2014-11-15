@@ -24,6 +24,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     public static final int LOGIN_REQUEST_CODE = 1;
 
+    public static final int LOGOUT_REQUEST_CODE = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        login = UserManager.getInstance().isLogin();
     }
 
     @Override
@@ -72,7 +73,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         switch (v.getId()) {
             case R.id.infoTextView:
-                startActivity(new Intent(this, InformationActivity.class));
+                startActivityForResult(new Intent(this, InformationActivity.class),LOGOUT_REQUEST_CODE);
                 break;
             case R.id.recordsTextView:
                 startActivity(new Intent(this, RecordActivity.class));
@@ -96,6 +97,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (resultCode == RESULT_OK) {
                     login = true;
                     UserManager.getInstance().setLogin(true);
+                }
+                break;
+            case LOGOUT_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    login = false;
+                    UserManager.getInstance().setLogin(false);
+
                 }
                 break;
             default:

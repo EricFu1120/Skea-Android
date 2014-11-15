@@ -13,46 +13,42 @@ import me.linkcube.skea.R;
 /**
  * Created by Ervin on 14/11/13.
  */
-public class LevelRadioGroup extends LinearLayout {
+public class TwoWayRadioGroup extends LinearLayout {
 
-    private String level1, level2, level3, level4;
+    private String yes, no;
 
-    private String title, introduction;
-
-    private TextView title_tv,introduction_tv;
-
-    private TextView level1_tv, level2_tv, level3_tv, level4_tv;
+    private TextView yes_tv, no_tv;
 
     private RadioGroup radioGroup;
 
-    private OnLevelSelectedListener listener;
+    private String title, introduction;
 
-    public LevelRadioGroup(Context context) {
+    private TextView title_tv, introduction_tv;
+
+    private OnTwoWaySelectedListener listener;
+
+    public TwoWayRadioGroup(Context context) {
         super(context);
         init(null, 0);
     }
 
-    public LevelRadioGroup(Context context, AttributeSet attrs) {
+    public TwoWayRadioGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
     }
 
     private void init(AttributeSet attrs, int defStyle) {
-        View view = inflate(this.getContext(), R.layout.radio_group_level, this);
+        View view = inflate(this.getContext(), R.layout.radio_group_two_way, this);
         radioGroup = (RadioGroup) view.findViewById(R.id.radio_group);
-        level1_tv = (TextView) view.findViewById(R.id.level1_tv);
-        level2_tv = (TextView) view.findViewById(R.id.level2_tv);
-        level3_tv = (TextView) view.findViewById(R.id.level3_tv);
-        level4_tv = (TextView) view.findViewById(R.id.level4_tv);
+        no_tv = (TextView) view.findViewById(R.id.no_tv);
+        yes_tv = (TextView) view.findViewById(R.id.yes_tv);
         title_tv = (TextView) view.findViewById(R.id.title_tv);
         introduction_tv = (TextView) view.findViewById(R.id.introduction_tv);
 
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.CustomRadioGroup, defStyle, 0);
-        level1 = a.getString(R.styleable.CustomRadioGroup_level1);
-        level2 = a.getString(R.styleable.CustomRadioGroup_level2);
-        level3 = a.getString(R.styleable.CustomRadioGroup_level3);
-        level4 = a.getString(R.styleable.CustomRadioGroup_level4);
+        no = a.getString(R.styleable.CustomRadioGroup_no);
+        yes = a.getString(R.styleable.CustomRadioGroup_yes);
         title = a.getString(R.styleable.CustomRadioGroup_radio_title);
         introduction = a.getString(R.styleable.CustomRadioGroup_radio_introduction);
 
@@ -64,10 +60,8 @@ public class LevelRadioGroup extends LinearLayout {
             introduction_tv.setVisibility(GONE);
         }
 
-        level1_tv.setText(level1);
-        level2_tv.setText(level2);
-        level3_tv.setText(level3);
-        level4_tv.setText(level4);
+        no_tv.setText(no);
+        yes_tv.setText(yes);
         title_tv.setText(title);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -76,17 +70,11 @@ public class LevelRadioGroup extends LinearLayout {
                 if (listener == null)
                     return;
                 switch (checkedId) {
-                    case R.id.level1_rb:
-                        listener.onLevelSelected(1);
+                    case R.id.yes_rb:
+                        listener.onTwoWaySelected(true);
                         break;
-                    case R.id.level2_rb:
-                        listener.onLevelSelected(2);
-                        break;
-                    case R.id.level3_rb:
-                        listener.onLevelSelected(3);
-                        break;
-                    case R.id.level4_rb:
-                        listener.onLevelSelected(4);
+                    case R.id.no_rb:
+                        listener.onTwoWaySelected(false);
                         break;
                     default:
                         break;
@@ -95,13 +83,13 @@ public class LevelRadioGroup extends LinearLayout {
         });
     }
 
-    public void setOnOnLevelSelectedListener(OnLevelSelectedListener listener) {
+    public void setOnTwoWaySelectedListener(OnTwoWaySelectedListener listener) {
         this.listener = listener;
     }
 
-    public interface OnLevelSelectedListener {
+    public interface OnTwoWaySelectedListener {
 
-        void onLevelSelected(int level);
+        void onTwoWaySelected(boolean yes);
 
     }
 }

@@ -32,23 +32,27 @@
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/startView"
-        android:visibility="visible"
-        android:layout_centerInParent="true"
-        android:src="@drawable/button_start" />
+        android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:layout_below="@+id/levelTextView"
+        android:layout_above="@+id/container"
+        android:src="@drawable/btn_start_shadow" />
 
     <ImageView
         android:id="@+id/startButton"
-        android:layout_alignTop="@+id/startView"
-        android:layout_alignLeft="@+id/startView"
-        android:layout_width="250dp"
-        android:scaleType="centerInside"
-        android:layout_height="250dp"
-        android:src="@drawable/btn_start_shadow" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/levelTextView"
+        android:layout_above="@+id/container"
+        android:src="@drawable/button_start" />
+
 
     <LinearLayout
+        android:id="@+id/container"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

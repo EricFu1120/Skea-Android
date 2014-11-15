@@ -70,7 +70,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 startActivity(new Intent().setClass(getApplicationContext(), SettingActivity.class));
                 break;
             case R.id.logout_button:
-                UserManager.getInstance().setLogin(false);
+                setResult(RESULT_OK);
                 finish();
                 break;
             default:
