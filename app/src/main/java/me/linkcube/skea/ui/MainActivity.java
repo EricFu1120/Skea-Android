@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.core.persistence.UserManager;
 import me.linkcube.skea.ui.bluetooth.BTSettingActivity;
 import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
@@ -19,10 +20,20 @@ import me.linkcube.skea.ui.user.UserInfoActivity;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
+    private boolean login;
+
+    public static final int LOGIN_REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViews();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        login = UserManager.getInstance().isLogin();
     }
 
     @Override
@@ -49,13 +60,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.recordsTextView).setOnClickListener(this);
         findViewById(R.id.meTextView).setOnClickListener(this);
         findViewById(R.id.startButton).setOnClickListener(this);
-        findViewById(R.id.login).setOnClickListener(this);
-        findViewById(R.id.register).setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
+
+        if (!login) {
+            startActivityForResult(new Intent(this, LoginActivity.class), LOGIN_REQUEST_CODE);
+            return;
+        }
         switch (v.getId()) {
             case R.id.infoTextView:
                 startActivity(new Intent(this, InformationActivity.class));
@@ -69,16 +83,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.meTextView:
                 startActivity(new Intent(this, UserInfoActivity.class));
                 break;
-            case R.id.login:
-                startActivity(new Intent(this, LoginActivity.class));
-                break;
-            case R.id.register:
-                startActivity(new Intent(this, RegisterActivity.class));
-                break;
             default:
         }
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case LOGIN_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    login = true;
+                    UserManager.getInstance().setLogin(true);
+                }
+                break;
+            default:
+                break;
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

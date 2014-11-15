@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_bg"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -11,9 +12,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/last_result"
+        android:text="Last Result: 83%"
         android:id="@+id/lastResultTextView"
+        android:textSize="28dp"
         android:layout_marginTop="5dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -22,39 +23,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/level"
+        android:text="Level 1"
         android:id="@+id/levelTextView"
         android:textColor="@color/main_blue"
         android:layout_below="@+id/lastResultTextView"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/score"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/scoreTextView"
-        android:textColor="@color/main_blue"
-        android:layout_below="@+id/levelTextView" />
-
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:id="@+id/startView"
+        android:visibility="visible"
         android:layout_centerInParent="true"
-        android:src="@drawable/btn_start" />
+        android:src="@drawable/button_start" />
 
     <ImageView
         android:id="@+id/startButton"
         android:layout_alignTop="@+id/startView"
         android:layout_alignLeft="@+id/startView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_width="250dp"
+        android:scaleType="centerInside"
+        android:layout_height="250dp"
         android:src="@drawable/btn_start_shadow" />
 
     <LinearLayout
@@ -99,21 +90,4 @@
             android:id="@+id/meTextView" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign in"
-        android:id="@+id/login"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/lastResultTextView"
-        android:layout_toStartOf="@+id/lastResultTextView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/register"
-        android:layout_below="@+id/login"
-        android:layout_alignRight="@+id/login"
-        android:layout_alignEnd="@+id/login" />
 </RelativeLayout>

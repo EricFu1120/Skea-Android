@@ -20,11 +20,13 @@
 
         <activity
             android:name=".ui.MainActivity"
+            android:launchMode="singleInstance"
             android:label="@string/title_activity_main"/>
 
         <activity
             android:name=".ui.RegisterActivity"
             android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.Light"
             android:parentActivityName=".ui.LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -122,7 +124,6 @@
             android:label="@string/title_activity_splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 

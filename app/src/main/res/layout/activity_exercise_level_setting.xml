@@ -3,6 +3,7 @@
     android:id="@+id/exercise_level"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_bg"
     android:orientation="vertical"
     android:checkedButton="@+id/level4_rb"
     tools:context="me.linkcube.skea.ui.test.ExerciseLevelSettingActivity">

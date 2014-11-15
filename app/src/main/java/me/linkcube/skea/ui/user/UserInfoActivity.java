@@ -10,16 +10,15 @@ import android.widget.TextView;
 import android.net.Uri;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.core.persistence.UserManager;
 import me.linkcube.skea.ui.BaseActivity;
+import me.linkcube.skea.ui.MainActivity;
 import me.linkcube.skea.ui.setting.ConfigSkeaActivity;
 import me.linkcube.skea.ui.setting.SettingActivity;
 
 public class UserInfoActivity extends BaseActivity implements View.OnClickListener {
+
     private final String urlString = "http://www.linkcube.me";
-    private TextView test_pelvic_muscle;
-    private TextView skea_settings;
-    private TextView purchase_product;
-    private TextView software_settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +35,11 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
      * 初始化，并注册相应事件
      */
     private void initViews() {
-        //得到控件
-        test_pelvic_muscle = (TextView) findViewById(R.id.test_pelvic_muscle);
-        skea_settings = (TextView) findViewById(R.id.skea_settings);
-        purchase_product = (TextView) findViewById(R.id.purchase_product);
-        software_settings = (TextView) findViewById(R.id.software_settings);
-
-        //注册事件
-        test_pelvic_muscle.setOnClickListener(this);
-        skea_settings.setOnClickListener(this);
-        purchase_product.setOnClickListener(this);
-        software_settings.setOnClickListener(this);
-
+        findViewById(R.id.test_pelvic_muscle).setOnClickListener(this);
+        findViewById(R.id.skea_settings).setOnClickListener(this);
+        findViewById(R.id.purchase_product).setOnClickListener(this);
+        findViewById(R.id.software_settings).setOnClickListener(this);
+        findViewById(R.id.logout_button).setOnClickListener(this);
     }
 
     @Override
@@ -76,6 +68,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.software_settings:
                 startActivity(new Intent().setClass(getApplicationContext(), SettingActivity.class));
+                break;
+            case R.id.logout_button:
+                UserManager.getInstance().setLogin(false);
+                finish();
                 break;
             default:
 

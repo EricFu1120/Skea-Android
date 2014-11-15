@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/main_bg"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="me.linkcube.skea.ui.user.TestPelvicMuscleResultActivity">
@@ -100,7 +101,7 @@
     <TextView
         android:id="@+id/level"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/activity_item_height"
         android:layout_marginRight="10dp"
         android:background="@null"
         android:drawablePadding="10dp"
@@ -110,7 +111,7 @@
         android:paddingLeft="25dp"
         android:singleLine="true"
         android:text="Level 4"
-        android:textSize="14dp" />
+        android:textSize="18sp" />
 
 
     <View
@@ -121,7 +122,7 @@
     <Button
         android:id="@+id/reevaluate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/activity_item_height"
         android:layout_margin="16dp"
         android:background="@drawable/btn_blue"
         android:text="Re-evaluate"
