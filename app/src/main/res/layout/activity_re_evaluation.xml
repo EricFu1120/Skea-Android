@@ -25,7 +25,7 @@
                 android:layout_marginRight="12dp"
                 android:text="Please fill in the questionnaire in order that we can evaluation the health risk of your pelvic floor muscle "
                 android:textColor="@color/main_blue"
-                android:textSize="16sp" />
+                android:textSize="@dimen/TextSize.Large" />
 
             <TextView
                 android:id="@+id/basic_info_tv"
@@ -37,10 +37,11 @@
                 android:paddingLeft="25dp"
                 android:text="Basic Information"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="@dimen/TextSize.Super"
                 android:textStyle="bold" />
 
             <RelativeLayout
+                android:id="@+id/birthday_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_item_height"
                 android:layout_marginLeft="10dp"
@@ -52,20 +53,22 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="Birthday"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/TextSize.Large" />
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="1980-1-1" />
+                    android:text="1980-1-1"
+                    android:textSize="@dimen/TextSize.Large"/>
 
             </RelativeLayout>
 
             <View style="@style/SplitLine" />
 
             <RelativeLayout
+                android:id="@+id/height_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_item_height"
                 android:layout_marginLeft="10dp"
@@ -77,20 +80,22 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="Height"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/TextSize.Large" />
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="167CM" />
+                    android:text="167CM"
+                    android:textSize="@dimen/TextSize.Large"/>
 
             </RelativeLayout>
 
             <View style="@style/SplitLine" />
 
             <RelativeLayout
+                android:id="@+id/weight_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_item_height"
                 android:layout_marginLeft="10dp"
@@ -103,14 +108,15 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="Weight"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/TextSize.Large" />
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="52Kg" />
+                    android:text="52Kg"
+                    android:textSize="@dimen/TextSize.Large"/>
 
             </RelativeLayout>
 
@@ -124,7 +130,7 @@
                 android:paddingLeft="25dp"
                 android:text="Health Infomation"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="@dimen/TextSize.Super"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -228,7 +234,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/btn_blue"
         android:text="Submit"
-        android:textSize="20dp" />
+        android:textSize="@dimen/TextSize.Large" />
 
 
 </LinearLayout>

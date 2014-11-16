@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
@@ -14,16 +15,16 @@ import android.view.ViewGroup.LayoutParams;
 import android.util.Log;
 
 
-import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
-import org.achartengine.chart.PointStyle;
-import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.ui.record.chart.CombinedChart;
 
 public class RecordActivity extends BaseActivity {
     //声明控件
@@ -38,21 +39,17 @@ public class RecordActivity extends BaseActivity {
 
     private SpannableString mSpanableString;
 
+    private GraphicalView mCombinedChartView;
+    private GraphicalView mScatterChartView;
 
-
-
-    /** The main dataset that includes all the series that go into a chart. */
-    private XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
-    /** The main renderer that includes all the renderers customizing a chart. */
-    private XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
-    /** The chart view that displays the data. */
-    private GraphicalView mChartView;
 
     private XYSeriesRenderer renderer;
 
     private XYSeries series;
 
-    /** 存放GraphicalView的LinearLayout */
+    /**
+     * 存放GraphicalView的LinearLayout
+     */
     private LinearLayout chart;
 
 
@@ -80,19 +77,21 @@ public class RecordActivity extends BaseActivity {
         score_tv = (TextView) findViewById(R.id.score_tv);
         duration_tv = (TextView) findViewById(R.id.duration_tv);
         correct_rate_tv = (TextView) findViewById(R.id.correct_rate_tv);
+        chart = (LinearLayout) findViewById(R.id.chart);
+
+        int light_blue=getResources().getColor(R.color.light_blue);
+        int light_blue2=getResources().getColor(R.color.light_blue2);
 
         //设置文字特效
         setTextViewTextWithSpannableString("Today(Level 4)", "", Color.WHITE, Color.BLUE, 1.5f, 1.0f, level_tv);
-        setTextViewTextWithSpannableString("", "Good!", Color.WHITE, Color.YELLOW, 1.0f, 2.5f, evaluate_tv);
-        setTextViewTextWithSpannableString("Explosive force :", "Great", Color.WHITE, Color.BLUE, 1.0f, 1.0f, explosive_force_tv);
-        setTextViewTextWithSpannableString("Persistance :", "Fair", Color.WHITE, Color.BLUE, 1.0f, 1.0f, persistance_tv);
-        setTextViewTextWithSpannableString("Score :", "1573", Color.BLACK, Color.BLUE, 1.0f, 1.0f, score_tv);
-        setTextViewTextWithSpannableString("Time :", "24 Min", Color.BLACK, Color.BLUE, 1.0f, 1.0f, duration_tv);
-        setTextViewTextWithSpannableString("79", "%", Color.RED, Color.RED, 4.0f, 2.0f, correct_rate_tv);
+        setTextViewTextWithSpannableString("", "Good!", Color.WHITE, getResources().getColor(R.color.light_yellow), 1.0f, 2.5f, evaluate_tv);
+        setTextViewTextWithSpannableString("Explosive force :", "Great", Color.WHITE, light_blue, 1.0f, 1.2f, explosive_force_tv);
+        setTextViewTextWithSpannableString("Persistance :", "Fair", Color.WHITE, light_blue, 1.0f, 1.2f, persistance_tv);
+        setTextViewTextWithSpannableString("Score :", "1573", Color.BLACK, light_blue, 1.0f, 1.2f, score_tv);
+        setTextViewTextWithSpannableString("Time :", "24 Min", Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
+        setTextViewTextWithSpannableString("79", "%", light_blue2, light_blue2, 4.0f, 2.0f, correct_rate_tv);
 
-        //
-
-        setUpChart();
+        addConbinedChart();
 
 
     }
@@ -135,97 +134,70 @@ public class RecordActivity extends BaseActivity {
     }
 
 
+    /**
+     * 增加图表
+     */
+    private void addConbinedChart() {
+        String[] titles = new String[]{"  Score  "};
+        // 横轴
+        List<double[]> x = new ArrayList<double[]>();
+        for (int i = 0; i < titles.length; i++) {
+            x.add(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12});
+        }
+        // 纵轴
+        List<double[]> values = new ArrayList<double[]>();
+        values.add(new double[]{92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,
+                75.1, 65.6, 90.3, 97.2, 93.9});
 
-    /**设置表的相关属性*/
-    private void setUpChart(){
-        setXYMultipleSeriesRenderer(mRenderer);
+        // Water Temperature 柱状图
+        XYSeries waterSeries = new XYSeries(" Time ");
+        waterSeries.add(1, 20);
+        waterSeries.add(2, 50);
+        waterSeries.add(3, 70);
+        waterSeries.add(4, 20);
+        waterSeries.add(5, 70);
+        waterSeries.add(6, 50);
+        waterSeries.add(7, 70);
+        waterSeries.add(8, 20);
+        waterSeries.add(9, 70);
+        waterSeries.add(10, 50);
+        waterSeries.add(11, 20);
+        waterSeries.add(12, 70);
 
-        String seriesTitle = "锻练时间分布";
-        // create a new series of data
-        series = new XYSeries(seriesTitle);
-        mDataset.addSeries(series);
 
-        // create a new renderer for the new series
-        renderer = new XYSeriesRenderer();
-        mRenderer.addSeriesRenderer(renderer);
 
-        setXYSeriesRenderer(renderer);
 
-        // 将图表添加到LinerLayout中
-        chart = (LinearLayout) findViewById(R.id.chart);
-        mChartView = ChartFactory.getLineChartView(this, mDataset, mRenderer);
-        chart.addView(mChartView, new LayoutParams(LayoutParams.MATCH_PARENT,
+        //线图＋柱状图
+        mCombinedChartView = new CombinedChart()
+                .getCombinedChartGraphicalView(getApplicationContext(),titles,x,values,waterSeries);
+        chart.addView(mCombinedChartView, new LayoutParams(LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT));
+    }
+
+    /**
+     * 增加图表
+     */
+    private void addScatterChart() {
+
+        //scatter Chart
+
+        String[] titleStrings = new String[]{"2 S", "7 S", "12 S"};
+        List<double[]> x = new ArrayList<double[]>();
+        List<double[]> values = new ArrayList<double[]>();
+        x.add(new double[]{1.0, 2.0, 3.0, 4.0, 5.0});
+        x.add(new double[]{1.0, 2.0, 3.0, 5.0, 8.0});
+        x.add(new double[]{2.0, 3.0, 4.0, 5.0, 7.0});
+
+        values.add(new double[]{10.0, 12.0, 16.0, 4.0, 23.0});
+        values.add(new double[]{12.0, 11.0, 12.0, 7.0, 10.0});
+        values.add(new double[]{6.0, 4.0, 12.0, 13.0, 13.0});
+
+        mScatterChartView = new CombinedChart()
+                .getScatterChartGraphicalView(getApplicationContext(), x, values, titleStrings);
+        chart.addView(mScatterChartView, new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT));
 
-        // 加载数据
-        // just for abc_activity
-        series.add(10.0, 25.0);
-        series.add(20.0, 48.0);
-        series.add(30.0, 15.0);
-        series.add(40.0, 70.0);
-        series.add(50.0, 30.0);
-        series.add(60.0, 40.0);
-        series.add(70.0, 80.0);
-        series.add(80.0, 40.0);
-        series.add(90.0, 100.0);
 
-        mChartView.repaint();
-    }
-    /**
-     * 设置mRenderer的相关属性
-     *
-     * @param mRenderer
-     *            :要设置的对象
-     *
-     * */
-
-    private void setXYMultipleSeriesRenderer(XYMultipleSeriesRenderer mRenderer) {
-        // set some properties on the main renderer
-
-        // 图表背景色
-        // mRenderer.setApplyBackgroundColor(true);
-        // mRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));
-
-        // 坐标轴字体大小
-        mRenderer.setAxisTitleTextSize(30);
-        // X,Y坐标轴名称
-        mRenderer.setXTitle("时间");
-        mRenderer.setYTitle("次数");
-
-        // mRenderer.setChartTitleTextSize(20);
-        // 设置X,Y坐标的刻度字体大小
-        mRenderer.setLabelsTextSize(20);
-        // 设置图线说明字体大小
-        mRenderer.setLegendTextSize(30);
-        // this order: top, left, bottom, right
-        //mRenderer.setMargins(new int[] { 15, 40, 15, 15 });
-        // 设置空白边缘颜色
-        mRenderer.setMarginsColor(getResources().getColor(android.R.color.transparent));
-        // 放大，缩小按钮是否显示
-        // mRenderer.setZoomButtonsVisible(true);
-
-        // 图表中点的大小
-        mRenderer.setPointSize(10);
-    }
-
-    /**
-     * 设置renderer的相关属性
-     *
-     * @param renderer
-     *            :要设置的对象
-     *
-     * */
-    private void setXYSeriesRenderer(XYSeriesRenderer renderer) {
-        // set some renderer properties
-        renderer.setPointStyle(PointStyle.CIRCLE);
-        renderer.setFillPoints(true);
-
-        // 图表中是否显示数字
-        renderer.setDisplayChartValues(true);
-        // 设置图表中数字字体大小
-        renderer.setChartValuesTextSize(25.0f);
-        // Sets chart values minimum distance.
-        renderer.setDisplayChartValuesDistance(10);
     }
 
 
@@ -253,22 +225,36 @@ public class RecordActivity extends BaseActivity {
         // TODO Auto-generated method stub
         super.onSaveInstanceState(outState);
         Log.i("CXC", "---onSaveInstanceState()");
-        // save the current data, for instance when changing screen orientation
-        outState.putSerializable("dataset", mDataset);
-        outState.putSerializable("renderer", mRenderer);
 
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedState) {
         super.onRestoreInstanceState(savedState);
-        // restore the current data, for instance when changing the screen
-        // orientation
-        Log.i("CXC", "---onRestoreInstanceState()");
-        mDataset = (XYMultipleSeriesDataset) savedState
-                .getSerializable("dataset");
-        mRenderer = (XYMultipleSeriesRenderer) savedState
-                .getSerializable("renderer");
+    }
+
+
+
+    //记数
+    int count=0;
+
+    /**
+     *只是为了测试图表显示，，，以后删除之
+     * */
+
+    public void changeChart(View v){
+
+        if(count%2==0){
+            chart.removeView(mCombinedChartView);
+            addScatterChart();
+
+        }
+        else {
+            chart.removeView(mScatterChartView);
+            addConbinedChart();
+
+        }
+        count++;
     }
 
 }
