@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui;
+package me.linkcube.skea.base.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;

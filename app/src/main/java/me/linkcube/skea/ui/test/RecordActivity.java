@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.user;
+package me.linkcube.skea.ui.test;
 
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -23,7 +23,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import me.linkcube.skea.R;
-import me.linkcube.skea.ui.BaseActivity;
+import me.linkcube.skea.base.ui.BaseActivity;
 
 public class RecordActivity extends BaseActivity {
     //声明控件

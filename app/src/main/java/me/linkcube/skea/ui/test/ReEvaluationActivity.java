@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.Button;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.persistence.EvaluationBean;
-import me.linkcube.skea.ui.BaseActivity;
 import me.linkcube.skea.view.LevelRadioGroup;
 
-public class ReEvaluationActivity extends BaseActivity  {
+public class ReEvaluationActivity extends BaseActivity {
     //声明控件
     private LevelRadioGroup reproduct_history_lrg;
     private LevelRadioGroup sex_activity_lrg;

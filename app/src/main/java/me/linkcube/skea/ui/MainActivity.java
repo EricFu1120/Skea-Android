@@ -8,12 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.persistence.UserManager;
 import me.linkcube.skea.ui.bluetooth.BTSettingActivity;
 import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
+import me.linkcube.skea.ui.user.LoginActivity;
 import me.linkcube.skea.ui.user.MeActivity;
-import me.linkcube.skea.ui.user.RecordActivity;
+import me.linkcube.skea.ui.test.RecordActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 

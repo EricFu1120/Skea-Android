@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.SeekBar;
 
 import me.linkcube.skea.R;
-import me.linkcube.skea.ui.BaseActivity;
+import me.linkcube.skea.base.ui.BaseActivity;
 
 public class SkeaSettingActivity extends BaseActivity {
     /**

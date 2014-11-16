@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.exercise;
+package me.linkcube.skea.view;
 
 import android.content.Context;
 import android.widget.ImageView;
