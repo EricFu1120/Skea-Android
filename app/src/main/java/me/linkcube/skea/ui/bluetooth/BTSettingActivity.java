@@ -14,6 +14,7 @@ import custom.android.app.dialog.ProgressDialogFragment;
 import custom.android.util.PreferenceUtils;
 import custom.android.util.Timber;
 import custom.android.widget.Toaster;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.AsyncTask;
@@ -25,70 +26,72 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+
 import me.linkcube.skea.R;
+
 import static com.ervinwang.bthelper.Const.Device.*;
 
 public class BTSettingActivity extends CustomFragmentActivity implements
-		OnClickListener, OnDeviceItemClickListener, OnBTDiscoveryListener {
+        OnClickListener, OnDeviceItemClickListener, OnBTDiscoveryListener {
 
-	//private ImageButton back_imgBtn;
-	private ToggleButton bluetoothTb;
+    //private ImageButton back_imgBtn;
+    private ToggleButton bluetoothTb;
 
 //	private Button discoverDevicesBtn, bluetoothHelpBtn;
 
-	private BTDeviceListView deviceLv;
+    private BTDeviceListView deviceLv;
 
-	private List<BluetoothDevice> deviceList;
+    private List<BluetoothDevice> deviceList;
 
-	private BTDeviceAdapter deviceAdapter;
+    private BTDeviceAdapter deviceAdapter;
 
-	private DeviceBroadcastReceiver deviceDiscoveryReceiver;
+    private DeviceBroadcastReceiver deviceDiscoveryReceiver;
 
-	private DialogFragment progress;
+    private DialogFragment progress;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.bt_setting_activity);
-		deviceDiscoveryReceiver = new DeviceBroadcastReceiver(this);
-		deviceList = BTHelper.getBondedDevices();
-		initViews();
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.bt_setting_activity);
+        deviceDiscoveryReceiver = new DeviceBroadcastReceiver(this);
+        deviceList = BTHelper.getBondedDevices();
+        initViews();
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		bluetoothTb.setChecked(BTHelper.isBluetoothEnabled());
-		bluetoothTb.setOnCheckedChangeListener(switchListener);
-		BTHelper.regiserDeviceReceiver(this, deviceDiscoveryReceiver);
-		deviceAdapter = new BTDeviceAdapter(this, deviceList);
-		deviceLv.setAdapter(deviceAdapter);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bluetoothTb.setChecked(BTHelper.isBluetoothEnabled());
+        bluetoothTb.setOnCheckedChangeListener(switchListener);
+        BTHelper.regiserDeviceReceiver(this, deviceDiscoveryReceiver);
+        deviceAdapter = new BTDeviceAdapter(this, deviceList);
+        deviceLv.setAdapter(deviceAdapter);
 
-	}
+    }
 
-	@Override
-	protected void onPostResume() {
-		super.onPostResume();
-	}
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-	}
+    @Override
+    protected void onPause() {
+        super.onPause();
+        BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
+    }
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		BTHelper.unregisterDeviceReceiver(this, deviceDiscoveryReceiver);
-		deviceList.clear();
-	}
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BTHelper.unregisterDeviceReceiver(this, deviceDiscoveryReceiver);
+        deviceList.clear();
+    }
 
-	private void initViews() {
+    private void initViews() {
 
-		bluetoothTb = (ToggleButton) findViewById(R.id.bluetooth_tb);
-		deviceLv = (BTDeviceListView) findViewById(R.id.device_lv);
-		deviceLv.setOnDeviceItemClickListener(this);
+        bluetoothTb = (ToggleButton) findViewById(R.id.bluetooth_tb);
+        deviceLv = (BTDeviceListView) findViewById(R.id.device_lv);
+        deviceLv.setOnDeviceItemClickListener(this);
 //		discoverDevicesBtn = (Button) findViewById(R.id.discover_devices_btn);
 //		discoverDevicesBtn.setOnClickListener(this);
 //		if (BTHelper.isBluetoothEnabled()) {
@@ -96,64 +99,64 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 //		}
 //		bluetoothHelpBtn = (Button) findViewById(R.id.bluetooth_help_btn);
 //		bluetoothHelpBtn.setOnClickListener(this);
-	}
+    }
 
-	private void showBondedDevices() {
-		if (BTHelper.getBondedDevices() != null) {
-			deviceLv.showDeviceListView();
-		}
-	}
+    private void showBondedDevices() {
+        if (BTHelper.getBondedDevices() != null) {
+            deviceLv.showDeviceListView();
+        }
+    }
 
-	private void clearDeviceList() {
-		deviceLv.showTipTextView();
-		deviceLv.setTip(R.string.switch_on_bluetooth_to_search_toy);
-		deviceList.clear();
-		deviceAdapter.notifyDataSetChanged();
-	}
+    private void clearDeviceList() {
+        deviceLv.showTipTextView();
+        deviceLv.setTip(R.string.switch_on_bluetooth_to_search_toy);
+        deviceList.clear();
+        deviceAdapter.notifyDataSetChanged();
+    }
 
-	private void startDiscoverBluetoothDevices() {
-		BluetoothAdapter madapter = BluetoothAdapter.getDefaultAdapter();
-		madapter.startDiscovery();
+    private void startDiscoverBluetoothDevices() {
+        BluetoothAdapter madapter = BluetoothAdapter.getDefaultAdapter();
+        madapter.startDiscovery();
 //		discoverDevicesBtn.setText(R.string.searching);
-	}
+    }
 
 //	private void finishDiscoverBluetoothDevices() {
 //		discoverDevicesBtn.setText(R.string.search_toy);
 //	}
 
-	private void bondDevice(BluetoothDevice device, int position) {
-		if (BTManager.getInstance().bondDevice(device)) {
+    private void bondDevice(BluetoothDevice device, int position) {
+        if (BTManager.getInstance().bondDevice(device)) {
 
-			progress = ProgressDialogFragment
-					.createBuilder(this, getSupportFragmentManager())
-					.setMessage(R.string.dialog_bonding_bluetooth).show();
+            progress = ProgressDialogFragment
+                    .createBuilder(this, getSupportFragmentManager())
+                    .setMessage(R.string.dialog_bonding_bluetooth).show();
 
-			// showProgressDialog(getResources().getString(
-			// R.string.dialog_bonding_bluetooth));
-		} else {
-			Timber.d("绑定拉玩具失败");
+            // showProgressDialog(getResources().getString(
+            // R.string.dialog_bonding_bluetooth));
+        } else {
+            Timber.d("绑定拉玩具失败");
 
             Toaster.showShort(this,
                     getResources().getString(R.string.toast_toy_unbonded));
-		}
-	}
+        }
+    }
 
-	private OnCheckedChangeListener switchListener = new OnCheckedChangeListener() {
+    private OnCheckedChangeListener switchListener = new OnCheckedChangeListener() {
 
-		@Override
-		public void onCheckedChanged(CompoundButton buttonView,
-				boolean isChecked) {
-			BTHelper.setBluetoothEnabled(isChecked);
-			if (!isChecked) {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView,
+                                     boolean isChecked) {
+            BTHelper.setBluetoothEnabled(isChecked);
+            if (!isChecked) {
 //				discoverDevicesBtn.setText(R.string.search_toy);
-			} else {
-				showBondedDevices();
-			}
-		}
-	};
+            } else {
+                showBondedDevices();
+            }
+        }
+    };
 
-	@Override
-	public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
 //
 //		switch (v.getId()) {
 //		case R.id.discover_devices_btn:
@@ -178,175 +181,175 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 //			break;
 //		}
 //
-	}
+    }
 
-	private boolean isToyConnected() {
-		return BTManager.getInstance().getDeviceService().checkConnection();
-	}
+    private boolean isToyConnected() {
+        return BTManager.getInstance().getDeviceService().checkConnection();
+    }
 
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-		// TODO
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // TODO
 
-	}
+    }
 
-	@Override
-	public void onBTStateTuringOn() {
-		Timber.i("正在打开蓝牙");
-		bluetoothTb.setClickable(false);
-		deviceLv.setTip(R.string.switching_on_bluetooth);
-		Toaster.showShort(this,
-				getResources().getString(R.string.toast_open_bluetooth_wait));
-
-	}
-
-	@Override
-	public void onBTStateTuringOff() {
-		Timber.i("正在关闭蓝牙");
-		bluetoothTb.setClickable(false);
-		deviceLv.setTip(R.string.switching_off_bluetooth);
+    @Override
+    public void onBTStateTuringOn() {
+        Timber.i("正在打开蓝牙");
+        bluetoothTb.setClickable(false);
+        deviceLv.setTip(R.string.switching_on_bluetooth);
         Toaster.showShort(this,
-				getResources().getString(R.string.toast_close_bluetooth_wait));
-	}
+                getResources().getString(R.string.toast_open_bluetooth_wait));
 
-	@Override
-	public void onBTStateOn() {
-		Timber.i("蓝牙已打开");
-		bluetoothTb.setClickable(true);
+    }
+
+    @Override
+    public void onBTStateTuringOff() {
+        Timber.i("正在关闭蓝牙");
+        bluetoothTb.setClickable(false);
+        deviceLv.setTip(R.string.switching_off_bluetooth);
         Toaster.showShort(this,
-				getResources().getString(R.string.toast_bluetooth_open));
-		showBondedDevices();
-		startDiscoverBluetoothDevices();
-	}
+                getResources().getString(R.string.toast_close_bluetooth_wait));
+    }
 
-	@Override
-	public void onBTStateOff() {
-		Timber.i("蓝牙已关闭");
-		bluetoothTb.setClickable(true);
+    @Override
+    public void onBTStateOn() {
+        Timber.i("蓝牙已打开");
+        bluetoothTb.setClickable(true);
         Toaster.showShort(this,
-				getResources().getString(R.string.toast_bluetooth_closed));
-		clearDeviceList();
-	}
+                getResources().getString(R.string.toast_bluetooth_open));
+        showBondedDevices();
+        startDiscoverBluetoothDevices();
+    }
 
-	@Override
-	public void onBTDiscoveryOne(BluetoothDevice device) {
-		deviceLv.showDeviceListView();
-		Timber.d("发现一个设备:" + device.getName());
-		filterDevices(device);
-		if (deviceList.size() > 0) {
-			deviceAdapter.notifyDataSetChanged();
-			deviceLv.showDeviceListView();
-		} else {
-			deviceLv.showTipTextView();
-		}
+    @Override
+    public void onBTStateOff() {
+        Timber.i("蓝牙已关闭");
+        bluetoothTb.setClickable(true);
+        Toaster.showShort(this,
+                getResources().getString(R.string.toast_bluetooth_closed));
+        clearDeviceList();
+    }
 
-	}
+    @Override
+    public void onBTDiscoveryOne(BluetoothDevice device) {
+        deviceLv.showDeviceListView();
+        Timber.d("发现一个设备:" + device.getName());
+        filterDevices(device);
+        if (deviceList.size() > 0) {
+            deviceAdapter.notifyDataSetChanged();
+            deviceLv.showDeviceListView();
+        } else {
+            deviceLv.showTipTextView();
+        }
 
-	@Override
-	public void onBTDiscoveryFinished() {
-		Timber.d("搜索蓝牙设备完毕！");
+    }
+
+    @Override
+    public void onBTDiscoveryFinished() {
+        Timber.d("搜索蓝牙设备完毕！");
 //		finishDiscoverBluetoothDevices();
-        Toaster.showShort(this,R.string.toast_searching_toy_over);
+        Toaster.showShort(this, R.string.toast_searching_toy_over);
         Toaster.showShort(this,
-				getResources().getString(R.string.toast_searching_toy_over));
-		if (deviceList.size() == 0) {
-			deviceLv.setTip(getResources().getString(
-					R.string.toast_no_device_nearby));
-			deviceLv.showTipTextView();
-		}
-	}
+                getResources().getString(R.string.toast_searching_toy_over));
+        if (deviceList.size() == 0) {
+            deviceLv.setTip(getResources().getString(
+                    R.string.toast_no_device_nearby));
+            deviceLv.showTipTextView();
+        }
+    }
 
-	@Override
-	public void onBondDeviceClick(BluetoothDevice device, int position) {
-		bondDevice(device, position);
-	}
+    @Override
+    public void onBondDeviceClick(BluetoothDevice device, int position) {
+        bondDevice(device, position);
+    }
 
-	@Override
-	public void onConnectDeviceClick(BluetoothDevice device, int position) {
-		new ConnectDeviceAsyncTask(device, position).execute();
-	}
+    @Override
+    public void onConnectDeviceClick(BluetoothDevice device, int position) {
+        new ConnectDeviceAsyncTask(device, position).execute();
+    }
 
-	private class ConnectDeviceAsyncTask extends
-			AsyncTask<BluetoothDevice, Void, Boolean> {
+    private class ConnectDeviceAsyncTask extends
+            AsyncTask<BluetoothDevice, Void, Boolean> {
 
-		private BluetoothDevice mDevice;
+        private BluetoothDevice mDevice;
 
-		public ConnectDeviceAsyncTask(BluetoothDevice device, int position) {
-			this.mDevice = device;
-		}
+        public ConnectDeviceAsyncTask(BluetoothDevice device, int position) {
+            this.mDevice = device;
+        }
 
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			Timber.d("准备连接设备");
-			progress = ProgressDialogFragment
-					.createBuilder(BTSettingActivity.this,
-							getSupportFragmentManager())
-					.setMessage(R.string.toast_connecting_toy).show();
-		}
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Timber.d("准备连接设备");
+            progress = ProgressDialogFragment
+                    .createBuilder(BTSettingActivity.this,
+                            getSupportFragmentManager())
+                    .setMessage(R.string.toast_connecting_toy).show();
+        }
 
-		@Override
-		protected Boolean doInBackground(BluetoothDevice... params) {
-			Timber.d("正在连接设备");
-			boolean success = false;
-			success = BTManager.getInstance().getDeviceService()
-					.connectDevice(mDevice.getName(), mDevice.getAddress());
-			return success;
-		}
+        @Override
+        protected Boolean doInBackground(BluetoothDevice... params) {
+            Timber.d("正在连接设备");
+            boolean success = false;
+            success = BTManager.getInstance().getDeviceService()
+                    .connectDevice(mDevice.getName(), mDevice.getAddress());
+            return success;
+        }
 
-		@Override
-		protected void onPostExecute(Boolean success) {
-			super.onPostExecute(success);
-			Timber.d("连接设备完毕");
-			progress.dismiss();
-			if (success) {
-				DeviceConnectionManager.getInstance().startCheckConnetionTask();
-				Toaster.showLong(BTSettingActivity.this,
-						R.string.toast_connect_toy_success);
-				// 保存连接上的设备名和状态
-				PreferenceUtils.setString(DEVICE_NAME, mDevice.getName());
-				PreferenceUtils.setString(DEVICE_ADDRESS, mDevice.getAddress());
-				deviceAdapter.notifyDataSetChanged();
-			} else {
-				Toaster.showLong(BTSettingActivity.this,
-						R.string.toast_connect_toy_failure);
-			}
+        @Override
+        protected void onPostExecute(Boolean success) {
+            super.onPostExecute(success);
+            Timber.d("连接设备完毕");
+            progress.dismiss();
+            if (success) {
+                DeviceConnectionManager.getInstance().startCheckConnetionTask();
+                Toaster.showLong(BTSettingActivity.this,
+                        R.string.toast_connect_toy_success);
+                // 保存连接上的设备名和状态
+                PreferenceUtils.setString(BTSettingActivity.this, DEVICE_NAME, mDevice.getName());
+                PreferenceUtils.setString(BTSettingActivity.this, DEVICE_ADDRESS, mDevice.getAddress());
+                deviceAdapter.notifyDataSetChanged();
+            } else {
+                Toaster.showLong(BTSettingActivity.this,
+                        R.string.toast_connect_toy_failure);
+            }
 
-		}
+        }
 
-	}
+    }
 
-	private List<BluetoothDevice> filterDevices(BluetoothDevice device) {
-		for (int i = 0; i < deviceList.size(); i++) {
-			if (deviceList.get(i).getAddress().equals(device.getAddress())) {
-				return deviceList;
-			}
-		}
-		deviceList.add(device);
-		return deviceList;
-	}
+    private List<BluetoothDevice> filterDevices(BluetoothDevice device) {
+        for (int i = 0; i < deviceList.size(); i++) {
+            if (deviceList.get(i).getAddress().equals(device.getAddress())) {
+                return deviceList;
+            }
+        }
+        deviceList.add(device);
+        return deviceList;
+    }
 
-	@Override
-	public void onBTStateBonded() {
-		Timber.d("onReceive:bluetooth bond state changed -> " + "BONDED");
-		Timber.d("玩具配对成功");
-		progress.dismiss();
+    @Override
+    public void onBTStateBonded() {
+        Timber.d("onReceive:bluetooth bond state changed -> " + "BONDED");
+        Timber.d("玩具配对成功");
+        progress.dismiss();
         Toaster.showShort(this,
-				getResources().getString(R.string.toast_bond_toy_success));
-		deviceAdapter.notifyDataSetChanged();
-	}
+                getResources().getString(R.string.toast_bond_toy_success));
+        deviceAdapter.notifyDataSetChanged();
+    }
 
-	@Override
-	public void onBTStateBondNone() {
-		Timber.d("onReceive:bluetooth bond state changed -> " + "BOND_NONE");
-		deviceAdapter.notifyDataSetChanged();
-	}
+    @Override
+    public void onBTStateBondNone() {
+        Timber.d("onReceive:bluetooth bond state changed -> " + "BOND_NONE");
+        deviceAdapter.notifyDataSetChanged();
+    }
 
-	@Override
-	public void onBTStateBonding() {
-		Timber.d("onReceive:bluetooth bond state changed -> " + "BONDING");
-		Timber.d("正在绑定玩具");
-	}
+    @Override
+    public void onBTStateBonding() {
+        Timber.d("onReceive:bluetooth bond state changed -> " + "BONDING");
+        Timber.d("正在绑定玩具");
+    }
 
 }
