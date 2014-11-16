@@ -10,7 +10,7 @@ import android.widget.SeekBar;
 import me.linkcube.skea.R;
 import me.linkcube.skea.ui.BaseActivity;
 
-public class ConfigSkeaActivity extends BaseActivity {
+public class SkeaSettingActivity extends BaseActivity {
     /**
      * Skea Config 本地持久化文件名
      */

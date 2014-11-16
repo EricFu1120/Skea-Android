@@ -11,7 +11,7 @@
         <item name="titleTextStyle">@style/ActionBarTitle</item>
     </style>
 
-    <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
+    <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/white</item>
     </style>
 
@@ -24,7 +24,7 @@
         <item name="titleTextStyle">@style/ActionBarTitle.Light</item>
     </style>
 
-    <style name="ActionBarTitle.Light" parent="TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
+    <style name="ActionBarTitle.Light" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/black</item>
     </style>
 

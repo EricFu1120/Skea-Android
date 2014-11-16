@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.record;
+package me.linkcube.skea.ui.user;
 
 import android.os.Bundle;
 import android.text.SpannableString;

@@ -18,9 +18,10 @@
     <string name="title_activity_language_setting">LanguageSettingActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_guide">GuideActivity</string>
-
     <string name="action_date">Select Date</string>
     <string name="action_pause">Pause</string>
-
+    <string name="title_activity_test_http">TestHttpActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

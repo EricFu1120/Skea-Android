@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.core.persistence.EvaluationBean;
 import me.linkcube.skea.ui.BaseActivity;
 import me.linkcube.skea.view.LevelRadioGroup;
 
@@ -18,7 +19,7 @@ public class ReEvaluationActivity extends BaseActivity  {
 
     private Button submit_bt;
 
-    private EvaluationItemsClass mEvaluationItemsClass;
+    private EvaluationBean mEvaluationBean;
 
 
 
@@ -44,7 +45,7 @@ public class ReEvaluationActivity extends BaseActivity  {
             public void onLevelSelected(int level) {
                 Log.i("CXC", "reproduct_history_lrg---" + level);
                 //得到相应的Level
-                mEvaluationItemsClass.setReproductive_level(level);
+                mEvaluationBean.setReproductive_level(level);
 
             }
         });
@@ -53,21 +54,21 @@ public class ReEvaluationActivity extends BaseActivity  {
             @Override
             public void onLevelSelected(int level) {
                 Log.i("CXC", "sex_activity_lrg---" + level);
-                mEvaluationItemsClass.setSexual_level(level);
+                mEvaluationBean.setSexual_level(level);
             }
         });
         urinary_incontinence_lrg.setOnOnLevelSelectedListener(new LevelRadioGroup.OnLevelSelectedListener() {
             @Override
             public void onLevelSelected(int level) {
                 Log.i("CXC", "urinary_incontinence_lrg---" + level);
-                mEvaluationItemsClass.setUrinary_level(level);
+                mEvaluationBean.setUrinary_level(level);
             }
         });
         mental_status_lrg.setOnOnLevelSelectedListener(new LevelRadioGroup.OnLevelSelectedListener() {
             @Override
             public void onLevelSelected(int level) {
                 Log.i("CXC", "mental_status_lrg---" + level);
-                mEvaluationItemsClass.setMental_level(level);
+                mEvaluationBean.setMental_level(level);
             }
         });
 
