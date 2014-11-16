@@ -234,7 +234,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/btn_blue"
         android:text="Submit"
-        android:textSize="20dp" />
+        android:textSize="@dimen/TextSize.Large" />
 
 
 </LinearLayout>
