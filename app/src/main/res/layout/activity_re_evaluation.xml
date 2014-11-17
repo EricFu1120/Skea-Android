@@ -56,17 +56,17 @@
                     android:textSize="@dimen/TextSize.Large" />
 
                 <TextView
+                    android:id="@+id/birthday_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="1980-1-1"
+                    android:text="1981-01-01"
                     android:textSize="@dimen/TextSize.Large"/>
 
             </RelativeLayout>
 
             <View style="@style/SplitLine" />
-
             <RelativeLayout
                 android:id="@+id/height_layout"
                 android:layout_width="match_parent"
@@ -83,6 +83,7 @@
                     android:textSize="@dimen/TextSize.Large" />
 
                 <TextView
+                    android:id="@+id/height_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -111,6 +112,7 @@
                     android:textSize="@dimen/TextSize.Large" />
 
                 <TextView
+                    android:id="@+id/weight_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

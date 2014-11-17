@@ -1,21 +1,22 @@
 package me.linkcube.skea.ui.test;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
-import custom.android.app.dialog.DatePickerDialogFragment;
-import custom.android.app.dialog.SimpleDialogFragment;
 import me.linkcube.skea.R;
-import me.linkcube.skea.view.LevelRadioGroup;
 
 
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.persistence.EvaluationBean;
-import me.linkcube.skea.view.LevelRadioGroup;
 
 public class ReEvaluationActivity extends BaseActivity {
     //声明控件
@@ -24,29 +25,35 @@ public class ReEvaluationActivity extends BaseActivity {
 //    private LevelRadioGroup urinary_incontinence_lrg;
 //    private LevelRadioGroup mental_status_lrg;
 
-
-    private RelativeLayout birthday_layout;
-    private RelativeLayout height_layout;
-    private RelativeLayout weight_layout;
+    private TextView birthday_tv;
+    private TextView height_tv;
+    private TextView weight_tv;
 
 
     private Button submit_bt;
 
     private EvaluationBean mEvaluationBean;
 
+    private static final int DATE_DIALOG_ID = 1;
+    private static final int SHOW_DATAPICK = 0;
+    private int mYear=1981;
+    private int mMonth=0;
+    private int mDay=1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
-
-
+        initializeViews();
+        //setDateTime();
+        updateDateDisplay();
     }
 
     /**
      * 初始化控件及变量，注册事件
      */
-    private void init() {
+    private void initializeViews() {
         //得到控件
 //        reproduct_history_lrg = (LevelRadioGroup) findViewById(R.id.reproduct_history_lrg);
 //        sex_activity_lrg = (LevelRadioGroup) findViewById(R.id.sex_activity_lrg);
@@ -54,13 +61,13 @@ public class ReEvaluationActivity extends BaseActivity {
 //        mental_status_lrg = (LevelRadioGroup) findViewById(R.id.mental_status_lrg);
         submit_bt = (Button) findViewById(R.id.submit_bt);
 
-        birthday_layout = (RelativeLayout) findViewById(R.id.birthday_layout);
-        height_layout = (RelativeLayout) findViewById(R.id.height_layout);
-        weight_layout = (RelativeLayout) findViewById(R.id.weight_layout);
+        birthday_tv = (TextView) findViewById(R.id.birthday_tv);
+        height_tv = (TextView) findViewById(R.id.height_tv);
+        weight_tv = (TextView) findViewById(R.id.weight_tv);
 
-        birthday_layout.setOnClickListener(evaluationClickListener);
-        height_layout.setOnClickListener(evaluationClickListener);
-        weight_layout.setOnClickListener(evaluationClickListener);
+        birthday_tv.setOnClickListener(evaluationClickListener);
+        height_tv.setOnClickListener(evaluationClickListener);
+        weight_tv.setOnClickListener(evaluationClickListener);
 
 
 //        //注册事件
@@ -97,6 +104,70 @@ public class ReEvaluationActivity extends BaseActivity {
 //        });
 
     }
+    /**
+     * 更新日期显示
+     */
+    private void updateDateDisplay() {
+        birthday_tv.setText(new StringBuilder().append(mYear).append("-")
+                .append((mMonth + 1) < 10 ? "0" + (mMonth + 1) : (mMonth + 1))
+                .append("-").append((mDay < 10) ? "0" + mDay : mDay));
+    }
+
+
+    /**
+     * 日期控件的事件
+     */
+    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+            mYear = year;
+            mMonth = monthOfYear;
+            mDay = dayOfMonth;
+            updateDateDisplay();
+
+        }
+    };
+
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DATE_DIALOG_ID:
+                return new DatePickerDialog(this, mDateSetListener, mYear, mMonth,
+                        mDay);
+
+        }
+
+        return null;
+    }
+
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        switch (id) {
+            case DATE_DIALOG_ID:
+                ((DatePickerDialog) dialog).updateDate(mYear, mMonth, mDay);
+                break;
+        }
+    }
+
+    /**
+     * 处理日期和时间控件的Handler
+     */
+    Handler dateandtimeHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case ReEvaluationActivity.SHOW_DATAPICK:
+                    showDialog(DATE_DIALOG_ID);
+                    break;
+
+            }
+        }
+
+    };
 
     /**
      * 得到测试数据 并进行评诂
@@ -109,26 +180,18 @@ public class ReEvaluationActivity extends BaseActivity {
     View.OnClickListener evaluationClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Message msg=new Message();
             switch (v.getId()) {
-                case R.id.birthday_layout:
+
+                case R.id.birthday_tv:
                     //todo
-                    //日期范围怎么设置
-                    DatePickerDialogFragment.createBuilder(getApplicationContext(), getSupportFragmentManager())
-                            .setDate(Calendar.getInstance().getTime())
-                            .setTitle("Birthday")
-                            .setPositiveButtonText("Yes")
-                            .setNegativeButtonText("Cancel")
-                            .show();
+                    msg.what = ReEvaluationActivity.SHOW_DATAPICK;
+                    ReEvaluationActivity.this.dateandtimeHandler.sendMessage(msg);
                     break;
-                case R.id.height_layout:
-                    SimpleDialogFragment.createBuilder(getApplicationContext(), getSupportFragmentManager())
-                            .setTitle("Title")
-                            .setMessage("this is message")
-                            .setPositiveButtonText("Yes")
-                            .setNegativeButtonText("No")
-                            .show();
+                case R.id.height_tv:
+
                     break;
-                case R.id.weight_layout:
+                case R.id.weight_tv:
 
                     break;
                 case R.id.submit_bt:
@@ -143,11 +206,11 @@ public class ReEvaluationActivity extends BaseActivity {
         }
     };
 
-
     @Override
     public int getLayoutResourceId() {
         return R.layout.activity_re_evaluation;
     }
 
+    
 
 }
