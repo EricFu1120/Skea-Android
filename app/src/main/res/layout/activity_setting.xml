@@ -46,23 +46,6 @@
             android:maxLines="1"
             android:singleLine="true" />
 
-        <View
-            style="@style/SplitLine"
-            android:background="@color/main_bg" />
-
-        <TextView
-            android:id="@+id/privacy"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_item_height"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:gravity="center_vertical|left"
-            android:textSize="20dp"
-            android:text="Privacy"
-            android:drawableRight="@drawable/menu_action_right"
-            android:drawablePadding="10dp"
-            android:maxLines="1"
-            android:singleLine="true" />
 
         <View
             style="@style/SplitLine"

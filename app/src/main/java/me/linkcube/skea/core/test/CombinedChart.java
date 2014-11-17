@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.record.chart;
+package me.linkcube.skea.core.test;
 
 import java.util.List;
 import org.achartengine.ChartFactory;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.linkcube.skea.ui.record.chart;
+package me.linkcube.skea.core.test;
 
 import java.util.Date;
 import java.util.List;

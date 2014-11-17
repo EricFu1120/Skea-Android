@@ -24,7 +24,7 @@ import java.util.List;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.ui.record.chart.CombinedChart;
+import me.linkcube.skea.core.test.CombinedChart;
 
 public class RecordActivity extends BaseActivity {
     //声明控件
