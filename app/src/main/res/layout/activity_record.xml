@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
-    android:orientation="vertical"
-    tools:context="me.linkcube.skea.ui.record.RecordActivity">
+    tools:context="me.linkcube.skea.ui.test.RecordActivity"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -6,16 +6,16 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.persistence.UserManager;
 import me.linkcube.skea.ui.bluetooth.BTSettingActivity;
 import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
-import me.linkcube.skea.ui.record.RecordActivity;
-import me.linkcube.skea.ui.user.UserInfoActivity;
+import me.linkcube.skea.ui.user.LoginActivity;
+import me.linkcube.skea.ui.user.MeActivity;
+import me.linkcube.skea.ui.test.RecordActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         switch (v.getId()) {
             case R.id.infoTextView:
-                startActivityForResult(new Intent(this, InformationActivity.class),LOGOUT_REQUEST_CODE);
+                startActivityForResult(new Intent(this, InformationActivity.class), LOGOUT_REQUEST_CODE);
                 break;
             case R.id.recordsTextView:
                 startActivity(new Intent(this, RecordActivity.class));
@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(this, ExerciseActivity.class));
                 break;
             case R.id.meTextView:
-                startActivity(new Intent(this, UserInfoActivity.class));
+                startActivity(new Intent(this, MeActivity.class));
                 break;
             default:
         }

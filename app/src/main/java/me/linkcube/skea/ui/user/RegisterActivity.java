@@ -1,21 +1,14 @@
-package me.linkcube.skea.ui;
+package me.linkcube.skea.ui.user;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.LinkedList;
 
 import custom.android.app.dialog.SimpleDialogFragment;
 import me.linkcube.skea.R;
+import me.linkcube.skea.base.ui.BaseActivity;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 

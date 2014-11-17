@@ -1,143 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.linkcube.skea">
+    package="me.linkcube.skea" >
 
-    <!--BlueTooth 权限-->
+    <!-- BlueTooth 权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:largeHeap="true"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-
+        android:largeHeap="true"
+        android:theme="@style/AppTheme" >
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.user.LoginActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:theme="@style/AppTheme.Light" />
-
+            android:theme="@style/AppTheme.Light"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTop"
-            android:label="@string/title_activity_main"/>
-
+            android:label="@string/title_activity_main"
+            android:launchMode="singleTop" />
         <activity
-            android:name=".ui.RegisterActivity"
+            android:name=".ui.user.RegisterActivity"
             android:label="@string/title_activity_register"
+            android:parentActivityName=".ui.user.LoginActivity"
             android:theme="@style/AppTheme.Light"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:parentActivityName=".ui.LoginActivity">
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.LoginActivity" />
         </activity>
-
         <activity
-            android:name=".ui.user.UserInfoActivity"
+            android:name=".ui.user.MeActivity"
             android:label="@string/title_activity_me"
-            android:parentActivityName=".ui.MainActivity">
+            android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-
         <activity
-            android:name=".ui.record.RecordActivity"
+            android:name=".ui.test.RecordActivity"
             android:label="@string/title_activity_record"
-            android:parentActivityName=".ui.MainActivity">
+            android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-
         <activity
             android:name=".ui.exercise.ExerciseActivity"
             android:label="@string/title_activity_exercise" />
-
         <activity
             android:name=".ui.setting.SettingActivity"
             android:label="@string/title_activity_setting"
-            android:parentActivityName=".ui.user.UserInfoActivity">
+            android:parentActivityName=".ui.user.MeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
-
         <activity
-            android:name=".ui.user.TestPelvicMuscleResultActivity"
+            android:name=".ui.test.TestPelvicMuscleResultActivity"
             android:label="@string/title_activity_test_pelvic_muscle_result"
-            android:parentActivityName=".ui.user.UserInfoActivity">
+            android:parentActivityName=".ui.user.MeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
-
         <activity
-            android:name=".ui.setting.ConfigSkeaActivity"
+            android:name=".ui.setting.SkeaSettingActivity"
             android:label="@string/title_activity_config_skea"
-            android:parentActivityName=".ui.user.UserInfoActivity">
+            android:parentActivityName=".ui.user.MeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
-
         <activity
             android:name=".ui.test.ReEvaluationActivity"
             android:label="@string/title_activity_re_evaluation"
-            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
+            android:parentActivityName=".ui.test.TestPelvicMuscleResultActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.TestPelvicMuscleResultActivity" />
         </activity>
-
         <activity
             android:name=".ui.test.ExerciseLevelSettingActivity"
             android:label="@string/title_activity_setting_exercise_level"
-            android:parentActivityName=".ui.user.TestPelvicMuscleResultActivity">
+            android:parentActivityName=".ui.test.TestPelvicMuscleResultActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.TestPelvicMuscleResultActivity" />
         </activity>
-
         <activity
             android:name=".ui.info.InformationActivity"
             android:icon="@drawable/icon_info"
             android:label="@string/title_activity_information"
-            android:parentActivityName=".ui.MainActivity">
+            android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-
         <activity
             android:name=".ui.setting.LanguageSettingActivity"
-            android:parentActivityName=".ui.setting.SettingActivity">
+            android:parentActivityName=".ui.setting.SettingActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.setting.SettingActivity" />
         </activity>
-
         <activity
             android:name=".ui.init.SplashActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".ui.init.GuideActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"
-            android:label="@string/title_activity_guide"/>
+            android:label="@string/title_activity_guide"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity
             android:name=".ui.bluetooth.BTSettingActivity"
-            android:label="@string/title_activity_btsetting"/>
-
+            android:label="@string/title_activity_btsetting" />
+        <activity
+            android:name=".TestHttpActivity"
+            android:label="@string/title_activity_test_http" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />

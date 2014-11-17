@@ -1,23 +1,24 @@
 package me.linkcube.skea.ui.test;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import custom.android.app.dialog.DatePickerDialogFragment;
 import custom.android.app.dialog.SimpleDialogFragment;
 import me.linkcube.skea.R;
-import me.linkcube.skea.ui.BaseActivity;
-import me.linkcube.skea.ui.MainActivity;
+import me.linkcube.skea.view.LevelRadioGroup;
+
+
+import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.persistence.EvaluationBean;
 import me.linkcube.skea.view.LevelRadioGroup;
 
 public class ReEvaluationActivity extends BaseActivity {
-//    //声明控件
+    //声明控件
 //    private LevelRadioGroup reproduct_history_lrg;
 //    private LevelRadioGroup sex_activity_lrg;
 //    private LevelRadioGroup urinary_incontinence_lrg;
@@ -31,7 +32,7 @@ public class ReEvaluationActivity extends BaseActivity {
 
     private Button submit_bt;
 
-    private EvaluationItemsClass mEvaluationItemsClass;
+    private EvaluationBean mEvaluationBean;
 
 
     @Override
@@ -56,6 +57,10 @@ public class ReEvaluationActivity extends BaseActivity {
         birthday_layout = (RelativeLayout) findViewById(R.id.birthday_layout);
         height_layout = (RelativeLayout) findViewById(R.id.height_layout);
         weight_layout = (RelativeLayout) findViewById(R.id.weight_layout);
+
+        birthday_layout.setOnClickListener(evaluationClickListener);
+        height_layout.setOnClickListener(evaluationClickListener);
+        weight_layout.setOnClickListener(evaluationClickListener);
 
 
 //        //注册事件
@@ -90,12 +95,6 @@ public class ReEvaluationActivity extends BaseActivity {
 //                mEvaluationItemsClass.setMental_level(level);
 //            }
 //        });
-
-        submit_bt.setOnClickListener(evaluationClickListener);
-        birthday_layout.setOnClickListener(evaluationClickListener);
-        height_layout.setOnClickListener(evaluationClickListener);
-        weight_layout.setOnClickListener(evaluationClickListener);
-
 
     }
 

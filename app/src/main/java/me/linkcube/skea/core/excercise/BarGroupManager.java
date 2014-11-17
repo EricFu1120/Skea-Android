@@ -11,7 +11,7 @@ import java.util.List;
 
 import custom.android.util.DensityUtils;
 import me.linkcube.skea.R;
-import me.linkcube.skea.ui.exercise.BarViewWrapper;
+import me.linkcube.skea.view.BarViewWrapper;
 
 /**
  * Created by Ervin on 14/11/5.

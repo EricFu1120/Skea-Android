@@ -3,7 +3,7 @@ package me.linkcube.skea.ui.setting;
 import android.os.Bundle;
 
 import me.linkcube.skea.R;
-import me.linkcube.skea.ui.BaseActivity;
+import me.linkcube.skea.base.ui.BaseActivity;
 
 public class LanguageSettingActivity extends BaseActivity {
 

@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.test;
+package me.linkcube.skea.core.persistence;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by CXC on 14-11-15.
  *
  */
-public class EvaluationItemsClass {
+public class EvaluationBean {
 
     /**生日*/
     private Date birthday;

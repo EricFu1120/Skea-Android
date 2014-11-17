@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.record;
+package me.linkcube.skea.ui.test;
 
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.linkcube.skea.R;
-import me.linkcube.skea.ui.BaseActivity;
+import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.ui.record.chart.CombinedChart;
 
 public class RecordActivity extends BaseActivity {

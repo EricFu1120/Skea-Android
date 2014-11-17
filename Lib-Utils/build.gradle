@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 21
     buildToolsVersion '21.1.1'
     defaultConfig {
         applicationId 'custom.android.util'
@@ -19,5 +19,5 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.+'
+    compile 'com.android.support:appcompat-v7:21.0.0'
 }

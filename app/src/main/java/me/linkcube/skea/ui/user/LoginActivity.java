@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui;
+package me.linkcube.skea.ui.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.base.ui.BaseActivity;
 
 
 /**
