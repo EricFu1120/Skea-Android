@@ -4,7 +4,7 @@
     android:background="@color/main_bg"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="me.linkcube.skea.ui.test.TestPelvicMuscleResultActivity">
+    tools:context="me.linkcube.skea.ui.evaluation.TestPelvicMuscleResultActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

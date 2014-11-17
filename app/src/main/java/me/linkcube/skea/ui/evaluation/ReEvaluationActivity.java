@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.test;
+package me.linkcube.skea.ui.evaluation;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

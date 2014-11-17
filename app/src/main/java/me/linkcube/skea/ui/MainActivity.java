@@ -15,7 +15,7 @@ import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
 import me.linkcube.skea.ui.user.LoginActivity;
 import me.linkcube.skea.ui.user.MeActivity;
-import me.linkcube.skea.ui.test.RecordActivity;
+import me.linkcube.skea.ui.evaluation.RecordActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 

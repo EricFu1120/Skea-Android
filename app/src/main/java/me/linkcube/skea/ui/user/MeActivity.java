@@ -8,7 +8,7 @@ import android.net.Uri;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.ui.test.TestPelvicMuscleResultActivity;
+import me.linkcube.skea.ui.evaluation.TestPelvicMuscleResultActivity;
 import me.linkcube.skea.ui.setting.SkeaSettingActivity;
 import me.linkcube.skea.ui.setting.SettingActivity;
 

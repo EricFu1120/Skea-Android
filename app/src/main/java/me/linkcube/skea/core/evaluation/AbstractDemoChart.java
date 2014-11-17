@@ -13,24 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.linkcube.skea.core.test;
+package me.linkcube.skea.core.evaluation;
 
 import java.util.Date;
 import java.util.List;
 
 import org.achartengine.chart.PointStyle;
-import org.achartengine.model.CategorySeries;
-import org.achartengine.model.MultipleCategorySeries;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
-import org.achartengine.renderer.DefaultRenderer;
-import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import android.R.color;
-import android.graphics.Color;
 import android.graphics.Paint.Align;
 
 /**

@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.test;
+package me.linkcube.skea.ui.evaluation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.ui.test.ExerciseLevelSettingActivity;
-import me.linkcube.skea.ui.test.ReEvaluationActivity;
 
 public class TestPelvicMuscleResultActivity extends BaseActivity {
     public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.test.TestPelvicMuscleResultActivity.Exercise_level";
