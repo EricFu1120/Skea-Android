@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.linkcube.skea" >
 
-    <!-- BlueTooth 权限 -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -123,11 +119,21 @@
             android:name=".ui.bluetooth.BTSettingActivity"
             android:label="@string/title_activity_btsetting" />
         <activity
-            android:name=".TestHttpActivity"
+            android:name=".TestActivity"
             android:label="@string/title_activity_test_http" >
         </activity>
+
+        <meta-data android:name="DATABASE" android:value="skea.db" />
+        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="me.linkcube.skea" />
+
+
     </application>
 
+    <!-- BlueTooth 权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />

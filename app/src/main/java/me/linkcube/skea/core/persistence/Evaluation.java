@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by CXC on 14-11-15.
  *
  */
-public class EvaluationBean {
+public class Evaluation {
 
     /**生日*/
     private Date birthday;

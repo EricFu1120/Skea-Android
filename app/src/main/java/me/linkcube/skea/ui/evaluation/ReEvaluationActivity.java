@@ -16,7 +16,7 @@ import me.linkcube.skea.R;
 
 
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.core.persistence.EvaluationBean;
+import me.linkcube.skea.core.persistence.Evaluation;
 
 public class ReEvaluationActivity extends BaseActivity {
     //声明控件
@@ -32,7 +32,7 @@ public class ReEvaluationActivity extends BaseActivity {
 
     private Button submit_bt;
 
-    private EvaluationBean mEvaluationBean;
+    private Evaluation mEvaluationBean;
 
     private static final int DATE_DIALOG_ID = 1;
     private static final int SHOW_DATAPICK = 0;
