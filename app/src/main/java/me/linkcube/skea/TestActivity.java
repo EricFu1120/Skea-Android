@@ -2,13 +2,11 @@ package me.linkcube.skea;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import custom.android.app.CustomActionBarActivity;
-import me.linkcube.skea.ui.evaluation.ReEvaluationActivity;
+import me.linkcube.skea.ui.evaluation.EvaluateActivity;
 
 
 public class TestActivity extends CustomActionBarActivity implements View.OnClickListener {
@@ -82,7 +80,7 @@ public class TestActivity extends CustomActionBarActivity implements View.OnClic
     }
 
     private void evaluate() {
-        startActivityForResult(new Intent(this, ReEvaluationActivity.class), TEST_REQUEST_CODE);
+        startActivityForResult(new Intent(this, EvaluateActivity.class), TEST_REQUEST_CODE);
     }
 
     @Override

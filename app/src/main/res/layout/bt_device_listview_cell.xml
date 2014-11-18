@@ -6,6 +6,7 @@
     <TextView
         android:id="@+id/device_name_tv"
         style="@style/ListView.Cell.TextView"
+        android:textColor="@color/text_dark_gray"
         android:text="蓝牙设备名称" />
 
     <TextView
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/ListCellMargin"
         android:text="蓝牙状态"
-        android:textColor="@color/text_dark_grey"
+        android:textColor="@color/text_dark_gray"
         android:textSize="@dimen/ListCellTextSize" />
 
 </LinearLayout>

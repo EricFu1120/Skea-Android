@@ -10,13 +10,14 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
-        android:textSize="20sp"
+        android:textColor="@color/text_dark_gray"
+        android:textSize="20dp"
         android:text="Reproductive History" />
 
     <RadioGroup
         android:id="@+id/radio_group"
         android:orientation="horizontal"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
         android:gravity="center_vertical"
@@ -58,6 +59,7 @@
             android:gravity="center_horizontal"
             android:id="@+id/no_tv"
             android:text="No"
+            android:textColor="@color/text_light_gray"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
 
@@ -72,6 +74,7 @@
             android:gravity="center_horizontal"
             android:id="@+id/yes_tv"
             android:text="yes"
+            android:textColor="@color/text_light_gray"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
 
@@ -88,6 +91,6 @@
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
         android:text="Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction"
-        android:textColor="@color/main_blue" />
+        android:textColor="@color/text_light_blue" />
 
 </LinearLayout>

@@ -1,15 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="@color/main_bg"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="me.linkcube.skea.ui.evaluation.TestPelvicMuscleResultActivity">
+    style="@style/Group"
+    android:paddingTop="0dp"
+    tools:context="me.linkcube.skea.ui.evaluation.EvaluateResultActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/main_dark_grey"
+        android:background="@color/action_bar_dark_gray"
         android:paddingBottom="20dp"
         android:paddingTop="20dp">
 
@@ -62,7 +60,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_alignParentTop="true"
         android:background="@drawable/bg_title"
         android:gravity="center_vertical|left"
@@ -88,7 +86,7 @@
     <TextView
         android:id="@+id/exercise"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_centerVertical="true"
         android:background="@drawable/bg_title"
         android:gravity="center_vertical|left"
@@ -101,18 +99,10 @@
 
     <TextView
         android:id="@+id/level"
-        android:layout_width="match_parent"
-        android:paddingRight="10dp"
-        android:layout_height="@dimen/activity_item_height"
-        android:background="@color/white"
-        android:drawablePadding="10dp"
+        style="@style/Preference.Item"
         android:drawableRight="@drawable/menu_action_right"
-        android:gravity="center_vertical|left"
-        android:maxLines="1"
         android:paddingLeft="25dp"
-        android:singleLine="true"
-        android:text="Level 4"
-        android:textSize="18sp" />
+        android:text="Level 4" />
 
 
     <View
@@ -123,7 +113,7 @@
     <Button
         android:id="@+id/reevaluate"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_margin="16dp"
         android:background="@drawable/btn_blue"
         android:text="Re-evaluate"

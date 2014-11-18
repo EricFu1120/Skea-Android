@@ -79,7 +79,7 @@ public class RecordActivity extends BaseActivity {
         correct_rate_tv = (TextView) findViewById(R.id.correct_rate_tv);
         chart = (LinearLayout) findViewById(R.id.chart);
 
-        int light_blue=getResources().getColor(R.color.light_blue);
+        int light_blue=getResources().getColor(R.color.text_light_blue);
         int light_blue2=getResources().getColor(R.color.light_blue2);
 
         //设置文字特效

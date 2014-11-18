@@ -1,10 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_bg"
+    style="@style/Group"
     android:orientation="vertical"
-    tools:context="me.linkcube.skea.ui.evaluation.ReEvaluationActivity">
+    android:paddingTop="0dp"
+    tools:context="me.linkcube.skea.ui.evaluation.EvaluateActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,16 +20,17 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
+                android:background="@color/white"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Please fill in the questionnaire in order that we can evaluation the health risk of your pelvic floor muscle "
-                android:textColor="@color/main_blue"
+                android:textColor="@color/text_light_blue"
                 android:textSize="@dimen/TextSize.Large" />
 
             <TextView
                 android:id="@+id/basic_info_tv"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/activity_item_height"
+                android:layout_height="@dimen/activity_preference_item_height"
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_title"
                 android:gravity="center_vertical|left"
@@ -42,16 +42,19 @@
 
             <RelativeLayout
                 android:id="@+id/birthday_layout"
+                android:background="@drawable/selector_preference_item"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_item_height"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_height="@dimen/activity_preference_item_height"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
+                    android:background="@color/transparent"
+                    android:textColor="@color/text_dark_gray"
                     android:text="Birthday"
                     android:textSize="@dimen/TextSize.Large" />
 
@@ -61,24 +64,29 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:background="@color/transparent"
+                    android:textColor="@color/text_dark_gray"
                     android:text="1981-01-01"
-                    android:textSize="@dimen/TextSize.Large"/>
+                    android:textSize="@dimen/TextSize.Large" />
 
             </RelativeLayout>
 
-            <View style="@style/SplitLine" />
+            <View style="@style/DividerWithMargin" />
+
             <RelativeLayout
                 android:id="@+id/height_layout"
+                android:background="@drawable/selector_preference_item"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_item_height"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_height="@dimen/activity_preference_item_height"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
+                    android:textColor="@color/text_dark_gray"
                     android:text="Height"
                     android:textSize="@dimen/TextSize.Large" />
 
@@ -88,24 +96,26 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:textColor="@color/text_dark_gray"
                     android:text="167CM"
-                    android:textSize="@dimen/TextSize.Large"/>
+                    android:textSize="@dimen/TextSize.Large" />
 
             </RelativeLayout>
 
-            <View style="@style/SplitLine" />
+            <View style="@style/DividerWithMargin" />
 
             <RelativeLayout
                 android:id="@+id/weight_layout"
+                android:background="@drawable/selector_preference_item"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_item_height"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_height="@dimen/activity_preference_item_height"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:textColor="@color/text_dark_gray"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="Weight"
@@ -117,15 +127,16 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:textColor="@color/text_dark_gray"
                     android:text="52Kg"
-                    android:textSize="@dimen/TextSize.Large"/>
+                    android:textSize="@dimen/TextSize.Large" />
 
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/exercise"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/activity_item_height"
+                android:layout_height="@dimen/activity_preference_item_height"
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_title"
                 android:gravity="center_vertical|left"
@@ -171,7 +182,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/sex_activity_lrg"/>
+                    android:id="@+id/sex_activity_lrg" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
                     app:radio_title="Pelvic Floor Surgery"
@@ -190,7 +201,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/urinary_incontinence_lrg"/>
+                    android:id="@+id/urinary_incontinence_lrg" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
                     app:radio_title="Pelvic Floor Problems (POP or UI) during Gestation"
@@ -219,7 +230,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/mental_status_lrg"/>
+                    android:id="@+id/mental_status_lrg" />
 
 
             </LinearLayout>
@@ -232,7 +243,7 @@
         android:id="@+id/submit_bt"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_margin="16dp"
         android:background="@drawable/btn_blue"
         android:text="Submit"

@@ -30,7 +30,7 @@ public class CombinedChart extends AbstractDemoChart {
 
         XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
         //边缘空白背景
-        renderer.setMarginsColor(context.getResources().getColor(R.color.main_white));
+        renderer.setMarginsColor(context.getResources().getColor(R.color.white));
 
         int length = renderer.getSeriesRendererCount();
         for (int i = 0; i < length; i++) {
@@ -99,7 +99,7 @@ public class CombinedChart extends AbstractDemoChart {
                 PointStyle.SQUARE, PointStyle.CIRCLE};
         XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
         //边缘空白背景
-        renderer.setMarginsColor(context.getResources().getColor(R.color.main_white));
+        renderer.setMarginsColor(context.getResources().getColor(R.color.white));
 
         setChartSettings(renderer, "Scatter chart", "日期", "数据", 0, 15, 0, 30,
                 Color.GRAY, Color.LTGRAY);

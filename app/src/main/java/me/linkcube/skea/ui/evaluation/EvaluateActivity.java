@@ -10,15 +10,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-import java.util.Calendar;
-
 import me.linkcube.skea.R;
 
 
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.persistence.Evaluation;
 
-public class ReEvaluationActivity extends BaseActivity {
+public class EvaluateActivity extends BaseActivity {
     //声明控件
 //    private LevelRadioGroup reproduct_history_lrg;
 //    private LevelRadioGroup sex_activity_lrg;
@@ -160,7 +158,7 @@ public class ReEvaluationActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case ReEvaluationActivity.SHOW_DATAPICK:
+                case EvaluateActivity.SHOW_DATAPICK:
                     showDialog(DATE_DIALOG_ID);
                     break;
 
@@ -185,8 +183,8 @@ public class ReEvaluationActivity extends BaseActivity {
 
                 case R.id.birthday_tv:
                     //todo
-                    msg.what = ReEvaluationActivity.SHOW_DATAPICK;
-                    ReEvaluationActivity.this.dateandtimeHandler.sendMessage(msg);
+                    msg.what = EvaluateActivity.SHOW_DATAPICK;
+                    EvaluateActivity.this.dateandtimeHandler.sendMessage(msg);
                     break;
                 case R.id.height_tv:
 
@@ -208,7 +206,7 @@ public class ReEvaluationActivity extends BaseActivity {
 
     @Override
     public int getLayoutResourceId() {
-        return R.layout.activity_re_evaluation;
+        return R.layout.activity_evaluate;
     }
 
     

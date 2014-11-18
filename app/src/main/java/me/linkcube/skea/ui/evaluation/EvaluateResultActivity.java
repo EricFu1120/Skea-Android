@@ -10,8 +10,8 @@ import android.widget.TextView;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 
-public class TestPelvicMuscleResultActivity extends BaseActivity {
-    public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.test.TestPelvicMuscleResultActivity.Exercise_level";
+public class EvaluateResultActivity extends BaseActivity {
+    public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.test.EvaluateResultActivity.Exercise_level";
     private static final int SETTING_LEVEL_REQUEST_CODE = 1;
 
 
@@ -27,7 +27,7 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
 
     @Override
     public int getLayoutResourceId() {
-        return R.layout.activity_test_pelvic_muscle_result;
+        return R.layout.activity_evaluate_result;
     }
 
     /**
@@ -75,7 +75,7 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
 
     private void reEvaluateButtonClick() {
 
-        startActivity(new Intent().setClass(getApplicationContext(), ReEvaluationActivity.class));
+        startActivity(new Intent().setClass(getApplicationContext(), EvaluateActivity.class));
     }
 
     @Override

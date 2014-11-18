@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
+        android:textColor="@color/text_dark_gray"
         android:textSize="20sp"
         android:text="Reproductive History" />
 
@@ -83,6 +84,7 @@
             android:gravity="center_horizontal"
             android:id="@+id/level1_tv"
             android:text="level 1"
+            android:textColor="@color/text_light_gray"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
 
@@ -96,6 +98,7 @@
             android:gravity="center_horizontal"
             android:id="@+id/level2_tv"
             android:text="level 1"
+            android:textColor="@color/text_light_gray"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
 
@@ -109,6 +112,7 @@
             android:gravity="center_horizontal"
             android:id="@+id/level3_tv"
             android:text="level 1"
+            android:textColor="@color/text_light_gray"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
 
@@ -122,6 +126,7 @@
             android:gravity="center_horizontal"
             android:id="@+id/level4_tv"
             android:text="level 1"
+            android:textColor="@color/text_light_gray"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
 
@@ -138,6 +143,6 @@
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
         android:text="Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction"
-        android:textColor="@color/main_blue" />
+        android:textColor="@color/text_light_blue" />
 
 </LinearLayout>

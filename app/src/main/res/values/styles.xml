@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarStyle">@style/AppActionBar</item>
-        <item name="colorPrimary">@color/main_dark_grey</item>
+        <item name="colorPrimary">@color/action_bar_dark_gray</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
@@ -16,7 +16,7 @@
     </style>
 
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/main_bg</item>
+        <item name="colorPrimary">@color/action_bar_light_gray</item>
         <item name="actionBarStyle">@style/AppActionBar.Light</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
@@ -29,15 +29,45 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="SplitLine">
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:background">@color/main_bg</item>
+    <style name="DividerWithMargin">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:background">@color/bg_divider_light_gray</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 
+    <style name="Divider">
+        <item name="android:background">@color/bg_divider_light_gray</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
 
+    <style name="Group">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/bg_light_gray</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Preference" />
+
+    <style name="Preference.TextView" />
+
+    <style name="Preference.Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/activity_preference_item_height</item>
+        <item name="android:background">@drawable/selector_preference_item</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/text_dark_gray</item>
+        <item name="android:textSize">20dp</item>
+    </style>
 
     <!-- Setting -->
     <style name="Setting"></style>
@@ -48,11 +78,13 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
     </style>
+
     <style name="Setting.Item.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/SettingItemHeight</item>
         <item name="android:textSize">@dimen/SettingItemTextSize</item>
     </style>
+
     <style name="Setting.Item.Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>

@@ -8,7 +8,7 @@ import android.net.Uri;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.ui.evaluation.TestPelvicMuscleResultActivity;
+import me.linkcube.skea.ui.evaluation.EvaluateResultActivity;
 import me.linkcube.skea.ui.setting.SkeaSettingActivity;
 import me.linkcube.skea.ui.setting.SettingActivity;
 
@@ -52,7 +52,7 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.test_pelvic_muscle:
-                startActivity(new Intent().setClass(getApplicationContext(), TestPelvicMuscleResultActivity.class));
+                startActivity(new Intent().setClass(getApplicationContext(), EvaluateResultActivity.class));
                 break;
             case R.id.skea_settings:
                 startActivity(new Intent().setClass(getApplicationContext(), SkeaSettingActivity.class));

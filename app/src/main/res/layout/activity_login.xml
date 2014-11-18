@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="@color/main_bg"
+    android:background="@color/action_bar_light_gray"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -18,8 +18,8 @@
         android:layout_gravity="center_horizontal" />
 
     <View
-        style="@style/SplitLine"
-        android:background="@color/main_dark_grey"
+        style="@style/DividerWithMargin"
+        android:background="@color/action_bar_dark_gray"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -28,7 +28,7 @@
         android:background="@null"
         android:paddingLeft="30dp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:drawableLeft="@drawable/icon_email"
@@ -39,15 +39,15 @@
         android:singleLine="true" />
 
     <View
-        style="@style/SplitLine"
-        android:background="@color/main_dark_grey"
+        style="@style/DividerWithMargin"
+        android:background="@color/action_bar_dark_gray"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:paddingLeft="30dp"
         android:layout_marginLeft="10dp"
         android:background="@null"
@@ -63,8 +63,8 @@
         android:singleLine="true" />
 
     <View
-        android:background="@color/main_dark_grey"
-        style="@style/SplitLine"
+        android:background="@color/action_bar_dark_gray"
+        style="@style/DividerWithMargin"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp" />
 
@@ -76,7 +76,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/forget_password"
         android:id="@+id/forget_password"
-        android:textColor="@color/main_blue"
+        android:textColor="@color/text_light_blue"
         android:layout_gravity="right" />
 
     <Button
@@ -84,7 +84,7 @@
         android:layout_gravity="bottom"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_margin="10dp"
         android:background="@drawable/btn_blue"
         android:text="@string/login"
@@ -99,7 +99,7 @@
         android:id="@+id/register_button"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_margin="10dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/btn_gray"

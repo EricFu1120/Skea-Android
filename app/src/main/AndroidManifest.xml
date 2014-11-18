@@ -55,7 +55,7 @@
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
         <activity
-            android:name=".ui.evaluation.TestPelvicMuscleResultActivity"
+            android:name=".ui.evaluation.EvaluateResultActivity"
             android:label="@string/title_activity_test_pelvic_muscle_result"
             android:parentActivityName=".ui.user.MeActivity" >
             <meta-data
@@ -71,9 +71,9 @@
                 android:value=".ui.user.UserInfoActivity" />
         </activity>
         <activity
-            android:name=".ui.evaluation.ReEvaluationActivity"
+            android:name=".ui.evaluation.EvaluateActivity"
             android:label="@string/title_activity_re_evaluation"
-            android:parentActivityName=".ui.evaluation.TestPelvicMuscleResultActivity" >
+            android:parentActivityName=".ui.evaluation.EvaluateResultActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.TestPelvicMuscleResultActivity" />
@@ -81,7 +81,7 @@
         <activity
             android:name=".ui.evaluation.ExerciseLevelSettingActivity"
             android:label="@string/title_activity_setting_exercise_level"
-            android:parentActivityName=".ui.evaluation.TestPelvicMuscleResultActivity" >
+            android:parentActivityName=".ui.evaluation.EvaluateResultActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.TestPelvicMuscleResultActivity" />
