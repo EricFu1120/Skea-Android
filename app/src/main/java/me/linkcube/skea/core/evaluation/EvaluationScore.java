@@ -27,6 +27,7 @@ public class EvaluationScore {
 
     /**
      * BMI = Weight / ( Height^2 )，国际单位制
+     *
      * @return
      */
     private int getMeanBMI() {

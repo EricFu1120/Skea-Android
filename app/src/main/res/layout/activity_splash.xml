@@ -1,29 +1,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/action_bar_light_gray"
     android:layout_height="match_parent"
+    android:background="@color/action_bar_light_gray"
     tools:context="me.linkcube.skea.ui.init.SplashActivity">
 
     <ImageView
         android:id="@+id/logo"
-        android:scaleType="centerInside"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:adjustViewBounds="true"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_height="150dp"
-        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
         android:src="@drawable/logo_skea" />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_height="150dp"
-        android:scaleType="centerInside"
+        android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo"
-        android:layout_below="@+id/logo" />
+        android:layout_marginTop="20dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/logo" />
 
 </RelativeLayout>

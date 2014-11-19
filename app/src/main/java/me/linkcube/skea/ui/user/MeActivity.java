@@ -1,16 +1,16 @@
 package me.linkcube.skea.ui.user;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.net.Uri;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.ui.evaluation.EvaluateResultActivity;
-import me.linkcube.skea.ui.setting.SkeaSettingActivity;
 import me.linkcube.skea.ui.setting.SettingActivity;
+import me.linkcube.skea.ui.setting.SkeaSettingActivity;
 
 public class MeActivity extends BaseActivity implements View.OnClickListener {
 

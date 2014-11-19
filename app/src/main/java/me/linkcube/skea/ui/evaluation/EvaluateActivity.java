@@ -11,8 +11,6 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import me.linkcube.skea.R;
-
-
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.persistence.Evaluation;
 
@@ -23,22 +21,76 @@ public class EvaluateActivity extends BaseActivity {
 //    private LevelRadioGroup urinary_incontinence_lrg;
 //    private LevelRadioGroup mental_status_lrg;
 
+    private static final int DATE_DIALOG_ID = 1;
+    private static final int SHOW_DATAPICK = 0;
+    /**
+     * 处理日期和时间控件的Handler
+     */
+    Handler dateandtimeHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case EvaluateActivity.SHOW_DATAPICK:
+                    showDialog(DATE_DIALOG_ID);
+                    break;
+
+            }
+        }
+
+    };
+    View.OnClickListener evaluationClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Message msg = new Message();
+            switch (v.getId()) {
+
+                case R.id.birthday_tv:
+                    //todo
+                    msg.what = EvaluateActivity.SHOW_DATAPICK;
+                    EvaluateActivity.this.dateandtimeHandler.sendMessage(msg);
+                    break;
+                case R.id.height_tv:
+
+                    break;
+                case R.id.weight_tv:
+
+                    break;
+                case R.id.submit_bt:
+                    //todo
+                    getResult();
+
+                    break;
+                default:
+
+            }
+
+        }
+    };
     private TextView birthday_tv;
     private TextView height_tv;
     private TextView weight_tv;
-
-
     private Button submit_bt;
-
     private Evaluation mEvaluationBean;
+    private int mYear = 1981;
+    private int mMonth = 0;
+    private int mDay = 1;
+    /**
+     * 日期控件的事件
+     */
+    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
-    private static final int DATE_DIALOG_ID = 1;
-    private static final int SHOW_DATAPICK = 0;
-    private int mYear=1981;
-    private int mMonth=0;
-    private int mDay=1;
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+            mYear = year;
+            mMonth = monthOfYear;
+            mDay = dayOfMonth;
+            updateDateDisplay();
 
-
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +154,7 @@ public class EvaluateActivity extends BaseActivity {
 //        });
 
     }
+
     /**
      * 更新日期显示
      */
@@ -110,25 +163,6 @@ public class EvaluateActivity extends BaseActivity {
                 .append((mMonth + 1) < 10 ? "0" + (mMonth + 1) : (mMonth + 1))
                 .append("-").append((mDay < 10) ? "0" + mDay : mDay));
     }
-
-
-    /**
-     * 日期控件的事件
-     */
-    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            // TODO Auto-generated method stub
-            mYear = year;
-            mMonth = monthOfYear;
-            mDay = dayOfMonth;
-            updateDateDisplay();
-
-        }
-    };
-
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -151,23 +185,6 @@ public class EvaluateActivity extends BaseActivity {
     }
 
     /**
-     * 处理日期和时间控件的Handler
-     */
-    Handler dateandtimeHandler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case EvaluateActivity.SHOW_DATAPICK:
-                    showDialog(DATE_DIALOG_ID);
-                    break;
-
-            }
-        }
-
-    };
-
-    /**
      * 得到测试数据 并进行评诂
      */
     private void getResult() {
@@ -175,40 +192,10 @@ public class EvaluateActivity extends BaseActivity {
 
     }
 
-    View.OnClickListener evaluationClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Message msg=new Message();
-            switch (v.getId()) {
-
-                case R.id.birthday_tv:
-                    //todo
-                    msg.what = EvaluateActivity.SHOW_DATAPICK;
-                    EvaluateActivity.this.dateandtimeHandler.sendMessage(msg);
-                    break;
-                case R.id.height_tv:
-
-                    break;
-                case R.id.weight_tv:
-
-                    break;
-                case R.id.submit_bt:
-                    //todo
-                    getResult();
-
-                    break;
-                default:
-
-            }
-
-        }
-    };
-
     @Override
     public int getLayoutResourceId() {
         return R.layout.activity_evaluate;
     }
 
-    
 
 }

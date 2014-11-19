@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="vertical"
         android:checkedButton="@+id/level4_rb"
+        android:orientation="vertical"
         tools:context="me.linkcube.skea.ui.evaluation.ExerciseLevelSettingActivity">
 
         <RadioButton

@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:text="Reproductive History"
         android:textColor="@color/text_dark_gray"
-        android:textSize="20dp"
-        android:text="Reproductive History" />
+        android:textSize="20dp" />
 
     <RadioGroup
         android:id="@+id/radio_group"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginLeft="18dp"
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/no_rb"
-            android:checked="true"
-            android:button="@null"
-            android:background="@drawable/selector_radio_button_left"
             android:layout_width="@dimen/radio_button_size"
-            android:layout_height="@dimen/radio_button_size" />
+            android:layout_height="@dimen/radio_button_size"
+            android:background="@drawable/selector_radio_button_left"
+            android:button="@null"
+            android:checked="true" />
 
         <View
-            android:background="@drawable/radio_button_line"
             android:layout_width="0dp"
+            android:layout_height="24dp"
             android:layout_weight="1"
-            android:layout_height="24dp" />
+            android:background="@drawable/radio_button_line" />
 
 
         <RadioButton
             android:id="@+id/yes_rb"
-            android:button="@null"
-            android:background="@drawable/selector_radio_button_right"
             android:layout_width="@dimen/radio_button_size"
-            android:layout_height="@dimen/radio_button_size" />
+            android:layout_height="@dimen/radio_button_size"
+            android:background="@drawable/selector_radio_button_right"
+            android:button="@null" />
 
     </RadioGroup>
 
     <LinearLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical">
 
         <TextView
-            android:textSize="@dimen/radio_button_text_size"
-            android:gravity="center_horizontal"
             android:id="@+id/no_tv"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="No"
             android:textColor="@color/text_light_gray"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/radio_button_text_size" />
 
         <View
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="1dp" />
+            android:layout_height="1dp"
+            android:layout_weight="1" />
 
 
         <TextView
-            android:textSize="@dimen/radio_button_text_size"
-            android:gravity="center_horizontal"
             android:id="@+id/yes_tv"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="yes"
             android:textColor="@color/text_light_gray"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/radio_button_text_size" />
 
     </LinearLayout>
 
@@ -84,12 +84,12 @@
         android:id="@+id/introduction_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/icon_bookmark"
         android:drawablePadding="10dp"
         android:gravity="top"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginLeft="18dp"
         android:text="Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction"
         android:textColor="@color/text_light_blue" />
 

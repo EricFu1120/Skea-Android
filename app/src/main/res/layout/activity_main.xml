@@ -4,89 +4,89 @@
     tools:context="me.linkcube.skea.ui.MainActivity">
 
     <TextView
+        android:id="@+id/lastResultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Last Result: 83%"
-        android:id="@+id/lastResultTextView"
-        android:textSize="28dp"
-        android:layout_marginTop="5dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/text_light_blue" />
+        android:layout_marginTop="5dp"
+        android:text="Last Result: 83%"
+        android:textColor="@color/text_light_blue"
+        android:textSize="28dp" />
 
     <TextView
+        android:id="@+id/levelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Level 1"
-        android:id="@+id/levelTextView"
-        android:textColor="@color/text_light_blue"
         android:layout_below="@+id/lastResultTextView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Level 1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_light_blue" />
 
     <ImageView
-        android:adjustViewBounds="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/levelTextView"
         android:layout_above="@+id/container"
+        android:layout_below="@+id/levelTextView"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/btn_start_shadow" />
 
     <ImageView
         android:id="@+id/startButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/levelTextView"
         android:layout_above="@+id/container"
+        android:layout_below="@+id/levelTextView"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/btn_start" />
 
 
     <LinearLayout
         android:id="@+id/container"
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_weight="1"
+            android:id="@+id/infoTextView"
             android:layout_width="0dp"
-            android:gravity="center"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Info"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_info"
-            android:drawablePadding="5dp"
-            android:id="@+id/infoTextView" />
+            android:gravity="center"
+            android:text="Info"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:layout_weight="1"
-            android:gravity="center"
+            android:id="@+id/recordsTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Record"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_records"
-            android:drawablePadding="5dp"
-            android:id="@+id/recordsTextView" />
+            android:gravity="center"
+            android:text="Record"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:layout_weight="1"
+            android:id="@+id/meTextView"
             android:layout_width="0dp"
-            android:gravity="center"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Me"
-            android:drawableTop="@drawable/icon_me"
+            android:layout_weight="1"
             android:drawablePadding="5dp"
-            android:id="@+id/meTextView" />
+            android:drawableTop="@drawable/icon_me"
+            android:gravity="center"
+            android:text="Me"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
 </RelativeLayout>

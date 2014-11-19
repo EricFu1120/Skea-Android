@@ -9,14 +9,14 @@ public class UserManager {
 
     private boolean login;
 
+    private UserManager() {
+
+    }
+
     public static UserManager getInstance() {
         if (instance == null)
             instance = new UserManager();
         return instance;
-    }
-
-    private UserManager() {
-
     }
 
     public boolean isLogin() {

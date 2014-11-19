@@ -13,8 +13,24 @@ import me.linkcube.skea.base.ui.BaseActivity;
 public class EvaluateResultActivity extends BaseActivity {
     public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.test.EvaluateResultActivity.Exercise_level";
     private static final int SETTING_LEVEL_REQUEST_CODE = 1;
+    View.OnClickListener testPelvicViewClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.level:
+                    startSettingExerciseLevel();
+                    break;
 
+                case R.id.reevaluate:
 
+                    reEvaluateButtonClick();
+                    break;
+
+                default:
+
+            }
+        }
+    };
     //声明控件
     private TextView exerciseLevel;
     private Button reevaluate;
@@ -42,25 +58,6 @@ public class EvaluateResultActivity extends BaseActivity {
         exerciseLevel.setOnClickListener(testPelvicViewClickListener);
         reevaluate.setOnClickListener(testPelvicViewClickListener);
     }
-
-    View.OnClickListener testPelvicViewClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.level:
-                    startSettingExerciseLevel();
-                    break;
-
-                case R.id.reevaluate:
-
-                    reEvaluateButtonClick();
-                    break;
-
-                default:
-
-            }
-        }
-    };
 
     /**
      * 启动设置训练强度

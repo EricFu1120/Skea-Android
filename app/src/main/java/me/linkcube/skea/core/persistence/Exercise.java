@@ -10,5 +10,4 @@ import com.orm.dsl.Table;
 public class Exercise {
 
 
-
 }

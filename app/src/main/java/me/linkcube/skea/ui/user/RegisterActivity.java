@@ -42,7 +42,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.clause_textView:
-                SimpleDialogFragment.createBuilder(this,getSupportFragmentManager()).setTitle("用户协议").setMessage("ActionBar actionBar = getSupportActionBar();\n" +
+                SimpleDialogFragment.createBuilder(this, getSupportFragmentManager()).setTitle("用户协议").setMessage("ActionBar actionBar = getSupportActionBar();\n" +
                         "        actionBar.setDisplayHomeAsUpEnabled(true);\n" +
                         "        actionBar.setDisplayShowHomeEnabled(false);\n" +
                         "        actionBar.setDisplayUseLogoEnabled(false);\n" +

@@ -8,23 +8,12 @@ import java.util.List;
  */
 public class BarGenerator {
 
-    private int[] barArray;
-
-    private int barUnitNum;
-
-    private int barNum;
-
-    private int level = 1;
-
-    private List<Bar> bars;
-
     private static BarGenerator instance;
-
-    public static BarGenerator getInstance() {
-        if (instance == null)
-            instance = new BarGenerator();
-        return instance;
-    }
+    private int[] barArray;
+    private int barUnitNum;
+    private int barNum;
+    private int level = 1;
+    private List<Bar> bars;
 
     private BarGenerator() {
         //TODO 获取level值
@@ -32,6 +21,12 @@ public class BarGenerator {
         initBarArray();
         bars = new ArrayList<Bar>();
         create();
+    }
+
+    public static BarGenerator getInstance() {
+        if (instance == null)
+            instance = new BarGenerator();
+        return instance;
     }
 
     private void create() {

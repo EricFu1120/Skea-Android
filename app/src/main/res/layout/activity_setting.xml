@@ -6,23 +6,23 @@
     <TextView
         android:id="@+id/language"
         style="@style/Preference.Item"
-        android:text="Language"
-        android:drawableRight="@drawable/menu_action_right" />
+        android:drawableRight="@drawable/menu_action_right"
+        android:text="Language" />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:layout_height="wrap_content">
+        android:background="@color/white"
+        android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/update"
             style="@style/Preference.Item"
-            android:text="Update"
-            android:drawableRight="@drawable/menu_action_right" />
+            android:drawableRight="@drawable/menu_action_right"
+            android:text="Update" />
 
 
         <View style="@style/DividerWithMargin" />
@@ -30,16 +30,16 @@
         <TextView
             android:id="@+id/feedback"
             style="@style/Preference.Item"
-            android:text="Feedback"
-            android:drawableRight="@drawable/menu_action_right" />
+            android:drawableRight="@drawable/menu_action_right"
+            android:text="Feedback" />
 
         <View style="@style/DividerWithMargin" />
 
         <TextView
             android:id="@+id/aboutus"
             style="@style/Preference.Item"
-            android:text="About us"
-            android:drawableRight="@drawable/menu_action_right" />
+            android:drawableRight="@drawable/menu_action_right"
+            android:text="About us" />
 
 
     </LinearLayout>

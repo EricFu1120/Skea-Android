@@ -1,20 +1,5 @@
 package me.linkcube.skea.ui.bluetooth;
 
-import java.util.List;
-
-import com.ervinwang.bthelper.BTHelper;
-import com.ervinwang.bthelper.BTManager;
-import com.ervinwang.bthelper.core.DeviceBroadcastReceiver;
-import com.ervinwang.bthelper.core.DeviceConnectionManager;
-import com.ervinwang.bthelper.core.OnBTDiscoveryListener;
-
-
-import custom.android.app.CustomFragmentActivity;
-import custom.android.app.dialog.ProgressDialogFragment;
-import custom.android.util.PreferenceUtils;
-import custom.android.util.Timber;
-import custom.android.widget.Toaster;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.AsyncTask;
@@ -23,12 +8,26 @@ import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
-import android.widget.ToggleButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ToggleButton;
 
+import com.ervinwang.bthelper.BTHelper;
+import com.ervinwang.bthelper.BTManager;
+import com.ervinwang.bthelper.core.DeviceBroadcastReceiver;
+import com.ervinwang.bthelper.core.DeviceConnectionManager;
+import com.ervinwang.bthelper.core.OnBTDiscoveryListener;
+
+import java.util.List;
+
+import custom.android.app.CustomFragmentActivity;
+import custom.android.app.dialog.ProgressDialogFragment;
+import custom.android.util.PreferenceUtils;
+import custom.android.util.Timber;
+import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 
-import static com.ervinwang.bthelper.Const.Device.*;
+import static com.ervinwang.bthelper.Const.Device.DEVICE_ADDRESS;
+import static com.ervinwang.bthelper.Const.Device.DEVICE_NAME;
 
 public class BTSettingActivity extends CustomFragmentActivity implements
         OnClickListener, OnDeviceItemClickListener, OnBTDiscoveryListener {
@@ -47,6 +46,19 @@ public class BTSettingActivity extends CustomFragmentActivity implements
     private DeviceBroadcastReceiver deviceDiscoveryReceiver;
 
     private DialogFragment progress;
+    private OnCheckedChangeListener switchListener = new OnCheckedChangeListener() {
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView,
+                                     boolean isChecked) {
+            BTHelper.setBluetoothEnabled(isChecked);
+            if (!isChecked) {
+//				discoverDevicesBtn.setText(R.string.search_toy);
+            } else {
+                showBondedDevices();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,15 +125,15 @@ public class BTSettingActivity extends CustomFragmentActivity implements
         deviceAdapter.notifyDataSetChanged();
     }
 
+//	private void finishDiscoverBluetoothDevices() {
+//		discoverDevicesBtn.setText(R.string.search_toy);
+//	}
+
     private void startDiscoverBluetoothDevices() {
         BluetoothAdapter madapter = BluetoothAdapter.getDefaultAdapter();
         madapter.startDiscovery();
 //		discoverDevicesBtn.setText(R.string.searching);
     }
-
-//	private void finishDiscoverBluetoothDevices() {
-//		discoverDevicesBtn.setText(R.string.search_toy);
-//	}
 
     private void bondDevice(BluetoothDevice device, int position) {
         if (BTManager.getInstance().bondDevice(device)) {
@@ -139,20 +151,6 @@ public class BTSettingActivity extends CustomFragmentActivity implements
                     getResources().getString(R.string.toast_toy_unbonded));
         }
     }
-
-    private OnCheckedChangeListener switchListener = new OnCheckedChangeListener() {
-
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView,
-                                     boolean isChecked) {
-            BTHelper.setBluetoothEnabled(isChecked);
-            if (!isChecked) {
-//				discoverDevicesBtn.setText(R.string.search_toy);
-            } else {
-                showBondedDevices();
-            }
-        }
-    };
 
     @Override
     public void onClick(View v) {
@@ -269,6 +267,38 @@ public class BTSettingActivity extends CustomFragmentActivity implements
         new ConnectDeviceAsyncTask(device, position).execute();
     }
 
+    private List<BluetoothDevice> filterDevices(BluetoothDevice device) {
+        for (int i = 0; i < deviceList.size(); i++) {
+            if (deviceList.get(i).getAddress().equals(device.getAddress())) {
+                return deviceList;
+            }
+        }
+        deviceList.add(device);
+        return deviceList;
+    }
+
+    @Override
+    public void onBTStateBonded() {
+        Timber.d("onReceive:bluetooth bond state changed -> " + "BONDED");
+        Timber.d("玩具配对成功");
+        progress.dismiss();
+        Toaster.showShort(this,
+                getResources().getString(R.string.toast_bond_toy_success));
+        deviceAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBTStateBondNone() {
+        Timber.d("onReceive:bluetooth bond state changed -> " + "BOND_NONE");
+        deviceAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBTStateBonding() {
+        Timber.d("onReceive:bluetooth bond state changed -> " + "BONDING");
+        Timber.d("正在绑定玩具");
+    }
+
     private class ConnectDeviceAsyncTask extends
             AsyncTask<BluetoothDevice, Void, Boolean> {
 
@@ -317,38 +347,6 @@ public class BTSettingActivity extends CustomFragmentActivity implements
 
         }
 
-    }
-
-    private List<BluetoothDevice> filterDevices(BluetoothDevice device) {
-        for (int i = 0; i < deviceList.size(); i++) {
-            if (deviceList.get(i).getAddress().equals(device.getAddress())) {
-                return deviceList;
-            }
-        }
-        deviceList.add(device);
-        return deviceList;
-    }
-
-    @Override
-    public void onBTStateBonded() {
-        Timber.d("onReceive:bluetooth bond state changed -> " + "BONDED");
-        Timber.d("玩具配对成功");
-        progress.dismiss();
-        Toaster.showShort(this,
-                getResources().getString(R.string.toast_bond_toy_success));
-        deviceAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onBTStateBondNone() {
-        Timber.d("onReceive:bluetooth bond state changed -> " + "BOND_NONE");
-        deviceAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onBTStateBonding() {
-        Timber.d("onReceive:bluetooth bond state changed -> " + "BONDING");
-        Timber.d("正在绑定玩具");
     }
 
 }

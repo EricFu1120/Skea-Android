@@ -18,11 +18,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:background="@color/white"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:background="@color/white"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:text="Please fill in the questionnaire in order that we can evaluation the health risk of your pelvic floor muscle "
                 android:textColor="@color/text_light_blue"
                 android:textSize="@dimen/TextSize.Large" />
@@ -42,9 +42,9 @@
 
             <RelativeLayout
                 android:id="@+id/birthday_layout"
-                android:background="@drawable/selector_preference_item"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_preference_item_height"
+                android:background="@drawable/selector_preference_item"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
@@ -54,8 +54,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:background="@color/transparent"
-                    android:textColor="@color/text_dark_gray"
                     android:text="Birthday"
+                    android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
                 <TextView
@@ -65,8 +65,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@color/transparent"
-                    android:textColor="@color/text_dark_gray"
                     android:text="1981-01-01"
+                    android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
             </RelativeLayout>
@@ -75,9 +75,9 @@
 
             <RelativeLayout
                 android:id="@+id/height_layout"
-                android:background="@drawable/selector_preference_item"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_preference_item_height"
+                android:background="@drawable/selector_preference_item"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
@@ -86,8 +86,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:textColor="@color/text_dark_gray"
                     android:text="Height"
+                    android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
                 <TextView
@@ -96,8 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:textColor="@color/text_dark_gray"
                     android:text="167CM"
+                    android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
             </RelativeLayout>
@@ -106,19 +106,19 @@
 
             <RelativeLayout
                 android:id="@+id/weight_layout"
-                android:background="@drawable/selector_preference_item"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_preference_item_height"
+                android:background="@drawable/selector_preference_item"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_dark_gray"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:text="Weight"
+                    android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
                 <TextView
@@ -127,8 +127,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:textColor="@color/text_dark_gray"
                     android:text="52Kg"
+                    android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
             </RelativeLayout>
@@ -149,88 +149,88 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp">
+                android:layout_marginRight="12dp"
+                android:orientation="vertical">
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
-                    app:radio_title="Menopausal Status"
-                    app:yes="(Pre)menopausal"
-                    app:no="Postmenopausal"
-                    android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:no="Postmenopausal"
+                    app:radio_title="Menopausal Status"
+                    app:yes="(Pre)menopausal" />
 
 
                 <me.linkcube.skea.view.LevelRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
-                    app:radio_title="Children"
+                    android:id="@+id/reproduct_history_lrg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     app:level1="0"
                     app:level2="1"
                     app:level3="2"
                     app:level4=">=3"
                     app:radio_introduction="Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction."
-                    android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/reproduct_history_lrg" />
+                    app:radio_title="Children" />
 
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:id="@+id/sex_activity_lrg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:no="no"
                     app:radio_title="Smoking"
-                    app:yes="yes"
-                    app:no="no"
-                    android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sex_activity_lrg" />
+                    app:yes="yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:no="no"
+                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
                     app:radio_title="Pelvic Floor Surgery"
-                    app:yes="yes"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    app:yes="yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:id="@+id/urinary_incontinence_lrg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:no="no"
+                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
                     app:radio_title="Current Heavy Work"
-                    app:yes="yes"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/urinary_incontinence_lrg" />
+                    app:yes="yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:no="no"
+                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
                     app:radio_title="Pelvic Floor Problems (POP or UI) during Gestation"
-                    app:yes="yes"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    app:yes="yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
-                    app:radio_title="Mother with POP or UI"
-                    app:yes="yes"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-
-                <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
-                    app:radio_title="Seeing/Feeling Bulge"
-                    app:yes="yes"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/mental_status_lrg" />
+                    android:layout_marginTop="16dp"
+                    app:no="no"
+                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
+                    app:radio_title="Mother with POP or UI"
+                    app:yes="yes" />
+
+
+                <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:id="@+id/mental_status_lrg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:no="no"
+                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
+                    app:radio_title="Seeing/Feeling Bulge"
+                    app:yes="yes" />
 
 
             </LinearLayout>

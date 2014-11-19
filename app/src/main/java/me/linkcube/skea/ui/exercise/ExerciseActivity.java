@@ -1,7 +1,6 @@
 package me.linkcube.skea.ui.exercise;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,12 +10,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import org.w3c.dom.Text;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
-import custom.android.util.Timber;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.excercise.Bar;
@@ -26,22 +22,15 @@ import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
 
 public class ExerciseActivity extends BaseActivity implements ExerciseController.ExerciseScoreCallback {
 
+    public boolean scroll = true;
     private LinearLayout frontGroup;
-
     private LinearLayout behindGroup;
-
     private ScrollView frontScrollView;
-
     private ScrollView behindScrollView;
-
     private ExerciseController controller;
-
     private ToggleButton shrinkButton;
-
     private TextView leftTimeTextView;
-
     private TextView scoreTextView;
-
     private boolean shrink;
 
     @Override
@@ -77,14 +66,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         return R.layout.activity_exercise;
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.exercise, menu);
         return true;
     }
-
-    public boolean scroll = true;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -5,17 +5,17 @@
 
     <RadioGroup
         android:layout_width="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <RadioButton
             android:id="@+id/english"
             style="@style/Preference.Item"
-            android:checked="true"
             android:button="@null"
-            android:text="English"
-            android:drawableRight="@drawable/selector_checkbox" />
+            android:checked="true"
+            android:drawableRight="@drawable/selector_checkbox"
+            android:text="English" />
 
         <View style="@style/DividerWithMargin" />
 
@@ -23,8 +23,8 @@
             android:id="@+id/chinese"
             style="@style/Preference.Item"
             android:button="@null"
-            android:text="简体中文"
-            android:drawableRight="@drawable/selector_checkbox" />
+            android:drawableRight="@drawable/selector_checkbox"
+            android:text="简体中文" />
 
     </RadioGroup>
 

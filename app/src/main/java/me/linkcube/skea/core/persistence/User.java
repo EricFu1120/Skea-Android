@@ -1,6 +1,5 @@
 package me.linkcube.skea.core.persistence;
 
-import com.orm.SugarRecord;
 import com.orm.dsl.Table;
 
 import java.util.Date;

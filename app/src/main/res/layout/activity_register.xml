@@ -2,56 +2,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/action_bar_light_gray"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/action_bar_light_gray"
     tools:context=".LoginActivity">
 
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:scaleType="centerInside"
-        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
         android:padding="15dp"
-        android:src="@drawable/logo_skea"
-        android:layout_gravity="center_horizontal" />
+        android:scaleType="centerInside"
+        android:src="@drawable/logo_skea" />
 
     <View
         style="@style/DividerWithMargin"
-        android:background="@color/action_bar_dark_gray"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        android:background="@color/action_bar_dark_gray" />
 
     <AutoCompleteTextView
         android:id="@+id/email"
-        android:background="@null"
-        android:paddingLeft="30dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_preference_item_height"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:background="@null"
         android:drawableLeft="@drawable/icon_email"
         android:drawablePadding="10dp"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:maxLines="1"
+        android:paddingLeft="30dp"
         android:singleLine="true" />
 
     <View
         style="@style/DividerWithMargin"
-        android:background="@color/action_bar_dark_gray"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        android:background="@color/action_bar_dark_gray" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_preference_item_height"
-        android:paddingLeft="30dp"
         android:layout_marginLeft="10dp"
-        android:background="@null"
         android:layout_marginRight="10dp"
+        android:background="@null"
         android:drawableLeft="@drawable/icon_password"
         android:drawablePadding="10dp"
         android:hint="@string/prompt_password"
@@ -60,22 +59,22 @@
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
         android:maxLines="1"
+        android:paddingLeft="30dp"
         android:singleLine="true" />
 
     <View
         style="@style/DividerWithMargin"
-        android:background="@color/action_bar_dark_gray"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        android:background="@color/action_bar_dark_gray" />
 
     <EditText
         android:id="@+id/confirm_password"
         android:layout_width="match_parent"
-        android:background="@null"
         android:layout_height="@dimen/activity_preference_item_height"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingLeft="30dp"
+        android:background="@null"
         android:drawableLeft="@drawable/icon_password"
         android:drawablePadding="10dp"
         android:hint="@string/prompt_password"
@@ -84,46 +83,47 @@
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
         android:maxLines="1"
+        android:paddingLeft="30dp"
         android:singleLine="true" />
 
     <View
         style="@style/DividerWithMargin"
-        android:background="@color/action_bar_dark_gray"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        android:background="@color/action_bar_dark_gray" />
 
     <LinearLayout
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/clause_checkbox"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="24dp"
             android:background="@drawable/selector_checkbox"
             android:button="@null"
-            android:checked="true"
-            android:layout_marginLeft="24dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
+            android:checked="true" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:autoLink="none"
-            android:text="同意"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="同意" />
 
         <TextView
-            android:autoLink="none"
-            android:text="@string/clause"
-            android:textColor="@color/text_light_blue"
             android:id="@+id/clause_textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:autoLink="none"
+            android:text="@string/clause"
+            android:textColor="@color/text_light_blue" />
 
 
     </LinearLayout>
@@ -147,10 +147,10 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_gravity="bottom"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_preference_item_height"
+        android:layout_gravity="bottom"
         android:layout_margin="10dp"
         android:background="@drawable/btn_gray"
         android:text="@string/login"

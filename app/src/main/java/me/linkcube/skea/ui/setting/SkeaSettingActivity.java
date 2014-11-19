@@ -26,45 +26,6 @@ public class SkeaSettingActivity extends BaseActivity {
 
     private SharedPreferences mSharedPreferences = null;
     private SharedPreferences.Editor mEditor = null;
-
-    //声明控件
-    private SeekBar feedback_sensitive_sb;
-    private SeekBar press_sensitive_sb;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initViews();
-    }
-
-    @Override
-    public int getLayoutResourceId() {
-        return R.layout.activity_skea_setting;
-    }
-
-    /**
-     * 初始化，并注册事件
-     */
-    private void initViews() {
-
-
-        //得到相关控件
-        feedback_sensitive_sb = (SeekBar) findViewById(R.id.feedback_sensitive_sb);
-        press_sensitive_sb = (SeekBar) findViewById(R.id.press_sensitive_sb);
-        //得到之前存储值，并设置SeekBar
-        mSharedPreferences = getSharedPreferences(SKEA_CONFIG_XML_FILE, Activity.MODE_PRIVATE);
-        if (mSharedPreferences != null) {//不是第一次运行
-
-            feedback_sensitive_sb.setProgress(mSharedPreferences.getInt(SKEA_CONFIG_FEEDBACK_KEY, 50));
-            press_sensitive_sb.setProgress(mSharedPreferences.getInt(SKEA_CONFIG_PRESSURE_KEY, 50));
-
-        }
-
-        //注册事件
-        feedback_sensitive_sb.setOnSeekBarChangeListener(onSkeaConfigSeekBarChangeListener);
-        press_sensitive_sb.setOnSeekBarChangeListener(onSkeaConfigSeekBarChangeListener);
-    }
-
     SeekBar.OnSeekBarChangeListener onSkeaConfigSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -107,7 +68,43 @@ public class SkeaSettingActivity extends BaseActivity {
 
         }
     };
+    //声明控件
+    private SeekBar feedback_sensitive_sb;
+    private SeekBar press_sensitive_sb;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initViews();
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_skea_setting;
+    }
+
+    /**
+     * 初始化，并注册事件
+     */
+    private void initViews() {
+
+
+        //得到相关控件
+        feedback_sensitive_sb = (SeekBar) findViewById(R.id.feedback_sensitive_sb);
+        press_sensitive_sb = (SeekBar) findViewById(R.id.press_sensitive_sb);
+        //得到之前存储值，并设置SeekBar
+        mSharedPreferences = getSharedPreferences(SKEA_CONFIG_XML_FILE, Activity.MODE_PRIVATE);
+        if (mSharedPreferences != null) {//不是第一次运行
+
+            feedback_sensitive_sb.setProgress(mSharedPreferences.getInt(SKEA_CONFIG_FEEDBACK_KEY, 50));
+            press_sensitive_sb.setProgress(mSharedPreferences.getInt(SKEA_CONFIG_PRESSURE_KEY, 50));
+
+        }
+
+        //注册事件
+        feedback_sensitive_sb.setOnSeekBarChangeListener(onSkeaConfigSeekBarChangeListener);
+        press_sensitive_sb.setOnSeekBarChangeListener(onSkeaConfigSeekBarChangeListener);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
