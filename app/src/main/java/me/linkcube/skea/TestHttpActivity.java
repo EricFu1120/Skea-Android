@@ -9,7 +9,7 @@ import custom.android.app.CustomActionBarActivity;
 import me.linkcube.skea.ui.evaluation.EvaluateActivity;
 
 
-public class TestActivity extends CustomActionBarActivity implements View.OnClickListener {
+public class TestHttpActivity extends CustomActionBarActivity implements View.OnClickListener {
 
     private static final int TEST_REQUEST_CODE = 0x1;
 
@@ -24,7 +24,7 @@ public class TestActivity extends CustomActionBarActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_test_http);
         init();
         findViewById(R.id.add).setOnClickListener(this);
         findViewById(R.id.delete).setOnClickListener(this);
