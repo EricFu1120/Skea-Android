@@ -10,7 +10,7 @@ import com.loopj.android.http.RequestParams;
 public class SkeaRequestClient {
 
 
-    private final static String BASE_URL = "";
+    private final static String BASE_URL = "http://112.124.22.252:8002/";
 
     private static String getAbsoluteUrl(String relativeUrl) {
         return BASE_URL + relativeUrl;
@@ -27,13 +27,21 @@ public class SkeaRequestClient {
     }
 
     public static class URL {
+
         static String Register = "register";
+
         static String Login = "login";
-        static String EditNickname = "editNickname";
+
+        static String editNickname = "editNickname";
+
         static String GetInfo = "getInfo";
+
         static String SaveQuestionResult = "saveQuestionResult";
+
         static String GetLastQuestionResult = "getLastQuestionResult";
+
         static String SaveRecord = "saveRecord";
+
         static String GetRecords = "getRecords";
     }
 
