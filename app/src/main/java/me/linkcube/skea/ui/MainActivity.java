@@ -9,22 +9,20 @@ import android.view.View;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.core.persistence.UserManager;
+import me.linkcube.skea.core.UserManager;
 import me.linkcube.skea.ui.bluetooth.BTSettingActivity;
+import me.linkcube.skea.ui.evaluation.RecordActivity;
 import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
 import me.linkcube.skea.ui.user.LoginActivity;
 import me.linkcube.skea.ui.user.MeActivity;
-import me.linkcube.skea.ui.test.RecordActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
-    private boolean login;
-
     public static final int LOGIN_REQUEST_CODE = 1;
-
     public static final int LOGOUT_REQUEST_CODE = 2;
+    private boolean login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

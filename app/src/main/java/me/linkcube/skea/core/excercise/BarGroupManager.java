@@ -18,26 +18,21 @@ import me.linkcube.skea.view.BarViewWrapper;
  */
 public class BarGroupManager {
 
+    private static BarGroupManager instance;
     private List<Bar> list;
-
     private int frontBlankHeight;
-
     private int behindBlankHeight;
-
     private ScrollView frontScrollView;
-
     private ScrollView behindScrollView;
 
-    private static BarGroupManager instance;
+    private BarGroupManager() {
+        //TODO 获取level
+    }
 
     public static BarGroupManager getInstance() {
         if (instance == null)
             instance = new BarGroupManager();
         return instance;
-    }
-
-    private BarGroupManager() {
-        //TODO 获取level
     }
 
     public int getBarGroupHeight(Context context, boolean front) {

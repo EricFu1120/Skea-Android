@@ -1,7 +1,6 @@
 package me.linkcube.skea.ui.exercise;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,36 +10,27 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import org.w3c.dom.Text;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
-import custom.android.util.Timber;
 import me.linkcube.skea.R;
+import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.excercise.Bar;
 import me.linkcube.skea.core.excercise.ExerciseController;
 import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
 
 
-public class ExerciseActivity extends ActionBarActivity implements ExerciseController.ExerciseScoreCallback {
+public class ExerciseActivity extends BaseActivity implements ExerciseController.ExerciseScoreCallback {
 
+    public boolean scroll = true;
     private LinearLayout frontGroup;
-
     private LinearLayout behindGroup;
-
     private ScrollView frontScrollView;
-
     private ScrollView behindScrollView;
-
     private ExerciseController controller;
-
     private ToggleButton shrinkButton;
-
     private TextView leftTimeTextView;
-
     private TextView scoreTextView;
-
     private boolean shrink;
 
     @Override
@@ -71,14 +61,16 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
         }, 1000, 15);
     }
 
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_exercise;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.exercise, menu);
         return true;
     }
-
-    public boolean scroll = true;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -101,7 +93,7 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
 
     @Override
     public void startScore(Bar bar) {
-        Log.d("startScore","bar type = "+bar.getType());
+        Log.d("startScore", "bar type = " + bar.getType());
         ExerciseScoreCounter.getInstance().startScore(bar);
     }
 
@@ -116,7 +108,7 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                leftTimeTextView.setText(leftTime+"");
+                leftTimeTextView.setText(leftTime + "");
             }
         });
 
@@ -126,7 +118,7 @@ public class ExerciseActivity extends ActionBarActivity implements ExerciseContr
     @Override
     public void stopScore() {
         final int score = ExerciseScoreCounter.getInstance().stopScore();
-        Log.d("stopScore ",""+score);
+        Log.d("stopScore ", "" + score);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

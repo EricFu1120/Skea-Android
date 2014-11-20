@@ -29,7 +29,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.update:
                 break;
-
             case R.id.feedback:
                 break;
             case R.id.aboutus:

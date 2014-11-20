@@ -5,8 +5,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import custom.android.util.Timber;
-
 /**
  * Created by Ervin on 14/11/1.
  */
@@ -24,14 +22,14 @@ public class ExerciseScoreCounter {
 
     private int totalScore;
 
+    private ExerciseScoreCounter() {
+        segments = new ArrayList<Segment>();
+    }
+
     public static ExerciseScoreCounter getInstance() {
         if (instance == null)
             instance = new ExerciseScoreCounter();
         return instance;
-    }
-
-    private ExerciseScoreCounter() {
-        segments = new ArrayList<Segment>();
     }
 
     public void startScore(Bar bar) {

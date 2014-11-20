@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/main_dark_grey</item>
+        <item name="colorPrimary">@color/action_bar_dark_gray</item>
         <item name="android:actionBarStyle">@style/AppActionBar</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
@@ -12,12 +12,12 @@
     </style>
 
     <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/AppActionBar.Light</item>
-        <item name="colorPrimary">@color/main_bg</item>
+        <item name="colorPrimary">@color/action_bar_light_gray</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
@@ -26,7 +26,7 @@
     </style>
 
     <style name="ActionBarTitle.Light" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

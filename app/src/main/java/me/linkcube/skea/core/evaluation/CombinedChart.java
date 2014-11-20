@@ -1,6 +1,8 @@
-package me.linkcube.skea.core.test;
+package me.linkcube.skea.core.evaluation;
 
-import java.util.List;
+import android.content.Context;
+import android.graphics.Color;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart;
@@ -11,8 +13,7 @@ import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import android.content.Context;
-import android.graphics.Color;
+import java.util.List;
 
 import me.linkcube.skea.R;
 
@@ -30,7 +31,7 @@ public class CombinedChart extends AbstractDemoChart {
 
         XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
         //边缘空白背景
-        renderer.setMarginsColor(context.getResources().getColor(R.color.main_white));
+        renderer.setMarginsColor(context.getResources().getColor(R.color.white));
 
         int length = renderer.getSeriesRendererCount();
         for (int i = 0; i < length; i++) {
@@ -51,7 +52,7 @@ public class CombinedChart extends AbstractDemoChart {
 
         waterRenderer.setColor(Color.argb(250, 0, 210, 250));
         //柱状图上是否显示数字
-       // waterRenderer.setDisplayChartValues(true);
+        // waterRenderer.setDisplayChartValues(true);
         waterRenderer.setChartValuesTextSize(20);
 
         XYMultipleSeriesDataset dataset = buildDataset(titles, x, values);
@@ -99,7 +100,7 @@ public class CombinedChart extends AbstractDemoChart {
                 PointStyle.SQUARE, PointStyle.CIRCLE};
         XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
         //边缘空白背景
-        renderer.setMarginsColor(context.getResources().getColor(R.color.main_white));
+        renderer.setMarginsColor(context.getResources().getColor(R.color.white));
 
         setChartSettings(renderer, "Scatter chart", "日期", "数据", 0, 15, 0, 30,
                 Color.GRAY, Color.LTGRAY);

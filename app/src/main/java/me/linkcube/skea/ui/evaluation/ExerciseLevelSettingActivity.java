@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.test;
+package me.linkcube.skea.ui.evaluation;
 
 
 import android.app.Activity;
@@ -133,7 +133,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     private void returnMessage() {
         //返回用户设置的训练强度
         Intent resultIntent = new Intent();
-        resultIntent.putExtra(TestPelvicMuscleResultActivity.EXERCISE_LEVEL, exerciseLevelIndex);
+        resultIntent.putExtra(EvaluateResultActivity.EXERCISE_LEVEL, exerciseLevelIndex);
         Log.i("CXC", "---level:" + exerciseLevelIndex);
         setResult(RESULT_OK, resultIntent);
         this.finish();

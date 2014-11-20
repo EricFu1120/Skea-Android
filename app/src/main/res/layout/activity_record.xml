@@ -1,16 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_bg"
-    tools:context="me.linkcube.skea.ui.test.RecordActivity"
-    android:orientation="vertical">
+    style="@style/Group"
+    android:paddingTop="0dp"
+    tools:context="me.linkcube.skea.ui.evaluation.RecordActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/main_dark"
+        android:background="@color/bg_dark_gray"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -31,7 +29,7 @@
                android:layout_alignParentLeft="true"
                android:layout_alignParentTop="true"
                android:text="Today(Level 4)"
-               android:textColor="@color/main_white"
+               android:textColor="@color/text_white"
                android:textSize="20sp" />
 
            <TextView
@@ -42,7 +40,7 @@
                android:layout_below="@+id/level_tv"
                android:layout_marginTop="10dp"
                android:text="Good !"
-               android:textColor="@color/main_white"
+               android:textColor="@color/text_white"
                android:textSize="20sp" />
 
            <TextView
@@ -53,7 +51,7 @@
                android:layout_below="@+id/evaluate_tv"
                android:layout_marginTop="10dp"
                android:text="Explosive force: Great"
-               android:textColor="@color/main_white"
+               android:textColor="@color/text_white"
                android:textSize="20sp" />
 
            <TextView
@@ -64,9 +62,10 @@
                android:layout_below="@+id/explosive_force_tv"
                android:layout_marginTop="10dp"
                android:text="Persistance: Fair"
-               android:textColor="@color/main_white"
+               android:textColor="@color/text_white"
                android:textSize="20sp" />
            </RelativeLayout>
+
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -101,13 +100,10 @@
                 android:layout_below="@id/img_layout"
                 android:layout_centerHorizontal="true"
                 android:text="Correct Rate"
-                android:textColor="@color/main_white"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
         </RelativeLayout>
-
-
-
     </LinearLayout>
 
 
@@ -121,9 +117,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:background="@color/main_white"
+            android:background="@color/white"
+            android:orientation="horizontal"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin">
 

@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/bg_exercise"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_exercise"
     tools:context=".MainActivity">
 
 
@@ -13,19 +13,19 @@
         android:background="@android:color/transparent">
 
         <ScrollView
-            android:layout_width="70dp"
-            android:scrollbars="none"
-            android:layout_centerHorizontal="true"
-            android:layout_height="match_parent"
             android:id="@+id/behind_scrollView"
-            android:layout_alignParentTop="true">
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:scrollbars="none">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/behind_group"
                 android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:minHeight="70dp"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
 
             </LinearLayout>
 
@@ -43,12 +43,12 @@
         android:layout_marginBottom="65dp">
 
         <RelativeLayout
-            android:layout_marginRight="16dp"
+            android:id="@+id/time_left_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp"
-            android:id="@+id/time_left_container">
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="30dp">
 
             <ImageView
                 android:layout_width="96dp"
@@ -58,27 +58,27 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/time_left_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time Left"
-                    android:textSize="18dp"
                     android:textColor="@color/white"
-                    android:id="@+id/time_left_title" />
+                    android:textSize="18dp" />
 
                 <TextView
+                    android:id="@+id/time_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/time_left_title"
+                    android:textColor="@color/text_light_blue"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/main_blue"
-                    android:id="@+id/time_left" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -86,12 +86,12 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginRight="16dp"
-            android:layout_below="@+id/time_left_container"
+            android:id="@+id/relativeLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:id="@+id/relativeLayout">
+            android:layout_below="@+id/time_left_container"
+            android:layout_marginRight="16dp">
 
             <ImageView
                 android:layout_width="96dp"
@@ -101,27 +101,27 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/score_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Score"
-                    android:textSize="18dp"
                     android:textColor="@color/white"
-                    android:id="@+id/score_title" />
+                    android:textSize="18dp" />
 
                 <TextView
+                    android:id="@+id/score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/score_title"
+                    android:textColor="@color/text_light_blue"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/main_blue"
-                    android:id="@+id/score" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -151,18 +151,18 @@
         android:layout_centerHorizontal="true" />
 
         <ScrollView
-            android:layout_width="70dp"
-            android:scrollbars="none"
-            android:layout_height="match_parent"
             android:id="@+id/scrollView"
-            android:layout_alignParentTop="true">
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:scrollbars="none">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/exercise_group"
                 android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:minHeight="70dp"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
 
 
             </LinearLayout>
@@ -171,26 +171,26 @@
         </ScrollView>
 
         <ToggleButton
+            android:id="@+id/shrink_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shrink"
-            android:textOn="shrink"
-            android:textOff="relax"
-            android:id="@+id/shrink_button"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:text="Shrink"
+            android:textOff="relax"
+            android:textOn="shrink" />
 
 
     </RelativeLayout>
 
     <ImageView
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:layout_width="match_parent"
-        android:src="@drawable/laser_active"
-        android:layout_height="30dp"
         android:id="@+id/laser"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/laser_active" />
 
 </RelativeLayout>

@@ -1,87 +1,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/main_bg"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    style="@style/Group"
     tools:context="me.linkcube.skea.ui.user.MeActivity">
 
     <TextView
         android:id="@+id/language"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:gravity="center_vertical|left"
-        android:textSize="20dp"
-        android:background="@android:color/white"
-        android:text="Language"
+        style="@style/Preference.Item"
         android:drawableRight="@drawable/menu_action_right"
-        android:drawablePadding="10dp"
-        android:maxLines="1"
-        android:singleLine="true" />
+        android:text="Language" />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:background="@android:color/white"
-        android:layout_marginTop="50dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@color/white"
+        android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/update"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_item_height"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:gravity="center_vertical|left"
-            android:textSize="20dp"
-            android:text="Update"
+            style="@style/Preference.Item"
             android:drawableRight="@drawable/menu_action_right"
-            android:drawablePadding="10dp"
-            android:maxLines="1"
-            android:singleLine="true" />
+            android:text="Update" />
 
 
-        <View
-            style="@style/SplitLine"
-            android:background="@color/main_bg" />
+        <View style="@style/DividerWithMargin" />
 
         <TextView
             android:id="@+id/feedback"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_item_height"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:gravity="center_vertical|left"
-            android:textSize="20dp"
-            android:text="Feedback"
+            style="@style/Preference.Item"
             android:drawableRight="@drawable/menu_action_right"
-            android:drawablePadding="10dp"
-            android:maxLines="1"
-            android:singleLine="true" />
+            android:text="Feedback" />
 
-        <View
-            style="@style/SplitLine"
-            android:background="@color/main_bg" />
+        <View style="@style/DividerWithMargin" />
 
         <TextView
             android:id="@+id/aboutus"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_item_height"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:gravity="center_vertical|left"
-            android:textSize="20dp"
-            android:text="About us"
+            style="@style/Preference.Item"
             android:drawableRight="@drawable/menu_action_right"
-            android:drawablePadding="10dp"
-            android:maxLines="1"
-            android:singleLine="true" />
+            android:text="About us" />
 
 
     </LinearLayout>

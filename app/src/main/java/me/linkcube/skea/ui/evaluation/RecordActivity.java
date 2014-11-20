@@ -1,19 +1,18 @@
-package me.linkcube.skea.ui.test;
+package me.linkcube.skea.ui.evaluation;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.text.Spanned;
-import android.text.style.RelativeSizeSpan;
-import android.graphics.Color;
-import android.text.style.ForegroundColorSpan;
-import android.widget.LinearLayout;
 import android.view.ViewGroup.LayoutParams;
-import android.util.Log;
-
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.achartengine.GraphicalView;
 import org.achartengine.model.XYSeries;
@@ -24,9 +23,11 @@ import java.util.List;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.core.test.CombinedChart;
+import me.linkcube.skea.core.evaluation.CombinedChart;
 
 public class RecordActivity extends BaseActivity {
+    //记数
+    int count = 0;
     //声明控件
     private TextView level_tv;
     private TextView evaluate_tv;
@@ -35,23 +36,15 @@ public class RecordActivity extends BaseActivity {
     private TextView score_tv;
     private TextView duration_tv;
     private TextView correct_rate_tv;
-
-
     private SpannableString mSpanableString;
-
     private GraphicalView mCombinedChartView;
     private GraphicalView mScatterChartView;
-
-
     private XYSeriesRenderer renderer;
-
     private XYSeries series;
-
     /**
      * 存放GraphicalView的LinearLayout
      */
     private LinearLayout chart;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +72,8 @@ public class RecordActivity extends BaseActivity {
         correct_rate_tv = (TextView) findViewById(R.id.correct_rate_tv);
         chart = (LinearLayout) findViewById(R.id.chart);
 
-        int light_blue=getResources().getColor(R.color.light_blue);
-        int light_blue2=getResources().getColor(R.color.light_blue2);
+        int light_blue = getResources().getColor(R.color.text_light_blue);
+        int light_blue2 = getResources().getColor(R.color.light_blue2);
 
         //设置文字特效
         setTextViewTextWithSpannableString("Today(Level 4)", "", Color.WHITE, Color.BLUE, 1.5f, 1.0f, level_tv);
@@ -133,7 +126,6 @@ public class RecordActivity extends BaseActivity {
         tv.setText(mSpanableString);
     }
 
-
     /**
      * 增加图表
      */
@@ -165,11 +157,9 @@ public class RecordActivity extends BaseActivity {
         waterSeries.add(12, 70);
 
 
-
-
         //线图＋柱状图
         mCombinedChartView = new CombinedChart()
-                .getCombinedChartGraphicalView(getApplicationContext(),titles,x,values,waterSeries);
+                .getCombinedChartGraphicalView(getApplicationContext(), titles, x, values, waterSeries);
         chart.addView(mCombinedChartView, new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT));
     }
@@ -199,7 +189,6 @@ public class RecordActivity extends BaseActivity {
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -233,23 +222,17 @@ public class RecordActivity extends BaseActivity {
         super.onRestoreInstanceState(savedState);
     }
 
-
-
-    //记数
-    int count=0;
-
     /**
-     *只是为了测试图表显示，，，以后删除之
-     * */
+     * 只是为了测试图表显示，，，以后删除之
+     */
 
-    public void changeChart(View v){
+    public void changeChart(View v) {
 
-        if(count%2==0){
+        if (count % 2 == 0) {
             chart.removeView(mCombinedChartView);
             addScatterChart();
 
-        }
-        else {
+        } else {
             chart.removeView(mScatterChartView);
             addConbinedChart();
 

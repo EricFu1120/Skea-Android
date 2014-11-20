@@ -9,18 +9,13 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import custom.android.util.DensityUtils;
-import custom.android.util.Timber;
-
 /**
  * Created by Ervin on 14/11/2.
  */
 public class ExerciseController {
 
-    private Timer timer;
-
     private final int UNIT_TIME = 50;
-
+    private Timer timer;
     private int offset;
 
     private int activePosition = -1;
@@ -113,7 +108,7 @@ public class ExerciseController {
                 active = false;
                 if (callback != null && activePosition != -1)
                     callback.tickScore();
-                    callback.stopScore();
+                callback.stopScore();
 
                 activePosition = -1;
             }
@@ -147,6 +142,10 @@ public class ExerciseController {
         timer.schedule(timerTask, 0, UNIT_TIME);
     }
 
+    public void registerShrinkCallback(ExerciseScoreCallback callback) {
+        this.callback = callback;
+    }
+
     public interface ExerciseScoreCallback {
 
         void startScore(Bar bar);
@@ -157,10 +156,6 @@ public class ExerciseController {
 
         void stopScore();
 
-    }
-
-    public void registerShrinkCallback(ExerciseScoreCallback callback) {
-        this.callback = callback;
     }
 
 }

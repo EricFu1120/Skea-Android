@@ -2,8 +2,6 @@ package me.linkcube.skea.core.excercise;
 
 import android.content.Context;
 
-import custom.android.util.DensityUtils;
-
 /**
  * Created by Ervin on 14/11/4.
  */

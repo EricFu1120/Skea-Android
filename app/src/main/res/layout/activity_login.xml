@@ -2,56 +2,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/action_bar_light_gray"
     android:gravity="center_horizontal"
-    android:background="@color/main_bg"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
         android:padding="15dp"
         android:scaleType="centerInside"
-        android:id="@+id/imageView"
-        android:src="@drawable/logo_skea"
-        android:layout_gravity="center_horizontal" />
+        android:src="@drawable/logo_skea" />
 
     <View
-        style="@style/SplitLine"
-        android:background="@color/main_dark_grey"
+        style="@style/DividerWithMargin"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        android:background="@color/action_bar_dark_gray" />
 
     <AutoCompleteTextView
         android:id="@+id/email"
-        android:background="@null"
-        android:paddingLeft="30dp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:background="@null"
         android:drawableLeft="@drawable/icon_email"
         android:drawablePadding="10dp"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:maxLines="1"
+        android:paddingLeft="30dp"
         android:singleLine="true" />
 
     <View
-        style="@style/SplitLine"
-        android:background="@color/main_dark_grey"
+        style="@style/DividerWithMargin"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        android:background="@color/action_bar_dark_gray" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
-        android:paddingLeft="30dp"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_marginLeft="10dp"
-        android:background="@null"
         android:layout_marginRight="10dp"
+        android:background="@null"
         android:drawableLeft="@drawable/icon_password"
         android:drawablePadding="10dp"
         android:hint="@string/prompt_password"
@@ -60,31 +59,32 @@
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
         android:maxLines="1"
+        android:paddingLeft="30dp"
         android:singleLine="true" />
 
     <View
-        android:background="@color/main_dark_grey"
-        style="@style/SplitLine"
+        style="@style/DividerWithMargin"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        android:background="@color/action_bar_dark_gray" />
 
     <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:id="@+id/forget_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:text="@string/forget_password"
-        android:id="@+id/forget_password"
-        android:textColor="@color/main_blue"
-        android:layout_gravity="right" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/text_light_blue" />
 
     <Button
         android:id="@+id/login_button"
-        android:layout_gravity="bottom"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
+        android:layout_gravity="bottom"
         android:layout_margin="10dp"
         android:background="@drawable/btn_blue"
         android:text="@string/login"
@@ -99,7 +99,7 @@
         android:id="@+id/register_button"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_item_height"
+        android:layout_height="@dimen/activity_preference_item_height"
         android:layout_margin="10dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/btn_gray"

@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.test;
+package me.linkcube.skea.ui.evaluation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,42 +9,10 @@ import android.widget.TextView;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.ui.test.ExerciseLevelSettingActivity;
-import me.linkcube.skea.ui.test.ReEvaluationActivity;
 
-public class TestPelvicMuscleResultActivity extends BaseActivity {
-    public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.test.TestPelvicMuscleResultActivity.Exercise_level";
+public class EvaluateResultActivity extends BaseActivity {
+    public static final String EXERCISE_LEVEL = "me.linkcube.skea.ui.test.EvaluateResultActivity.Exercise_level";
     private static final int SETTING_LEVEL_REQUEST_CODE = 1;
-
-
-    //声明控件
-    private TextView exerciseLevel;
-    private Button reevaluate;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initViews();
-    }
-
-    @Override
-    public int getLayoutResourceId() {
-        return R.layout.activity_test_pelvic_muscle_result;
-    }
-
-    /**
-     * 得到相关控件，注册事件
-     */
-    private void initViews() {
-
-        exerciseLevel = (TextView) findViewById(R.id.level);
-        reevaluate = (Button) findViewById(R.id.reevaluate);
-
-
-        exerciseLevel.setOnClickListener(testPelvicViewClickListener);
-        reevaluate.setOnClickListener(testPelvicViewClickListener);
-    }
-
     View.OnClickListener testPelvicViewClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -63,6 +31,33 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
             }
         }
     };
+    //声明控件
+    private TextView exerciseLevel;
+    private Button reevaluate;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initViews();
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_evaluate_result;
+    }
+
+    /**
+     * 得到相关控件，注册事件
+     */
+    private void initViews() {
+
+        exerciseLevel = (TextView) findViewById(R.id.level);
+        reevaluate = (Button) findViewById(R.id.reevaluate);
+
+
+        exerciseLevel.setOnClickListener(testPelvicViewClickListener);
+        reevaluate.setOnClickListener(testPelvicViewClickListener);
+    }
 
     /**
      * 启动设置训练强度
@@ -77,7 +72,7 @@ public class TestPelvicMuscleResultActivity extends BaseActivity {
 
     private void reEvaluateButtonClick() {
 
-        startActivity(new Intent().setClass(getApplicationContext(), ReEvaluationActivity.class));
+        startActivity(new Intent().setClass(getApplicationContext(), EvaluateActivity.class));
     }
 
     @Override

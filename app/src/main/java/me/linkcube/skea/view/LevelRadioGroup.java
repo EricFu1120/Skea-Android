@@ -19,7 +19,7 @@ public class LevelRadioGroup extends LinearLayout {
 
     private String title, introduction;
 
-    private TextView title_tv,introduction_tv;
+    private TextView title_tv, introduction_tv;
 
     private TextView level1_tv, level2_tv, level3_tv, level4_tv;
 
@@ -101,7 +101,6 @@ public class LevelRadioGroup extends LinearLayout {
     public void setOnOnLevelSelectedListener(OnLevelSelectedListener listener) {
         this.listener = listener;
     }
-
 
 
     public interface OnLevelSelectedListener {
