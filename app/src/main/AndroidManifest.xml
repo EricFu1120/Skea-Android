@@ -118,6 +118,11 @@
         <activity
             android:name=".ui.bluetooth.BTSettingActivity"
             android:label="@string/title_activity_btsetting" />
+
+        <activity
+            android:name=".TestSugarActivity"
+            android:label="@string/title_activity_test_http"></activity>
+
         <activity
             android:name=".TestHttpActivity"
             android:label="@string/title_activity_test_http"></activity>
