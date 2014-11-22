@@ -17,7 +17,5 @@
             <enum name="rising_water" value="1" />
         </attr>
     </declare-styleable>
-    <declare-styleable name="Themes">
-        <attr name="numberProgressBarStyle" format="reference" />
-    </declare-styleable>
+
 </resources>

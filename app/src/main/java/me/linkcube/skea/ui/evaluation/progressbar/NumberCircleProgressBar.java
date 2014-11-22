@@ -224,7 +224,7 @@ public class NumberCircleProgressBar extends View {
     }
 
     public NumberCircleProgressBar(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.numberProgressBarStyle);
+        this(context, attrs,0);
     }
 
     public NumberCircleProgressBar(Context context, AttributeSet attrs,
@@ -233,7 +233,7 @@ public class NumberCircleProgressBar extends View {
 
         DEFAULT_CIRCLE_RADIUS = dp2px(40.5f);
         DEFAULT_TEXT_SIZE = sp2px(15);
-        DEFAULT_FILL_MODE = 1;//rising water
+        DEFAULT_FILL_MODE = 0;//rising water
 
         // load styled attributes.
         final TypedArray attributes = context.getTheme()
