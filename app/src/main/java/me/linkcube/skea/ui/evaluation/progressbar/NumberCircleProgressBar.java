@@ -13,7 +13,6 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 public class NumberCircleProgressBar extends View {
@@ -132,9 +131,11 @@ public class NumberCircleProgressBar extends View {
     private final int DEFAULT_TEXT_COLOR = Color.rgb(255, 255, 255);
     private final int DEFAULT_REACHED_COLOR = Color.rgb(66, 145, 241);
     private final int DEFAULT_UNREACHED_COLOR = Color.rgb(204, 204, 204);
+    private final int DEFAULT_RING_COLOR =Color.rgb(256,0,0);
     private final int DEFAULT_FILL_MODE;
     private final float DEFAULT_TEXT_SIZE;
     private final float DEFAULT_CIRCLE_RADIUS;
+    private final float DEFAULT_RING_WIDTH;
 
     /**
      * for save and restore instance of progressbar.
@@ -195,6 +196,22 @@ public class NumberCircleProgressBar extends View {
     private Paint mCirclePaint;
 
     /**
+     * the Painter of the ring
+     * 圆环画笔
+     * */
+    private Paint mRingPaint;
+
+    /**
+     * the color of the ring
+     * */
+    private int mRingColor;
+
+    /**
+     * the width of the ring
+     * */
+    private float mRingWidth;
+
+    /**
      * the Painter of the sector.
      */
     private Paint mSectorPaint;
@@ -234,6 +251,7 @@ public class NumberCircleProgressBar extends View {
         DEFAULT_CIRCLE_RADIUS = dp2px(40.5f);
         DEFAULT_TEXT_SIZE = sp2px(15);
         DEFAULT_FILL_MODE = 0;//rising water
+        DEFAULT_RING_WIDTH=3.0f;
 
         // load styled attributes.
         final TypedArray attributes = context.getTheme()
@@ -261,6 +279,9 @@ public class NumberCircleProgressBar extends View {
             mTextSize = attributes.getDimension(
                     R.styleable.NumberCircleProgressBar_progress_text_size,
                     DEFAULT_TEXT_SIZE);
+            mRingColor= attributes.getColor(R.styleable.NumberCircleProgressBar_progress_ring_color,DEFAULT_RING_COLOR);
+
+            mRingWidth=attributes.getDimension(R.styleable.NumberCircleProgressBar_progress_ring_width,DEFAULT_RING_WIDTH);
 
             int textVisible = attributes
                     .getInt(R.styleable.NumberCircleProgressBar_progress_text_visibility,
@@ -329,6 +350,9 @@ public class NumberCircleProgressBar extends View {
 
         // draw the circle
         canvas.drawCircle(centerX, centerY, mCircleRadius, mCirclePaint);
+
+        // draw the ring
+        canvas.drawCircle(centerX, centerY, mCircleRadius+mRingWidth, mRingPaint);
 
         if (mDrawReachedBar) {
             switch (mFillMode) {
@@ -437,6 +461,11 @@ public class NumberCircleProgressBar extends View {
         mCirclePaint.setColor(mUnreachedBarColor);
         mCirclePaint.setStyle(Paint.Style.FILL);
 
+        mRingPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
+        mRingPaint.setColor(mRingColor);
+        mRingPaint.setStyle(Paint.Style.STROKE);
+        mRingPaint.setStrokeWidth(mRingWidth);
+
         mSectorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mSectorPaint.setStyle(Paint.Style.FILL);
         mSectorPaint.setColor(mReachedBarColor);
@@ -533,9 +562,10 @@ public class NumberCircleProgressBar extends View {
     }
 
     public void incrementProgressBy(int by) {
-        if (by > 0) {
-            int progress = getProgress() + by;
-            setProgress(progress > getMax() ? getMax() : progress);
+        if (!isFinished() && by > 0) {
+//            int progress = getProgress() + by;
+//            setProgress(progress > getMax() ? getMax() : progress);
+               setProgress(mProgress+=by);
         }
     }
 
