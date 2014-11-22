@@ -67,12 +67,7 @@ public class RecordActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (!isFinish) {
                             bnp.incrementProgressBy(2);
-                            if (bnp.isFinished()) {
-                                isFinish = false;
-                            }
-                        }
                     }
                 });
             }
