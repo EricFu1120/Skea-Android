@@ -20,10 +20,13 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.evaluation.CombinedChart;
+import me.linkcube.skea.ui.evaluation.progressbar.NumberCircleProgressBar;
 
 public class RecordActivity extends BaseActivity {
     //记数
@@ -35,7 +38,7 @@ public class RecordActivity extends BaseActivity {
     private TextView persistance_tv;
     private TextView score_tv;
     private TextView duration_tv;
-    private TextView correct_rate_tv;
+    //private TextView correct_rate_tv;
     private SpannableString mSpanableString;
     private GraphicalView mCombinedChartView;
     private GraphicalView mScatterChartView;
@@ -46,10 +49,41 @@ public class RecordActivity extends BaseActivity {
      */
     private LinearLayout chart;
 
+
+
+    private Timer timer;
+    private boolean isFinish = false;
+
+
+
+    public void setTheNumberProgressBar() {
+
+        final NumberCircleProgressBar bnp = (NumberCircleProgressBar) findViewById(R.id.numbercircleprogress_bar);
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!isFinish) {
+                            bnp.incrementProgressBy(2);
+                            if (bnp.isFinished()) {
+                                isFinish = false;
+                            }
+                        }
+                    }
+                });
+            }
+        }, 1000, 100);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViews();
+
+        setTheNumberProgressBar();
     }
 
     @Override
@@ -69,7 +103,7 @@ public class RecordActivity extends BaseActivity {
         persistance_tv = (TextView) findViewById(R.id.persistance_tv);
         score_tv = (TextView) findViewById(R.id.score_tv);
         duration_tv = (TextView) findViewById(R.id.duration_tv);
-        correct_rate_tv = (TextView) findViewById(R.id.correct_rate_tv);
+        //correct_rate_tv = (TextView) findViewById(R.id.correct_rate_tv);
         chart = (LinearLayout) findViewById(R.id.chart);
 
         int light_blue = getResources().getColor(R.color.text_light_blue);
@@ -82,7 +116,7 @@ public class RecordActivity extends BaseActivity {
         setTextViewTextWithSpannableString("Persistance :", "Fair", Color.WHITE, light_blue, 1.0f, 1.2f, persistance_tv);
         setTextViewTextWithSpannableString("Score :", "1573", Color.BLACK, light_blue, 1.0f, 1.2f, score_tv);
         setTextViewTextWithSpannableString("Time :", "24 Min", Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
-        setTextViewTextWithSpannableString("79", "%", light_blue2, light_blue2, 4.0f, 2.0f, correct_rate_tv);
+        //setTextViewTextWithSpannableString("79", "%", light_blue2, light_blue2, 4.0f, 2.0f, correct_rate_tv);
 
         addConbinedChart();
 
