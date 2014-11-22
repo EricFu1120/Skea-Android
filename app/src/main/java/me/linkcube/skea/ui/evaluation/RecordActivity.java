@@ -1,5 +1,6 @@
 package me.linkcube.skea.ui.evaluation;
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +21,8 @@ import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -54,6 +58,42 @@ public class RecordActivity extends BaseActivity {
     private Timer timer;
     private boolean isFinish = false;
 
+    //日历相关
+    private int mYear;
+    private int mMonth;
+    private int mDays;
+
+    /**
+     * 得当前的年月日,以便初始化日历
+     * */
+    private void getDate(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date(System.currentTimeMillis()));
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH);
+        mDays = calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    DatePickerDialog.OnDateSetListener myDateSetListener = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+
+            // 更新年月日，以便下次启动DatePickerDialog时，显示的是上一次设置的值
+            mYear = year;
+            mMonth = monthOfYear;
+            mDays = dayOfMonth;
+            Log.i("CXC","year-month-day:"+year+"-"+monthOfYear+"-"+dayOfMonth);
+
+            /***
+             *
+             *在这里Load选中日期的用户的Record。。。
+             *
+             ***/
+        }
+    };
 
 
     public void setTheNumberProgressBar() {
@@ -79,6 +119,8 @@ public class RecordActivity extends BaseActivity {
         initViews();
 
         setTheNumberProgressBar();
+
+        getDate();
     }
 
     @Override
@@ -111,7 +153,7 @@ public class RecordActivity extends BaseActivity {
         setTextViewTextWithSpannableString("Persistance :", "Fair", Color.WHITE, light_blue, 1.0f, 1.2f, persistance_tv);
         setTextViewTextWithSpannableString("Score :", "1573", Color.BLACK, light_blue, 1.0f, 1.2f, score_tv);
         setTextViewTextWithSpannableString("Time :", "24 Min", Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
-        //setTextViewTextWithSpannableString("79", "%", light_blue2, light_blue2, 4.0f, 2.0f, correct_rate_tv);
+
 
         addConbinedChart();
 
@@ -232,7 +274,12 @@ public class RecordActivity extends BaseActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_connect_bluetooth) {
+        if (id == R.id.action_date) {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    RecordActivity.this, myDateSetListener, mYear, mMonth,
+                    mDays);
+            datePickerDialog.show();
+            Log.i("CXC","++++date_record");
             return true;
         }
         return super.onOptionsItemSelected(item);
