@@ -5,10 +5,14 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
@@ -21,23 +25,26 @@ public class EvaluateActivity extends BaseActivity {
 //    private LevelRadioGroup urinary_incontinence_lrg;
 //    private LevelRadioGroup mental_status_lrg;
 
-    private static final int DATE_DIALOG_ID = 1;
-    private static final int SHOW_DATAPICK = 0;
-    /**
-     * 处理日期和时间控件的Handler
-     */
-    Handler dateandtimeHandler = new Handler() {
+
+
+
+
+
+    DatePickerDialog.OnDateSetListener myDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
         @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case EvaluateActivity.SHOW_DATAPICK:
-                    showDialog(DATE_DIALOG_ID);
-                    break;
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
 
-            }
+            // 更新年月日，以便下次启动DatePickerDialog时，显示的是上一次设置的值
+            mYear = year;
+            mMonth = monthOfYear;
+            mDays = dayOfMonth;
+            Log.i("CXC", "year-month-day:" + year + "-" + monthOfYear + "-" + dayOfMonth);
+
+            updateDateDisplay();
         }
-
     };
     View.OnClickListener evaluationClickListener = new View.OnClickListener() {
         @Override
@@ -47,8 +54,11 @@ public class EvaluateActivity extends BaseActivity {
 
                 case R.id.birthday_tv:
                     //todo
-                    msg.what = EvaluateActivity.SHOW_DATAPICK;
-                    EvaluateActivity.this.dateandtimeHandler.sendMessage(msg);
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(
+                            EvaluateActivity.this, myDateSetListener, mYear, mMonth,
+                            mDays);
+                    datePickerDialog.show();
+
                     break;
                 case R.id.height_tv:
 
@@ -74,29 +84,24 @@ public class EvaluateActivity extends BaseActivity {
     private Evaluation mEvaluationBean;
     private int mYear = 1981;
     private int mMonth = 0;
-    private int mDay = 1;
+    private int mDays = 1;
+
     /**
-     * 日期控件的事件
-     */
-    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            // TODO Auto-generated method stub
-            mYear = year;
-            mMonth = monthOfYear;
-            mDay = dayOfMonth;
-            updateDateDisplay();
-
-        }
-    };
+     * 得当前的年月日,以便初始化日历
+     * */
+    private void getDate(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date(System.currentTimeMillis()));
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH);
+        mDays = calendar.get(Calendar.DAY_OF_MONTH);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeViews();
-        //setDateTime();
+        getDate();
         updateDateDisplay();
     }
 
@@ -161,28 +166,10 @@ public class EvaluateActivity extends BaseActivity {
     private void updateDateDisplay() {
         birthday_tv.setText(new StringBuilder().append(mYear).append("-")
                 .append((mMonth + 1) < 10 ? "0" + (mMonth + 1) : (mMonth + 1))
-                .append("-").append((mDay < 10) ? "0" + mDay : mDay));
+                .append("-").append((mDays < 10) ? "0" + mDays : mDays));
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG_ID:
-                return new DatePickerDialog(this, mDateSetListener, mYear, mMonth,
-                        mDay);
 
-        }
-
-        return null;
-    }
-
-    protected void onPrepareDialog(int id, Dialog dialog) {
-        switch (id) {
-            case DATE_DIALOG_ID:
-                ((DatePickerDialog) dialog).updateDate(mYear, mMonth, mDay);
-                break;
-        }
-    }
 
     /**
      * 得到测试数据 并进行评诂
