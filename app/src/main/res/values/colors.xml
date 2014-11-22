@@ -6,6 +6,8 @@
     <color name="light_blue">#6cc3db</color>
     <color name="light_yellow">#d8da3c</color>
     <color name="light_blue2">#58bdd9</color>
+    
+    <color name="orange">#ee7f26</color>
 
     <!-- TextColor -->
     <color name="text_white">#FFFFFFFF</color>

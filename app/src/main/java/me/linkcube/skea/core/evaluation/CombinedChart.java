@@ -24,7 +24,7 @@ public class CombinedChart extends AbstractDemoChart {
 
     public GraphicalView getCombinedChartGraphicalView(Context context, String[] titles, List<double[]> x, List<double[]> values, XYSeries waterSeries) {
         // 曲线的颜色
-        int[] colors = new int[]{Color.GREEN};
+        int[] colors = new int[]{Color.argb(255,238,127,38)};
 
         // 曲线上点的样式
         PointStyle[] styles = new PointStyle[]{PointStyle.CIRCLE};
