@@ -27,14 +27,14 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/email_editText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Email" />
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/password_editText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -48,13 +48,13 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/register"
+                    android:id="@+id/register_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Register" />
 
                 <Button
-                    android:id="@+id/login"
+                    android:id="@+id/login_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Login" />
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/login_or_register_result"
+                android:id="@+id/login_or_register_result_textView"
                 android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -81,13 +81,13 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/nickName"
+                android:id="@+id/editNickName_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nickname" />
 
             <Button
-                android:id="@+id/editNickName"
+                android:id="@+id/editNickName_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EditNickName" />
@@ -99,7 +99,7 @@
 
 
             <TextView
-                android:id="@+id/editNickName_result"
+                android:id="@+id/editNickName_result_textView"
                 android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/getInfo"
+                android:id="@+id/getInfo_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GetInfo" />
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/getInfo_result"
+                android:id="@+id/getInfo_result_textView"
                 android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -139,7 +139,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/getLastQuestion"
+                android:id="@+id/getLastQuestion_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GetLastQuestion" />
@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/getLastQuestion_result"
+                android:id="@+id/getLastQuestion_result_textView"
                 android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -164,7 +164,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/datePicker"
+                android:id="@+id/datePicker_records"
                 android:minHeight="48dp"
                 android:text="1988-09-05"
                 android:gravity="center"
@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/getRecords"
+                android:id="@+id/getRecords_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GetRecords" />
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/getRecords_result"
+                android:id="@+id/getRecords_result_textView"
                 android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -202,7 +202,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/height"
+                    android:id="@+id/height_editText"
                     android:minHeight="48dp"
                     android:text="Height"
                     android:gravity="center"
@@ -211,7 +211,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
-                    android:id="@+id/weight"
+                    android:id="@+id/weight_editText"
                     android:minHeight="48dp"
                     android:text="Weight"
                     android:gravity="center"
@@ -220,7 +220,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/birthday"
+                    android:id="@+id/datePicker_birthday"
                     android:minHeight="48dp"
                     android:text="Birthday"
                     android:gravity="center"
@@ -236,7 +236,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/evaluations"
+                    android:id="@+id/evaluations_editText"
                     android:minHeight="48dp"
                     android:text="Evaluations"
                     android:gravity="center"
@@ -245,7 +245,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/datePciker_question"
                     android:minHeight="48dp"
                     android:text="Date"
                     android:gravity="center"
@@ -256,7 +256,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/saveQuestion"
+                android:id="@+id/saveQuestion_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save Question Result" />
@@ -267,7 +267,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/saveQuestion_result"
+                android:id="@+id/saveQuestion_result_textView"
                 android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -286,7 +286,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/highScore"
+                    android:id="@+id/highScore_editText"
                     android:minHeight="48dp"
                     android:text="High Score"
                     android:gravity="center"
@@ -295,7 +295,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
-                    android:id="@+id/actualScore"
+                    android:id="@+id/actualScore_editText"
                     android:minHeight="48dp"
                     android:text="Actual Score"
                     android:gravity="center"
@@ -304,7 +304,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/date_record"
+                    android:id="@+id/datePicker_saveRecord"
                     android:minHeight="48dp"
                     android:text="Date"
                     android:gravity="center"
@@ -320,7 +320,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/level"
+                    android:id="@+id/level_editText"
                     android:minHeight="48dp"
                     android:text="Level"
                     android:gravity="center"
@@ -329,7 +329,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
-                    android:id="@+id/power"
+                    android:id="@+id/power_editText"
                     android:minHeight="48dp"
                     android:text="Power"
                     android:gravity="center"
@@ -338,7 +338,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
-                    android:id="@+id/stamina"
+                    android:id="@+id/stamina_editText"
                     android:minHeight="48dp"
                     android:text="Stamina"
                     android:gravity="center"
@@ -348,22 +348,21 @@
 
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/exerciseData_editText"
+                android:minHeight="48dp"
+                android:text="Exercise Data"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/exerciseData"
-                    android:minHeight="48dp"
-                    android:text="Exercise Data"
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/scoreData"
+                    android:id="@+id/scoreData_editText"
                     android:minHeight="48dp"
                     android:text="Score Data"
                     android:gravity="center"
@@ -371,7 +370,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/exerciseTime"
+                    android:id="@+id/exerciseTime_editText"
                     android:minHeight="48dp"
                     android:text="Time"
                     android:gravity="center"
@@ -382,7 +381,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/saveRecord"
+                android:id="@+id/saveRecord_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save Record Result" />
@@ -393,7 +392,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/saveRecord_result"
+                android:id="@+id/saveRecord_result_textView"
                 android:minHeight="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

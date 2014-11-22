@@ -28,21 +28,21 @@ public class SkeaRequestClient {
 
     public static class URL {
 
-        static String Register = "register";
+        public static String REGISTER = "register";
 
-        static String Login = "login";
+        public static String LOGIN = "login";
 
-        static String editNickname = "editNickname";
+        public static String EDIT_NICKNAME = "editNickname";
 
-        static String GetInfo = "getInfo";
+        public static String GET_INFO = "getInfo";
 
-        static String SaveQuestionResult = "saveQuestionResult";
+        public static String SAVE_QUESTION_RESULT = "saveQuestionResult";
 
-        static String GetLastQuestionResult = "getLastQuestionResult";
+        public static String GET_LAST_QUESTION_RESULT = "getLastQuestionResult";
 
-        static String SaveRecord = "saveRecord";
+        public static String SAVE_RECORD = "saveRecord";
 
-        static String GetRecords = "getRecords";
+        public static String GET_RECORDS = "getRecords";
     }
 
 }
