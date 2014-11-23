@@ -30,7 +30,7 @@ import java.util.TimerTask;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.evaluation.CombinedChart;
-import me.linkcube.skea.ui.evaluation.progressbar.NumberCircleProgressBar;
+import me.linkcube.skea.view.NumberCircleProgressBar;
 
 public class RecordActivity extends BaseActivity {
     //记数

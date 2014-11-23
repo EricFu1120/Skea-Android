@@ -1,4 +1,4 @@
-package me.linkcube.skea.ui.evaluation.progressbar;
+package me.linkcube.skea.view;
 
 import me.linkcube.skea.R;
 

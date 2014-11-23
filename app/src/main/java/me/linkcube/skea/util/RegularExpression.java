@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Created by CXC on 14-11-23.
  */
-public class RegularExpressionVerifyClass {
+public class RegularExpression {
     /**
      * 验证邮箱的正则表达式
      * */

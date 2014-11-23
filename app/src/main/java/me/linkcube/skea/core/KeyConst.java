@@ -12,4 +12,8 @@ public class KeyConst {
         public static final String Chinese = "Chinese";
     }
 
+    public static final String AUTO_LOGIN = "AUTO_LOGIN";
+
+    public static final String USER_ID = "USER_ID";
+
 }

@@ -9,17 +9,17 @@ import java.util.Date;
  */
 public class User extends SugarRecord<User> {
 
-    String email;
+    public String email;
 
-    String nickname;
+    public String nickname;
 
-    String password;
+    public String password;
 
-    int height;
+    public int height;
 
-    int weight;
+    public int weight;
 
-    Date birthday;
+    public Date birthday;
 
     public User() {
 

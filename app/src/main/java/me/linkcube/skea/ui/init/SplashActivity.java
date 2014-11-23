@@ -17,10 +17,15 @@ public class SplashActivity extends Activity implements Runnable, View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        initViews();
+
+//        new Thread(this).start();
+    }
+
+    private void initViews() {
         findViewById(R.id.testDb).setOnClickListener(this);
         findViewById(R.id.testHttp).setOnClickListener(this);
         findViewById(R.id.skip).setOnClickListener(this);
-//        new Thread(this).start();
     }
 
     @Override

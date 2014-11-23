@@ -33,7 +33,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     private static final String TAG = "LoginActivity";
 
-    //登录和注册
     private EditText emailEditText;
     private EditText passwordEditText;
 
@@ -51,7 +50,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         passwordEditText = (EditText) findViewById(R.id.password_editText);
         findViewById(R.id.login_button).setOnClickListener(this);
         findViewById(R.id.register_button).setOnClickListener(this);
-
     }
 
     @Override
@@ -61,7 +59,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     public void configureActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayUseLogoEnabled(false);
         actionBar.setHomeAsUpIndicator(R.drawable.layer_actionbar_up_indicator_black);
@@ -152,7 +150,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     private void loginCallback() {
         User user = new User(email, password);
         user.save();
-        UserManager.getInstance().setLogin(true);
+        UserManager.getInstance().setLogin(this, UserManager.STATE_LOGIN);
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
@@ -196,6 +194,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 break;
         }
     }
+
 }
 
 

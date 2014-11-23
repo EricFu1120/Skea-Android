@@ -44,6 +44,14 @@ public class PreferenceUtils {
         return getSharedPreference(context).getInt(key, def);
     }
 
+    public static long getLong(Context context, String key, long def) {
+        if (key == null || key.equals("")) {
+            return def;
+        }
+        return getSharedPreference(context).getLong(key, def);
+    }
+
+
     public static boolean getBoolean(Context context, String key, boolean def) {
         if (key == null || key.equals("")) {
             return def;
@@ -61,6 +69,12 @@ public class PreferenceUtils {
     public static void setInt(Context context, String key, int value) {
         Editor editor = getSharedPreference(context).edit();
         editor.putInt(key, value);
+        editor.commit();
+    }
+
+    public static void setLong(Context context, String key, long value) {
+        Editor editor = getSharedPreference(context).edit();
+        editor.putLong(key, value);
         editor.commit();
     }
 

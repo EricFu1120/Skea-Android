@@ -174,7 +174,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             //TODO 自动登录
             User user = new User(email, password);
             user.save();
-            UserManager.getInstance().setLogin(true);
+            UserManager.getInstance().setLogin(this, UserManager.STATE_LOGIN);
             startActivity(new Intent(this, MainActivity.class));
             finish();
         } else if (status == SkeaRequestStatus.USER_EXIST) {
@@ -217,6 +217,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.login_button:
                 startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
             case R.id.register_button:
                 attemptRegister();
