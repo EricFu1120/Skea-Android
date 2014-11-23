@@ -1,14 +1,13 @@
 package me.linkcube.skea.core.persistence;
 
-import com.orm.dsl.Table;
+import com.orm.SugarRecord;
 
 import java.util.Date;
 
 /**
  * Created by Ervin on 14/10/23.
  */
-@Table(name = "User")
-public class User {
+public class User extends SugarRecord<User>{
 
     private String email;
 

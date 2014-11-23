@@ -1,6 +1,6 @@
 package me.linkcube.skea.core.persistence;
 
-import com.orm.dsl.Table;
+import com.orm.SugarRecord;
 
 import java.util.Date;
 
@@ -8,8 +8,7 @@ import java.util.Date;
  * 实体类
  * 用于保存测试时的各项参数
  */
-@Table(name = "Evaluation")
-public class Evaluation {
+public class Evaluation extends SugarRecord<Evaluation>{
 
     private long id;
 

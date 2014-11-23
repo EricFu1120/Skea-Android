@@ -1,13 +1,12 @@
 package me.linkcube.skea.core.persistence;
 
-import com.orm.dsl.Table;
+import com.orm.SugarRecord;
 
 /**
  * Created by Ervin on 14/11/18.
  */
 
-@Table(name = "Exercise")
-public class Exercise {
+public class Exercise extends SugarRecord<Exercise>{
 
 
 }
