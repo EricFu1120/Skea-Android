@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViews();
+        login = UserManager.getInstance().isLogin();
     }
 
     @Override

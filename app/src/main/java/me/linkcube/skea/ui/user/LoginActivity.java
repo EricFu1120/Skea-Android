@@ -1,16 +1,29 @@
 package me.linkcube.skea.ui.user;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONObject;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.UserManager;
+import me.linkcube.skea.core.http.SkeaRequestClient;
+import me.linkcube.skea.core.persistence.User;
+import me.linkcube.skea.ui.MainActivity;
+
+import static me.linkcube.skea.core.http.SkeaRequestClient.URL.LOGIN;
 
 
 /**
@@ -18,49 +31,26 @@ import me.linkcube.skea.base.ui.BaseActivity;
  */
 public class LoginActivity extends BaseActivity implements OnClickListener {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
+    private static final String TAG = "LoginActivity";
+
+    //登录和注册
+    private EditText emailEditText;
+    private EditText passwordEditText;
+
+    private String email;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        initViews();
+    }
+
+    private void initViews() {
+        emailEditText = (EditText) findViewById(R.id.email_editText);
+        passwordEditText = (EditText) findViewById(R.id.password_editText);
         findViewById(R.id.login_button).setOnClickListener(this);
         findViewById(R.id.register_button).setOnClickListener(this);
-
-//        // Set up the login form.
-//        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-//
-//        mPasswordView = (EditText) findViewById(R.id.password);
-//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-//                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-//                    attemptLogin();
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
-//
-//        Button mEmailSignInButton = (Button) findViewById(R.id.login_button);
-//        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                attemptLogin();
-//            }
-//        });
 
     }
 
@@ -84,51 +74,101 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptLogin() {
-//        if (mAuthTask != null) {
-//            return;
-//        }
-
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+        emailEditText.setError(null);
+        passwordEditText.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        email = emailEditText.getText().toString();
+        password = passwordEditText.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            emailEditText.setError(getString(R.string.error_field_required));
+            focusView = emailEditText;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            emailEditText.setError(getString(R.string.error_invalid_email));
+            focusView = emailEditText;
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+        // Check for a valid password, if the user entered one.
+        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
+            passwordEditText.setError(getString(R.string.error_invalid_password));
+            focusView = passwordEditText;
             cancel = true;
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-//            showProgress(true);
-//            mAuthTask = new UserLoginTask(email, password);
-//            mAuthTask.execute((Void) null);
+            executeLoginTask();
         }
+    }
+
+    private void executeLoginTask() {
+        RequestParams params = new RequestParams();
+        params.add("email", email);
+        params.add("password", password);
+        SkeaRequestClient.post(this, LOGIN, params, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                showProgress(true);
+                Log.d(TAG, "Start Login");
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                loginCallback();
+                Log.d(TAG, "Login Success");
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                //TODO 提示用户
+                Log.d(TAG, "Login Failure");
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                showProgress(false);
+                Log.d(TAG, "Finish Login");
+
+            }
+        });
+
+    }
+
+    private void loginCallback() {
+        User user = new User(email, password);
+        user.save();
+        UserManager.getInstance().setLogin(true);
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    ProgressDialog progressDialog;
+
+    private void showProgress(boolean show) {
+        if (show) {
+            if (progressDialog == null)
+                progressDialog = new ProgressDialog(this);
+            progressDialog.show();
+        } else {
+            if (progressDialog != null)
+                progressDialog.dismiss();
+        }
+
     }
 
     private boolean isEmailValid(String email) {
@@ -146,11 +186,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button:
-                setResult(RESULT_OK);
-                finish();
+                attemptLogin();
                 break;
             case R.id.register_button:
                 startActivity(new Intent(this, RegisterActivity.class));
+                finish();
                 break;
             default:
                 break;

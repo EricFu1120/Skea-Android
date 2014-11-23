@@ -7,19 +7,28 @@ import java.util.Date;
 /**
  * Created by Ervin on 14/10/23.
  */
-public class User extends SugarRecord<User>{
+public class User extends SugarRecord<User> {
 
-    private String email;
+    String email;
 
-    private String nickName;
+    String nickname;
 
-    private String password;
+    String password;
 
-    private int height;
+    int height;
 
-    private int weight;
+    int weight;
 
-    private Date birthday;
+    Date birthday;
+
+    public User() {
+
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
 
 }

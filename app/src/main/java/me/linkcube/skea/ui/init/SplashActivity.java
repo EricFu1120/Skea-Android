@@ -9,6 +9,7 @@ import me.linkcube.skea.R;
 import me.linkcube.skea.TestHttpActivity;
 import me.linkcube.skea.TestSugarActivity;
 import me.linkcube.skea.ui.MainActivity;
+import me.linkcube.skea.ui.user.LoginActivity;
 
 public class SplashActivity extends Activity implements Runnable, View.OnClickListener {
 
@@ -43,7 +44,7 @@ public class SplashActivity extends Activity implements Runnable, View.OnClickLi
                 startActivity(new Intent(this, TestHttpActivity.class));
                 break;
             case R.id.skip:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
             default:

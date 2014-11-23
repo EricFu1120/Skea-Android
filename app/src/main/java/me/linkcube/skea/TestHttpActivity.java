@@ -116,7 +116,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         exerciseTimeEditText = (EditText) findViewById(R.id.exerciseTime_editText);
         scoreDataEditText = (EditText) findViewById(R.id.scoreData_editText);
         datePickerSaveRecordTextView = (TextView) findViewById(R.id.datePicker_saveRecord);
-        saveRecordResultTextView = (TextView)findViewById(R.id.saveRecord_result_textView);
+        saveRecordResultTextView = (TextView) findViewById(R.id.saveRecord_result_textView);
         findViewById(R.id.datePicker_saveRecord).setOnClickListener(this);
         findViewById(R.id.saveRecord_button).setOnClickListener(this);
 
@@ -174,7 +174,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         params.add("email", email);
         params.add("password", password);
         params.add("nickname", defaultNickname);
-        SkeaRequestClient.post(REGISTER, params, new JsonHttpResponseHandler() {
+        SkeaRequestClient.post(this, REGISTER, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -196,7 +196,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         RequestParams params = new RequestParams();
         params.add("email", email);
         params.add("password", password);
-        SkeaRequestClient.post(LOGIN, params, new JsonHttpResponseHandler() {
+        SkeaRequestClient.post(this, LOGIN, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -217,7 +217,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         RequestParams params = new RequestParams();
         params.add("nickname", nickname);
         params.add("email", email);
-        SkeaRequestClient.post(EDIT_NICKNAME, params, new JsonHttpResponseHandler() {
+        SkeaRequestClient.post(this, EDIT_NICKNAME, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -236,7 +236,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         String email = emailEditText.getText().toString();
         RequestParams params = new RequestParams();
         params.add("email", email);
-        SkeaRequestClient.post(GET_INFO, params, new JsonHttpResponseHandler() {
+        SkeaRequestClient.post(this, GET_INFO, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -255,7 +255,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         String email = emailEditText.getText().toString();
         RequestParams params = new RequestParams();
         params.add("email", email);
-        SkeaRequestClient.post(GET_LAST_QUESTION_RESULT, params, new JsonHttpResponseHandler() {
+        SkeaRequestClient.post(this, GET_LAST_QUESTION_RESULT, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -276,7 +276,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         RequestParams params = new RequestParams();
         params.add("email", email);
         params.add("begin", date);
-        SkeaRequestClient.post(GET_RECORDS, params, new JsonHttpResponseHandler() {
+        SkeaRequestClient.post(this, GET_RECORDS, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -305,7 +305,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         params.add("height", height);
         params.add("weight", weight);
         params.add("result", evaluations);
-        SkeaRequestClient.post(SAVE_QUESTION_RESULT, params, new JsonHttpResponseHandler() {
+        SkeaRequestClient.post(this, SAVE_QUESTION_RESULT, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -341,7 +341,7 @@ public class TestHttpActivity extends CustomActionBarActivity implements View.On
         params.add("exerciseData", exerciseData);
         params.add("explosive", power);
         params.add("endurance", stamina);
-        SkeaRequestClient.post(SAVE_RECORD, params, new JsonHttpResponseHandler() {
+        SkeaRequestClient.post(this, SAVE_RECORD, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
