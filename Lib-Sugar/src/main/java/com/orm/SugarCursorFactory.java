@@ -1,4 +1,4 @@
-package com.orm.util;
+package com.orm;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
@@ -15,22 +15,18 @@ public class SugarCursorFactory implements SQLiteDatabase.CursorFactory {
         this.debugEnabled = false;
     }
 
-    public SugarCursorFactory(boolean debugEnabled) {
+    public SugarCursorFactory(boolean debugEnabled){
 
         this.debugEnabled = debugEnabled;
     }
 
     @SuppressWarnings("deprecation")
-    public Cursor newCursor(SQLiteDatabase sqLiteDatabase,
-            SQLiteCursorDriver sqLiteCursorDriver,
-            String editTable,
-            SQLiteQuery sqLiteQuery) {
+    public Cursor newCursor(SQLiteDatabase sqLiteDatabase, SQLiteCursorDriver sqLiteCursorDriver, String editTable, SQLiteQuery sqLiteQuery) {
 
-        if (debugEnabled) {
+        if(debugEnabled){
             Log.d("SQL Log", sqLiteQuery.toString());
         }
 
         return new SQLiteCursor(sqLiteDatabase, sqLiteCursorDriver, editTable, sqLiteQuery);
     }
-
 }

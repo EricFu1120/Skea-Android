@@ -1,4 +1,4 @@
-package com.orm.util;
+package com.orm.dsl;
 import java.util.*;
 
 public class Collection {
@@ -36,5 +36,4 @@ public class Collection {
             this.value = value;
         }
     }
-
 }

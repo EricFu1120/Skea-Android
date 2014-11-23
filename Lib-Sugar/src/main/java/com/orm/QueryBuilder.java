@@ -1,6 +1,4 @@
-package com.orm.util;
-
-import com.orm.SugarRecord;
+package com.orm;
 
 public class QueryBuilder {
 
@@ -37,5 +35,4 @@ public class QueryBuilder {
 
         return "";
     }
-
 }
