@@ -23,7 +23,7 @@ public class RegularExpression {
      * @param strEmail:待验证的邮箱字符串
      * @return  : 匹配返回true ,否则返回false
      * */
-    public static boolean isEmail(String strEmail) {
+    public static boolean isEmailValid(String strEmail) {
 
         Pattern p = Pattern.compile(EMAIL_REGULAR_EXPRESSION);
         Matcher m = p.matcher(strEmail);
@@ -35,7 +35,7 @@ public class RegularExpression {
      * @param strPassword:待验证的邮箱字符串
      * @return  : 匹配返回true ,否则返回false
      * */
-    public static boolean isPassword(String strPassword) {
+    public static boolean isPasswordValid(String strPassword) {
         Pattern p = Pattern.compile(PASSWORD_REGULAR_EXPRESSION);
         Matcher m = p.matcher(strPassword);
         return m.matches();
