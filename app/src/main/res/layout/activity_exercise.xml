@@ -86,7 +86,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/relativeLayout"
+            android:id="@+id/score_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
