@@ -85,6 +85,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 //                controller.test();
             }
 
+            Log.i("CXC","action_pause:--"+scroll);
             return true;
         }
         return super.onOptionsItemSelected(item);
