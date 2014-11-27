@@ -174,7 +174,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button:
-                attemptLogin();
+
+                //直接进入主界面，以便测试
+                startActivity(new Intent(this, MainActivity.class));
+                //attemptLogin();
                 break;
             case R.id.register_button:
                 startActivity(new Intent(this, RegisterActivity.class));
