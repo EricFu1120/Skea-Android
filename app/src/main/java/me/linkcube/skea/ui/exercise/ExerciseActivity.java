@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -33,25 +35,18 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private TextView scoreTextView;
     private boolean shrink;
 
+    /**
+     * 用于标记ScorllView 是否可以滑动
+     * */
+    private boolean mScrollable=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
-        leftTimeTextView = (TextView) findViewById(R.id.time_left);
-        scoreTextView = (TextView) findViewById(R.id.score);
-        frontScrollView = (ScrollView) findViewById(R.id.scrollView);
-        behindScrollView = (ScrollView) findViewById(R.id.behind_scrollView);
-        behindGroup = (LinearLayout) findViewById(R.id.behind_group);
-        frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
-        controller = new ExerciseController(this);
-        controller.registerShrinkCallback(this);
-        shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
-        shrinkButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                shrink = isChecked;
-            }
-        });
+
+        initViews();
+
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -60,6 +55,53 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             }
         }, 1000, 15);
     }
+    /**
+     * 初始化控件及变量，注册事件
+     * */
+    private void initViews(){
+        leftTimeTextView = (TextView) findViewById(R.id.time_left);
+        scoreTextView = (TextView) findViewById(R.id.score);
+        frontScrollView = (ScrollView) findViewById(R.id.front_scrollView);
+        behindScrollView = (ScrollView) findViewById(R.id.behind_scrollView);
+        behindGroup = (LinearLayout) findViewById(R.id.behind_group);
+        frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
+        shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
+
+        controller = new ExerciseController(this);
+        controller.registerShrinkCallback(this);
+
+
+        frontScrollView.setOnTouchListener(scorllViewOnTouchListener);
+        behindScrollView.setOnTouchListener(scorllViewOnTouchListener);
+
+        shrinkButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                shrink = isChecked;
+            }
+        });
+
+    }
+    /**
+     * ScorllView 的OnTouchListener事件，
+     * 以便禁用其滑动事件
+     * */
+    View.OnTouchListener scorllViewOnTouchListener=new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if(mScrollable)
+                return false;
+            else {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        break;
+                    case MotionEvent.ACTION_UP :
+                        break;
+                }
+                return true;
+            }
+        }
+    };
 
     @Override
     public int getLayoutResourceId() {
