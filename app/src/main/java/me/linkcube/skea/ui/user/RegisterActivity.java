@@ -24,6 +24,7 @@ import me.linkcube.skea.core.http.SkeaRequestClient;
 import me.linkcube.skea.core.http.SkeaRequestStatus;
 import me.linkcube.skea.core.persistence.User;
 import me.linkcube.skea.ui.MainActivity;
+import me.linkcube.skea.util.RegularExpression;
 
 import static me.linkcube.skea.core.http.SkeaRequestClient.URL.REGISTER;
 
@@ -88,14 +89,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             Toaster.showShort(this, R.string.error_field_required);
             focusView = emailEditText;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!RegularExpression.isEmailValid(email)) {
             Toaster.showShort(this, R.string.error_invalid_password);
             focusView = emailEditText;
             cancel = true;
         }
 
         // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) || !RegularExpression.isPasswordValid(password)) {
             Toaster.showShort(this, getString(R.string.error_invalid_password));
             focusView = passwordEditText;
             cancel = true;
@@ -200,17 +201,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
 
     }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
-    }
-
 
     @Override
     public void onClick(View v) {

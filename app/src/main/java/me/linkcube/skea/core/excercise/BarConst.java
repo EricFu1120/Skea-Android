@@ -28,8 +28,6 @@ public class BarConst {
 
         public static final int SPEED = 100;
 
-//        public static final int UNIT_HEIGHT = 40;
-
         public static final int UNIT_WIDTH = 70;
     }
 
