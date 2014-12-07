@@ -37,8 +37,9 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     /**
      * 用于标记ScorllView 是否可以滑动
-     * */
-    private boolean mScrollable=false;
+     * 此处是不允许滑动的
+     */
+    private boolean mScrollable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +56,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             }
         }, 1000, 15);
     }
+
     /**
      * 初始化控件及变量，注册事件
-     * */
-    private void initViews(){
+     */
+    private void initViews() {
         leftTimeTextView = (TextView) findViewById(R.id.time_left);
         scoreTextView = (TextView) findViewById(R.id.score);
         frontScrollView = (ScrollView) findViewById(R.id.front_scrollView);
@@ -67,12 +69,13 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
         shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
 
+
         controller = new ExerciseController(this);
         controller.registerShrinkCallback(this);
 
+        frontScrollView.setOnTouchListener(mScorllViewOnTouchListener);
+        behindScrollView.setOnTouchListener(mScorllViewOnTouchListener);
 
-        frontScrollView.setOnTouchListener(scorllViewOnTouchListener);
-        behindScrollView.setOnTouchListener(scorllViewOnTouchListener);
 
         shrinkButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -82,20 +85,21 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         });
 
     }
+
     /**
      * ScorllView 的OnTouchListener事件，
      * 以便禁用其滑动事件
-     * */
-    View.OnTouchListener scorllViewOnTouchListener=new View.OnTouchListener() {
+     */
+    View.OnTouchListener mScorllViewOnTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
-            if(mScrollable)
+            if (mScrollable)
                 return false;
             else {
-                switch (motionEvent.getAction()){
+                switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         break;
-                    case MotionEvent.ACTION_UP :
+                    case MotionEvent.ACTION_UP:
                         break;
                 }
                 return true;
@@ -109,10 +113,17 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.exercise, menu);
         return true;
     }
+
+    private boolean isPasueable = false;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -121,13 +132,15 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             if (scroll) {
                 controller.init(this, frontGroup, behindGroup);
                 scroll = false;
-            } else {
-                controller.prepare(this, frontScrollView, behindScrollView);
-                controller.start();
-//                controller.test();
+            }else {
+
+                    controller.prepare(this,frontScrollView,behindScrollView);
+                    controller.start();
+
             }
 
-            Log.i("CXC","action_pause:--"+scroll);
+            Log.i("CXC", "scorll:--" + scroll);
+            Log.i("CXC", "isPauseable:--" + isPasueable);
             return true;
         }
         return super.onOptionsItemSelected(item);

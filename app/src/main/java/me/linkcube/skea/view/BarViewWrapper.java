@@ -1,6 +1,7 @@
 package me.linkcube.skea.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -44,6 +45,7 @@ public class BarViewWrapper {
 
 
     private void initVarViewAttrs(int type, boolean glow) {
+        Log.i("CXC", "type:" + type);
         switch (type) {
             case BarConst.TYPE.LONG:
                 height = 12 * BarConst.VIEW.SPEED;
@@ -57,8 +59,16 @@ public class BarViewWrapper {
                 height = 5 * BarConst.VIEW.SPEED;
                 resId = glow ? R.drawable.bar_short_glow : R.drawable.bar_short;
                 break;
-            case BarConst.TYPE.SLOT:
+            case BarConst.TYPE.SLOT_SHORT:
                 height = 2 * BarConst.VIEW.SPEED;
+                resId = -1;
+                break;
+            case BarConst.TYPE.SLOT_MEDIUM:
+                height = 4 * BarConst.VIEW.SPEED;
+                resId = -1;
+                break;
+            case BarConst.TYPE.SLOT_LONG:
+                height = 6 * BarConst.VIEW.SPEED;
                 resId = -1;
                 break;
             default:

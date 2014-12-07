@@ -31,9 +31,25 @@ public class BarGenerator {
 
     private void create() {
         for (int i = 0; i < barNum; i++) {
-            bars.add(getRandomBarType(i));
-            if (i != barNum - 1)
-                bars.add(new Bar(BarConst.TYPE.SLOT));
+            Bar temp=getRandomBarType(i);
+            bars.add(temp);
+            //不是最后一个Bar时要添加间隔，此处注意间隔不是固定长度的
+            if (i != barNum - 1){
+                switch (temp.getType()){
+                    case BarConst.TYPE.LONG:
+                        bars.add(new Bar(BarConst.TYPE.SLOT_LONG));
+                        break;
+                    case BarConst.TYPE.MEDIUM:
+                        bars.add(new Bar(BarConst.TYPE.SLOT_MEDIUM));
+                        break;
+                    case BarConst.TYPE.SHORT:
+                        bars.add(new Bar(BarConst.TYPE.SLOT_SHORT));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
         }
     }
 

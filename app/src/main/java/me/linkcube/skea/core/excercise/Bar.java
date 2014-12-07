@@ -14,8 +14,12 @@ public class Bar {
     private int height;
 
     private int beginActiveOffset;
+    /**真正的开始触发点*/
+    private int realBeginActiveOffset;
 
     private int endActiveOffset;
+    /**真正的结束触发点*/
+    private int realEndActiveOffset;
 
     public Bar(int type) {
         this.type = type;
@@ -47,6 +51,7 @@ public class Bar {
 
     public void setBeginActiveOffset(int beginActiveOffset) {
         this.beginActiveOffset = beginActiveOffset;
+        this.realBeginActiveOffset=this.beginActiveOffset+BarConst.ACTIVE_BEGIN_OFFSET_MARGIN;
     }
 
     public int getEndActiveOffset() {
@@ -55,5 +60,22 @@ public class Bar {
 
     public void setEndActiveOffset(int endActiveOffset) {
         this.endActiveOffset = endActiveOffset;
+        this.realEndActiveOffset=this.endActiveOffset-BarConst.ACTIVE_END_OFFSET_MARGIN;
     }
+
+    public int getRealBeginActiveOffset() {
+        return realBeginActiveOffset;
+    }
+
+//    public void setRealBeginActiveOffset(int realBeginActiveOffset) {
+//        this.realBeginActiveOffset = realBeginActiveOffset;
+//    }
+
+    public int getRealEndActiveOffset() {
+        return realEndActiveOffset;
+    }
+
+//    public void setRealEndActiveOffset(int realEndActiveOffset) {
+//        this.realEndActiveOffset = realEndActiveOffset;
+//    }
 }

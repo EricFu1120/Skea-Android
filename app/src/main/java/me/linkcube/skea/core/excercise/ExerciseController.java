@@ -16,11 +16,11 @@ public class ExerciseController {
 
     private final int UNIT_TIME = 50;
     private Timer timer;
-    private int offset;
+    private int offset = 0;
 
     private int activePosition = -1;
 
-    private int nextPosition;
+    private int nextPosition = 0;
 
     private List<Bar> list;
 
@@ -35,22 +35,23 @@ public class ExerciseController {
     /**
      * 用来分割计时点
      */
-    private int count;
+    private int count = 0;
 
-    private int second;
+    private int second = 0;
 
     public ExerciseController(Context context) {
         //TODO get user's level
-        leftTime = BarGroupManager.getInstance().getBarGroupHeight(context, true) / BarConst.VIEW.SPEED;
-        Log.d("left time = ", "" + leftTime);
+
         list = BarGenerator.getInstance().getBars();
-        nextPosition = list.size() - 1;
+
+        nextPosition = 0;
         timer = new Timer();
         timerTask = new TimerTask() {
             @Override
             public void run() {
                 BarGroupManager.getInstance().scrollBy(-BarConst.VIEW.UNIT_SPEED);
                 offset = offset + BarConst.VIEW.UNIT_SPEED;
+                Log.i("CXC", "@@@@offset:" + offset);
                 checkActivePosition();
             }
         };
@@ -59,18 +60,17 @@ public class ExerciseController {
 
     public void init(Context context, LinearLayout frontGroup, LinearLayout behindGroup) {
         BarGroupManager.getInstance().initBarGroup(context, frontGroup, behindGroup);
+        //将leftTime的计算从构造函数移到这里，是因为，getBlankHeight中返回的height只有在getHeaderOrFooterView执行过之后才是真正的高度，否则为未赋值的默认值0
+        //进行向上取值
+        leftTime=(int)Math.ceil (BarGroupManager.getInstance().getBarGroupHeight(context, true) / (double)BarConst.VIEW.SPEED);
+
+        Log.i("CXC","leftTime----"+leftTime);
     }
 
     public void prepare(Context context, ScrollView frontScrollView, ScrollView behindScrollView) {
         BarGroupManager.getInstance().prepare(context, frontScrollView, behindScrollView);
     }
 
-    public void test() {
-        for (int i = list.size() - 1; i >= 0; i--) {
-            Log.d("test", "" + list.get(i).getBeginActiveOffset());
-            Log.d("test", "" + list.get(i).getEndActiveOffset());
-        }
-    }
 
     /**
      * 开始计算分数
@@ -87,21 +87,19 @@ public class ExerciseController {
         //确定激活的Bar
         count++;
         second++;
-        if (nextPosition >= 0) {
+        if (activePosition < list.size() && 0 <= nextPosition && nextPosition < list.size()) {
             Bar bar = list.get(nextPosition);
-            if (bar.getBeginActiveOffset() <= offset && bar.getEndActiveOffset() >= offset) {
+            if (bar.getBeginActiveOffset() <= offset && offset <= bar.getEndActiveOffset()) {
                 if (!active) {
                     activePosition = nextPosition;
-                    nextPosition = activePosition - 2;
-                    Log.d("checkActivePosition", "bar type" + list.get(activePosition).getType());
-                    Log.d("checkActivePosition", "activePosition = " + activePosition);
-                    Log.d("checkActivePosition", "nextPosition = " + nextPosition);
+                    nextPosition = activePosition + 2;
+
                     if (callback != null) {
                         callback.startScore(list.get(activePosition));
                         count = 0;
                     }
                 }
-            } else if (activePosition != -1 && list.get(activePosition).getBeginActiveOffset() <= offset && list.get(activePosition).getEndActiveOffset() >= offset) {
+            } else if (activePosition != -1 && list.get(activePosition).getBeginActiveOffset() <= offset && offset <= list.get(activePosition).getEndActiveOffset()) {
                 active = true;
 //                Log.d("checkActivePosition", "activePosition = " + activePosition);
             } else {
@@ -113,7 +111,7 @@ public class ExerciseController {
                 activePosition = -1;
             }
         } else {
-            timer.cancel();
+            //timer.cancel();
         }
 
         if (count != 0 && count % 10 == 0) {
@@ -128,7 +126,12 @@ public class ExerciseController {
                 callback.tickSecond(leftTime);
             }
         }
+
+        if (leftTime <= 0) {
+            timer.cancel();
+        }
     }
+
 
     public void pause() {
         timerTask.cancel();

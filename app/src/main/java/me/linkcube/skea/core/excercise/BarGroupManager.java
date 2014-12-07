@@ -27,6 +27,9 @@ public class BarGroupManager {
 
     private BarGroupManager() {
         //TODO 获取level
+
+
+        list = BarGenerator.getInstance().getBars();
     }
 
     public static BarGroupManager getInstance() {
@@ -42,10 +45,50 @@ public class BarGroupManager {
 //
 //        }
         int level = 1;
-
-        int exercise = BarConst.VIEW.SPEED * (5 + 7 + 12) * 15;
+        int barUnitNum =0;
+        switch (level) {
+            case 1:
+                barUnitNum = 15;
+                break;
+            case 2:
+                barUnitNum = 20;
+                break;
+            case 3:
+                barUnitNum = 30;
+                break;
+            case 4:
+                barUnitNum = 40;
+                break;
+            default:
+                barUnitNum = 15;
+                break;
+        }
+        //***锻练的时间
+        int exercise = BarConst.VIEW.SPEED * (5 + 7 + 12) * barUnitNum;
         int blank = getBlankHeight(front);
-        int slot = BarConst.VIEW.SPEED * 2 * 44;
+        //****各个间隔休息的总时间，因为一共有3种长度，每个有15个，一共3x15＝45个，所以需要44个间隔
+        int slot = 0;
+        //Log.i("CXC","*****"+list.get(list.size()-1).getType());
+        switch (list.get(list.size() - 1).getType()) {
+
+            case BarConst.TYPE.SHORT:
+                slot = BarConst.VIEW.SPEED * ((2 + 4 + 6) * barUnitNum - 2);
+                break;
+            case BarConst.TYPE.MEDIUM:
+                slot = BarConst.VIEW.SPEED * ((2 + 4 + 6) * barUnitNum - 4);
+                break;
+            case BarConst.TYPE.LONG:
+                slot = BarConst.VIEW.SPEED * ((2 + 4 + 6) * barUnitNum - 6);
+                break;
+            default:
+                break;
+
+
+        }
+        Log.i("CXC", "----exercise:" + exercise);
+        Log.i("CXC", "----slot:" + slot);
+        Log.i("CXC", "----blank:" + blank);
+        Log.i("CXC", "----total:" + (exercise + blank + slot));
         return exercise + blank + slot;
 
     }
@@ -79,25 +122,32 @@ public class BarGroupManager {
         ViewGroup frontParent = (ViewGroup) frontGroup.getParent();
         ViewGroup behindParent = (ViewGroup) behindGroup.getParent();
 
-        list = BarGenerator.getInstance().getBars();
         frontGroup.addView(getHeaderOrFooterView(frontParent, true));
         behindGroup.addView(getHeaderOrFooterView(behindParent, false));
-        for (int i = 0; i < list.size(); i++) {
+
+
+        for (int i = list.size() - 1; i >= 0; i--) {
             frontGroup.addView(new BarViewWrapper().getImageView(context, list.get(i).getType(), false));
             behindGroup.addView(new BarViewWrapper().getImageView(context, list.get(i).getType(), true));
+            Log.i("CXC", "i" + i + "--type:" + list.get(i).getType());
         }
+
         frontGroup.addView(getHeaderOrFooterView(frontParent, true));
         behindGroup.addView(getHeaderOrFooterView(behindParent, false));
-        for (int i = list.size() - 1; i >= 0; i--) {
+        //***在这里设置各个Bar的触发时间与结束时间
+        //其中也包括了所有的间隔，
+        for (int i = 0; i < list.size(); i++) {
             Bar bar = list.get(i);
-            if (i == list.size() - 1) {
+            if (i == 0) {
                 bar.setBeginActiveOffset(getBlankHeight(true));
+
                 Log.d("test activeOffset", "" + bar.getBeginActiveOffset());
                 bar.setEndActiveOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
             } else {
-                bar.setBeginActiveOffset(list.get(i + 1).getEndActiveOffset());
+                bar.setBeginActiveOffset(list.get(i - 1).getEndActiveOffset());
                 bar.setEndActiveOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
             }
+            Log.i("CXC", "---" + bar.getBeginActiveOffset() + "---" + bar.getEndActiveOffset());
         }
 
     }
@@ -113,12 +163,15 @@ public class BarGroupManager {
         View view = new View(parent.getContext());
         int width = DensityUtils.dip2px(parent.getContext(), 60);
         int height = parent.getHeight();
+        //****出现倒计时问题可能就出现在这里。。。
         if (front) {
             frontBlankHeight = height;
             Log.d("getHeaderOrFooterView", "front height=" + height);
+            Log.i("CXC", "****front Height:" + height);
         } else {
             behindBlankHeight = height;
             Log.d("getHeaderOrFooterView", "behind height=" + height);
+            Log.i("CXC", "****behind Height:" + height);
         }
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, height);
