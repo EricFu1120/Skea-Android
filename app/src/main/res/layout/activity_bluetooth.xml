@@ -8,8 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-
+        android:layout_marginTop="16dp"
         android:text="Connecting your Skea ..."
         android:textSize="@dimen/TextSize.Super" />
 
@@ -18,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
@@ -48,8 +47,8 @@
 
     <View style="@style/Setting.Item.Divider" />
 
-    <me.linkcube.skea.ui.bluetooth.BTDeviceListView
-        android:id="@+id/device_lv"
+    <ListView
+        android:id="@+id/listView"
         style="@style/ListView"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -58,9 +57,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-
         android:padding="15dp"
         android:text="Please turn on your Skea and put it near your phone"
         android:textColor="@color/action_bar_dark_gray"

@@ -12,6 +12,7 @@
     <string name="toast_bluetooth_closed">蓝牙已关闭</string>
     <string name="toast_searching_toy_over">搜索蓝牙设备完毕!</string>
     <string name="toast_no_device_nearby">附近没有搜索到设备</string>
+    <string name="toast_disconnect_toy">玩具中断</string>
     <string name="toast_connecting_toy">正在与玩具连接...</string>
     <string name="toast_connect_toy_success">连接玩具成功!</string>
     <string name="toast_connect_toy_failure">连接玩具失败，请确认玩具是否打开!</string>

@@ -45,6 +45,9 @@
                 android:value=".ui.MainActivity" />
         </activity>
         <activity
+            android:name=".ui.bluetooth.EasyBluetoothActivity"
+            android:label="Bluetooth Setting" />
+        <activity
             android:name=".ui.exercise.ExerciseActivity"
             android:label="@string/title_activity_exercise" />
         <activity
@@ -116,9 +119,6 @@
             android:name=".ui.init.GuideActivity"
             android:label="@string/title_activity_guide"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
-        <activity
-            android:name=".ui.bluetooth.BTSettingActivity"
-            android:label="@string/title_activity_btsetting" />
 
         <activity
             android:name=".TestSugarActivity"

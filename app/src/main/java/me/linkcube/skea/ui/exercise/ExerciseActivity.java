@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -15,6 +16,7 @@ import android.widget.ToggleButton;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.ervin.bluetooth.EasyBluetooth;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.excercise.Bar;
@@ -34,6 +36,10 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private TextView leftTimeTextView;
     private TextView scoreTextView;
     private boolean shrink;
+
+    //用于测试返回数据的TextView
+    private TextView pressDataTextView;
+    private Button receiveBtn;
 
     /**
      * 用于标记ScorllView 是否可以滑动
@@ -84,6 +90,19 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             }
         });
 
+        pressDataTextView = (TextView) findViewById(R.id.press_data);
+        receiveBtn = (Button) findViewById(R.id.receive_data_button);
+        receiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
+                    @Override
+                    public void onDataReceived(byte[] data, String message) {
+                        pressDataTextView.setText(data.toString());
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -132,10 +151,10 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             if (scroll) {
                 controller.init(this, frontGroup, behindGroup);
                 scroll = false;
-            }else {
+            } else {
 
-                    controller.prepare(this,frontScrollView,behindScrollView);
-                    controller.start();
+                controller.prepare(this, frontScrollView, behindScrollView);
+                controller.start();
 
             }
 

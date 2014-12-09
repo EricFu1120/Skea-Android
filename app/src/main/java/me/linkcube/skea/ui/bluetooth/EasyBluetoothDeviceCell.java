@@ -15,18 +15,18 @@ import me.linkcube.skea.R;
  *
  * @author orange
  */
-public class BTDeviceListCell extends LinearLayout {
+public class EasyBluetoothDeviceCell extends LinearLayout {
 
     private TextView deviceNameTv;
 
     private TextView deviceStateTv;
 
-    public BTDeviceListCell(Context context) {
+    public EasyBluetoothDeviceCell(Context context) {
         super(context);
         init(context);
     }
 
-    public BTDeviceListCell(Context context, AttributeSet attrs) {
+    public EasyBluetoothDeviceCell(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }

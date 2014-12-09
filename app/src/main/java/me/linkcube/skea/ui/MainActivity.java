@@ -10,7 +10,7 @@ import android.view.View;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.UserManager;
-import me.linkcube.skea.ui.bluetooth.BTSettingActivity;
+import me.linkcube.skea.ui.bluetooth.EasyBluetoothActivity;
 import me.linkcube.skea.ui.evaluation.RecordActivity;
 import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.ui.info.InformationActivity;
@@ -121,8 +121,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_connect_bluetooth) {
-            //TODO 进入蓝牙连接页面
-            startActivity(new Intent(this, BTSettingActivity.class));
+            startActivity(new Intent(this, EasyBluetoothActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
