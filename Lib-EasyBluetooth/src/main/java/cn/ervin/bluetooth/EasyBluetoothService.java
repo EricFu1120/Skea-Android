@@ -378,29 +378,20 @@ public class EasyBluetoothService {
         }
 
         public void run() {
-            byte[] buffer;
-            ArrayList<Integer> arr_byte = new ArrayList<Integer>();
-
-            // Keep listening to the InputStream while connected
+            byte[] buffer = new byte[1024];
             while (true) {
                 try {
-                    int data = mmInStream.read();
-                    if (data == 0x0A) {
-                    } else if (data == 0x0D) {
-                        buffer = new byte[arr_byte.size()];
-                        for (int i = 0; i < arr_byte.size(); i++) {
-                            buffer[i] = arr_byte.get(i).byteValue();
+                    int bytes;
+                    if ((bytes = mmInStream.read(buffer)) > 0) {
+                        byte[] buf_data = new byte[bytes];
+                        for (int i = 0; i < bytes; i++) {
+                            buf_data[i] = buffer[i];
                         }
-                        // Send the obtained bytes to the UI Activity
                         mHandler.obtainMessage(MESSAGE_READ
                                 , buffer.length, -1, buffer).sendToTarget();
-                        arr_byte = new ArrayList<Integer>();
-                    } else {
-                        arr_byte.add(data);
                     }
                 } catch (IOException e) {
                     connectionLost();
-                    // Start the service over to restart listening mode
                     EasyBluetoothService.this.start();
                     break;
                 }

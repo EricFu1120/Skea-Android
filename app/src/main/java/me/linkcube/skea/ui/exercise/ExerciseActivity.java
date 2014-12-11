@@ -19,12 +19,15 @@ import java.util.TimerTask;
 import cn.ervin.bluetooth.EasyBluetooth;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.excercise.Bar;
 import me.linkcube.skea.core.excercise.ExerciseController;
 import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
 
 
 public class ExerciseActivity extends BaseActivity implements ExerciseController.ExerciseScoreCallback {
+
+    private static final String TAG = "ExerciseActivity";
 
     public boolean scroll = true;
     private LinearLayout frontGroup;
@@ -97,8 +100,12 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             public void onClick(View v) {
                 EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
                     @Override
-                    public void onDataReceived(byte[] data, String message) {
-                        pressDataTextView.setText(data.toString());
+                    public void onDataReceived(byte[] bytes, String message) {
+                        pressDataTextView.setText(bytes.toString());
+                        if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
+                                && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
+                            Log.d(TAG, "onDataReceived");
+                        }
                     }
                 });
             }
