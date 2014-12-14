@@ -13,12 +13,16 @@ public class ExerciseScoreCounter {
     private static ExerciseScoreCounter instance;
 
     private int count = 0;
+    private int cool_count = 0;
+    private int perfect_count = 0;
 
     private Bar bar;
 
     private List<Segment> segments;
 
-    private boolean lock;
+    private boolean lock = false;
+    private boolean cool_lock = false;
+    private boolean perfect_lock = false;
 
     private int totalScore;
 
@@ -35,6 +39,19 @@ public class ExerciseScoreCounter {
     public void startScore(Bar bar) {
         this.bar = bar;
         lock = true;
+        cool_lock = true;
+        perfect_lock = true;
+    }
+
+    public void startCoolScore(Bar bar) {
+        this.bar = bar;
+        cool_lock = true;
+
+    }
+
+    public void startPerfectScore(Bar bar) {
+        this.bar = bar;
+        perfect_lock = true;
     }
 
     public void tickScore() {
@@ -46,7 +63,43 @@ public class ExerciseScoreCounter {
         }
     }
 
+    public void tickCoolScore() {
+        if (cool_lock) {
+
+            Log.i("CXC", "----Cool ++++");
+        }
+    }
+
+    public void tickPerfectScore() {
+        if (perfect_lock) {
+
+            Log.i("CXC", "----perfect ++++");
+        }
+    }
+
+    /**
+     * 计算当前游戏得分
+     */
     public int stopScore() {
+        if (perfect_lock) {
+            if (perfect_count > 0) {
+                totalScore += 50;
+                perfect_lock = false;
+//                perfect_count = 0;
+                Log.i("CXC", "perfect +++50");
+
+            }
+
+        }
+        if (cool_lock) {
+            if (cool_count > 0 && perfect_count <= 0) {
+                totalScore += 30;
+                cool_lock = false;
+//                cool_count = 0;
+                Log.i("CXC", "Cool ++++30");
+            }
+        }
+
 
         if (lock) {
             float score = getScore();
@@ -54,13 +107,26 @@ public class ExerciseScoreCounter {
             Log.d("stopScore", "totalScore=" + totalScore);
             bar.setScore(score);
             segments.clear();
-            count = 0;
+
+//            count = 0;
             lock = false;
+
         }
+        cool_count = 0;
+        perfect_count = 0;
+        count = 0;
         return totalScore;
     }
 
     public void receiveSignal() {
+
+        if (cool_lock) {
+            cool_count++;
+
+        }
+        if (perfect_lock) {
+            perfect_count++;
+        }
         if (lock) {
             count++;
         }

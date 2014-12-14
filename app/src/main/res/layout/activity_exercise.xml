@@ -173,6 +173,14 @@
             android:text="Shrink"
             android:textOff="relax"
             android:textOn="shrink" />
+        <Button
+            android:id="@+id/init_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="init"
+            />
 
 
     </RelativeLayout>

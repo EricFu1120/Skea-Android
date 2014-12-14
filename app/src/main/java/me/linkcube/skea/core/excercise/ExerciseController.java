@@ -51,7 +51,7 @@ public class ExerciseController {
             public void run() {
                 BarGroupManager.getInstance().scrollBy(-BarConst.VIEW.UNIT_SPEED);
                 offset = offset + BarConst.VIEW.UNIT_SPEED;
-                Log.i("CXC", "@@@@offset:" + offset);
+//                Log.i("CXC", "@@@@offset:" + offset);
                 checkActivePosition();
             }
         };
@@ -89,17 +89,38 @@ public class ExerciseController {
         second++;
         if (activePosition < list.size() && 0 <= nextPosition && nextPosition < list.size()) {
             Bar bar = list.get(nextPosition);
-            if (bar.getBeginActiveOffset() <= offset && offset <= bar.getEndActiveOffset()) {
+            if (bar.getBeginActiveOffset() <= offset && offset <= bar.getRealEndActiveOffset()) {
                 if (!active) {
                     activePosition = nextPosition;
                     nextPosition = activePosition + 2;
 
                     if (callback != null) {
+//                        callback.startCoolScore(list.get(activePosition));
+//                        callback.startPerfectScore(list.get(activePosition));
                         callback.startScore(list.get(activePosition));
+
                         count = 0;
                     }
                 }
-            } else if (activePosition != -1 && list.get(activePosition).getBeginActiveOffset() <= offset && offset <= list.get(activePosition).getEndActiveOffset()) {
+            }else if (activePosition != -1 && list.get(activePosition).getBeginActiveOffset() <= offset && offset < list.get(activePosition).getBeginActiveOffset()+12) {
+                //cheat
+                active = true;
+
+//                Log.d("checkActivePosition", "activePosition = " + activePosition);
+            }
+            else if (activePosition != -1 && list.get(activePosition).getBeginActiveOffset()+12 <= offset && offset < list.get(activePosition).getBeginActiveOffset()+32) {
+                //Cool
+                active = true;
+                callback.tickCoolScore();
+//                Log.d("checkActivePosition", "activePosition = " + activePosition);
+            }
+            else if (activePosition != -1 && list.get(activePosition).getRealBeginActiveOffset()+32 <= offset && offset < list.get(activePosition).getRealBeginActiveOffset()) {
+                //Perfect
+                active = true;
+                callback.tickPerfectScore();
+//                Log.d("checkActivePosition", "activePosition = " + activePosition);
+            }
+            else if (activePosition != -1 && list.get(activePosition).getRealBeginActiveOffset() <= offset && offset <= list.get(activePosition).getRealEndActiveOffset()) {
                 active = true;
 //                Log.d("checkActivePosition", "activePosition = " + activePosition);
             } else {
@@ -119,6 +140,7 @@ public class ExerciseController {
             if (callback != null)
                 callback.tickScore();
         }
+
         if (second % 20 == 0) {
             second = 0;
             if (callback != null) {
@@ -126,9 +148,16 @@ public class ExerciseController {
                 callback.tickSecond(leftTime);
             }
         }
-
+        //以总时间倒计时来控制整个游戏
         if (leftTime <= 0) {
             timer.cancel();
+            //游戏结束之后，显示本次游戏成绩－－跳转到运动记录界面进行显示
+
+            /**
+             *
+             * 启动运动记录Activity，并传入当前游戏用户的数据，以便显示
+             **/
+
         }
     }
 
@@ -139,6 +168,19 @@ public class ExerciseController {
 
     public void start() {
         timer.schedule(timerTask, 0, UNIT_TIME);
+    }
+
+    public void continueGame(){
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                BarGroupManager.getInstance().scrollBy(-BarConst.VIEW.UNIT_SPEED);
+                offset = offset + BarConst.VIEW.UNIT_SPEED;
+//                Log.i("CXC", "@@@@offset:" + offset);
+                checkActivePosition();
+            }
+        };
+       timer.schedule(timerTask,0,UNIT_TIME);
     }
 
     public void resume() {
@@ -152,8 +194,12 @@ public class ExerciseController {
     public interface ExerciseScoreCallback {
 
         void startScore(Bar bar);
+        void startCoolScore(Bar bar);
+        void startPerfectScore(Bar bar);
 
         void tickScore();
+        void tickCoolScore();
+        void tickPerfectScore();
 
         void tickSecond(int leftTime);
 
