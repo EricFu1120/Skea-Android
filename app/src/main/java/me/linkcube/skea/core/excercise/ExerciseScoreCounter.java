@@ -67,6 +67,8 @@ public class ExerciseScoreCounter {
         if (cool_lock) {
 
             Log.i("CXC", "----Cool ++++");
+
+
         }
     }
 

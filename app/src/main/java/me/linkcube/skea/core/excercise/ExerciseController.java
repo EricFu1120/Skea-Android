@@ -154,7 +154,6 @@ public class ExerciseController {
             //游戏结束之后，显示本次游戏成绩－－跳转到运动记录界面进行显示
 
             /**
-             *
              * 启动运动记录Activity，并传入当前游戏用户的数据，以便显示
              **/
 
