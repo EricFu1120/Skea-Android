@@ -3,13 +3,13 @@ android {
     compileSdkVersion 21
     buildToolsVersion '21.1.1'
     defaultConfig {
-        applicationId 'com.orm.dsl'
+//        applicationId 'com.orm.dsl'
         minSdkVersion 8
         targetSdkVersion 19
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
