@@ -39,8 +39,6 @@ public class ExerciseScoreCounter {
     public void startScore(Bar bar) {
         this.bar = bar;
         lock = true;
-        cool_lock = true;
-        perfect_lock = true;
     }
 
     public void startCoolScore(Bar bar) {
@@ -65,16 +63,13 @@ public class ExerciseScoreCounter {
 
     public void tickCoolScore() {
         if (cool_lock) {
-
             Log.i("CXC", "----Cool ++++");
-
 
         }
     }
 
     public void tickPerfectScore() {
         if (perfect_lock) {
-
             Log.i("CXC", "----perfect ++++");
         }
     }
@@ -83,51 +78,59 @@ public class ExerciseScoreCounter {
      * 计算当前游戏得分
      */
     public int stopScore() {
-        if (perfect_lock) {
-            if (perfect_count > 0) {
-                totalScore += 50;
-                perfect_lock = false;
-//                perfect_count = 0;
-                Log.i("CXC", "perfect +++50");
-
-            }
-
-        }
-        if (cool_lock) {
-            if (cool_count > 0 && perfect_count <= 0) {
-                totalScore += 30;
-                cool_lock = false;
-//                cool_count = 0;
-                Log.i("CXC", "Cool ++++30");
-            }
-        }
 
 
         if (lock) {
             float score = getScore();
             totalScore += getScore();
-            Log.d("stopScore", "totalScore=" + totalScore);
             bar.setScore(score);
+            Log.i("CXC", "score:---" + score);
             segments.clear();
-
-//            count = 0;
             lock = false;
-
         }
-        cool_count = 0;
-        perfect_count = 0;
         count = 0;
+        return totalScore;
+    }
+
+    public int stopCoolScore() {
+
+        cool_lock = false;
+
+        return 0;
+
+    }
+
+    public int stopPerfectScore() {
+        if (cool_count > 0) {
+            totalScore += 30;
+//                cool_count = 0;
+            Log.i("CXC", "Cool ++++30");
+
+        } else if (perfect_count > 0) {
+            totalScore += 50;
+
+//                perfect_count = 0;
+            Log.i("CXC", "perfect +++50");
+
+
+        } else {
+
+            totalScore += 0;
+        }
+        perfect_count = 0;
+        cool_count = 0;
+        perfect_lock = false;
+
         return totalScore;
     }
 
     public void receiveSignal() {
 
-        if (cool_lock) {
-            cool_count++;
-
-        }
         if (perfect_lock) {
             perfect_count++;
+        }
+        if (cool_lock) {
+            cool_count++;
         }
         if (lock) {
             count++;
