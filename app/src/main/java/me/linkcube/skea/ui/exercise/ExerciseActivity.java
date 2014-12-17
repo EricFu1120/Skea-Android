@@ -62,13 +62,16 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         initViews();
 
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (shrink)
-                    ExerciseScoreCounter.getInstance().receiveSignal();
-            }
-        }, 1000, 15);//1000ms 以后每隔15ms执行一次
+//
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                if (shrink) {
+//                    ExerciseScoreCounter.getInstance().receiveSignal();
+//                }
+//
+//            }
+//        }, 1000, 50);//1000ms 以后每隔15ms执行一次
     }
 
     /**
@@ -108,6 +111,16 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 } else {
                     controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
                     controller.start();
+
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (shrink) {
+                                ExerciseScoreCounter.getInstance().receiveSignal();
+                            }
+
+                        }
+                    }, 1000, 25);//1000ms 以后每隔15ms执行一次
 
                 }
             }
@@ -233,8 +246,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                         dialog.cancel();
                         controller.continueGame();
                         isPaused = true;
-
-
                     }
                 });
         //显示Dialog
@@ -302,21 +313,20 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     @Override
     public void stopCoolScore() {
-        final int coolScore=ExerciseScoreCounter.getInstance().stopCoolScore();
+        final int coolScore = ExerciseScoreCounter.getInstance().stopCoolScore();
 
     }
 
     @Override
     public void stopPerfectScore() {
 
-        final int score=ExerciseScoreCounter.getInstance().stopPerfectScore();
+        final int score = ExerciseScoreCounter.getInstance().stopPerfectScore();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 scoreTextView.setText(score + "");
             }
         });
-
 
 
     }

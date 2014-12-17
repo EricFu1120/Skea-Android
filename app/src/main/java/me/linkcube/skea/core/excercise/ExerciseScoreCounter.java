@@ -12,7 +12,7 @@ public class ExerciseScoreCounter {
 
     private static ExerciseScoreCounter instance;
 
-    private int count = 0;
+    private int game_count = 0;
     private int cool_count = 0;
     private int perfect_count = 0;
 
@@ -37,7 +37,7 @@ public class ExerciseScoreCounter {
     }
 
     public void startScore(Bar bar) {
-        this.bar = bar;
+//        this.bar = bar;
         lock = true;
     }
 
@@ -48,16 +48,16 @@ public class ExerciseScoreCounter {
     }
 
     public void startPerfectScore(Bar bar) {
-        this.bar = bar;
+//        this.bar = bar;
         perfect_lock = true;
     }
 
     public void tickScore() {
         if (lock) {
             //TODO 可能出现锁问题
-            Segment segment = new Segment(count);
+            Segment segment = new Segment(game_count);
             segments.add(segment);
-            count = 0;
+            game_count = 0;
         }
     }
 
@@ -79,7 +79,6 @@ public class ExerciseScoreCounter {
      */
     public int stopScore() {
 
-
         if (lock) {
             float score = getScore();
             totalScore += getScore();
@@ -88,7 +87,7 @@ public class ExerciseScoreCounter {
             segments.clear();
             lock = false;
         }
-        count = 0;
+        game_count = 0;
         return totalScore;
     }
 
@@ -133,7 +132,7 @@ public class ExerciseScoreCounter {
             cool_count++;
         }
         if (lock) {
-            count++;
+            game_count++;
         }
     }
 
