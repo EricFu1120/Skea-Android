@@ -18,15 +18,17 @@ public class ExerciseController {
     private Timer timer;
     private int offset = 0;
 
-    private int activePosition = -1;
+    private int activePosition = 0;
 
-    private int nextPosition = 0;
+//    private int nextPosition = 0;
 
     private List<Bar> list;
 
     private TimerTask timerTask;
 
     private boolean active = false;
+    private boolean cool_active=false;
+    private boolean perfect_active=false;
 
     private int leftTime;
 
@@ -44,7 +46,6 @@ public class ExerciseController {
 
         list = BarGenerator.getInstance().getBars();
 
-        nextPosition = 0;
         timer = new Timer();
         timerTask = new TimerTask() {
             @Override
@@ -62,9 +63,9 @@ public class ExerciseController {
         BarGroupManager.getInstance().initBarGroup(context, frontGroup, behindGroup);
         //将leftTime的计算从构造函数移到这里，是因为，getBlankHeight中返回的height只有在getHeaderOrFooterView执行过之后才是真正的高度，否则为未赋值的默认值0
         //进行向上取值
-        leftTime=(int)Math.ceil (BarGroupManager.getInstance().getBarGroupHeight(context, true) / (double)BarConst.VIEW.SPEED);
+        leftTime = (int) Math.ceil(BarGroupManager.getInstance().getBarGroupHeight(context, true) / (double) BarConst.VIEW.SPEED);
 
-        Log.i("CXC","leftTime----"+leftTime);
+        Log.i("CXC", "leftTime----" + leftTime);
     }
 
     public void prepare(Context context, ScrollView frontScrollView, ScrollView behindScrollView) {
@@ -83,64 +84,91 @@ public class ExerciseController {
 
     }
 
+
     public void checkActivePosition() {
         //确定激活的Bar
+        Log.i("CXC","====activePosition:"+activePosition);
         count++;
         second++;
-        if (activePosition < list.size() && 0 <= nextPosition && nextPosition < list.size()) {
-            Bar bar = list.get(nextPosition);
+        if (activePosition < list.size()) {
+            Bar bar = list.get(activePosition);
             if (bar.getBeginActiveOffset() <= offset && offset <= bar.getRealEndActiveOffset()) {
-                if (!active) {
-                    activePosition = nextPosition;
-                    nextPosition = activePosition + 2;
+                if (bar.getBeginActiveOffset() <= offset && offset < bar.getBeginActiveOffset() + 12) {
+                    //cheat --防
+                    Log.i("CXC","@@@@@@cheat");
 
-                    if (callback != null) {
-//                        callback.startCoolScore(list.get(activePosition));
-//                        callback.startPerfectScore(list.get(activePosition));
-                        callback.startScore(list.get(activePosition));
-
-                        count = 0;
+                } else if (bar.getBeginActiveOffset() + 12 <= offset && offset < bar.getBeginActiveOffset() + 32) {
+                    //Cool
+                    Log.i("CXC","@@@@@@Cool");
+                    if(!cool_active && callback !=null){
+                        cool_active=true;
+                        callback.startCoolScore(bar);
                     }
+                    if(cool_active){
+                        callback.tickCoolScore();
+                    }
+
+                } else if (bar.getBeginActiveOffset() + 32 <= offset && offset < bar.getRealBeginActiveOffset()) {
+                    //Perfect
+                    Log.i("CXC","@@@@@@Perfect");
+                    if(cool_active){
+                        callback.stopCoolScore();
+                        cool_active=false;
+                    }
+                    if(!perfect_active && callback !=null){
+                        perfect_active=true;
+                        callback.startPerfectScore(bar);
+                    }
+                    if(perfect_active){
+                        callback.tickPerfectScore();
+                    }
+                } else {
+                    // bar.getRealBeginActiveOffset() <= offset && offset <= bar.getRealEndActiveOffset()
+                    //Game time
+                    Log.i("CXC","@@@@@@Game");
+
+                    if(perfect_active){
+                        callback.stopPerfectScore();
+                        perfect_active=false;
+                    }
+
+                    if(!active &&callback !=null){
+                        active=true;
+                        callback.startScore(bar);
+                        count=0;
+                    }
+                    if(active){
+                        if (count != 0 && count % 10 == 0) {
+                            callback.tickScore();
+                            count = 0;
+                        }
+                    }
+
                 }
-            }else if (activePosition != -1 && list.get(activePosition).getBeginActiveOffset() <= offset && offset < list.get(activePosition).getBeginActiveOffset()+12) {
-                //cheat
-                active = true;
 
-//                Log.d("checkActivePosition", "activePosition = " + activePosition);
-            }
-            else if (activePosition != -1 && list.get(activePosition).getBeginActiveOffset()+12 <= offset && offset < list.get(activePosition).getBeginActiveOffset()+32) {
-                //Cool
-                active = true;
-                callback.tickCoolScore();
-//                Log.d("checkActivePosition", "activePosition = " + activePosition);
-            }
-            else if (activePosition != -1 && list.get(activePosition).getRealBeginActiveOffset()+32 <= offset && offset < list.get(activePosition).getRealBeginActiveOffset()) {
-                //Perfect
-                active = true;
-                callback.tickPerfectScore();
-//                Log.d("checkActivePosition", "activePosition = " + activePosition);
-            }
-            else if (activePosition != -1 && list.get(activePosition).getRealBeginActiveOffset() <= offset && offset <= list.get(activePosition).getRealEndActiveOffset()) {
-                active = true;
-//                Log.d("checkActivePosition", "activePosition = " + activePosition);
+            } else if (bar.getRealEndActiveOffset() <= offset) {
+                //当前条结束
+                Log.i("CXC","----- Score &&& next");
+                if(active){
+                    callback.stopScore();
+                    activePosition+=2;
+                    active = false;
+                }
+
             } else {
-                active = false;
-                if (callback != null && activePosition != -1)
-                    callback.tickScore();
-                callback.stopScore();
+                //offset<bar.getBeginActiveOffset()
+                //do nothing
+//                if(callback!=null){
+//                    callback.stopScore();
+////                    active=false;
+//                }
 
-                activePosition = -1;
+
             }
-        } else {
-            //timer.cancel();
+
         }
 
-        if (count != 0 && count % 10 == 0) {
-            count = 0;
-            if (callback != null)
-                callback.tickScore();
-        }
-
+        //倒计时
         if (second % 20 == 0) {
             second = 0;
             if (callback != null) {
@@ -169,7 +197,7 @@ public class ExerciseController {
         timer.schedule(timerTask, 0, UNIT_TIME);
     }
 
-    public void continueGame(){
+    public void continueGame() {
         timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -179,7 +207,7 @@ public class ExerciseController {
                 checkActivePosition();
             }
         };
-       timer.schedule(timerTask,0,UNIT_TIME);
+        timer.schedule(timerTask, 0, UNIT_TIME);
     }
 
     public void resume() {
@@ -193,16 +221,22 @@ public class ExerciseController {
     public interface ExerciseScoreCallback {
 
         void startScore(Bar bar);
+
         void startCoolScore(Bar bar);
+
         void startPerfectScore(Bar bar);
 
         void tickScore();
+
         void tickCoolScore();
+
         void tickPerfectScore();
 
         void tickSecond(int leftTime);
 
         void stopScore();
+        void stopCoolScore();
+        void stopPerfectScore();
 
     }
 

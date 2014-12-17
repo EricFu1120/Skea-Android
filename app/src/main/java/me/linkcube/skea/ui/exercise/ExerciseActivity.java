@@ -300,7 +300,26 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         //TODO 更新UI分数
     }
 
+    @Override
+    public void stopCoolScore() {
+        final int coolScore=ExerciseScoreCounter.getInstance().stopCoolScore();
 
+    }
+
+    @Override
+    public void stopPerfectScore() {
+
+        final int score=ExerciseScoreCounter.getInstance().stopPerfectScore();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                scoreTextView.setText(score + "");
+            }
+        });
+
+
+
+    }
 }
 
 /**
