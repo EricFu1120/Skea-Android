@@ -154,6 +154,7 @@
                 android:orientation="vertical">
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:id="@+id/menopausal_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -163,7 +164,7 @@
 
 
                 <me.linkcube.skea.view.LevelRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
-                    android:id="@+id/reproduct_history_lrg"
+                    android:id="@+id/children_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -176,7 +177,7 @@
 
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
-                    android:id="@+id/sex_activity_lrg"
+                    android:id="@+id/smoking_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -185,6 +186,7 @@
                     app:yes="yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:id="@+id/surgery_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -194,7 +196,7 @@
                     app:yes="yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
-                    android:id="@+id/urinary_incontinence_lrg"
+                    android:id="@+id/work_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -204,6 +206,7 @@
                     app:yes="yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:id="@+id/problems_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -213,6 +216,7 @@
                     app:yes="yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
+                    android:id="@+id/pop_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -223,7 +227,7 @@
 
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
-                    android:id="@+id/mental_status_lrg"
+                    android:id="@+id/bulge_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"

@@ -1,9 +1,7 @@
 package me.linkcube.skea.ui.evaluation;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
@@ -17,17 +15,18 @@ import java.util.Date;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.persistence.Evaluation;
+import me.linkcube.skea.view.LevelRadioGroup;
 
 public class EvaluateActivity extends BaseActivity {
     //声明控件
-//    private LevelRadioGroup reproduct_history_lrg;
-//    private LevelRadioGroup sex_activity_lrg;
-//    private LevelRadioGroup urinary_incontinence_lrg;
-//    private LevelRadioGroup mental_status_lrg;
 
+    private LevelRadioGroup reproduct_history_lrg;
 
+    private LevelRadioGroup sex_activity_lrg;
 
+    private LevelRadioGroup urinary_incontinence_lrg;
 
+    private LevelRadioGroup mental_status_lrg;
 
 
     DatePickerDialog.OnDateSetListener myDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -88,8 +87,8 @@ public class EvaluateActivity extends BaseActivity {
 
     /**
      * 得当前的年月日,以便初始化日历
-     * */
-    private void getDate(){
+     */
+    private void getDate() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date(System.currentTimeMillis()));
         mYear = calendar.get(Calendar.YEAR);
@@ -168,7 +167,6 @@ public class EvaluateActivity extends BaseActivity {
                 .append((mMonth + 1) < 10 ? "0" + (mMonth + 1) : (mMonth + 1))
                 .append("-").append((mDays < 10) ? "0" + mDays : mDays));
     }
-
 
 
     /**
