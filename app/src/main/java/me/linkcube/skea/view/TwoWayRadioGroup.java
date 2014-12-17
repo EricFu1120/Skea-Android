@@ -71,10 +71,10 @@ public class TwoWayRadioGroup extends LinearLayout {
                     return;
                 switch (checkedId) {
                     case R.id.yes_rb:
-                        listener.onTwoWaySelected(true);
+                        listener.onTwoWaySelected(TwoWayRadioGroup.this, true);
                         break;
                     case R.id.no_rb:
-                        listener.onTwoWaySelected(false);
+                        listener.onTwoWaySelected(TwoWayRadioGroup.this, false);
                         break;
                     default:
                         break;
@@ -89,7 +89,7 @@ public class TwoWayRadioGroup extends LinearLayout {
 
     public interface OnTwoWaySelectedListener {
 
-        void onTwoWaySelected(boolean yes);
+        void onTwoWaySelected(View view, boolean yes);
 
     }
 }

@@ -14,20 +14,91 @@ import java.util.Date;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.evaluation.EvaluationScore;
 import me.linkcube.skea.core.persistence.Evaluation;
 import me.linkcube.skea.view.LevelRadioGroup;
+import me.linkcube.skea.view.TwoWayRadioGroup;
 
-public class EvaluateActivity extends BaseActivity {
-    //声明控件
+public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.OnTwoWaySelectedListener, LevelRadioGroup.OnLevelSelectedListener {
 
-    private LevelRadioGroup reproduct_history_lrg;
+    private TwoWayRadioGroup menopausalRadioGroup;
+    private LevelRadioGroup childrenRadioGroup;
+    private TwoWayRadioGroup smokingRadioGroup;
+    private TwoWayRadioGroup surgeryRadioGroup;
+    private TwoWayRadioGroup workRadioGroup;
+    private TwoWayRadioGroup problemsRadioGroup;
+    private TwoWayRadioGroup popRadioGroup;
+    private TwoWayRadioGroup bulgeRadioGroup;
 
-    private LevelRadioGroup sex_activity_lrg;
+    private int menopausalScore;
+    private int childrenScore;
+    private int smokingScore;
+    private int surgeryScore;
+    private int workScore;
+    private int problemsScore;
+    private int popScore;
+    private int bulgeScore;
 
-    private LevelRadioGroup urinary_incontinence_lrg;
+    private TextView birthday_tv;
+    private TextView height_tv;
+    private TextView weight_tv;
+    private Button submit_bt;
 
-    private LevelRadioGroup mental_status_lrg;
+    private Evaluation mEvaluationBean;
 
+    private int mYear = 1981;
+
+    private int mMonth = 0;
+
+    private int mDays = 1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initializeViews();
+        getDate();
+        updateDateDisplay();
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.activity_evaluate;
+    }
+
+
+    /**
+     * 初始化控件及变量，注册事件
+     */
+    private void initializeViews() {
+        menopausalRadioGroup = (TwoWayRadioGroup) findViewById(R.id.menopausal_radioGroup);
+        childrenRadioGroup = (LevelRadioGroup) findViewById(R.id.children_radioGroup);
+        smokingRadioGroup = (TwoWayRadioGroup) findViewById(R.id.smoking_radioGroup);
+        surgeryRadioGroup = (TwoWayRadioGroup) findViewById(R.id.surgery_radioGroup);
+        workRadioGroup = (TwoWayRadioGroup) findViewById(R.id.work_radioGroup);
+        problemsRadioGroup = (TwoWayRadioGroup) findViewById(R.id.problems_radioGroup);
+        popRadioGroup = (TwoWayRadioGroup) findViewById(R.id.pop_radioGroup);
+        bulgeRadioGroup = (TwoWayRadioGroup) findViewById(R.id.bulge_radioGroup);
+        menopausalRadioGroup.setOnTwoWaySelectedListener(this);
+        childrenRadioGroup.setOnOnLevelSelectedListener(this);
+        smokingRadioGroup.setOnTwoWaySelectedListener(this);
+        surgeryRadioGroup.setOnTwoWaySelectedListener(this);
+        workRadioGroup.setOnTwoWaySelectedListener(this);
+        problemsRadioGroup.setOnTwoWaySelectedListener(this);
+        popRadioGroup.setOnTwoWaySelectedListener(this);
+        bulgeRadioGroup.setOnTwoWaySelectedListener(this);
+
+        submit_bt = (Button) findViewById(R.id.submit_bt);
+
+        birthday_tv = (TextView) findViewById(R.id.birthday_tv);
+        height_tv = (TextView) findViewById(R.id.height_tv);
+        weight_tv = (TextView) findViewById(R.id.weight_tv);
+
+        birthday_tv.setOnClickListener(evaluationClickListener);
+        height_tv.setOnClickListener(evaluationClickListener);
+        weight_tv.setOnClickListener(evaluationClickListener);
+
+
+    }
 
     DatePickerDialog.OnDateSetListener myDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
@@ -76,14 +147,7 @@ public class EvaluateActivity extends BaseActivity {
 
         }
     };
-    private TextView birthday_tv;
-    private TextView height_tv;
-    private TextView weight_tv;
-    private Button submit_bt;
-    private Evaluation mEvaluationBean;
-    private int mYear = 1981;
-    private int mMonth = 0;
-    private int mDays = 1;
+
 
     /**
      * 得当前的年月日,以便初始化日历
@@ -94,69 +158,6 @@ public class EvaluateActivity extends BaseActivity {
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
         mDays = calendar.get(Calendar.DAY_OF_MONTH);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initializeViews();
-        getDate();
-        updateDateDisplay();
-    }
-
-    /**
-     * 初始化控件及变量，注册事件
-     */
-    private void initializeViews() {
-        //得到控件
-//        reproduct_history_lrg = (LevelRadioGroup) findViewById(R.id.reproduct_history_lrg);
-//        sex_activity_lrg = (LevelRadioGroup) findViewById(R.id.sex_activity_lrg);
-//        urinary_incontinence_lrg = (LevelRadioGroup) findViewById(R.id.urinary_incontinence_lrg);
-//        mental_status_lrg = (LevelRadioGroup) findViewById(R.id.mental_status_lrg);
-        submit_bt = (Button) findViewById(R.id.submit_bt);
-
-        birthday_tv = (TextView) findViewById(R.id.birthday_tv);
-        height_tv = (TextView) findViewById(R.id.height_tv);
-        weight_tv = (TextView) findViewById(R.id.weight_tv);
-
-        birthday_tv.setOnClickListener(evaluationClickListener);
-        height_tv.setOnClickListener(evaluationClickListener);
-        weight_tv.setOnClickListener(evaluationClickListener);
-
-
-//        //注册事件
-//        reproduct_history_lrg.setOnOnLevelSelectedListener(new LevelRadioGroup.OnLevelSelectedListener() {
-//            @Override
-//            public void onLevelSelected(int level) {
-//                Log.i("CXC", "reproduct_history_lrg---" + level);
-//                //得到相应的Level
-//                mEvaluationItemsClass.setReproductive_level(level);
-//
-//            }
-//        });
-//
-//        sex_activity_lrg.setOnOnLevelSelectedListener(new LevelRadioGroup.OnLevelSelectedListener() {
-//            @Override
-//            public void onLevelSelected(int level) {
-//                Log.i("CXC", "sex_activity_lrg---" + level);
-//                mEvaluationItemsClass.setSexual_level(level);
-//            }
-//        });
-//        urinary_incontinence_lrg.setOnOnLevelSelectedListener(new LevelRadioGroup.OnLevelSelectedListener() {
-//            @Override
-//            public void onLevelSelected(int level) {
-//                Log.i("CXC", "urinary_incontinence_lrg---" + level);
-//                mEvaluationItemsClass.setUrinary_level(level);
-//            }
-//        });
-//        mental_status_lrg.setOnOnLevelSelectedListener(new LevelRadioGroup.OnLevelSelectedListener() {
-//            @Override
-//            public void onLevelSelected(int level) {
-//                Log.i("CXC", "mental_status_lrg---" + level);
-//                mEvaluationItemsClass.setMental_level(level);
-//            }
-//        });
-
     }
 
     /**
@@ -177,10 +178,44 @@ public class EvaluateActivity extends BaseActivity {
 
     }
 
+
     @Override
-    public int getLayoutResourceId() {
-        return R.layout.activity_evaluate;
+    public void onLevelSelected(View view, int level) {
+        switch (view.getId()) {
+            case R.id.children_radioGroup:
+                childrenScore = EvaluationScore.getChildrenScore(level);
+                break;
+            default:
+                break;
+        }
     }
 
-
+    @Override
+    public void onTwoWaySelected(View view, boolean yes) {
+        switch (view.getId()) {
+            case R.id.menopausal_radioGroup:
+                menopausalScore = EvaluationScore.getMenopauseScore(yes);
+                break;
+            case R.id.smoking_radioGroup:
+                smokingScore = EvaluationScore.getSmokingScore(yes);
+                break;
+            case R.id.surgery_radioGroup:
+                surgeryScore = EvaluationScore.getPelvicFloorSurgeryScore(yes);
+                break;
+            case R.id.work_radioGroup:
+                workScore = EvaluationScore.getCurrentHeavyWorkScore(yes);
+                break;
+            case R.id.problems_radioGroup:
+                problemsScore = EvaluationScore.getPelvicFloorProblemsScore(yes);
+                break;
+            case R.id.pop_radioGroup:
+                popScore = EvaluationScore.getMotherWithPOPScore(yes);
+                break;
+            case R.id.bulge_radioGroup:
+                bulgeScore = EvaluationScore.getSeeingBulgeScore(yes);
+                break;
+            default:
+                break;
+        }
+    }
 }

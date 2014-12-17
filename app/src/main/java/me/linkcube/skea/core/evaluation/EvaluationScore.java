@@ -6,7 +6,7 @@ package me.linkcube.skea.core.evaluation;
 public class EvaluationScore {
 
 
-    private int getAgeScore(int age) {
+    public static int getAgeScore(int age) {
         if (age <= 49)
             return 0;
         else if (age >= 50 && age <= 54)
@@ -30,8 +30,9 @@ public class EvaluationScore {
      *
      * @return
      */
-    private int getMeanBMI() {
-        return 0;
+    public static int getMeanBMI(int weight, int height) {
+        int BMI = weight / (height * height);
+        return BMI;
     }
 
     /**
@@ -40,11 +41,11 @@ public class EvaluationScore {
      * @param menopause
      * @return
      */
-    private int getMenopauseScore(boolean menopause) {
+    public static int getMenopauseScore(boolean menopause) {
         return menopause ? 15 : 0;
     }
 
-    private int getChildrenScore(int children) {
+    public static int getChildrenScore(int children) {
         if (children == 0)
             return 0;
         else if (children == 1)
@@ -55,27 +56,27 @@ public class EvaluationScore {
             return 17;
     }
 
-    private int getSmokingScore(boolean smoking) {
+    public static int getSmokingScore(boolean smoking) {
         return smoking ? 0 : 8;
     }
 
-    private int getPelvicFloorSurgeryScore(boolean surgery) {
+    public static int getPelvicFloorSurgeryScore(boolean surgery) {
         return surgery ? 14 : 0;
     }
 
-    private int getCurrentHeavyWorkScore(boolean work) {
+    public static int getCurrentHeavyWorkScore(boolean work) {
         return work ? 8 : 0;
     }
 
-    private int getPelvicFloorProblemsScore(boolean problem) {
+    public static int getPelvicFloorProblemsScore(boolean problem) {
         return problem ? 6 : 0;
     }
 
-    private int getMotherWithPOPScore(boolean problem) {
+    public static int getMotherWithPOPScore(boolean problem) {
         return problem ? 12 : 0;
     }
 
-    private int getSeeingBulgeScore(boolean bulge) {
+    public static int getSeeingBulgeScore(boolean bulge) {
         return bulge ? 24 : 0;
     }
 }
