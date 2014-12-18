@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.Message;
@@ -21,6 +22,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.LogRecord;
@@ -32,6 +34,7 @@ import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.excercise.Bar;
 import me.linkcube.skea.core.excercise.ExerciseController;
 import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
+import me.linkcube.skea.ui.evaluation.RecordActivity;
 
 
 public class ExerciseActivity extends BaseActivity implements ExerciseController.ExerciseScoreCallback {
@@ -376,6 +379,27 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         updateTextViewTextHandler.sendMessage(msg);
         perfectCoolTextView.setAnimation(perfect_cool_anim);
 
+    }
+
+    @Override
+    public void showExerciseResult(List<Bar> list){
+        Intent showResultIntent =new Intent(this, RecordActivity.class);
+
+        double[] barScore=new double[list.size()];
+        int [] bartype=new int[list.size()];
+        for(int i=0;i< list.size();i++){
+            barScore[i]=(double)(list.get(i).getScore());
+            bartype[i]=list.get(i).getType();
+        }
+
+        Bundle bundle=new Bundle();
+
+
+        showResultIntent.putExtra("type",bartype);
+        showResultIntent.putExtra("score",barScore);
+//        showResultIntent.pute
+        showResultIntent.putExtra("gamescore",bundle);
+        startActivity(showResultIntent);
     }
 }
 
