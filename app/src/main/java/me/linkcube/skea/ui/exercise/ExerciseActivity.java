@@ -5,11 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -19,6 +23,7 @@ import android.widget.ToggleButton;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.LogRecord;
 
 import cn.ervin.bluetooth.EasyBluetooth;
 import me.linkcube.skea.R;
@@ -43,11 +48,17 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private Button initButton;
     private TextView leftTimeTextView;
     private TextView scoreTextView;
+    private TextView perfectCoolTextView;
     private boolean shrink;
 
     //用于测试返回数据的TextView
     private TextView pressDataTextView;
     private Button receiveBtn;
+
+
+    public UpdateTextViewTextHandler updateTextViewTextHandler;
+
+//    private
 
     /**
      * 用于标记ScorllView 是否可以滑动
@@ -62,16 +73,21 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         initViews();
 
-//
-//        new Timer().schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                if (shrink) {
-//                    ExerciseScoreCounter.getInstance().receiveSignal();
-//                }
-//
-//            }
-//        }, 1000, 50);//1000ms 以后每隔15ms执行一次
+
+        updateTextViewTextHandler=new UpdateTextViewTextHandler(perfectCoolTextView);
+
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (shrink) {
+                    ExerciseScoreCounter.getInstance().receiveSignal();
+                }
+
+            }
+        }, 1000, 15);//1000ms 以后每隔15ms执行一次
+
+
     }
 
     /**
@@ -86,6 +102,9 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
         shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
         initButton = (Button) findViewById(R.id.init_button);
+
+        //显示perfect cool 文字特效
+        perfectCoolTextView = (TextView) findViewById(R.id.perfect_cool_tv);
 
 
         controller = new ExerciseController(this);
@@ -111,17 +130,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 } else {
                     controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
                     controller.start();
-
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            if (shrink) {
-                                ExerciseScoreCounter.getInstance().receiveSignal();
-                            }
-
-                        }
-                    }, 1000, 25);//1000ms 以后每隔15ms执行一次
-
                 }
             }
         });
@@ -330,6 +338,45 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
 
     }
+
+    @Override
+    public void showPerfectCool(String message) {
+        //perfectCoolTextView.setText(msg);
+        AlphaAnimation perfect_cool_anim = new AlphaAnimation(1.0f, 0.0f);
+        perfect_cool_anim.setDuration(1000);//1000ms
+
+
+        perfect_cool_anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                perfectCoolTextView.setVisibility(View.INVISIBLE);
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                perfectCoolTextView.setVisibility(View.GONE);
+//                perfectCoolTextView.
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
+        //使用Handler发送消息，以更新UI
+        Message msg=new Message();
+        Bundle b=new Bundle();
+        b.putString(UpdateTextViewTextHandler.PERFECT_COOL_TEXTVIEW_MESSAGE_KEY,message);
+        msg.setData(b);
+
+        updateTextViewTextHandler.sendMessage(msg);
+        perfectCoolTextView.setAnimation(perfect_cool_anim);
+
+    }
 }
 
 /**
@@ -367,5 +414,38 @@ class ExerciseProgressDialog extends ProgressDialog {
 //        controller.prepare(context,frontScrollView,behindScrollView);
 //        controller.start();
     }
+
+
 }
 
+/**
+ * 用于更新TextView中文字的Handler
+ * 游戏中Perfect,Cool,Miss 点文字提示
+ * */
+class UpdateTextViewTextHandler extends android.os.Handler{
+
+    public static  final String PERFECT_COOL_TEXTVIEW_MESSAGE_KEY="com.linkcube.skea.ui.exercise.UpdateTextViewTextHandler.message_key";
+    private TextView perfectCoolTextView;
+    public UpdateTextViewTextHandler(){
+        super();
+    }
+
+    public UpdateTextViewTextHandler(TextView tv){
+        super();
+        this.perfectCoolTextView=tv;
+    }
+
+    public UpdateTextViewTextHandler(Looper looper){
+        super(looper);
+    }
+
+
+    @Override
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        Bundle bundle=msg.getData();
+        String text=bundle.getString(PERFECT_COOL_TEXTVIEW_MESSAGE_KEY);
+        this.perfectCoolTextView.setText(text);
+
+    }
+}

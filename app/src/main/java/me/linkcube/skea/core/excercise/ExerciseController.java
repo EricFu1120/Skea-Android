@@ -105,6 +105,7 @@ public class ExerciseController {
                         callback.startCoolScore(bar);
                     }
                     if(cool_active){
+                        callback.showPerfectCool("Cool");
                         callback.tickCoolScore();
                     }
 
@@ -120,6 +121,7 @@ public class ExerciseController {
                         callback.startPerfectScore(bar);
                     }
                     if(perfect_active){
+                        callback.showPerfectCool("Perfect");
                         callback.tickPerfectScore();
                     }
                 } else {
@@ -237,6 +239,8 @@ public class ExerciseController {
         void stopScore();
         void stopCoolScore();
         void stopPerfectScore();
+
+        void showPerfectCool(String msg);
 
     }
 
