@@ -60,6 +60,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import custom.android.widget.R;
+
 //import android.annotation.Widget;
 
 /**

@@ -17,9 +17,10 @@ import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.evaluation.EvaluationScore;
 import me.linkcube.skea.core.persistence.Evaluation;
 import me.linkcube.skea.view.LevelRadioGroup;
+import me.linkcube.skea.view.NumberPickerDialog;
 import me.linkcube.skea.view.TwoWayRadioGroup;
 
-public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.OnTwoWaySelectedListener, LevelRadioGroup.OnLevelSelectedListener {
+public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.OnTwoWaySelectedListener, LevelRadioGroup.OnLevelSelectedListener, NumberPickerDialog.OnValueChangedListener {
 
     private TwoWayRadioGroup menopausalRadioGroup;
     private LevelRadioGroup childrenRadioGroup;
@@ -29,6 +30,10 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private TwoWayRadioGroup problemsRadioGroup;
     private TwoWayRadioGroup popRadioGroup;
     private TwoWayRadioGroup bulgeRadioGroup;
+    private TextView birthday_tv;
+    private TextView height_tv;
+    private TextView weight_tv;
+    private Button submit_bt;
 
     private int menopausalScore;
     private int childrenScore;
@@ -39,10 +44,10 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private int popScore;
     private int bulgeScore;
 
-    private TextView birthday_tv;
-    private TextView height_tv;
-    private TextView weight_tv;
-    private Button submit_bt;
+    private int height;
+    private int weight;
+
+    private NumberPickerDialog numberPickerDialog;
 
     private Evaluation mEvaluationBean;
 
@@ -175,7 +180,6 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
      */
     private void getResult() {
 
-
     }
 
 
@@ -213,6 +217,20 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
                 break;
             case R.id.bulge_radioGroup:
                 bulgeScore = EvaluationScore.getSeeingBulgeScore(yes);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onValueChange(View parent, int oldVal, int newVal) {
+        switch (parent.getId()) {
+            case R.id.height_tv:
+                height = newVal;
+                break;
+            case R.id.weight_tv:
+                weight = newVal;
                 break;
             default:
                 break;
