@@ -43,12 +43,14 @@
         android:layout_marginBottom="65dp">
 
         <Button
+            android:visibility="gone"
             android:id="@+id/receive_data_button"
             android:text="Receive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/press_data"
             android:layout_width="wrap_content"
             android:text="test"
@@ -164,6 +166,7 @@
         </ScrollView>
 
         <ToggleButton
+            android:visibility="gone"
             android:id="@+id/shrink_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -185,6 +188,7 @@
             android:visibility="gone"
             android:text="hello"/>
         <Button
+            android:visibility="gone"
             android:id="@+id/init_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

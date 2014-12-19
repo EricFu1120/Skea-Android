@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
@@ -61,6 +62,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     public UpdateTextViewTextHandler updateTextViewTextHandler;
 
+    private InitGameHandler initGameHandler;
+
 //    private
 
     /**
@@ -77,8 +80,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         initViews();
 
 
-        updateTextViewTextHandler=new UpdateTextViewTextHandler(perfectCoolTextView);
-
+        updateTextViewTextHandler = new UpdateTextViewTextHandler(perfectCoolTextView);
+        initGameHandler = new InitGameHandler();
 
         new Timer().schedule(new TimerTask() {
             @Override
@@ -211,6 +214,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                     timeCount++;
                 }
                 progressDialog.dismiss();
+                initGameHandler.sendEmptyMessage(0);
 
             }
         }).start();
@@ -371,9 +375,9 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
 
         //使用Handler发送消息，以更新UI
-        Message msg=new Message();
-        Bundle b=new Bundle();
-        b.putString(UpdateTextViewTextHandler.PERFECT_COOL_TEXTVIEW_MESSAGE_KEY,message);
+        Message msg = new Message();
+        Bundle b = new Bundle();
+        b.putString(UpdateTextViewTextHandler.PERFECT_COOL_TEXTVIEW_MESSAGE_KEY, message);
         msg.setData(b);
 
         updateTextViewTextHandler.sendMessage(msg);
@@ -382,25 +386,51 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     }
 
     @Override
-    public void showExerciseResult(List<Bar> list){
-        Intent showResultIntent =new Intent(this, RecordActivity.class);
+    public void showExerciseResult(List<Bar> list) {
+        Intent showResultIntent = new Intent(this, RecordActivity.class);
 
-        double[] barScore=new double[list.size()];
-        int [] bartype=new int[list.size()];
-        for(int i=0;i< list.size();i++){
-            barScore[i]=(double)(list.get(i).getScore());
-            bartype[i]=list.get(i).getType();
+        double[] barScore = new double[list.size()];
+        int[] bartype = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            barScore[i] = (double) (list.get(i).getScore());
+            bartype[i] = list.get(i).getType();
         }
 
-        Bundle bundle=new Bundle();
+        Bundle bundle = new Bundle();
 
 
-        showResultIntent.putExtra("type",bartype);
-        showResultIntent.putExtra("score",barScore);
+        showResultIntent.putExtra("type", bartype);
+        showResultIntent.putExtra("score", barScore);
 //        showResultIntent.pute
-        showResultIntent.putExtra("gamescore",bundle);
+        showResultIntent.putExtra("gamescore", bundle);
         startActivity(showResultIntent);
     }
+
+    class InitGameHandler extends  Handler
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (scroll) {
+                controller.init(getApplicationContext(), frontGroup, behindGroup);
+                scroll = false;
+            } else {
+                controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
+                controller.start();
+                EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
+                    @Override
+                    public void onDataReceived(byte[] bytes, String message) {
+                        pressDataTextView.setText(bytes.toString());
+                        if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
+                                && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
+                            Log.d(TAG, "onDataReceived");
+                        }
+                    }
+                });
+            }
+        }
+    }
+
 }
 
 /**
@@ -445,21 +475,22 @@ class ExerciseProgressDialog extends ProgressDialog {
 /**
  * 用于更新TextView中文字的Handler
  * 游戏中Perfect,Cool,Miss 点文字提示
- * */
-class UpdateTextViewTextHandler extends android.os.Handler{
+ */
+class UpdateTextViewTextHandler extends android.os.Handler {
 
-    public static  final String PERFECT_COOL_TEXTVIEW_MESSAGE_KEY="com.linkcube.skea.ui.exercise.UpdateTextViewTextHandler.message_key";
+    public static final String PERFECT_COOL_TEXTVIEW_MESSAGE_KEY = "com.linkcube.skea.ui.exercise.UpdateTextViewTextHandler.message_key";
     private TextView perfectCoolTextView;
-    public UpdateTextViewTextHandler(){
+
+    public UpdateTextViewTextHandler() {
         super();
     }
 
-    public UpdateTextViewTextHandler(TextView tv){
+    public UpdateTextViewTextHandler(TextView tv) {
         super();
-        this.perfectCoolTextView=tv;
+        this.perfectCoolTextView = tv;
     }
 
-    public UpdateTextViewTextHandler(Looper looper){
+    public UpdateTextViewTextHandler(Looper looper) {
         super(looper);
     }
 
@@ -467,9 +498,10 @@ class UpdateTextViewTextHandler extends android.os.Handler{
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
-        Bundle bundle=msg.getData();
-        String text=bundle.getString(PERFECT_COOL_TEXTVIEW_MESSAGE_KEY);
+        Bundle bundle = msg.getData();
+        String text = bundle.getString(PERFECT_COOL_TEXTVIEW_MESSAGE_KEY);
         this.perfectCoolTextView.setText(text);
 
     }
 }
+

@@ -60,7 +60,6 @@ public class RecordActivity extends BaseActivity {
     private LinearLayout chart;
 
 
-
     private Timer timer;
     private boolean isFinish = false;
 
@@ -71,8 +70,8 @@ public class RecordActivity extends BaseActivity {
 
     /**
      * 得当前的年月日,以便初始化日历
-     * */
-    private void getDate(){
+     */
+    private void getDate() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date(System.currentTimeMillis()));
         mYear = calendar.get(Calendar.YEAR);
@@ -91,7 +90,7 @@ public class RecordActivity extends BaseActivity {
             mYear = year;
             mMonth = monthOfYear;
             mDays = dayOfMonth;
-            Log.i("CXC","year-month-day:"+year+"-"+monthOfYear+"-"+dayOfMonth);
+            Log.i("CXC", "year-month-day:" + year + "-" + monthOfYear + "-" + dayOfMonth);
 
             /***
              *
@@ -113,12 +112,13 @@ public class RecordActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                            bnp.incrementProgressBy(2);
+                        bnp.incrementProgressBy(2);
                     }
                 });
             }
         }, 1000, 100);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,12 +129,11 @@ public class RecordActivity extends BaseActivity {
         getDate();
 
         //得到Game数据
-        Intent intent=getIntent();
-        barType=intent.getIntArrayExtra("type");
-        barScore=intent.getDoubleArrayExtra("score");
-
-
-        addConbinedChart();
+        Intent intent = getIntent();
+        barType = intent.getIntArrayExtra("type");
+        barScore = intent.getDoubleArrayExtra("score");
+        if (barType != null)
+            addConbinedChart();
 
 
     }
@@ -169,9 +168,6 @@ public class RecordActivity extends BaseActivity {
         setTextViewTextWithSpannableString("Persistance :", "Fair", Color.WHITE, light_blue, 1.0f, 1.2f, persistance_tv);
         setTextViewTextWithSpannableString("Score :", "1573", Color.BLACK, light_blue, 1.0f, 1.2f, score_tv);
         setTextViewTextWithSpannableString("Time :", "24 Min", Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
-
-
-
 
 
     }
@@ -221,34 +217,34 @@ public class RecordActivity extends BaseActivity {
         // 横轴
         List<double[]> x = new ArrayList<double[]>();
 
-        int countNum=barType.length/2+1;
-        double [] xx=new double[countNum];
-        double [] yy=new double[countNum];
-        double [] zz=new double[countNum];
+        int countNum = barType.length / 2 + 1;
+        double[] xx = new double[countNum];
+        double[] yy = new double[countNum];
+        double[] zz = new double[countNum];
 
         //柱形图
         XYSeries waterSeries = new XYSeries(" Time ");
-        for(int i =0;i<countNum;i++){
-            xx[i]=(double)(i+1);
+        for (int i = 0; i < countNum; i++) {
+            xx[i] = (double) (i + 1);
 
-            switch (barType[2*i]){
+            switch (barType[2 * i]) {
                 case BarConst.TYPE.SHORT:
-                    yy[i]=barScore[2*i]/2;//假设最高分分别为200，300，500 ,百分比再乘以100
-                    zz[i]=50.0;
+                    yy[i] = barScore[2 * i] / 2;//假设最高分分别为200，300，500 ,百分比再乘以100
+                    zz[i] = 50.0;
                     break;
                 case BarConst.TYPE.MEDIUM:
-                    yy[i]=barScore[2*i]/3;
-                    zz[i]=70.0;
+                    yy[i] = barScore[2 * i] / 3;
+                    zz[i] = 70.0;
                     break;
                 case BarConst.TYPE.LONG:
-                    yy[i]=barScore[2*i]/5;
-                    zz[i]=90.0;
+                    yy[i] = barScore[2 * i] / 5;
+                    zz[i] = 90.0;
                     break;
                 default:
                     break;
             }
 
-            waterSeries.add(i,zz[i]);
+            waterSeries.add(i, zz[i]);
 
         }
 //        for (int i = 0; i < titles.length; i++) {
@@ -331,7 +327,7 @@ public class RecordActivity extends BaseActivity {
                     RecordActivity.this, myDateSetListener, mYear, mMonth,
                     mDays);
             datePickerDialog.show();
-            Log.i("CXC","++++date_record");
+            Log.i("CXC", "++++date_record");
             return true;
         }
         return super.onOptionsItemSelected(item);
