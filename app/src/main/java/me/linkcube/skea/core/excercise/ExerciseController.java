@@ -20,8 +20,6 @@ public class ExerciseController {
 
     private int activePosition = 0;
 
-//    private int nextPosition = 0;
-
     private List<Bar> list;
 
     private TimerTask timerTask;
@@ -105,6 +103,7 @@ public class ExerciseController {
                         callback.startCoolScore(bar);
                     }
                     if(cool_active){
+                        callback.showPerfectCool("Cool");
                         callback.tickCoolScore();
                     }
 
@@ -120,6 +119,7 @@ public class ExerciseController {
                         callback.startPerfectScore(bar);
                     }
                     if(perfect_active){
+                        callback.showPerfectCool("Perfect");
                         callback.tickPerfectScore();
                     }
                 } else {
@@ -156,14 +156,12 @@ public class ExerciseController {
                 }
 
             } else {
-                //offset<bar.getBeginActiveOffset()
+                //offset<bar.getBeginActiveOffset();
                 //do nothing
-//                if(callback!=null){
-//                    callback.stopScore();
-////                    active=false;
-//                }
-
-
+                if(callback!=null){
+                    callback.stopScore();
+//                    active=false;
+                }
             }
 
         }
@@ -184,6 +182,9 @@ public class ExerciseController {
             /**
              * 启动运动记录Activity，并传入当前游戏用户的数据，以便显示
              **/
+            callback.showExerciseResult(list);
+
+
 
         }
     }
@@ -237,6 +238,11 @@ public class ExerciseController {
         void stopScore();
         void stopCoolScore();
         void stopPerfectScore();
+
+
+        void showPerfectCool(String msg);
+
+        void showExerciseResult(List<Bar> list);
 
     }
 

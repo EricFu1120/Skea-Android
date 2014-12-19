@@ -1,6 +1,7 @@
 package me.linkcube.skea.ui.evaluation;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -30,6 +31,7 @@ import java.util.TimerTask;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.evaluation.CombinedChart;
+import me.linkcube.skea.core.excercise.BarConst;
 import me.linkcube.skea.view.NumberCircleProgressBar;
 
 public class RecordActivity extends BaseActivity {
@@ -48,6 +50,10 @@ public class RecordActivity extends BaseActivity {
     private GraphicalView mScatterChartView;
     private XYSeriesRenderer renderer;
     private XYSeries series;
+
+
+    private double barScore[];
+    private int barType[];
     /**
      * 存放GraphicalView的LinearLayout
      */
@@ -121,6 +127,16 @@ public class RecordActivity extends BaseActivity {
         setTheNumberProgressBar();
 
         getDate();
+
+        //得到Game数据
+        Intent intent=getIntent();
+        barType=intent.getIntArrayExtra("type");
+        barScore=intent.getDoubleArrayExtra("score");
+
+
+        addConbinedChart();
+
+
     }
 
     @Override
@@ -155,7 +171,7 @@ public class RecordActivity extends BaseActivity {
         setTextViewTextWithSpannableString("Time :", "24 Min", Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
 
 
-        addConbinedChart();
+
 
 
     }
@@ -204,28 +220,64 @@ public class RecordActivity extends BaseActivity {
         String[] titles = new String[]{"  Score  "};
         // 横轴
         List<double[]> x = new ArrayList<double[]>();
-        for (int i = 0; i < titles.length; i++) {
-            x.add(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12});
+
+        int countNum=barType.length/2+1;
+        double [] xx=new double[countNum];
+        double [] yy=new double[countNum];
+        double [] zz=new double[countNum];
+
+        //柱形图
+        XYSeries waterSeries = new XYSeries(" Time ");
+        for(int i =0;i<countNum;i++){
+            xx[i]=(double)(i+1);
+
+            switch (barType[2*i]){
+                case BarConst.TYPE.SHORT:
+                    yy[i]=barScore[2*i]/2;//假设最高分分别为200，300，500 ,百分比再乘以100
+                    zz[i]=50.0;
+                    break;
+                case BarConst.TYPE.MEDIUM:
+                    yy[i]=barScore[2*i]/3;
+                    zz[i]=70.0;
+                    break;
+                case BarConst.TYPE.LONG:
+                    yy[i]=barScore[2*i]/5;
+                    zz[i]=90.0;
+                    break;
+                default:
+                    break;
+            }
+
+            waterSeries.add(i,zz[i]);
+
         }
+//        for (int i = 0; i < titles.length; i++) {
+//            x.add(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12});
+//        }
+
+        x.add(xx);
+
         // 纵轴
         List<double[]> values = new ArrayList<double[]>();
-        values.add(new double[]{92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,
-                75.1, 65.6, 90.3, 97.2, 93.9});
+//        values.add(new double[]{92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,
+//                75.1, 65.6, 90.3, 97.2, 93.9});
+
+        values.add(yy);
 
         // Water Temperature 柱状图
-        XYSeries waterSeries = new XYSeries(" Time ");
-        waterSeries.add(1, 20);
-        waterSeries.add(2, 50);
-        waterSeries.add(3, 70);
-        waterSeries.add(4, 20);
-        waterSeries.add(5, 70);
-        waterSeries.add(6, 50);
-        waterSeries.add(7, 70);
-        waterSeries.add(8, 20);
-        waterSeries.add(9, 70);
-        waterSeries.add(10, 50);
-        waterSeries.add(11, 20);
-        waterSeries.add(12, 70);
+//        XYSeries waterSeries = new XYSeries(" Time ");
+//        waterSeries.add(1, 20);
+//        waterSeries.add(2, 50);
+//        waterSeries.add(3, 70);
+//        waterSeries.add(4, 20);
+//        waterSeries.add(5, 70);
+//        waterSeries.add(6, 50);
+//        waterSeries.add(7, 70);
+//        waterSeries.add(8, 20);
+//        waterSeries.add(9, 70);
+//        waterSeries.add(10, 50);
+//        waterSeries.add(11, 20);
+//        waterSeries.add(12, 70);
 
 
         //线图＋柱状图

@@ -173,6 +173,17 @@
             android:text="Shrink"
             android:textOff="relax"
             android:textOn="shrink" />
+        <TextView
+            android:id="@+id/perfect_cool_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:textSize="@dimen/TextSize.Super"
+            android:textColor="@color/text_white"
+            android:visibility="gone"
+            android:text="hello"/>
         <Button
             android:id="@+id/init_button"
             android:layout_width="wrap_content"
