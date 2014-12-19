@@ -12,15 +12,21 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.Date;
 
+import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.evaluation.EvaluationScore;
 import me.linkcube.skea.core.persistence.Evaluation;
+import me.linkcube.skea.core.persistence.User;
+import me.linkcube.skea.util.TimeUtils;
 import me.linkcube.skea.view.LevelRadioGroup;
 import me.linkcube.skea.view.NumberPickerDialog;
 import me.linkcube.skea.view.TwoWayRadioGroup;
 
 public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.OnTwoWaySelectedListener, LevelRadioGroup.OnLevelSelectedListener, NumberPickerDialog.OnValueChangedListener {
+
+    private static String TAG = "EvaluateActivity";
 
     private TwoWayRadioGroup menopausalRadioGroup;
     private LevelRadioGroup childrenRadioGroup;
@@ -56,6 +62,10 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private int mMonth = 0;
 
     private int mDays = 1;
+
+    private String birthday;
+
+    private int age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,14 +120,12 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            // TODO Auto-generated method stub
 
             // 更新年月日，以便下次启动DatePickerDialog时，显示的是上一次设置的值
             mYear = year;
             mMonth = monthOfYear;
             mDays = dayOfMonth;
             Log.i("CXC", "year-month-day:" + year + "-" + monthOfYear + "-" + dayOfMonth);
-
             updateDateDisplay();
         }
     };
@@ -143,7 +151,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
                     break;
                 case R.id.submit_bt:
                     //todo
-                    getResult();
+                    evaluate();
 
                     break;
                 default:
@@ -169,17 +177,41 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
      * 更新日期显示
      */
     private void updateDateDisplay() {
-        birthday_tv.setText(new StringBuilder().append(mYear).append("-")
+        birthday = new StringBuilder().append(mYear).append("-")
                 .append((mMonth + 1) < 10 ? "0" + (mMonth + 1) : (mMonth + 1))
-                .append("-").append((mDays < 10) ? "0" + mDays : mDays));
+                .append("-").append((mDays < 10) ? "0" + mDays : mDays).toString();
+        birthday_tv.setText(birthday);
+    }
+
+
+    private void saveUser() {
+        long id = PreferenceUtils.getLong(this, KeyConst.USER_ID, 0);
+        User user = User.findById(User.class, id);
+        Log.d(TAG, user.toString());
+        int age = TimeUtils.getAgeByBirthday(birthday);
+        user.setAge(age);
+        user.setBirthday(birthday);
+        user.setHeight(height);
+        user.setWeight(weight);
+        user.save();
+
+    }
+
+    private void saveEvaluations() {
+        Evaluation evaluation = new Evaluation();
+
+
+
     }
 
 
     /**
      * 得到测试数据 并进行评诂
      */
-    private void getResult() {
-
+    private void evaluate() {
+        saveUser();
+        saveEvaluations();
+        finish();
     }
 
 

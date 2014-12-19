@@ -9,26 +9,86 @@ import java.util.Date;
  */
 public class User extends SugarRecord<User> {
 
-    public String email;
+    String email;
 
-    public String nickname;
+    String password;
 
-    public String password;
+    String nickname;
 
-    public int height;
+    int height;
 
-    public int weight;
+    int weight;
 
-    public Date birthday;
+    /**
+     * 格式为yyyy-mm-dd
+     */
+    String birthday;
 
-    public User() {
-
-    }
+    int age;
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "email: " + email + "\n" + "password: " + password + "\n" + "nickname: " + nickname + "\n" + "birthday: " + birthday + "\n" + "weight: " + weight + "\n" + "height: " + height + "\n" + "age: " + age;
+    }
 }
