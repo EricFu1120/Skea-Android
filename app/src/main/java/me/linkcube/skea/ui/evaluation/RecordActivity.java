@@ -32,9 +32,13 @@ import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.evaluation.CombinedChart;
 import me.linkcube.skea.core.excercise.BarConst;
+import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.view.NumberCircleProgressBar;
 
 public class RecordActivity extends BaseActivity {
+
+    public static final String EXERCISE_SCORE_KEY = "com.linkcube.skea.ui.evaluation.BecordActivity.score_key";
+    public static final String EXERCISE_TYPE_KEY = "com.linkcube.skea.ui.evaluation.BecordActivity.type_key";
     //记数
     int count = 0;
     //声明控件
@@ -130,12 +134,14 @@ public class RecordActivity extends BaseActivity {
 
         //得到Game数据
         Intent intent = getIntent();
-        barType = intent.getIntArrayExtra("type");
-        barScore = intent.getDoubleArrayExtra("score");
-        if (barType != null)
+        barType = intent.getIntArrayExtra(RecordActivity.EXERCISE_TYPE_KEY);
+        barScore = intent.getDoubleArrayExtra(RecordActivity.EXERCISE_SCORE_KEY);
+        if (barType != null && barScore != null) {//接收用户锻炼数据并展示
             addConbinedChart();
+        }else{//获取ExerciseActivity传递的数据有问题，，，提示用户“出错了”
+            //to-do
 
-
+        }
     }
 
     @Override

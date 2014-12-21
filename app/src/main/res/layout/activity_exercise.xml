@@ -43,20 +43,20 @@
         android:layout_marginBottom="65dp">
 
         <Button
-            android:visibility="gone"
             android:id="@+id/receive_data_button"
-            android:text="Receive"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Receive"
+            android:visibility="gone" />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/press_data"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/receive_data_button"
             android:text="test"
             android:textColor="@color/white"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/receive_data_button" />
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/time_left_container"
@@ -166,7 +166,6 @@
         </ScrollView>
 
         <ToggleButton
-            android:visibility="gone"
             android:id="@+id/shrink_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -175,28 +174,20 @@
             android:layout_alignParentRight="true"
             android:text="Shrink"
             android:textOff="relax"
-            android:textOn="shrink" />
+            android:textOn="shrink"
+            android:visibility="visible" />
+
         <TextView
             android:id="@+id/perfect_cool_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginBottom="30dp"
-            android:textSize="@dimen/TextSize.Super"
+            android:text="hello"
             android:textColor="@color/text_white"
-            android:visibility="gone"
-            android:text="hello"/>
-        <Button
-            android:visibility="gone"
-            android:id="@+id/init_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:text="init game"
-            />
-
+            android:textSize="@dimen/TextSize.Super"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

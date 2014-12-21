@@ -26,7 +26,6 @@ import android.widget.ToggleButton;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.LogRecord;
 
 import cn.ervin.bluetooth.EasyBluetooth;
 import me.linkcube.skea.R;
@@ -42,14 +41,13 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private static final String TAG = "ExerciseActivity";
 
-    public boolean scroll = true;
+    public boolean isInited = true;
     private LinearLayout frontGroup;
     private LinearLayout behindGroup;
     private ScrollView frontScrollView;
     private ScrollView behindScrollView;
     private ExerciseController controller;
     private ToggleButton shrinkButton;
-    private Button initButton;
     private TextView leftTimeTextView;
     private TextView scoreTextView;
     private TextView perfectCoolTextView;
@@ -93,7 +91,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             }
         }, 1000, 15);//1000ms 以后每隔15ms执行一次
 
-
     }
 
     /**
@@ -107,7 +104,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         behindGroup = (LinearLayout) findViewById(R.id.behind_group);
         frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
         shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
-        initButton = (Button) findViewById(R.id.init_button);
 
         //显示perfect cool 文字特效
         perfectCoolTextView = (TextView) findViewById(R.id.perfect_cool_tv);
@@ -124,19 +120,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 shrink = isChecked;
-            }
-        });
-
-        initButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (scroll) {
-                    controller.init(getApplicationContext(), frontGroup, behindGroup);
-                    scroll = false;
-                } else {
-                    controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
-                    controller.start();
-                }
             }
         });
 
@@ -192,7 +175,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         super.onResume();
 
 
-        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this, controller, frontGroup, behindGroup, frontScrollView, behindScrollView);
+        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this,initGameHandler);
         progressDialog.setTitle("Note");
         progressDialog.setMessage("Game is loading...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -204,6 +187,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             @Override
             public void run() {
 
+                //初始化Bar－－－调用 controller.init(getApplicationContext(), frontGroup, behindGroup);
+                initGameHandler.sendEmptyMessage(0);
                 while (timeCount < 100) {
                     try {
                         Thread.sleep(50);
@@ -214,6 +199,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                     timeCount++;
                 }
                 progressDialog.dismiss();
+                //启动游戏－－－调用 controller.prepare(getApplicationContext(), frontScrollView, behindScrollView); 和controller.start();
                 initGameHandler.sendEmptyMessage(0);
 
             }
@@ -363,8 +349,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             @Override
             public void onAnimationEnd(Animation animation) {
                 perfectCoolTextView.setVisibility(View.GONE);
-//                perfectCoolTextView.
-
             }
 
             @Override
@@ -376,11 +360,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         //使用Handler发送消息，以更新UI
         Message msg = new Message();
-        Bundle b = new Bundle();
-        b.putString(UpdateTextViewTextHandler.PERFECT_COOL_TEXTVIEW_MESSAGE_KEY, message);
-        msg.setData(b);
-
+        Bundle bundle = new Bundle();
+        bundle.putString(UpdateTextViewTextHandler.PERFECT_COOL_TEXTVIEW_MESSAGE_KEY, message);
+        msg.setData(bundle);
         updateTextViewTextHandler.sendMessage(msg);
+        //注册动画
         perfectCoolTextView.setAnimation(perfect_cool_anim);
 
     }
@@ -389,20 +373,18 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     public void showExerciseResult(List<Bar> list) {
         Intent showResultIntent = new Intent(this, RecordActivity.class);
 
+        //保存Score
         double[] barScore = new double[list.size()];
-        int[] bartype = new int[list.size()];
+        //保存Type
+        int[] barType = new int[list.size()];
         for (int i = 0; i < list.size(); i++) {
             barScore[i] = (double) (list.get(i).getScore());
-            bartype[i] = list.get(i).getType();
+            barType[i] = list.get(i).getType();
         }
 
-        Bundle bundle = new Bundle();
+        showResultIntent.putExtra(RecordActivity.EXERCISE_TYPE_KEY, barType);
+        showResultIntent.putExtra(RecordActivity.EXERCISE_SCORE_KEY, barScore);
 
-
-        showResultIntent.putExtra("type", bartype);
-        showResultIntent.putExtra("score", barScore);
-//        showResultIntent.pute
-        showResultIntent.putExtra("gamescore", bundle);
         startActivity(showResultIntent);
     }
 
@@ -411,9 +393,9 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (scroll) {
+            if (isInited) {
                 controller.init(getApplicationContext(), frontGroup, behindGroup);
-                scroll = false;
+                isInited = false;
             } else {
                 controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
                 controller.start();
@@ -438,35 +420,26 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
  */
 class ExerciseProgressDialog extends ProgressDialog {
     private Context context;
-    private ExerciseController controller;
-    private LinearLayout frontGroup;
-    private LinearLayout behindGroup;
-    private ScrollView frontScrollView;
-    private ScrollView behindScrollView;
-
-    public ExerciseProgressDialog(Context context, ExerciseController controller, LinearLayout frontGroup, LinearLayout behindGroup, ScrollView frontScrollView, ScrollView behindScrollView) {
+    private ExerciseActivity.InitGameHandler initGameHandler;
+    public ExerciseProgressDialog(Context context,ExerciseActivity.InitGameHandler initGameHandler) {
         super(context);
         this.context = context;
-        this.controller = controller;
-        this.frontGroup = frontGroup;
-        this.behindGroup = behindGroup;
-        this.frontScrollView = frontScrollView;
-        this.behindScrollView = behindScrollView;
+        this.initGameHandler=initGameHandler;
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
-//        controller.init(context,frontGroup,behindGroup);
+//        initGameHandler.sendEmptyMessage(0);
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-//        controller.prepare(context,frontScrollView,behindScrollView);
-//        controller.start();
+
+//        initGameHandler.sendEmptyMessage(0);
     }
 
 
@@ -498,10 +471,10 @@ class UpdateTextViewTextHandler extends android.os.Handler {
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
+        //得到传递的参数
         Bundle bundle = msg.getData();
         String text = bundle.getString(PERFECT_COOL_TEXTVIEW_MESSAGE_KEY);
         this.perfectCoolTextView.setText(text);
-
     }
 }
 
