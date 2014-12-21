@@ -59,8 +59,8 @@ public class UserManager {
             //TODO 无法自动登录
         } else {
             User user = User.findById(User.class, id);
-            String email = user.email;
-            String password = user.password;
+            String email = user.getEmail();
+            String password = user.getPassword();
             RequestParams params = new RequestParams();
             params.add("email", email);
             params.add("password", password);
