@@ -41,7 +41,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private static final String TAG = "ExerciseActivity";
 
-    public boolean isInited = true;
+    public boolean isGameInited = true;
     private LinearLayout frontGroup;
     private LinearLayout behindGroup;
     private ScrollView frontScrollView;
@@ -393,9 +393,9 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (isInited) {
+            if (isGameInited) {
                 controller.init(getApplicationContext(), frontGroup, behindGroup);
-                isInited = false;
+                isGameInited = false;
             } else {
                 controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
                 controller.start();
@@ -430,6 +430,12 @@ class ExerciseProgressDialog extends ProgressDialog {
     @Override
     public void onStart() {
         super.onStart();
+        /*
+        *应该在这里进行游戏的初始化
+        *可是从这里初始化并开始游戏的话，
+        *会出现“前后错位”的情况
+        *
+        * */
 
 //        initGameHandler.sendEmptyMessage(0);
 
@@ -438,6 +444,7 @@ class ExerciseProgressDialog extends ProgressDialog {
     @Override
     protected void onStop() {
         super.onStop();
+        //在这里开始游戏
 
 //        initGameHandler.sendEmptyMessage(0);
     }

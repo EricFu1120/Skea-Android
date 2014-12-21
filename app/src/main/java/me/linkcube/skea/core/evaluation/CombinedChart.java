@@ -42,7 +42,7 @@ public class CombinedChart extends AbstractDemoChart {
             setXYSeriesRenderer(r);
         }
 
-        setChartSettings(renderer, "Score Details", "Excise", "Score", 0.5,
+        setChartSettings(renderer, "Score Details", "Excise", "Score", 0.0,
                 12.5, 0, 110, Color.LTGRAY, Color.LTGRAY);
         renderer.setBarSpacing(0.5);
 
@@ -78,9 +78,9 @@ public class CombinedChart extends AbstractDemoChart {
         renderer.setFillPoints(true);
 
         // 图表中是否显示数字
-        renderer.setDisplayChartValues(true);
+//        renderer.setDisplayChartValues(true);
         // 设置图表中数字字体大小
-        renderer.setChartValuesTextSize(20.0f);
+//        renderer.setChartValuesTextSize(20.0f);
         // Sets chart values minimum distance.
         renderer.setDisplayChartValuesDistance(10);
 
