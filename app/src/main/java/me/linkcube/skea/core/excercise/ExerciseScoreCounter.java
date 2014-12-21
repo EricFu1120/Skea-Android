@@ -125,12 +125,14 @@ public class ExerciseScoreCounter {
 
     public void receiveSignal() {
 
-        if (perfect_lock) {
-            perfect_count++;
-        }
         if (cool_lock) {
             cool_count++;
         }
+
+        if (perfect_lock) {
+            perfect_count++;
+        }
+
         if (lock) {
             game_count++;
         }

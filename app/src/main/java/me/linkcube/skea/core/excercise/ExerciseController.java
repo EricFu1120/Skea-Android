@@ -14,7 +14,7 @@ import java.util.TimerTask;
  */
 public class ExerciseController {
 
-    private final int UNIT_TIME = 50;
+//    private final int UNIT_TIME = 50;
     private Timer timer;
     private int offset = 0;
 
@@ -151,15 +151,15 @@ public class ExerciseController {
                 Log.i("CXC","----- Score &&& next");
                 if(active){
                     callback.stopScore();
-                    activePosition+=2;
                     active = false;
                 }
+                activePosition+=2;
 
             } else {
                 //offset<bar.getBeginActiveOffset();
                 //do nothing
                 if(callback!=null){
-                    callback.stopScore();
+//                    callback.stopScore();
 //                    active=false;
                 }
             }
@@ -195,7 +195,7 @@ public class ExerciseController {
     }
 
     public void start() {
-        timer.schedule(timerTask, 0, UNIT_TIME);
+        timer.schedule(timerTask, 0, BarConst.VIEW.UNIT_TIME);
     }
 
     public void continueGame() {
@@ -208,11 +208,11 @@ public class ExerciseController {
                 checkActivePosition();
             }
         };
-        timer.schedule(timerTask, 0, UNIT_TIME);
+        timer.schedule(timerTask, 0, BarConst.VIEW.UNIT_TIME);
     }
 
     public void resume() {
-        timer.schedule(timerTask, 0, UNIT_TIME);
+        timer.schedule(timerTask, 0, BarConst.VIEW.UNIT_TIME);
     }
 
     public void registerShrinkCallback(ExerciseScoreCallback callback) {
