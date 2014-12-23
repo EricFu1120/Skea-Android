@@ -1,11 +1,13 @@
 package me.linkcube.skea.view;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
+
 import custom.android.widget.nubmerpicker.NumberPicker;
+import me.linkcube.skea.R;
 
 /**
  * Created by ervinwang on 2014/12/18.
@@ -14,7 +16,7 @@ public class NumberPickerDialog {
 
     private Context mContext;
 
-    private PopupWindow popupWindow;
+    private Dialog dialog;
 
     private View parent;
 
@@ -26,14 +28,18 @@ public class NumberPickerDialog {
         this.listener = listener;
     }
 
-    public NumberPickerDialog(Context context, View parent) {
+    public NumberPickerDialog(Context context) {
         this.mContext = context;
-        this.parent = parent;
+
+
     }
 
-    public NumberPickerDialog configurePicker(int maxValue, int minValue) {
-
-        NumberPicker np = new NumberPicker(mContext);
+    public NumberPickerDialog configurePicker(View parent, int maxValue, int minValue) {
+        this.parent = parent;
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.dialog_number_picker, null);
+        NumberPicker np = (NumberPicker) view.findViewById(R.id.number_picker);
         np.setMaxValue(maxValue);
         np.setMinValue(minValue);
         np.setFocusable(true);
@@ -45,22 +51,22 @@ public class NumberPickerDialog {
                 mNewValue = newVal;
             }
         });
-        popupWindow = new PopupWindow(np, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
-        popupWindow.setOutsideTouchable(false);
+        dialog = new AlertDialog.Builder(mContext).setView(view).create();
+//        popupWindow = new PopupWindow(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
+//        popupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+//        popupWindow.setOutsideTouchable(false);
         return this;
     }
 
     public void show() {
-        if (popupWindow != null)
-            popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+        if (dialog != null && !dialog.isShowing())
+            dialog.show();
     }
 
 
     public void dismiss() {
-        if (popupWindow != null && popupWindow.isShowing()) {
-            popupWindow.dismiss();
-            popupWindow = null;
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
         }
 
     }
