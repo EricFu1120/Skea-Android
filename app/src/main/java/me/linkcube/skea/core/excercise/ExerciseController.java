@@ -24,7 +24,7 @@ public class ExerciseController {
 
     private TimerTask timerTask;
 
-    private boolean active = false;
+    private boolean game_active = false;
     private boolean cool_active=false;
     private boolean perfect_active=false;
 
@@ -85,19 +85,19 @@ public class ExerciseController {
 
     public void checkActivePosition() {
         //确定激活的Bar
-        Log.i("CXC","====activePosition:"+activePosition);
-        count++;
+//        Log.i("CXC","====activePosition:"+activePosition);
+//        count++;
         second++;
         if (activePosition < list.size()) {
             Bar bar = list.get(activePosition);
             if (bar.getBeginActiveOffset() <= offset && offset <= bar.getRealEndActiveOffset()) {
                 if (bar.getBeginActiveOffset() <= offset && offset < bar.getBeginActiveOffset() + 12) {
                     //cheat --防
-                    Log.i("CXC","@@@@@@cheat");
+//                    Log.i("CXC","@@@@@@cheat");
 
                 } else if (bar.getBeginActiveOffset() + 12 <= offset && offset < bar.getBeginActiveOffset() + 32) {
                     //Cool
-                    Log.i("CXC","@@@@@@Cool");
+//                    Log.i("CXC","@@@@@@Cool");
                     if(!cool_active && callback !=null){
                         cool_active=true;
                         callback.startCoolScore(bar);
@@ -108,8 +108,8 @@ public class ExerciseController {
                     }
 
                 } else if (bar.getBeginActiveOffset() + 32 <= offset && offset < bar.getRealBeginActiveOffset()) {
-                    //Perfect
-                    Log.i("CXC","@@@@@@Perfect");
+//                    //Perfect
+//                    Log.i("CXC","@@@@@@Perfect");
                     if(cool_active){
                         callback.stopCoolScore();
                         cool_active=false;
@@ -125,21 +125,23 @@ public class ExerciseController {
                 } else {
                     // bar.getRealBeginActiveOffset() <= offset && offset <= bar.getRealEndActiveOffset()
                     //Game time
-                    Log.i("CXC","@@@@@@Game");
+//                    Log.i("CXC","@@@@@@Game");
 
                     if(perfect_active){
                         callback.stopPerfectScore();
                         perfect_active=false;
                     }
 
-                    if(!active &&callback !=null){
-                        active=true;
+                    if(!game_active &&callback !=null){
+                        game_active =true;
                         callback.startScore(bar);
                         count=0;
                     }
-                    if(active){
+                    if(game_active){
+                        count++;
                         if (count != 0 && count % 10 == 0) {
                             callback.tickScore();
+                            //开始下一个0.5s
                             count = 0;
                         }
                     }
@@ -149,9 +151,9 @@ public class ExerciseController {
             } else if (bar.getRealEndActiveOffset() <= offset) {
                 //当前条结束
                 Log.i("CXC","----- Score &&& next");
-                if(active){
+                if(game_active){
                     callback.stopScore();
-                    active = false;
+                    game_active = false;
                 }
                 activePosition+=2;
 
@@ -159,8 +161,8 @@ public class ExerciseController {
                 //offset<bar.getBeginActiveOffset();
                 //do nothing
                 if(callback!=null){
-//                    callback.stopScore();
-//                    active=false;
+                    callback.stopScore();
+                    game_active =false;
                 }
             }
 

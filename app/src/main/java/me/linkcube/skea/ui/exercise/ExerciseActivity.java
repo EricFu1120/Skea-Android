@@ -84,7 +84,9 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
+//                Log.i("CXC","##############shrink:"+shrink);
                 if (shrink) {
+                    //shrink的状态不能反应真实用户的挤压－－－换Bluetooth测试吧
                     ExerciseScoreCounter.getInstance().receiveSignal();
                 }
 
@@ -134,7 +136,12 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                         pressDataTextView.setText(bytes.toString());
                         if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
                                 && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
-                            Log.d(TAG, "onDataReceived");
+                            Log.i("CXC", "onDataReceived");
+
+                            shrink=true;
+
+                        }else {
+                            shrink=false;
                         }
                     }
                 });
@@ -405,8 +412,12 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                         pressDataTextView.setText(bytes.toString());
                         if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
                                 && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
-                            Log.d(TAG, "onDataReceived");
+                            Log.d("CXC", "&&&&&&&&&&&&onDataReceived");
+                            shrink=true;
+                        }else{
+                            shrink=false;
                         }
+
                     }
                 });
             }
