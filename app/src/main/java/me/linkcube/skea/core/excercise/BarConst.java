@@ -22,11 +22,14 @@ public class BarConst {
 
         /**
          * 每五十毫秒走的px
-         * 0.05s*100px/s=5px
+         * 0.05s*80px/s=4px
          */
-        public static final int UNIT_SPEED = 5;
+        public static final int UNIT_TIME = 50;//ms
 
-        public static final int SPEED = 100;
+
+        public static final int SPEED = 80;// 80px/s
+
+        public static final int UNIT_SPEED = 4;//SPEED * UNIT_TIME/1000
 
         public static final int UNIT_WIDTH = 70;
     }

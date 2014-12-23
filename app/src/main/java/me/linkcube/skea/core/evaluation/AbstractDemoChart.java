@@ -40,7 +40,7 @@ public abstract class AbstractDemoChart {
      * @param xValues the values for the X axis
      * @param yValues the values for the Y axis
      * @return the
-     * ltiple dataset
+     * multiple dataset
      */
     protected XYMultipleSeriesDataset buildDataset(String[] titles,
                                                    List<double[]> xValues, List<double[]> yValues) {
@@ -98,7 +98,7 @@ public abstract class AbstractDemoChart {
         // 放大，缩小按钮是否显示
         renderer.setZoomButtonsVisible(false);
         // this order: top, left, bottom, right
-        renderer.setMargins(new int[]{60, 50, 80, 30});
+        renderer.setMargins(new int[]{60, 50, 10, 30});//60,50,80,30
         // // 设置空白边缘颜色
         // renderer.setMarginsColor(color.transparent);
 

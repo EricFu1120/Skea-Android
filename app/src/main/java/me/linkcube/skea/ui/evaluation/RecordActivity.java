@@ -32,9 +32,13 @@ import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.evaluation.CombinedChart;
 import me.linkcube.skea.core.excercise.BarConst;
+import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.view.NumberCircleProgressBar;
 
 public class RecordActivity extends BaseActivity {
+
+    public static final String EXERCISE_SCORE_KEY = "com.linkcube.skea.ui.evaluation.RecordActivity.score_key";
+    public static final String EXERCISE_TYPE_KEY = "com.linkcube.skea.ui.evaluation.RecordActivity.type_key";
     //记数
     int count = 0;
     //声明控件
@@ -44,7 +48,6 @@ public class RecordActivity extends BaseActivity {
     private TextView persistance_tv;
     private TextView score_tv;
     private TextView duration_tv;
-    //private TextView correct_rate_tv;
     private SpannableString mSpanableString;
     private GraphicalView mCombinedChartView;
     private GraphicalView mScatterChartView;
@@ -97,6 +100,7 @@ public class RecordActivity extends BaseActivity {
              *在这里Load选中日期的用户的Record。。。
              *
              ***/
+            loadRecord(mYear,mMonth,mDays);
         }
     };
 
@@ -130,12 +134,14 @@ public class RecordActivity extends BaseActivity {
 
         //得到Game数据
         Intent intent = getIntent();
-        barType = intent.getIntArrayExtra("type");
-        barScore = intent.getDoubleArrayExtra("score");
-        if (barType != null)
+        barType = intent.getIntArrayExtra(RecordActivity.EXERCISE_TYPE_KEY);
+        barScore = intent.getDoubleArrayExtra(RecordActivity.EXERCISE_SCORE_KEY);
+        if (barType != null && barScore != null) {//接收用户锻炼数据并展示
             addConbinedChart();
+        }else{//获取ExerciseActivity传递的数据有问题，，，提示用户“出错了”
+            //to-do
 
-
+        }
     }
 
     @Override
@@ -155,11 +161,9 @@ public class RecordActivity extends BaseActivity {
         persistance_tv = (TextView) findViewById(R.id.persistance_tv);
         score_tv = (TextView) findViewById(R.id.score_tv);
         duration_tv = (TextView) findViewById(R.id.duration_tv);
-        //correct_rate_tv = (TextView) findViewById(R.id.correct_rate_tv);
         chart = (LinearLayout) findViewById(R.id.chart);
 
         int light_blue = getResources().getColor(R.color.text_light_blue);
-        int light_blue2 = getResources().getColor(R.color.light_blue2);
 
         //设置文字特效
         setTextViewTextWithSpannableString("Today(Level 4)", "", Color.WHITE, Color.BLUE, 1.5f, 1.0f, level_tv);
@@ -250,7 +254,6 @@ public class RecordActivity extends BaseActivity {
 //        for (int i = 0; i < titles.length; i++) {
 //            x.add(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12});
 //        }
-
         x.add(xx);
 
         // 纵轴
@@ -362,6 +365,17 @@ public class RecordActivity extends BaseActivity {
 
         }
         count++;
+    }
+
+
+    /**
+     * 展示相应日期（mYear-mMonth-mDays）的数据
+     * 包括 Level,"Good",Explosive force ,Persistance,Correct Rate ，等
+     *
+     * */
+    private void loadRecord(int mYear,int mMonth,int mDays){
+
+
     }
 
 }
