@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import custom.android.util.PreferenceUtils;
+import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.KeyConst;
@@ -37,8 +39,8 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private TwoWayRadioGroup popRadioGroup;
     private TwoWayRadioGroup bulgeRadioGroup;
     private TextView birthday_tv;
-    private TextView height_tv;
-    private TextView weight_tv;
+    private EditText height_tv;
+    private EditText weight_tv;
     private Button submit_bt;
 
     private int menopausalScore;
@@ -53,8 +55,6 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private int height;
     private int weight;
 
-    private NumberPickerDialog numberPickerDialog;
-
     private Evaluation mEvaluationBean;
 
     private int mYear = 1981;
@@ -66,6 +66,8 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private String birthday;
 
     private int age;
+
+    private NumberPickerDialog numberPickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,12 +107,14 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         submit_bt = (Button) findViewById(R.id.submit_bt);
 
         birthday_tv = (TextView) findViewById(R.id.birthday_tv);
-        height_tv = (TextView) findViewById(R.id.height_tv);
-        weight_tv = (TextView) findViewById(R.id.weight_tv);
+        height_tv = (EditText) findViewById(R.id.height_tv);
+        weight_tv = (EditText) findViewById(R.id.weight_tv);
 
         birthday_tv.setOnClickListener(evaluationClickListener);
-        height_tv.setOnClickListener(evaluationClickListener);
-        weight_tv.setOnClickListener(evaluationClickListener);
+//        height_tv.setOnClickListener(evaluationClickListener);
+//        weight_tv.setOnClickListener(evaluationClickListener);
+
+        numberPickerDialog = new NumberPickerDialog(this);
 
 
     }
@@ -144,7 +148,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
 
                     break;
                 case R.id.height_tv:
-
+//                    numberPickerDialog.configurePicker(height_tv, 260, 100).show();
                     break;
                 case R.id.weight_tv:
 
@@ -160,6 +164,20 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
 
         }
     };
+
+    private boolean getWeight() {
+        weight = Integer.parseInt(weight_tv.getText().toString());
+        if (weight > 30 && weight < 150)
+            return true;
+        return false;
+    }
+
+    private boolean getHeight() {
+        height = Integer.parseInt(height_tv.getText().toString());
+        if (height > 100 && height < 260)
+            return true;
+        return false;
+    }
 
 
     /**
@@ -183,7 +201,6 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         birthday_tv.setText(birthday);
     }
 
-
     private void saveUser() {
         long id = PreferenceUtils.getLong(this, KeyConst.USER_ID, 0);
         User user = User.findById(User.class, id);
@@ -199,9 +216,6 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
 
     private void saveEvaluations() {
         Evaluation evaluation = new Evaluation();
-
-
-
     }
 
 
@@ -209,6 +223,14 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
      * 得到测试数据 并进行评诂
      */
     private void evaluate() {
+        if (!getWeight()) {
+            Toaster.showShort(this, "不符合条件");
+            return;
+        }
+        if (!getHeight()) {
+            Toaster.showShort(this, "不符合条件");
+            return;
+        }
         saveUser();
         saveEvaluations();
         finish();
