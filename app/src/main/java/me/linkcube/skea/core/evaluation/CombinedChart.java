@@ -24,7 +24,7 @@ public class CombinedChart extends AbstractDemoChart {
 
     public GraphicalView getCombinedChartGraphicalView(Context context, String[] titles, List<double[]> x, List<double[]> values, XYSeries waterSeries) {
         // 曲线的颜色
-        int[] colors = new int[]{Color.argb(255,238,127,38)};
+        int[] colors = new int[]{Color.argb(255, 238, 127, 38)};
 
         // 曲线上点的样式
         PointStyle[] styles = new PointStyle[]{PointStyle.CIRCLE};
@@ -42,10 +42,8 @@ public class CombinedChart extends AbstractDemoChart {
             setXYSeriesRenderer(r);
         }
 
-        setChartSettings(renderer, "Score Details", "Excise", "Score", 0.0,
-                12.5, 0, 110, Color.LTGRAY, Color.LTGRAY);
-        renderer.setBarSpacing(0.5);
-
+        //初次显示时，显示的个数
+        setChartSettings(renderer, "Score Details", "Excise", "Score", 0.0,20.0, 0.0, 110.0, Color.LTGRAY, Color.LTGRAY,values.get(0).length);
 
         //柱状图
         XYSeriesRenderer waterRenderer = new XYSeriesRenderer();
@@ -82,7 +80,7 @@ public class CombinedChart extends AbstractDemoChart {
         // 设置图表中数字字体大小
 //        renderer.setChartValuesTextSize(20.0f);
         // Sets chart values minimum distance.
-        renderer.setDisplayChartValuesDistance(10);
+        renderer.setDisplayChartValuesDistance(5);//10
 
     }
 
@@ -102,8 +100,14 @@ public class CombinedChart extends AbstractDemoChart {
         //边缘空白背景
         renderer.setMarginsColor(context.getResources().getColor(R.color.white));
 
+        //************
+        //
+        // CXC
+        //
+        //
+        // ******//
         setChartSettings(renderer, "Scatter chart", "日期", "数据", 0, 15, 0, 30,
-                Color.GRAY, Color.LTGRAY);
+                Color.GRAY, Color.LTGRAY,values.get(0).length);
         renderer.setXLabels(10);
         renderer.setYLabels(10);
 
