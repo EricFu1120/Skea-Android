@@ -43,29 +43,27 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private EditText weight_tv;
     private Button submit_bt;
 
-    private int menopausalScore;
-    private int childrenScore;
-    private int smokingScore;
-    private int surgeryScore;
-    private int workScore;
-    private int problemsScore;
-    private int popScore;
-    private int bulgeScore;
+    private int scoreMenopausal;
+    private int scoreChildren;
+    private int scoreSmoking;
+    private int scoreSurgery;
+    private int scoreWork;
+    private int scoreProblems;
+    private int scorePop;
+    private int scoreBulge;
 
     private int height;
     private int weight;
 
     private Evaluation mEvaluationBean;
 
+    private String birthday;
+
     private int mYear = 1981;
 
     private int mMonth = 0;
 
     private int mDays = 1;
-
-    private String birthday;
-
-    private int age;
 
     private NumberPickerDialog numberPickerDialog;
 
@@ -216,6 +214,26 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
 
     private void saveEvaluations() {
         Evaluation evaluation = new Evaluation();
+        int age = TimeUtils.getAgeByBirthday(birthday);
+        evaluation.setAge(age);
+        evaluation.setBirthday(birthday);
+        int meanBMI = EvaluationScore.getMeanBMI(weight, height);
+        evaluation.setMeanBMI(meanBMI);
+        evaluation.setHeight(height);
+        evaluation.setWeight(weight);
+        evaluation.setMenopausal(scoreMenopausal);
+        evaluation.setChildren(scoreChildren);
+        evaluation.setSmoking(scoreSmoking);
+        evaluation.setSurgery(scoreSurgery);
+        evaluation.setHeavyWork(scoreWork);
+        evaluation.setMotherWithPOP(scoreProblems);
+        evaluation.setPOP(scorePop);
+        evaluation.setBulge(scoreBulge);
+        int scoreTotal = meanBMI + scoreMenopausal + scoreChildren + scoreSmoking + scoreSurgery + scoreWork + scoreProblems + scorePop + scoreBulge;
+        evaluation.setScore(scoreTotal);
+        int level = EvaluationScore.getRiskLevel(scoreTotal);
+        evaluation.setLevel(level);
+        evaluation.save();
     }
 
 
@@ -231,6 +249,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
             Toaster.showShort(this, "不符合条件");
             return;
         }
+
         saveUser();
         saveEvaluations();
         finish();
@@ -241,7 +260,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     public void onLevelSelected(View view, int level) {
         switch (view.getId()) {
             case R.id.children_radioGroup:
-                childrenScore = EvaluationScore.getChildrenScore(level);
+                scoreChildren = EvaluationScore.getChildrenScore(level);
                 break;
             default:
                 break;
@@ -252,25 +271,25 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     public void onTwoWaySelected(View view, boolean yes) {
         switch (view.getId()) {
             case R.id.menopausal_radioGroup:
-                menopausalScore = EvaluationScore.getMenopauseScore(yes);
+                scoreMenopausal = EvaluationScore.getMenopauseScore(yes);
                 break;
             case R.id.smoking_radioGroup:
-                smokingScore = EvaluationScore.getSmokingScore(yes);
+                scoreSmoking = EvaluationScore.getSmokingScore(yes);
                 break;
             case R.id.surgery_radioGroup:
-                surgeryScore = EvaluationScore.getPelvicFloorSurgeryScore(yes);
+                scoreSurgery = EvaluationScore.getPelvicFloorSurgeryScore(yes);
                 break;
             case R.id.work_radioGroup:
-                workScore = EvaluationScore.getCurrentHeavyWorkScore(yes);
+                scoreWork = EvaluationScore.getCurrentHeavyWorkScore(yes);
                 break;
             case R.id.problems_radioGroup:
-                problemsScore = EvaluationScore.getPelvicFloorProblemsScore(yes);
+                scoreProblems = EvaluationScore.getPelvicFloorProblemsScore(yes);
                 break;
             case R.id.pop_radioGroup:
-                popScore = EvaluationScore.getMotherWithPOPScore(yes);
+                scorePop = EvaluationScore.getMotherWithPOPScore(yes);
                 break;
             case R.id.bulge_radioGroup:
-                bulgeScore = EvaluationScore.getSeeingBulgeScore(yes);
+                scoreBulge = EvaluationScore.getSeeingBulgeScore(yes);
                 break;
             default:
                 break;
