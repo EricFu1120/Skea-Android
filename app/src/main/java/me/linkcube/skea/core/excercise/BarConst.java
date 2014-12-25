@@ -5,17 +5,27 @@ package me.linkcube.skea.core.excercise;
  */
 public class BarConst {
 
+    /*Bar的类型*/
     public static class TYPE {
 
+        /*训练Bar的类型*/
         public final static int SHORT = 0;
         public final static int MEDIUM = 1;
         public final static int LONG = 2;
 
 
+        /*与训练Bar相对应的间隔Bar*/
         public final static int SLOT_SHORT = 3;
         public final static int SLOT_MEDIUM = 4;
         public final static int SLOT_LONG = 5;
 
+
+    }
+    public static class SCORE{
+        /*训练Bar对应的满分*/
+        public final static int SHORT_FULL_SCORE=125;
+        public final static int MEDIUM_FULL_SCORE=186;
+        public final static int LONG_FULL_SCORE=420;
     }
 
     public static class VIEW {
