@@ -100,7 +100,7 @@ public class RecordActivity extends BaseActivity {
              *在这里Load选中日期的用户的Record。。。
              *
              ***/
-            loadRecord(mYear,mMonth,mDays);
+            loadRecord(mYear, mMonth, mDays);
         }
     };
 
@@ -138,8 +138,14 @@ public class RecordActivity extends BaseActivity {
         barScore = intent.getDoubleArrayExtra(RecordActivity.EXERCISE_SCORE_KEY);
         if (barType != null && barScore != null) {//接收用户锻炼数据并展示
             addConbinedChart();
-        }else{//获取ExerciseActivity传递的数据有问题，，，提示用户“出错了”
+        } else {//获取ExerciseActivity传递的数据有问题，，，提示用户“出错了”
             //to-do
+
+            //test
+            barType = new int[]{1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2,2};
+            barScore = new double[]{92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,75.1, 65.6, 90.3, 97.2, 93.9,92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,
+                    75.1, 65.6, 90.3, 97.2, 93.9,78.0,86.0,78,6};
+            addConbinedChart();
 
         }
     }
@@ -229,7 +235,7 @@ public class RecordActivity extends BaseActivity {
         //柱形图
         XYSeries waterSeries = new XYSeries(" Time ");
         for (int i = 0; i < countNum; i++) {
-            xx[i] = (double) (i + 1);
+            xx[i] = (double) i;
 
             switch (barType[2 * i]) {
                 case BarConst.TYPE.SHORT:
@@ -251,33 +257,12 @@ public class RecordActivity extends BaseActivity {
             waterSeries.add(i, zz[i]);
 
         }
-//        for (int i = 0; i < titles.length; i++) {
-//            x.add(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12});
-//        }
         x.add(xx);
 
         // 纵轴
         List<double[]> values = new ArrayList<double[]>();
-//        values.add(new double[]{92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,
-//                75.1, 65.6, 90.3, 97.2, 93.9});
 
         values.add(yy);
-
-        // Water Temperature 柱状图
-//        XYSeries waterSeries = new XYSeries(" Time ");
-//        waterSeries.add(1, 20);
-//        waterSeries.add(2, 50);
-//        waterSeries.add(3, 70);
-//        waterSeries.add(4, 20);
-//        waterSeries.add(5, 70);
-//        waterSeries.add(6, 50);
-//        waterSeries.add(7, 70);
-//        waterSeries.add(8, 20);
-//        waterSeries.add(9, 70);
-//        waterSeries.add(10, 50);
-//        waterSeries.add(11, 20);
-//        waterSeries.add(12, 70);
-
 
         //线图＋柱状图
         mCombinedChartView = new CombinedChart()
@@ -371,9 +356,8 @@ public class RecordActivity extends BaseActivity {
     /**
      * 展示相应日期（mYear-mMonth-mDays）的数据
      * 包括 Level,"Good",Explosive force ,Persistance,Correct Rate ，等
-     *
-     * */
-    private void loadRecord(int mYear,int mMonth,int mDays){
+     */
+    private void loadRecord(int mYear, int mMonth, int mDays) {
 
 
     }

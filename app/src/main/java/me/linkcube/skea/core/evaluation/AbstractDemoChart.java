@@ -98,12 +98,12 @@ public abstract class AbstractDemoChart {
         // 放大，缩小按钮是否显示
         renderer.setZoomButtonsVisible(false);
         // this order: top, left, bottom, right
-        renderer.setMargins(new int[]{60, 50, 10, 30});//60,50,80,30
+        renderer.setMargins(new int[]{60, 50, 0, 30});//60,50,80,30
         // // 设置空白边缘颜色
         // renderer.setMarginsColor(color.transparent);
 
         // Sets the approximate number of labels for the X axis.
-        renderer.setXLabels(12);
+        renderer.setXLabels(10);//10
         // Sets the approximate number of labels for the Y axis.
         renderer.setYLabels(10);
 
@@ -114,9 +114,11 @@ public abstract class AbstractDemoChart {
 
         renderer.setYLabelsAlign(Align.RIGHT);
 
-        renderer.setPanLimits(new double[]{-10, 20, -10, 40});
+//        renderer.setPanLimits(new double[]{0, 30, 0, 110});//x,y轴的最大，最小显示范围*****设置为根据训练数据进行更改
         // Values: [zoomMinimumX, zoomMaximumX, zoomMinimumY, zoomMaximumY]
-        renderer.setZoomLimits(new double[]{0, 12, 0, 50});
+//        renderer.setZoomLimits(new double[]{0, 20, 0, 50});//0,20,0,50
+        //不让用户放大，缩小图表显示
+        renderer.setZoomEnabled(false,false);
         int length = colors.length;
         for (int i = 0; i < length; i++) {
             XYSeriesRenderer r = new XYSeriesRenderer();
@@ -143,7 +145,7 @@ public abstract class AbstractDemoChart {
     protected void setChartSettings(XYMultipleSeriesRenderer renderer,
                                     String title, String xTitle, String yTitle, double xMin,
                                     double xMax, double yMin, double yMax, int axesColor,
-                                    int labelsColor) {
+                                    int labelsColor,double xMaxPanLimit) {
         renderer.setChartTitle(title);
         renderer.setXTitle(xTitle);
         renderer.setYTitle(yTitle);
@@ -153,31 +155,11 @@ public abstract class AbstractDemoChart {
         renderer.setYAxisMax(yMax);
         renderer.setAxesColor(axesColor);
         renderer.setLabelsColor(labelsColor);
-    }
-
-    /**
-     * Builds an XY multiple time dataset using the provided values.
-     *
-     * @param titles  the series titles
-     * @param xValues the values for the X axis
-     * @param yValues the values for the Y axis
-     * @return the XY multiple time dataset
-     */
-    protected XYMultipleSeriesDataset buildDateDataset(String[] titles,
-                                                       List<Date[]> xValues, List<double[]> yValues) {
-        XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-        int length = titles.length;
-        for (int i = 0; i < length; i++) {
-            TimeSeries series = new TimeSeries(titles[i]);
-            Date[] xV = xValues.get(i);
-            double[] yV = yValues.get(i);
-            int seriesLength = xV.length;
-            for (int k = 0; k < seriesLength; k++) {
-                series.add(xV[k], yV[k]);
-            }
-            dataset.addSeries(series);
-        }
-        return dataset;
+        //xMaxPanLimit表示，x轴能显示的最大值
+        //这里设置为一个参数是为了根据训练数据来动态更改
+        //因为每个等级的训练个数是不一样的。
+        renderer.setPanLimits(new double[]{0, xMaxPanLimit, 0, 105});
+        renderer.setBarSpacing(0.5);
     }
 
 }

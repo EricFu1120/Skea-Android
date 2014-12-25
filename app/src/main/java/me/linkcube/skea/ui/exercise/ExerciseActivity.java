@@ -134,6 +134,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                     @Override
                     public void onDataReceived(byte[] bytes, String message) {
                         pressDataTextView.setText(bytes.toString());
+                        Log.i("CXC","$$$$$$$$$$bytes:"+bytes);
                         if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
                                 && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
                             Log.i("CXC", "onDataReceived");
