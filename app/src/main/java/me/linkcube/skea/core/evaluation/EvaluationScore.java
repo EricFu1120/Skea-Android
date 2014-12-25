@@ -5,6 +5,28 @@ package me.linkcube.skea.core.evaluation;
  */
 public class EvaluationScore {
 
+    public final static int LOW = 0;
+
+    public final static int QUITE_LOW = 1;
+
+    public final static int AVERAGE = 2;
+
+    public final static int QUITE_HIGH = 3;
+
+    public final static int HIGH = 4;
+
+    public static int getRiskLevel(int score) {
+        if (score <= 30)
+            return LOW;
+        else if (score > 30 && score <= 60)
+            return QUITE_LOW;
+        else if (score > 60 && score <= 90)
+            return AVERAGE;
+        else if (score > 90 && score <= 120)
+            return QUITE_HIGH;
+        else
+            return HIGH;
+    }
 
     public static int getAgeScore(int age) {
         if (age <= 49)

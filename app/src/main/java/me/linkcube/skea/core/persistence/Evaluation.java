@@ -2,18 +2,21 @@ package me.linkcube.skea.core.persistence;
 
 import com.orm.SugarRecord;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 实体类
  * 用于保存测试时的各项参数
  */
-public class Evaluation extends SugarRecord<Evaluation>  {
+public class Evaluation extends SugarRecord<Evaluation> {
 
-    Date evalationDate;
+    String evalationDate;
 
     String birthday;
+
+    int level;
+
+    int score;
 
     int age;
 
@@ -21,27 +24,29 @@ public class Evaluation extends SugarRecord<Evaluation>  {
 
     int weight;
 
-    boolean menopausal;
+    int meanBMI;
+
+    int menopausal;
 
     int children;
 
-    boolean smoking;
+    int smoking;
 
-    boolean surgery;
+    int surgery;
 
-    boolean heavyWork;
+    int heavyWork;
 
-    boolean POP;
+    int POP;
 
-    boolean motherWithPOP;
+    int motherWithPOP;
 
-    boolean bulge;
+    int bulge;
 
-    public Date getEvalationDate() {
+    public String getEvalationDate() {
         return evalationDate;
     }
 
-    public void setEvalationDate(Date evalationDate) {
+    public void setEvalationDate(String evalationDate) {
         this.evalationDate = evalationDate;
     }
 
@@ -51,6 +56,22 @@ public class Evaluation extends SugarRecord<Evaluation>  {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public int getAge() {
@@ -77,11 +98,19 @@ public class Evaluation extends SugarRecord<Evaluation>  {
         this.weight = weight;
     }
 
-    public boolean isMenopausal() {
+    public int getMeanBMI() {
+        return meanBMI;
+    }
+
+    public void setMeanBMI(int meanBMI) {
+        this.meanBMI = meanBMI;
+    }
+
+    public int getMenopausal() {
         return menopausal;
     }
 
-    public void setMenopausal(boolean menopausal) {
+    public void setMenopausal(int menopausal) {
         this.menopausal = menopausal;
     }
 
@@ -93,51 +122,51 @@ public class Evaluation extends SugarRecord<Evaluation>  {
         this.children = children;
     }
 
-    public boolean isSmoking() {
+    public int getSmoking() {
         return smoking;
     }
 
-    public void setSmoking(boolean smoking) {
+    public void setSmoking(int smoking) {
         this.smoking = smoking;
     }
 
-    public boolean isSurgery() {
+    public int getSurgery() {
         return surgery;
     }
 
-    public void setSurgery(boolean surgery) {
+    public void setSurgery(int surgery) {
         this.surgery = surgery;
     }
 
-    public boolean isHeavyWork() {
+    public int getHeavyWork() {
         return heavyWork;
     }
 
-    public void setHeavyWork(boolean heavyWork) {
+    public void setHeavyWork(int heavyWork) {
         this.heavyWork = heavyWork;
     }
 
-    public boolean isPOP() {
+    public int getPOP() {
         return POP;
     }
 
-    public void setPOP(boolean POP) {
+    public void setPOP(int POP) {
         this.POP = POP;
     }
 
-    public boolean isMotherWithPOP() {
+    public int getMotherWithPOP() {
         return motherWithPOP;
     }
 
-    public void setMotherWithPOP(boolean motherWithPOP) {
+    public void setMotherWithPOP(int motherWithPOP) {
         this.motherWithPOP = motherWithPOP;
     }
 
-    public boolean isBulge() {
+    public int getBulge() {
         return bulge;
     }
 
-    public void setBulge(boolean bulge) {
+    public void setBulge(int bulge) {
         this.bulge = bulge;
     }
 }

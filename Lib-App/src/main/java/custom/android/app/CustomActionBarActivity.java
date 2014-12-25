@@ -31,7 +31,6 @@ public class CustomActionBarActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Timber.d(((Object) this).getClass().getName() + " onCreate");
-
     }
 
     @Override
