@@ -13,7 +13,13 @@ import me.linkcube.skea.base.ui.BaseActivity;
 
 public class EvaluateResultActivity extends BaseActivity implements View.OnClickListener {
 
-    public static final String EXERCISE_LEVEL = "EvaluateResultActivity";
+    private static final String TAG = "EvaluateResultActivity";
+
+    private static final int[] RISK_FACTOR_IMG_RES = new int[]{R.drawable.icon_risk_factor_low, R.drawable.icon_risk_factor_low, R.drawable.icon_risk_factor_medium, R.drawable.icon_risk_factor_high, R.drawable.icon_risk_factor_high};
+
+    public static final String KEY_EXERCISE_LEVEL = "KEY_EXERCISE_LEVEL";
+
+    public static final String KEY_RISK_FACTOR = "KEY_RISK_FACTOR";
 
     private static final int REQUEST_CODE_SETTING_LEVEL = 1;
 
@@ -47,6 +53,10 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
         evaluateBtn.setOnClickListener(this);
     }
 
+    private void updateRiskRactorView() {
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -54,13 +64,15 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
             case REQUEST_CODE_SETTING_LEVEL:
                 //得到训练强度值
                 if (resultCode == RESULT_OK) {
-                    exerciseLevel.setText("Level " + data.getIntExtra(EXERCISE_LEVEL, 4));
-                    Log.i("CXC", "++++:level:" + data.getIntExtra(EXERCISE_LEVEL, 4));
+                    exerciseLevel.setText("Level " + data.getIntExtra(KEY_EXERCISE_LEVEL, 4));
+                    Log.i(TAG, "onActivityResult - exercise level = " + data.getIntExtra(KEY_EXERCISE_LEVEL, 4));
                 }
                 break;
             case REQUEST_CODE_EVALUATE:
                 if (resultCode == RESULT_OK) {
-
+                    int riskFactor = data.getIntExtra(KEY_RISK_FACTOR, 0);
+                    riskRactorView.setImageResource(RISK_FACTOR_IMG_RES[riskFactor]);
+                    Log.i(TAG, "onActivityResult - risk factor = " + data.getIntExtra(KEY_RISK_FACTOR, 4));
                 }
                 break;
             default:

@@ -1,9 +1,11 @@
 package me.linkcube.skea.ui.evaluation;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -28,7 +30,7 @@ import me.linkcube.skea.view.TwoWayRadioGroup;
 
 public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.OnTwoWaySelectedListener, LevelRadioGroup.OnLevelSelectedListener, NumberPickerDialog.OnValueChangedListener {
 
-    private static String TAG = "EvaluateActivity";
+    private static final String TAG = "EvaluateActivity";
 
     private TwoWayRadioGroup menopausalRadioGroup;
     private LevelRadioGroup childrenRadioGroup;
@@ -57,9 +59,9 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private int height;
     private int weight;
 
-    private Evaluation mEvaluationBean;
-
     private String birthday;
+
+    private int riskLevel;
 
     private int mYear = 1981;
 
@@ -67,7 +69,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
 
     private int mDays = 1;
 
-    private NumberPickerDialog numberPickerDialog;
+    private boolean isEvaluateDone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +116,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
 //        height_tv.setOnClickListener(evaluationClickListener);
 //        weight_tv.setOnClickListener(evaluationClickListener);
 
-        numberPickerDialog = new NumberPickerDialog(this);
+//        numberPickerDialog = new NumberPickerDialog(this);
 
 
     }
@@ -235,8 +237,8 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         evaluation.setScoreBulge(scoreBulge);
         int scoreTotal = scoreAge + scoreMeanBMI + scoreMenopausal + scoreChildren + scoreSmoking + scoreSurgery + scoreWork + scoreProblems + scorePop + scoreBulge;
         evaluation.setScoreTotal(scoreTotal);
-        int level = EvaluationScore.getRiskLevel(scoreTotal);
-        evaluation.setLevel(level);
+        riskLevel = EvaluationScore.getRiskLevel(scoreTotal);
+        evaluation.setLevel(riskLevel);
         evaluation.save();
     }
 
@@ -253,10 +255,10 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
             Toaster.showShort(this, "不符合条件");
             return;
         }
-
         saveUser();
         saveEvaluations();
-        finish();
+        returnMessage();
+        isEvaluateDone = true;
     }
 
 
@@ -312,5 +314,26 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
             default:
                 break;
         }
+    }
+
+    private void returnMessage() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(EvaluateResultActivity.KEY_EXERCISE_LEVEL, riskLevel);
+        Log.i(TAG, "level:" + riskLevel);
+        setResult(RESULT_OK, resultIntent);
+        this.finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            if (isEvaluateDone) {
+                returnMessage();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 }

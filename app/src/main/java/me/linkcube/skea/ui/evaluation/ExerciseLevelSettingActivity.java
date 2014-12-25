@@ -1,32 +1,25 @@
 package me.linkcube.skea.ui.evaluation;
 
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
 
+import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 
 
 public class ExerciseLevelSettingActivity extends BaseActivity {
-    /**
-     * Exercise Level  File 本地持久化文件名
-     */
-    private static final String SKEA_EXERCISE_LEVEL_FILE = "Setting_Exercise_Level_File";
+
+    private static final String TAG = "ExerciseLevelSettingActivity";
+
     /**
      * Exercise Level Key
      */
     private static final String SKEA_EXERCISE_LEVEL_KEY = "Setting_Exercise_Level_Key";
-
-    private SharedPreferences mSharedPreferences = null;
-    private SharedPreferences.Editor mEditor = null;
-
 
     //训练强度
     private int exerciseLevelIndex = 4;
@@ -46,55 +39,37 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
         return R.layout.activity_exercise_level_setting;
     }
 
-    public void configureActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mSharedPreferences = getSharedPreferences(SKEA_EXERCISE_LEVEL_FILE, Activity.MODE_PRIVATE);
-        mEditor = mSharedPreferences.edit();
-        mEditor.putInt(SKEA_EXERCISE_LEVEL_KEY, exerciseLevelIndex);
-        mEditor.commit();
-
-
+        PreferenceUtils.setInt(this, SKEA_EXERCISE_LEVEL_KEY, exerciseLevelIndex);
     }
 
-    public void initViews() {
-
-
-        //得到控件
+    private void initViews() {
         exerciseLevel = (RadioGroup) findViewById(R.id.exercise_level);
-        //得到之前存储值，并设置
-        mSharedPreferences = getSharedPreferences(SKEA_EXERCISE_LEVEL_FILE, Activity.MODE_PRIVATE);
-        if (mSharedPreferences != null) {//不是第一次运行
-            int id;
-            switch (mSharedPreferences.getInt(SKEA_EXERCISE_LEVEL_KEY, 4)) {
-                case 1:
-                    id = R.id.level1_rb;
-                    break;
-                case 2:
-                    id = R.id.level2_rb;
-                    break;
-                case 3:
-                    id = R.id.level3_rb;
-                    break;
-                case 4:
-                    id = R.id.level4_rb;
-                    break;
-                case 5:
-                    id = R.id.level5_rb;
-                    break;
-                default:
-                    id = R.id.level4_rb;
-            }
-            exerciseLevel.check(id);
-
+        int level = PreferenceUtils.getInt(this, SKEA_EXERCISE_LEVEL_KEY, 4);
+        int id;
+        switch (level) {
+            case 1:
+                id = R.id.level1_rb;
+                break;
+            case 2:
+                id = R.id.level2_rb;
+                break;
+            case 3:
+                id = R.id.level3_rb;
+                break;
+            case 4:
+                id = R.id.level4_rb;
+                break;
+            case 5:
+                id = R.id.level5_rb;
+                break;
+            default:
+                id = R.id.level4_rb;
         }
+        exerciseLevel.check(id);
 
-
-        //注册事件
         exerciseLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -104,18 +79,14 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
                         break;
                     case R.id.level2_rb:
                         exerciseLevelIndex = 2;
-
                         break;
                     case R.id.level3_rb:
-
                         exerciseLevelIndex = 3;
                         break;
                     case R.id.level4_rb:
-
                         exerciseLevelIndex = 4;
                         break;
                     case R.id.level5_rb:
-
                         exerciseLevelIndex = 5;
                         break;
                     default:
@@ -126,14 +97,10 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
         });
     }
 
-
-    /**
-     * 向父Activity返回消息
-     */
     private void returnMessage() {
         //返回用户设置的训练强度
         Intent resultIntent = new Intent();
-        resultIntent.putExtra(EvaluateResultActivity.EXERCISE_LEVEL, exerciseLevelIndex);
+        resultIntent.putExtra(EvaluateResultActivity.KEY_EXERCISE_LEVEL, exerciseLevelIndex);
         Log.i("CXC", "---level:" + exerciseLevelIndex);
         setResult(RESULT_OK, resultIntent);
         this.finish();
@@ -143,9 +110,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            //TODO 尝试setResult();
             returnMessage();
-            //Toaster.showLong(this,"click home");
             return true;
         }
         return super.onOptionsItemSelected(item);
