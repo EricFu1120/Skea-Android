@@ -51,8 +51,8 @@ public class RecordActivity extends BaseActivity {
     private SpannableString mSpanableString;
     private GraphicalView mCombinedChartView;
     private GraphicalView mScatterChartView;
-    private XYSeriesRenderer renderer;
-    private XYSeries series;
+//    private XYSeriesRenderer renderer;
+//    private XYSeries series;
 
 
     private double barScore[];
@@ -223,7 +223,7 @@ public class RecordActivity extends BaseActivity {
      * 增加图表
      */
     private void addConbinedChart() {
-        String[] titles = new String[]{"  Score  "};
+        String[] titles = new String[]{"  Rate  "};
         // 横轴
         List<double[]> x = new ArrayList<double[]>();
 
@@ -233,21 +233,21 @@ public class RecordActivity extends BaseActivity {
         double[] zz = new double[countNum];
 
         //柱形图
-        XYSeries waterSeries = new XYSeries(" Time ");
+        XYSeries waterSeries = new XYSeries(" Type ");
         for (int i = 0; i < countNum; i++) {
             xx[i] = (double) i;
 
             switch (barType[2 * i]) {
                 case BarConst.TYPE.SHORT:
-                    yy[i] = barScore[2 * i] / 2;//假设最高分分别为200，300，500 ,百分比再乘以100
-                    zz[i] = 50.0;
+                    yy[i] =100* barScore[2 * i] / BarConst.SCORE.SHORT_FULL_SCORE;
+                    zz[i] = 40.0;
                     break;
                 case BarConst.TYPE.MEDIUM:
-                    yy[i] = barScore[2 * i] / 3;
+                    yy[i] = 100*barScore[2 * i] / BarConst.SCORE.MEDIUM_FULL_SCORE;
                     zz[i] = 70.0;
                     break;
                 case BarConst.TYPE.LONG:
-                    yy[i] = barScore[2 * i] / 5;
+                    yy[i] = 100*barScore[2 * i] / BarConst.SCORE.LONG_FULL_SCORE;
                     zz[i] = 90.0;
                     break;
                 default:
@@ -278,12 +278,12 @@ public class RecordActivity extends BaseActivity {
 
         //scatter Chart
 
-        String[] titleStrings = new String[]{"2 S", "7 S", "12 S"};
+        String[] titleStrings = new String[]{"  5 S  ", "   7 S  ", "   12 S  "};
         List<double[]> x = new ArrayList<double[]>();
         List<double[]> values = new ArrayList<double[]>();
         x.add(new double[]{1.0, 2.0, 3.0, 4.0, 5.0});
-        x.add(new double[]{1.0, 2.0, 3.0, 5.0, 8.0});
-        x.add(new double[]{2.0, 3.0, 4.0, 5.0, 7.0});
+        x.add(new double[]{6.0, 7.0, 8.0, 9.0, 10.0});
+        x.add(new double[]{11.0, 12.0,13.0, 14.0, 15.0});
 
         values.add(new double[]{10.0, 12.0, 16.0, 4.0, 23.0});
         values.add(new double[]{12.0, 11.0, 12.0, 7.0, 10.0});
