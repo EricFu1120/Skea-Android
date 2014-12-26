@@ -257,7 +257,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         }
         saveUser();
         saveEvaluations();
-        returnMessage();
+        finishWithMessage();
         isEvaluateDone = true;
     }
 
@@ -316,7 +316,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         }
     }
 
-    private void returnMessage() {
+    private void finishWithMessage() {
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EvaluateResultActivity.KEY_EXERCISE_LEVEL, riskLevel);
         Log.i(TAG, "level:" + riskLevel);
@@ -329,7 +329,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         int id = item.getItemId();
         if (id == android.R.id.home) {
             if (isEvaluateDone) {
-                returnMessage();
+                finishWithMessage();
                 return true;
             }
         }

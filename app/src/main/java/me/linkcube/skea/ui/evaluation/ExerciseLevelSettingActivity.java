@@ -97,11 +97,11 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
         });
     }
 
-    private void returnMessage() {
+    private void finishWithMessage() {
         //返回用户设置的训练强度
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EvaluateResultActivity.KEY_EXERCISE_LEVEL, exerciseLevelIndex);
-        Log.i("CXC", "---level:" + exerciseLevelIndex);
+        Log.i(TAG, "---level:" + exerciseLevelIndex);
         setResult(RESULT_OK, resultIntent);
         this.finish();
     }
@@ -110,7 +110,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            returnMessage();
+            finishWithMessage();
             return true;
         }
         return super.onOptionsItemSelected(item);
