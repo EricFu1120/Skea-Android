@@ -47,20 +47,20 @@ public class BarGroupManager {
         int level = 1;
         int barUnitNum = 0;
         switch (level) {
-            case 1:
-                barUnitNum = 15;
+            case BarConst.LEVEL.LEVEL_ONE:
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_ONE];
                 break;
-            case 2:
-                barUnitNum = 20;
+            case BarConst.LEVEL.LEVEL_TWO:
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_TWO];
                 break;
-            case 3:
-                barUnitNum = 30;
+            case BarConst.LEVEL.LEVEL_THREE:
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_THREE];
                 break;
-            case 4:
-                barUnitNum = 40;
+            case BarConst.LEVEL.LEVEL_FOUR:
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_FOUR];
                 break;
             default:
-                barUnitNum = 15;
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_ONE];
                 break;
         }
         //***锻练的时间
