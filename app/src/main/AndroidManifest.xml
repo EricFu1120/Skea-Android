@@ -26,7 +26,7 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.LoginActivity" />
+                android:value=".ui.user.LoginActivity" />
         </activity>
         <activity
             android:name=".ui.user.MeActivity"
@@ -56,7 +56,7 @@
             android:parentActivityName=".ui.user.MeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.user.UserInfoActivity" />
+                android:value=".ui.user.MeActivity" />
         </activity>
         <activity
             android:name=".ui.evaluation.EvaluateResultActivity"
@@ -64,7 +64,7 @@
             android:parentActivityName=".ui.user.MeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.user.UserInfoActivity" />
+                android:value=".ui.user.MeActivity" />
         </activity>
         <activity
             android:name=".ui.setting.SkeaSettingActivity"
@@ -72,7 +72,7 @@
             android:parentActivityName=".ui.user.MeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.user.UserInfoActivity" />
+                android:value=".ui.user.MeActivity" />
         </activity>
         <activity
             android:name=".ui.evaluation.EvaluateActivity"
@@ -80,7 +80,7 @@
             android:parentActivityName=".ui.evaluation.EvaluateResultActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.user.TestPelvicMuscleResultActivity" />
+                android:value=".ui.evaluation.EvaluateResultActivity" />
         </activity>
         <activity
             android:name=".ui.evaluation.ExerciseLevelSettingActivity"
@@ -88,7 +88,7 @@
             android:parentActivityName=".ui.evaluation.EvaluateResultActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.user.TestPelvicMuscleResultActivity" />
+                android:value=".ui.evaluation.EvaluateResultActivity" />
         </activity>
         <activity
             android:name=".ui.info.InformationActivity"

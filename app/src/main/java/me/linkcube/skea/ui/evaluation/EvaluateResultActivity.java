@@ -83,7 +83,7 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        Intent intent = null;
+        Intent intent;
         switch (v.getId()) {
             case R.id.level:
                 intent = new Intent();

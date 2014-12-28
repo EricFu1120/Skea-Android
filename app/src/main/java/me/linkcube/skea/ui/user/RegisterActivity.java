@@ -172,12 +172,39 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             Log.d(TAG, "服务器解析位置错误");
         } else if (status == SkeaRequestStatus.SUCC) {
             Log.d(TAG, "Register Success");
-            //TODO 自动登录
             User user = new User(email, password);
             user.save();
-            UserManager.getInstance().setLogin(this, UserManager.STATE_LOGIN);
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+            UserManager.getInstance().startAutoLogin(this, new JsonHttpResponseHandler() {
+
+                @Override
+                public void onStart() {
+                    super.onStart();
+                    showProgress(true);
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    super.onSuccess(statusCode, headers, response);
+                    showProgress(false);
+                    if (UserManager.getInstance().loginCallback(RegisterActivity.this, response)) {
+                        Toaster.showShort(RegisterActivity.this, "登录成功");
+                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toaster.showShort(RegisterActivity.this, "已注册工程，请稍候重新登录");
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    super.onFailure(statusCode, headers, responseString, throwable);
+                    showProgress(false);
+                    //TODO 网络异常的情况
+                }
+
+            });
         } else if (status == SkeaRequestStatus.USER_EXIST) {
             Log.d(TAG, "User exists");
             Toaster.showShort(this, "该用户名已经被注册");

@@ -16,8 +16,11 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import custom.android.util.PreferenceUtils;
+import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.UserManager;
 import me.linkcube.skea.core.http.SkeaRequestClient;
 import me.linkcube.skea.core.persistence.User;
@@ -95,15 +98,24 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             cancel = true;
         }
 
+        if (cancel) {
+            focusView.requestFocus();
+            return;
+        }
+
         // Check for a valid password, if the user entered one.
         if (TextUtils.isEmpty(password) || !RegularExpression.isPasswordValid(password)) {
             passwordEditText.setError(getString(R.string.error_invalid_password));
             focusView = passwordEditText;
             cancel = true;
+        } else {
+            focusView = passwordEditText;
+            cancel = false;
         }
 
         if (cancel) {
             focusView.requestFocus();
+            return;
         } else {
             executeLoginTask();
         }
@@ -126,8 +138,18 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
-                loginCallback();
-                Log.d(TAG, "Login Success");
+                if (UserManager.getInstance().loginCallback(LoginActivity.this, response)) {
+                    Log.d(TAG, "Login Success");
+                    User user = new User(email, password);
+                    long id = user.save();
+                    Log.d(TAG, "user id = " + id);
+                    PreferenceUtils.setLong(LoginActivity.this, KeyConst.USER_ID, 0);
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    Toaster.showShort(LoginActivity.this,"用户名或者密码不正确");
+                }
+
             }
 
             @Override
@@ -148,14 +170,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     }
 
-    private void loginCallback() {
-        User user = new User(email, password);
-        user.save();
-        UserManager.getInstance().setLogin(this, UserManager.STATE_LOGIN);
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
-    }
-
     ProgressDialog progressDialog;
 
     private void showProgress(boolean show) {
@@ -174,10 +188,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button:
-
                 //直接进入主界面，以便测试
-                startActivity(new Intent(this, MainActivity.class));
-                //attemptLogin();
+//                startActivity(new Intent(this, MainActivity.class));
+                attemptLogin();
                 break;
             case R.id.register_button:
                 startActivity(new Intent(this, RegisterActivity.class));

@@ -102,7 +102,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (resultCode == RESULT_OK) {
                     userState = UserManager.STATE_LOGOUT;
                     UserManager.getInstance().setLogin(this, userState);
-
                 }
                 break;
             default:
