@@ -14,6 +14,7 @@ public class UserStateWatched extends Observable {
             return;
         else
             this.isLogin = isLogin;
+        setChanged();
         notifyObservers(isLogin);
     }
 
