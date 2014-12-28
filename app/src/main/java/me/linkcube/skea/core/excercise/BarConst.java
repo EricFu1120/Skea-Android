@@ -51,7 +51,7 @@ public class BarConst {
         /**
          * 每种类型和上面的TYPE是对应的
          */
-        public static final int[] TIME = new int[]{5, 7, 12, 2, 4, 6};
+        public static final int[] TIME = new int[]{2, 7, 12, 1, 2, 3};
 
     }
 
