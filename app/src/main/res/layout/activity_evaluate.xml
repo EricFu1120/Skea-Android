@@ -258,7 +258,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/submit_bt"
+        android:id="@+id/submit"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_preference_item_height"

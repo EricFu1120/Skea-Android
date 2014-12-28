@@ -3,11 +3,9 @@ package me.linkcube.skea.ui.evaluation;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,7 +26,7 @@ import me.linkcube.skea.view.LevelRadioGroup;
 import me.linkcube.skea.view.NumberPickerDialog;
 import me.linkcube.skea.view.TwoWayRadioGroup;
 
-public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.OnTwoWaySelectedListener, LevelRadioGroup.OnLevelSelectedListener, NumberPickerDialog.OnValueChangedListener {
+public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.OnTwoWaySelectedListener, LevelRadioGroup.OnLevelSelectedListener, NumberPickerDialog.OnValueChangedListener, View.OnClickListener {
 
     private static final String TAG = "EvaluateActivity";
 
@@ -43,7 +41,6 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     private TextView birthday_tv;
     private EditText height_tv;
     private EditText weight_tv;
-    private Button submit_bt;
 
     private int scoreMenopausal;
     private int scoreChildren;
@@ -106,19 +103,13 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         popRadioGroup.setOnTwoWaySelectedListener(this);
         bulgeRadioGroup.setOnTwoWaySelectedListener(this);
 
-        submit_bt = (Button) findViewById(R.id.submit_bt);
+        findViewById(R.id.submit).setOnClickListener(this);
 
         birthday_tv = (TextView) findViewById(R.id.birthday_tv);
         height_tv = (EditText) findViewById(R.id.height_tv);
         weight_tv = (EditText) findViewById(R.id.weight_tv);
 
-        birthday_tv.setOnClickListener(evaluationClickListener);
-//        height_tv.setOnClickListener(evaluationClickListener);
-//        weight_tv.setOnClickListener(evaluationClickListener);
-
-//        numberPickerDialog = new NumberPickerDialog(this);
-
-
+        birthday_tv.setOnClickListener(this);
     }
 
     DatePickerDialog.OnDateSetListener myDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -126,44 +117,12 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-
             // 更新年月日，以便下次启动DatePickerDialog时，显示的是上一次设置的值
             mYear = year;
             mMonth = monthOfYear;
             mDays = dayOfMonth;
-            Log.i("CXC", "year-month-day:" + year + "-" + monthOfYear + "-" + dayOfMonth);
+            Log.i(TAG, "year-month-day:" + year + "-" + monthOfYear + "-" + dayOfMonth);
             updateDateDisplay();
-        }
-    };
-    View.OnClickListener evaluationClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Message msg = new Message();
-            switch (v.getId()) {
-
-                case R.id.birthday_tv:
-                    //todo
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(
-                            EvaluateActivity.this, myDateSetListener, mYear, mMonth,
-                            mDays);
-                    datePickerDialog.show();
-
-                    break;
-                case R.id.height_tv:
-//                    numberPickerDialog.configurePicker(height_tv, 260, 100).show();
-                    break;
-                case R.id.weight_tv:
-
-                    break;
-                case R.id.submit_bt:
-                    //todo
-                    evaluate();
-
-                    break;
-                default:
-
-            }
-
         }
     };
 
@@ -257,8 +216,8 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         }
         saveUser();
         saveEvaluations();
-        finishWithMessage();
         isEvaluateDone = true;
+        finishWithMessage();
     }
 
 
@@ -335,5 +294,29 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.birthday_tv:
+                //Todo
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        EvaluateActivity.this, myDateSetListener, mYear, mMonth,
+                        mDays);
+                datePickerDialog.show();
+                break;
+            case R.id.height_tv:
+                //TODO numberPickerDialog.configurePicker(height_tv, 260, 100).show();
+                break;
+            case R.id.weight_tv:
+                //TODO
+                break;
+            case R.id.submit:
+                evaluate();
+                break;
+            default:
+                break;
+        }
     }
 }

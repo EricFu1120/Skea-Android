@@ -1,8 +1,7 @@
 package me.linkcube.skea.core.persistence;
 
 import com.orm.SugarRecord;
-
-import java.util.Date;
+import com.orm.dsl.Ignore;
 
 /**
  * Created by Ervin on 14/10/23.
@@ -13,18 +12,28 @@ public class User extends SugarRecord<User> {
 
     String password;
 
+    @Ignore
     String nickname;
 
+    @Ignore
     int height;
 
+    @Ignore
     int weight;
 
     /**
      * 格式为yyyy-mm-dd
      */
+
+    @Ignore
     String birthday;
 
+    @Ignore
     int age;
+
+    public User() {
+
+    }
 
     public User(String email, String password) {
         this.email = email;
