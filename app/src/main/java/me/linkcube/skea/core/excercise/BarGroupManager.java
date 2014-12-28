@@ -64,7 +64,7 @@ public class BarGroupManager {
                 break;
         }
         //***锻练的时间
-        int exercise = BarConst.VIEW.SPEED * (BarConst.LEVEL.TIME[BarConst.TYPE.SHORT] + BarConst.LEVEL.TIME[BarConst.TYPE.MEDIUM] + BarConst.LEVEL.TIME[BarConst.TYPE.LONG]) * barUnitNum;
+        int exercise = BarConst.VIEW.SPEED * (BarConst.TYPE.BAR_TIME[BarConst.TYPE.SHORT] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.MEDIUM] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.LONG]) * barUnitNum;
         int blank = getBlankHeight(front);
         //****各个间隔休息的总时间，因为一共有3种长度，每个有15个，一共3x15＝45个，所以需要44个间隔
         int slot = 0;
@@ -72,13 +72,13 @@ public class BarGroupManager {
         switch (list.get(list.size() - 1).getType()) {
 
             case BarConst.TYPE.SHORT:
-                slot = BarConst.VIEW.SPEED * ((BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_SHORT]);
+                slot = BarConst.VIEW.SPEED * ((BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT]);
                 break;
             case BarConst.TYPE.MEDIUM:
-                slot = BarConst.VIEW.SPEED * ((BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_MEDIUM]);
+                slot = BarConst.VIEW.SPEED * ((BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM]);
                 break;
             case BarConst.TYPE.LONG:
-                slot = BarConst.VIEW.SPEED * ((BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_LONG]);
+                slot = BarConst.VIEW.SPEED * ((BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG]);
                 break;
             default:
                 break;

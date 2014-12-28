@@ -42,7 +42,7 @@ public class Bar {
     }
 
     public int getHeight(Context context) {
-        return BarConst.LEVEL.TIME[type] * BarConst.VIEW.SPEED;
+        return BarConst.TYPE.BAR_TIME[type] * BarConst.VIEW.SPEED;
     }
 
     public int getBeginActiveOffset() {

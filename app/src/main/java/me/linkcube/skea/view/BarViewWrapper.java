@@ -48,27 +48,27 @@ public class BarViewWrapper {
         Log.i("CXC", "type:" + type);
         switch (type) {
             case BarConst.TYPE.LONG:
-                height = BarConst.LEVEL.TIME[BarConst.TYPE.LONG] * BarConst.VIEW.SPEED;
+                height = BarConst.TYPE.BAR_TIME[BarConst.TYPE.LONG] * BarConst.VIEW.SPEED;
                 resId = glow ? R.drawable.bar_long_glow : R.drawable.bar_long;
                 break;
             case BarConst.TYPE.MEDIUM:
-                height = BarConst.LEVEL.TIME[BarConst.TYPE.MEDIUM] * BarConst.VIEW.SPEED;
+                height = BarConst.TYPE.BAR_TIME[BarConst.TYPE.MEDIUM] * BarConst.VIEW.SPEED;
                 resId = glow ? R.drawable.bar_medium_glow : R.drawable.bar_medium;
                 break;
             case BarConst.TYPE.SHORT:
-                height = BarConst.LEVEL.TIME[BarConst.TYPE.SHORT] * BarConst.VIEW.SPEED;
+                height = BarConst.TYPE.BAR_TIME[BarConst.TYPE.SHORT] * BarConst.VIEW.SPEED;
                 resId = glow ? R.drawable.bar_short_glow : R.drawable.bar_short;
                 break;
             case BarConst.TYPE.SLOT_SHORT:
-                height = BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_SHORT] * BarConst.VIEW.SPEED;
+                height = BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT] * BarConst.VIEW.SPEED;
                 resId = -1;
                 break;
             case BarConst.TYPE.SLOT_MEDIUM:
-                height = BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_MEDIUM] * BarConst.VIEW.SPEED;
+                height = BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM] * BarConst.VIEW.SPEED;
                 resId = -1;
                 break;
             case BarConst.TYPE.SLOT_LONG:
-                height = BarConst.LEVEL.TIME[BarConst.TYPE.SLOT_LONG] * BarConst.VIEW.SPEED;
+                height = BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG] * BarConst.VIEW.SPEED;
                 resId = -1;
                 break;
             default:
