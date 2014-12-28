@@ -84,7 +84,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
                 android:padding="10dp"
-                npb:max="90"
+                npb:max="100"
                 npb:progress="0"
                 npb:progress_circle_radius="90px"
                 npb:progress_ring_width="2dp"
@@ -106,7 +106,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="Correct Rate"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </RelativeLayout>
     </LinearLayout>

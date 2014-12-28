@@ -19,26 +19,25 @@ import android.widget.TextView;
 
 import org.achartengine.GraphicalView;
 import org.achartengine.model.XYSeries;
-import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.evaluation.CombinedChart;
 import me.linkcube.skea.core.excercise.BarConst;
-import me.linkcube.skea.ui.exercise.ExerciseActivity;
 import me.linkcube.skea.view.NumberCircleProgressBar;
 
 public class RecordActivity extends BaseActivity {
 
     public static final String EXERCISE_SCORE_KEY = "com.linkcube.skea.ui.evaluation.RecordActivity.score_key";
     public static final String EXERCISE_TYPE_KEY = "com.linkcube.skea.ui.evaluation.RecordActivity.type_key";
+
+    private int light_blue ;
     //记数
     int count = 0;
     //声明控件
@@ -53,6 +52,27 @@ public class RecordActivity extends BaseActivity {
     private GraphicalView mScatterChartView;
 //    private XYSeriesRenderer renderer;
 //    private XYSeries series;
+
+
+    //总得分
+    private double current_total_score = 0.0;
+    private int full_total_score = 0;
+    private int current_correct_rate=0;
+
+    //持久力得分
+    private double current_persistance_total_score=0.0;
+    private int full_total_persistance_score=0;
+    private int persistance_correct_rate=0;
+
+    //爆发力得分
+
+    private double current_explosive_total_score=0.0;
+    private int full_total_explosive_score=0;
+    private int explosive_correct_rate=0;
+
+
+    private int current_total_time = 0;
+    private int current_level = 0;
 
 
     private double barScore[];
@@ -105,30 +125,39 @@ public class RecordActivity extends BaseActivity {
     };
 
 
-    public void setTheNumberProgressBar() {
+    public void setTheNumberProgressBar(int correct_rate) {
 
         final NumberCircleProgressBar bnp = (NumberCircleProgressBar) findViewById(R.id.numbercircleprogress_bar);
+        bnp.setProgress(correct_rate);
 
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        bnp.incrementProgressBy(2);
-                    }
-                });
-            }
-        }, 1000, 100);
+        setEvaluateTextView(correct_rate);
+//        timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                            if(!bnp.isFinished()){
+//                                bnp.incrementProgressBy(2);
+//                                Log.i("CXC","----progress:"+bnp.getProgress());
+//                                Log.i("CXC","----ProgressMax:"+bnp.getMax());
+//
+//                            }else {
+//                                timer.cancel();
+//                            }
+//
+//                    }
+//                });
+//            }
+//        }, 1000, 100);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViews();
-
-        setTheNumberProgressBar();
 
         getDate();
 
@@ -142,9 +171,9 @@ public class RecordActivity extends BaseActivity {
             //to-do
 
             //test
-            barType = new int[]{1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2, 0,1, 2,2};
-            barScore = new double[]{92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,75.1, 65.6, 90.3, 97.2, 93.9,92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,
-                    75.1, 65.6, 90.3, 97.2, 93.9,78.0,86.0,78,6};
+            barType = new int[]{1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 2};
+            barScore = new double[]{92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4, 75.1, 65.6, 90.3, 97.2, 93.9, 92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,
+                    75.1, 65.6, 90.3, 97.2, 93.9, 78.0, 86.0, 78, 6};
             addConbinedChart();
 
         }
@@ -160,6 +189,9 @@ public class RecordActivity extends BaseActivity {
      */
     private void initViews() {
 
+        //得到相关资源
+        light_blue= getResources().getColor(R.color.text_light_blue);
+
         //得到控件
         level_tv = (TextView) findViewById(R.id.level_tv);
         evaluate_tv = (TextView) findViewById(R.id.evaluate_tv);
@@ -168,17 +200,6 @@ public class RecordActivity extends BaseActivity {
         score_tv = (TextView) findViewById(R.id.score_tv);
         duration_tv = (TextView) findViewById(R.id.duration_tv);
         chart = (LinearLayout) findViewById(R.id.chart);
-
-        int light_blue = getResources().getColor(R.color.text_light_blue);
-
-        //设置文字特效
-        setTextViewTextWithSpannableString("Today(Level 4)", "", Color.WHITE, Color.BLUE, 1.5f, 1.0f, level_tv);
-        setTextViewTextWithSpannableString("", "Good!", Color.WHITE, getResources().getColor(R.color.light_yellow), 1.0f, 2.5f, evaluate_tv);
-        setTextViewTextWithSpannableString("Explosive force :", "Great", Color.WHITE, light_blue, 1.0f, 1.2f, explosive_force_tv);
-        setTextViewTextWithSpannableString("Persistance :", "Fair", Color.WHITE, light_blue, 1.0f, 1.2f, persistance_tv);
-        setTextViewTextWithSpannableString("Score :", "1573", Color.BLACK, light_blue, 1.0f, 1.2f, score_tv);
-        setTextViewTextWithSpannableString("Time :", "24 Min", Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
-
 
     }
 
@@ -219,45 +240,155 @@ public class RecordActivity extends BaseActivity {
         tv.setText(mSpanableString);
     }
 
-    /**
-     * 增加图表
-     */
-    private void addConbinedChart() {
-        String[] titles = new String[]{"  Rate  "};
-        // 横轴
-        List<double[]> x = new ArrayList<double[]>();
 
-        int countNum = barType.length / 2 + 1;
-        double[] xx = new double[countNum];
-        double[] yy = new double[countNum];
-        double[] zz = new double[countNum];
+    private void setScoreTextView(int score){
+        setTextViewTextWithSpannableString("Score :", String.valueOf(score), Color.BLACK, light_blue, 1.0f, 1.2f, score_tv);
+    }
+    private void setTimeTextView(String timeString){
 
-        //柱形图
-        XYSeries waterSeries = new XYSeries(" Type ");
+        setTextViewTextWithSpannableString("Time :", timeString+" Sec", Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
+    }
+
+    private void setLevelTextView(String levelString){
+
+        setTextViewTextWithSpannableString("Today(Level "+levelString+" )", "", Color.WHITE, Color.BLUE, 1.5f, 1.0f, level_tv);
+    }
+
+    private void setEvaluateTextView( int correct_rate){
+
+        String evaluateString="";
+        if(correct_rate<40){//虚弱
+
+            evaluateString="Weak";
+        }else if(correct_rate<80){//普通
+
+            evaluateString="OK";
+        }else if(correct_rate<95){//优异
+            evaluateString="Great";
+
+        }else {//真棒
+
+            evaluateString="Perfect";
+        }
+        setTextViewTextWithSpannableString("", evaluateString+" !", Color.WHITE, getResources().getColor(R.color.light_yellow), 1.0f, 2.5f, evaluate_tv);
+    }
+
+    private void setExplosiveTextView(int correct_rate){
+        String evaluateString="";
+        if(correct_rate<40){//虚弱
+
+            evaluateString="Weak";
+        }else if(correct_rate<80){//普通
+
+            evaluateString="OK";
+        }else if(correct_rate<95){//优异
+            evaluateString="Great";
+
+        }else {//真棒
+
+            evaluateString="Perfect";
+        }
+        setTextViewTextWithSpannableString("Explosive force :", evaluateString, Color.WHITE, light_blue, 1.0f, 1.2f, explosive_force_tv);
+    }
+
+    private void setPersistanceTextView(int correct_rate){
+        String evaluateString="";
+        if(correct_rate<40){//虚弱
+
+            evaluateString="Weak";
+        }else if(correct_rate<80){//普通
+
+            evaluateString="OK";
+        }else if(correct_rate<95){//优异
+            evaluateString="Great";
+
+        }else {//真棒
+
+            evaluateString="Perfect";
+        }
+        setTextViewTextWithSpannableString("Persistance :", evaluateString, Color.WHITE, light_blue, 1.0f, 1.2f, persistance_tv);
+    }
+
+
+    private int countNum = 0;
+    private double[] xx, yy, zz;
+    //柱形图
+    private XYSeries waterSeries = new XYSeries(" Type ");
+
+
+
+    private void calculateExerciseResult() {
+        countNum = barType.length / 2 + 1;
+        xx = new double[countNum];
+        yy = new double[countNum];
+        zz = new double[countNum];
+
+
         for (int i = 0; i < countNum; i++) {
             xx[i] = (double) i;
+            current_total_score += barScore[2 * i];
 
             switch (barType[2 * i]) {
                 case BarConst.TYPE.SHORT:
-                    yy[i] =100* barScore[2 * i] / BarConst.SCORE.SHORT_FULL_SCORE;
-                    zz[i] = 40.0;
+                    yy[i] = 100 * barScore[2 * i] / BarConst.SCORE.SHORT_FULL_SCORE;
+                    full_total_score += BarConst.SCORE.SHORT_FULL_SCORE;
+                    current_explosive_total_score+=barScore[2*i];
+                    full_total_explosive_score+= BarConst.SCORE.LONG_FULL_SCORE;
+                    zz[i] = 30.0;
                     break;
                 case BarConst.TYPE.MEDIUM:
-                    yy[i] = 100*barScore[2 * i] / BarConst.SCORE.MEDIUM_FULL_SCORE;
-                    zz[i] = 70.0;
+                    yy[i] = 100 * barScore[2 * i] / BarConst.SCORE.MEDIUM_FULL_SCORE;
+                    full_total_score += BarConst.SCORE.MEDIUM_FULL_SCORE;
+                    zz[i] = 60.0;
                     break;
                 case BarConst.TYPE.LONG:
-                    yy[i] = 100*barScore[2 * i] / BarConst.SCORE.LONG_FULL_SCORE;
+                    yy[i] = 100 * barScore[2 * i] / BarConst.SCORE.LONG_FULL_SCORE;
+                    full_total_score += BarConst.SCORE.LONG_FULL_SCORE;
+                    current_persistance_total_score+=barScore[2*i];
+                    full_total_persistance_score+= BarConst.SCORE.LONG_FULL_SCORE;
                     zz[i] = 90.0;
                     break;
                 default:
                     break;
             }
 
+
             waterSeries.add(i, zz[i]);
 
         }
+        //总的Correct Rate
+        current_correct_rate=(int) Math.rint(100*current_total_score/full_total_score);
+
+        persistance_correct_rate=(int)Math.rint(100*current_persistance_total_score/full_total_persistance_score);
+
+        explosive_correct_rate=(int)Math.rint(100*current_explosive_total_score/full_total_explosive_score);
+
+        setLevelTextView(String.valueOf(1));
+        //评诂的各个指标计算，其中总体评诂放在setTheNumberProgressBar()中进行了
+
+        setExplosiveTextView(explosive_correct_rate);
+        setPersistanceTextView(persistance_correct_rate);
+
+        //显示Score
+        setScoreTextView((int)Math.rint(current_total_score));
+
+        setTimeTextView(String.valueOf(412));
+        //显示correct rate---四舍五入取整
+        setTheNumberProgressBar(current_correct_rate);//百分比
+//        setTheNumberProgressBar(39);
+    }
+
+    /**
+     * 增加图表
+     */
+    private void addConbinedChart() {
+
+        calculateExerciseResult();
+        String[] titles = new String[]{"  Rate  "};
+        // 横轴
+        List<double[]> x = new ArrayList<double[]>();
         x.add(xx);
+
 
         // 纵轴
         List<double[]> values = new ArrayList<double[]>();
@@ -283,7 +414,7 @@ public class RecordActivity extends BaseActivity {
         List<double[]> values = new ArrayList<double[]>();
         x.add(new double[]{1.0, 2.0, 3.0, 4.0, 5.0});
         x.add(new double[]{6.0, 7.0, 8.0, 9.0, 10.0});
-        x.add(new double[]{11.0, 12.0,13.0, 14.0, 15.0});
+        x.add(new double[]{11.0, 12.0, 13.0, 14.0, 15.0});
 
         values.add(new double[]{10.0, 12.0, 16.0, 4.0, 23.0});
         values.add(new double[]{12.0, 11.0, 12.0, 7.0, 10.0});

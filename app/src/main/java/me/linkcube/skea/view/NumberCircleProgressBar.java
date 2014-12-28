@@ -445,7 +445,7 @@ public class NumberCircleProgressBar extends View {
         mCurrentDrawText = String.format("%d", getProgress() * 100 / getMax());
         mCurrentDrawText = mPrefix + mCurrentDrawText + mSuffix;
         Rect rect = new Rect();
-        // ���ذ�Χ����ַ����С��һ��Rect����
+
         mTextPaint.getTextBounds(mCurrentDrawText, 0, 1, rect);
         mDrawTextWidth = rect.width();
         mDrawTextHeight = rect.height();
