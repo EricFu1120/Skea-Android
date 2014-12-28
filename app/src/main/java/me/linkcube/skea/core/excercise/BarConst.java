@@ -19,6 +19,11 @@ public class BarConst {
         public final static int SLOT_MEDIUM = 4;
         public final static int SLOT_LONG = 5;
 
+        /**
+         * 每种类型和上面的TYPE是对应的
+         */
+        public static final int[] BAR_TIME = new int[]{2, 7, 12, 1, 2, 3};
+
 
     }
     public static class SCORE{
@@ -46,12 +51,14 @@ public class BarConst {
 
     public static class LEVEL {
 
-        public static final int[] NUM = new int[]{0, 15, 20, 30, 40};
+        public static final int LEVEL_ONE=1;
+        public static final int LEVEL_TWO=2;
+        public static final int LEVEL_THREE=3;
+        public static final int LEVEL_FOUR=4;
 
-        /**
-         * 每种类型和上面的TYPE是对应的
-         */
-        public static final int[] TIME = new int[]{5, 7, 12, 2, 4, 6};
+        public static final int[] BAR_UNIT_NUM = new int[]{0, 15, 20, 30, 40};
+
+
 
     }
 

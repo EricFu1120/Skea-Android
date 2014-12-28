@@ -45,26 +45,26 @@ public class BarGroupManager {
 //
 //        }
         int level = 1;
-        int barUnitNum =0;
+        int barUnitNum = 0;
         switch (level) {
-            case 1:
-                barUnitNum = 15;
+            case BarConst.LEVEL.LEVEL_ONE:
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_ONE];
                 break;
-            case 2:
-                barUnitNum = 20;
+            case BarConst.LEVEL.LEVEL_TWO:
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_TWO];
                 break;
-            case 3:
-                barUnitNum = 30;
+            case BarConst.LEVEL.LEVEL_THREE:
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_THREE];
                 break;
-            case 4:
-                barUnitNum = 40;
+            case BarConst.LEVEL.LEVEL_FOUR:
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_FOUR];
                 break;
             default:
-                barUnitNum = 15;
+                barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_ONE];
                 break;
         }
         //***锻练的时间
-        int exercise = BarConst.VIEW.SPEED * (5 + 7 + 12) * barUnitNum;
+        int exercise = BarConst.VIEW.SPEED * (BarConst.TYPE.BAR_TIME[BarConst.TYPE.SHORT] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.MEDIUM] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.LONG]) * barUnitNum;
         int blank = getBlankHeight(front);
         //****各个间隔休息的总时间，因为一共有3种长度，每个有15个，一共3x15＝45个，所以需要44个间隔
         int slot = 0;
@@ -72,13 +72,13 @@ public class BarGroupManager {
         switch (list.get(list.size() - 1).getType()) {
 
             case BarConst.TYPE.SHORT:
-                slot = BarConst.VIEW.SPEED * ((2 + 4 + 6) * barUnitNum - 2);
+                slot = BarConst.VIEW.SPEED * ((BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT]);
                 break;
             case BarConst.TYPE.MEDIUM:
-                slot = BarConst.VIEW.SPEED * ((2 + 4 + 6) * barUnitNum - 4);
+                slot = BarConst.VIEW.SPEED * ((BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM]);
                 break;
             case BarConst.TYPE.LONG:
-                slot = BarConst.VIEW.SPEED * ((2 + 4 + 6) * barUnitNum - 6);
+                slot = BarConst.VIEW.SPEED * ((BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_SHORT] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_MEDIUM] + BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG]) * barUnitNum - BarConst.TYPE.BAR_TIME[BarConst.TYPE.SLOT_LONG]);
                 break;
             default:
                 break;
@@ -166,11 +166,10 @@ public class BarGroupManager {
         //****出现倒计时问题可能就出现在这里。。。
         if (front) {
             frontBlankHeight = height;
-            Log.d("getHeaderOrFooterView", "front height=" + height);
+
             Log.i("CXC", "****front Height:" + height);
         } else {
             behindBlankHeight = height;
-            Log.d("getHeaderOrFooterView", "behind height=" + height);
             Log.i("CXC", "****behind Height:" + height);
         }
 
