@@ -51,7 +51,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private TextView leftTimeTextView;
     private TextView scoreTextView;
     private TextView perfectCoolTextView;
-    private boolean shrink;
+    //扩大访问范围
+    public boolean shrink;
 
     //用于测试返回数据的TextView
     private TextView pressDataTextView;
@@ -61,6 +62,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     public UpdateTextViewTextHandler updateTextViewTextHandler;
 
     private InitGameHandler initGameHandler;
+
+    private TestShrinkHandler testShrinkHandler;
 
 //    private
 
@@ -81,13 +84,24 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         updateTextViewTextHandler = new UpdateTextViewTextHandler(perfectCoolTextView);
         initGameHandler = new InitGameHandler();
 
+
+        testShrinkHandler=new TestShrinkHandler();
+
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
 //                Log.i("CXC","##############shrink:"+shrink);
+                //使用Handler发送消息，以更新UI
+
+                Message msg = new Message();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(TestShrinkHandler.TEST_SIGNAL, true);
+                msg.setData(bundle);
+                testShrinkHandler.sendMessage(msg);
+
                 if (shrink) {
                     //shrink的状态不能反应真实用户的挤压－－－换Bluetooth测试吧
-                    ExerciseScoreCounter.getInstance().receiveSignal();
+//                    ExerciseScoreCounter.getInstance().receiveSignal();
                 }
 
             }
@@ -396,8 +410,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         startActivity(showResultIntent);
     }
 
-    class InitGameHandler extends  Handler
-    {
+    class InitGameHandler extends  Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -421,6 +434,34 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
                     }
                 });
+            }
+        }
+    }
+
+    /**
+     *Timer定时给UI发送消息，让UI Thread 去检测是否有挤压
+     * */
+    class TestShrinkHandler extends Handler{
+        public static final String TEST_SIGNAL="com.linkcube.skea.ui.excise.test_signal";
+        public  TestShrinkHandler(){
+            super();
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            Bundle bundle=msg.getData();
+            if(bundle.getBoolean(TEST_SIGNAL)){
+
+                Log.i("CXC","%%%%%%%%"+shrink);
+                if(shrink){//有挤压
+                    ExerciseScoreCounter.getInstance().receiveSignal();
+                }else {//无挤压
+
+                }
+
+
             }
         }
     }
@@ -460,6 +501,7 @@ class ExerciseProgressDialog extends ProgressDialog {
 
 //        initGameHandler.sendEmptyMessage(0);
     }
+
 
 
 }

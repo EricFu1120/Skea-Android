@@ -56,7 +56,7 @@
             android:layout_below="@+id/receive_data_button"
             android:text="test"
             android:textColor="@color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <RelativeLayout
             android:id="@+id/time_left_container"
