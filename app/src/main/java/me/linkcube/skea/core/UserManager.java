@@ -6,7 +6,6 @@ import android.util.Log;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,7 +52,7 @@ public class UserManager {
 //        PreferenceUtils.setBoolean(context, KeyConst.AUTO_LOGIN, true);
     }
 
-    public void startAutoLogin(final Context context,JsonHttpResponseHandler handler) {
+    public void startAutoLogin(final Context context, JsonHttpResponseHandler handler) {
         long id = PreferenceUtils.getLong(context, KeyConst.USER_ID, 0);
         if (id == 0) {
             //TODO 无法自动登录
@@ -68,6 +67,15 @@ public class UserManager {
         }
     }
 
+    public User getUser(Context context) {
+        long id = PreferenceUtils.getLong(context, KeyConst.USER_ID, 0);
+        if (id > 0) {
+            User user = User.findById(User.class, id);
+            if (user != null)
+                return user;
+        }
+        return null;
+    }
 
     public boolean loginCallback(Context context, JSONObject response) {
         int status = -1;

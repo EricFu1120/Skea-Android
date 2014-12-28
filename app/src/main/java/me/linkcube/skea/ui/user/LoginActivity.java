@@ -37,6 +37,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     private static final String TAG = "LoginActivity";
 
+    public static final int REQUEST_CODE_LOGIN = 0;
+
     private EditText emailEditText;
     private EditText passwordEditText;
 
@@ -147,7 +149,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
-                    Toaster.showShort(LoginActivity.this,"用户名或者密码不正确");
+                    Toaster.showShort(LoginActivity.this, "用户名或者密码不正确");
                 }
 
             }
@@ -193,14 +195,31 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 attemptLogin();
                 break;
             case R.id.register_button:
-                startActivity(new Intent(this, RegisterActivity.class));
-                finish();
+                startActivityForResult(new Intent(this, RegisterActivity.class), REQUEST_CODE_LOGIN);
                 break;
             default:
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE_LOGIN:
+                if (resultCode == RESULT_OK) {
+                    User user = UserManager.getInstance().getUser(LoginActivity.this);
+                    if (user != null) {
+                        emailEditText.setText(user.getEmail());
+                        emailEditText.setText(user.getPassword());
+                        attemptLogin();
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 
