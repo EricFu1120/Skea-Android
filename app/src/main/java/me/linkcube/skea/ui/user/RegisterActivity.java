@@ -16,11 +16,11 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.xml.transform.Result;
-
+import custom.android.util.PreferenceUtils;
 import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.http.SkeaRequestClient;
 import me.linkcube.skea.core.http.SkeaRequestStatus;
 import me.linkcube.skea.core.persistence.User;
@@ -173,7 +173,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         } else if (status == SkeaRequestStatus.SUCC) {
             Log.d(TAG, "Register Success");
             User user = new User(email, password);
-            user.save();
+            long id = user.save();
+            PreferenceUtils.setLong(RegisterActivity.this, KeyConst.USER_ID, id);
             setResult(RESULT_OK);
             finish();
         } else if (status == SkeaRequestStatus.USER_EXIST) {

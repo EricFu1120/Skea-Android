@@ -16,11 +16,9 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
-import custom.android.util.PreferenceUtils;
 import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.UserManager;
 import me.linkcube.skea.core.http.SkeaRequestClient;
 import me.linkcube.skea.core.persistence.User;
@@ -142,10 +140,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 super.onSuccess(statusCode, headers, response);
                 if (UserManager.getInstance().loginCallback(LoginActivity.this, response)) {
                     Log.d(TAG, "Login Success");
-                    User user = new User(email, password);
-                    long id = user.save();
-                    Log.d(TAG, "user id = " + id);
-                    PreferenceUtils.setLong(LoginActivity.this, KeyConst.USER_ID, 0);
+                    User user = UserManager.getInstance().getUser(LoginActivity.this);
+                    //TODO 更新用户信息
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
@@ -211,7 +207,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                     User user = UserManager.getInstance().getUser(LoginActivity.this);
                     if (user != null) {
                         emailEditText.setText(user.getEmail());
-                        emailEditText.setText(user.getPassword());
+                        passwordEditText.setText(user.getPassword());
                         attemptLogin();
                     }
                 }
