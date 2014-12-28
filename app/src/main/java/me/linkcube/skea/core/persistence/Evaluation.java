@@ -42,6 +42,11 @@ public class Evaluation extends SugarRecord<Evaluation> {
 
     int scoreBulge;
 
+    User user;
+
+    public Evaluation() {
+    }
+
     public String getEvalationDate() {
         return evalationDate;
     }
@@ -176,6 +181,14 @@ public class Evaluation extends SugarRecord<Evaluation> {
 
     public void setScoreBulge(int scoreBulge) {
         this.scoreBulge = scoreBulge;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

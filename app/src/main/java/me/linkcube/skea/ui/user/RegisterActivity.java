@@ -16,14 +16,14 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import custom.android.util.PreferenceUtils;
 import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.core.UserManager;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.http.SkeaRequestClient;
 import me.linkcube.skea.core.http.SkeaRequestStatus;
 import me.linkcube.skea.core.persistence.User;
-import me.linkcube.skea.ui.MainActivity;
 import me.linkcube.skea.util.RegularExpression;
 
 import static me.linkcube.skea.core.http.SkeaRequestClient.URL.REGISTER;
@@ -173,38 +173,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         } else if (status == SkeaRequestStatus.SUCC) {
             Log.d(TAG, "Register Success");
             User user = new User(email, password);
-            user.save();
-            UserManager.getInstance().startAutoLogin(this, new JsonHttpResponseHandler() {
-
-                @Override
-                public void onStart() {
-                    super.onStart();
-                    showProgress(true);
-                }
-
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    super.onSuccess(statusCode, headers, response);
-                    showProgress(false);
-                    if (UserManager.getInstance().loginCallback(RegisterActivity.this, response)) {
-                        Toaster.showShort(RegisterActivity.this, "登录成功");
-                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                        finish();
-                    } else {
-                        Toaster.showShort(RegisterActivity.this, "已注册工程，请稍候重新登录");
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                        finish();
-                    }
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                    super.onFailure(statusCode, headers, responseString, throwable);
-                    showProgress(false);
-                    //TODO 网络异常的情况
-                }
-
-            });
+            long id = user.save();
+            PreferenceUtils.setLong(RegisterActivity.this, KeyConst.USER_ID, id);
+            setResult(RESULT_OK);
+            finish();
         } else if (status == SkeaRequestStatus.USER_EXIST) {
             Log.d(TAG, "User exists");
             Toaster.showShort(this, "该用户名已经被注册");

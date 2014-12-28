@@ -16,11 +16,9 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
-import custom.android.util.PreferenceUtils;
 import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.UserManager;
 import me.linkcube.skea.core.http.SkeaRequestClient;
 import me.linkcube.skea.core.persistence.User;
@@ -36,6 +34,8 @@ import static me.linkcube.skea.core.http.SkeaRequestClient.URL.LOGIN;
 public class LoginActivity extends BaseActivity implements OnClickListener {
 
     private static final String TAG = "LoginActivity";
+
+    public static final int REQUEST_CODE_LOGIN = 0;
 
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -140,14 +140,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 super.onSuccess(statusCode, headers, response);
                 if (UserManager.getInstance().loginCallback(LoginActivity.this, response)) {
                     Log.d(TAG, "Login Success");
-                    User user = new User(email, password);
-                    long id = user.save();
-                    Log.d(TAG, "user id = " + id);
-                    PreferenceUtils.setLong(LoginActivity.this, KeyConst.USER_ID, 0);
+                    User user = UserManager.getInstance().getUser(LoginActivity.this);
+                    //TODO 更新用户信息
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
-                    Toaster.showShort(LoginActivity.this,"用户名或者密码不正确");
+                    Toaster.showShort(LoginActivity.this, "用户名或者密码不正确");
                 }
 
             }
@@ -193,14 +191,31 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 //                attemptLogin();
                 break;
             case R.id.register_button:
-                startActivity(new Intent(this, RegisterActivity.class));
-                finish();
+                startActivityForResult(new Intent(this, RegisterActivity.class), REQUEST_CODE_LOGIN);
                 break;
             default:
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE_LOGIN:
+                if (resultCode == RESULT_OK) {
+                    User user = UserManager.getInstance().getUser(LoginActivity.this);
+                    if (user != null) {
+                        emailEditText.setText(user.getEmail());
+                        passwordEditText.setText(user.getPassword());
+                        attemptLogin();
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 

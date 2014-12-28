@@ -13,11 +13,10 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.Date;
 
-import custom.android.util.PreferenceUtils;
 import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
-import me.linkcube.skea.core.KeyConst;
+import me.linkcube.skea.core.UserManager;
 import me.linkcube.skea.core.evaluation.EvaluationScore;
 import me.linkcube.skea.core.persistence.Evaluation;
 import me.linkcube.skea.core.persistence.User;
@@ -163,16 +162,16 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
     }
 
     private void saveUser() {
-        long id = PreferenceUtils.getLong(this, KeyConst.USER_ID, 0);
-        User user = User.findById(User.class, id);
-        Log.d(TAG, user.toString());
-        int age = TimeUtils.getAgeByBirthday(birthday);
-        user.setAge(age);
-        user.setBirthday(birthday);
-        user.setHeight(height);
-        user.setWeight(weight);
-        user.save();
-
+        User user = UserManager.getInstance().getUser(this);
+        if (user != null) {
+            Log.d(TAG, user.toString());
+            int age = TimeUtils.getAgeByBirthday(birthday);
+            user.setAge(age);
+            user.setBirthday(birthday);
+            user.setHeight(height);
+            user.setWeight(weight);
+            user.save();
+        }
     }
 
     private void saveEvaluations() {
@@ -277,7 +276,7 @@ public class EvaluateActivity extends BaseActivity implements TwoWayRadioGroup.O
 
     private void finishWithMessage() {
         Intent resultIntent = new Intent();
-        resultIntent.putExtra(EvaluateResultActivity.KEY_EXERCISE_LEVEL, riskLevel);
+        resultIntent.putExtra(EvaluateResultActivity.KEY_RISK_FACTOR, riskLevel);
         Log.i(TAG, "level:" + riskLevel);
         setResult(RESULT_OK, resultIntent);
         this.finish();

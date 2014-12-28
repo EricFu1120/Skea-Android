@@ -8,6 +8,7 @@ import android.view.View;
 import me.linkcube.skea.R;
 import me.linkcube.skea.TestHttpActivity;
 import me.linkcube.skea.TestSugarActivity;
+import me.linkcube.skea.core.UserManager;
 import me.linkcube.skea.ui.MainActivity;
 import me.linkcube.skea.ui.user.LoginActivity;
 
@@ -18,8 +19,8 @@ public class SplashActivity extends Activity implements Runnable, View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         initViews();
-
-//        new Thread(this).start();
+        UserManager.getInstance().startAutoLogin(this);
+        new Thread(this).start();
     }
 
     private void initViews() {

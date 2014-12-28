@@ -53,21 +53,47 @@ public class UserManager {
 //        PreferenceUtils.setBoolean(context, KeyConst.AUTO_LOGIN, true);
     }
 
-    public void startAutoLogin(final Context context,JsonHttpResponseHandler handler) {
-        long id = PreferenceUtils.getLong(context, KeyConst.USER_ID, 0);
-        if (id == 0) {
-            //TODO 无法自动登录
-        } else {
-            User user = User.findById(User.class, id);
+    public void startAutoLogin(final Context context) {
+        User user = getUser(context);
+        if (user != null) {
+
             String email = user.getEmail();
             String password = user.getPassword();
             RequestParams params = new RequestParams();
             params.add("email", email);
             params.add("password", password);
-            SkeaRequestClient.post(SkeaRequestClient.URL.LOGIN, params, handler);
+            SkeaRequestClient.post(SkeaRequestClient.URL.LOGIN, params, new JsonHttpResponseHandler() {
+                @Override
+                public void onStart() {
+                    super.onStart();
+                    userState = STATE_LOGINING;
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    super.onSuccess(statusCode, headers, response);
+                    loginCallback(context, response);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    super.onFailure(statusCode, headers, throwable, errorResponse);
+                    userState = STATE_LOGOUT;
+                }
+
+            });
         }
     }
 
+    public User getUser(Context context) {
+        long id = PreferenceUtils.getLong(context, KeyConst.USER_ID, 0);
+        if (id > 0) {
+            User user = User.findById(User.class, id);
+            if (user != null)
+                return user;
+        }
+        return null;
+    }
 
     public boolean loginCallback(Context context, JSONObject response) {
         int status = -1;
@@ -86,7 +112,7 @@ public class UserManager {
             //TODO 讲用户信息解析之后更新用户信息
             userState = STATE_LOGIN;
             setLogin(context, userState);
-            userStateWatched.notifyObservers(true);
+            userStateWatched.setUserState(true);
             Log.d(TAG, "Auto Login Success");
             return true;
         } else if (status == SkeaRequestStatus.UNKNOWN_USER_OR_BAD_PWD) {
