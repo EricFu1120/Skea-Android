@@ -5,16 +5,18 @@ package me.linkcube.skea.core;
  */
 public class KeyConst {
 
+    public static final String KEY_USER_ID = "KEY_USER_ID";
+
+    public static final String KEY_AUTO_LOGIN = "AUTO_LOGIN";
+
+    public static final String KEY_LANGUAGE = "Language";
+
     public static class Language {
 
         public static final String English = "English";
 
         public static final String Chinese = "Chinese";
     }
-
-    public static final String AUTO_LOGIN = "AUTO_LOGIN";
-
-    public static final String USER_ID = "USER_ID";
 
     public static class GameFrame {
 

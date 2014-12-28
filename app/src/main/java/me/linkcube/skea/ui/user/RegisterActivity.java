@@ -174,7 +174,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             Log.d(TAG, "Register Success");
             User user = new User(email, password);
             long id = user.save();
-            PreferenceUtils.setLong(RegisterActivity.this, KeyConst.USER_ID, id);
+            PreferenceUtils.setLong(RegisterActivity.this, KeyConst.KEY_USER_ID, id);
             setResult(RESULT_OK);
             finish();
         } else if (status == SkeaRequestStatus.USER_EXIST) {

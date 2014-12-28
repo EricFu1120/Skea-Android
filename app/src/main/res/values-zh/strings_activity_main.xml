@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="last_result">上次结果: </string>
+    <string name="level">Level</string>
+    <string name="score">得分</string>
+    <string name="info">说明</string>
+    <string name="records">记录</string>
+    <string name="me">我</string>
+</resources>

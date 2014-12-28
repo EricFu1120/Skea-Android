@@ -7,4 +7,6 @@ public class SkeaConfig {
 
     public final static String RELEASE_TIME = "2014-11-14";
 
+    public static boolean IS_LANGUAGE_CHANGED = false;
+
 }

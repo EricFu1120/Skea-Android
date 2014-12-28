@@ -86,7 +86,7 @@ public class UserManager {
     }
 
     public User getUser(Context context) {
-        long id = PreferenceUtils.getLong(context, KeyConst.USER_ID, 0);
+        long id = PreferenceUtils.getLong(context, KeyConst.KEY_USER_ID, 0);
         if (id > 0) {
             User user = User.findById(User.class, id);
             if (user != null)
