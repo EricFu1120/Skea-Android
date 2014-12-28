@@ -2,8 +2,6 @@ package me.linkcube.skea.core.persistence;
 
 import com.orm.SugarRecord;
 
-import java.util.Date;
-
 /**
  * 实体类
  * 用于保存测试时的各项参数
@@ -16,7 +14,7 @@ public class Evaluation extends SugarRecord<Evaluation> {
 
     int level;
 
-    int score;
+    int scoreTotal;
 
     int age;
 
@@ -24,23 +22,25 @@ public class Evaluation extends SugarRecord<Evaluation> {
 
     int weight;
 
-    int meanBMI;
+    int scoreAge;
 
-    int menopausal;
+    int scoreMeanBMI;
 
-    int children;
+    int scoreMenopausal;
 
-    int smoking;
+    int scoreChildren;
 
-    int surgery;
+    int scoreSmoking;
 
-    int heavyWork;
+    int scoreSurgery;
 
-    int POP;
+    int scoreWork;
 
-    int motherWithPOP;
+    int scorePOP;
 
-    int bulge;
+    int scoreProblems;
+
+    int scoreBulge;
 
     public String getEvalationDate() {
         return evalationDate;
@@ -66,12 +66,12 @@ public class Evaluation extends SugarRecord<Evaluation> {
         this.level = level;
     }
 
-    public int getScore() {
-        return score;
+    public int getScoreTotal() {
+        return scoreTotal;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScoreTotal(int scoreTotal) {
+        this.scoreTotal = scoreTotal;
     }
 
     public int getAge() {
@@ -98,76 +98,84 @@ public class Evaluation extends SugarRecord<Evaluation> {
         this.weight = weight;
     }
 
-    public int getMeanBMI() {
-        return meanBMI;
+    public int getScoreAge() {
+        return scoreAge;
     }
 
-    public void setMeanBMI(int meanBMI) {
-        this.meanBMI = meanBMI;
+    public void setScoreAge(int scoreAge) {
+        this.scoreAge = scoreAge;
     }
 
-    public int getMenopausal() {
-        return menopausal;
+    public int getScoreMeanBMI() {
+        return scoreMeanBMI;
     }
 
-    public void setMenopausal(int menopausal) {
-        this.menopausal = menopausal;
+    public void setScoreMeanBMI(int scoreMeanBMI) {
+        this.scoreMeanBMI = scoreMeanBMI;
     }
 
-    public int getChildren() {
-        return children;
+    public int getScoreMenopausal() {
+        return scoreMenopausal;
     }
 
-    public void setChildren(int children) {
-        this.children = children;
+    public void setScoreMenopausal(int scoreMenopausal) {
+        this.scoreMenopausal = scoreMenopausal;
     }
 
-    public int getSmoking() {
-        return smoking;
+    public int getScoreChildren() {
+        return scoreChildren;
     }
 
-    public void setSmoking(int smoking) {
-        this.smoking = smoking;
+    public void setScoreChildren(int scoreChildren) {
+        this.scoreChildren = scoreChildren;
     }
 
-    public int getSurgery() {
-        return surgery;
+    public int getScoreSmoking() {
+        return scoreSmoking;
     }
 
-    public void setSurgery(int surgery) {
-        this.surgery = surgery;
+    public void setScoreSmoking(int scoreSmoking) {
+        this.scoreSmoking = scoreSmoking;
     }
 
-    public int getHeavyWork() {
-        return heavyWork;
+    public int getScoreSurgery() {
+        return scoreSurgery;
     }
 
-    public void setHeavyWork(int heavyWork) {
-        this.heavyWork = heavyWork;
+    public void setScoreSurgery(int scoreSurgery) {
+        this.scoreSurgery = scoreSurgery;
     }
 
-    public int getPOP() {
-        return POP;
+    public int getScoreWork() {
+        return scoreWork;
     }
 
-    public void setPOP(int POP) {
-        this.POP = POP;
+    public void setScoreWork(int scoreWork) {
+        this.scoreWork = scoreWork;
     }
 
-    public int getMotherWithPOP() {
-        return motherWithPOP;
+    public int getScorePOP() {
+        return scorePOP;
     }
 
-    public void setMotherWithPOP(int motherWithPOP) {
-        this.motherWithPOP = motherWithPOP;
+    public void setScorePOP(int scorePOP) {
+        this.scorePOP = scorePOP;
     }
 
-    public int getBulge() {
-        return bulge;
+    public int getScoreProblems() {
+        return scoreProblems;
     }
 
-    public void setBulge(int bulge) {
-        this.bulge = bulge;
+    public void setScoreProblems(int scoreProblems) {
+        this.scoreProblems = scoreProblems;
+    }
+
+    public int getScoreBulge() {
+        return scoreBulge;
+    }
+
+    public void setScoreBulge(int scoreBulge) {
+        this.scoreBulge = scoreBulge;
     }
 }
 
