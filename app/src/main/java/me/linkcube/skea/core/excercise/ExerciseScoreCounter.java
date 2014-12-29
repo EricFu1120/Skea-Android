@@ -58,7 +58,7 @@ public class ExerciseScoreCounter {
         if (lock) {
             //TODO 可能出现锁问题
             Segment segment = new Segment(game_count);
-            Log.i("CXC","&&&&&&&game_count:"+game_count);
+//            Log.i("CXC","&&&&&&&game_count:"+game_count);
             segments.add(segment);
         }
         game_count = 0;
@@ -83,13 +83,13 @@ public class ExerciseScoreCounter {
     public int stopScore() {
 
         if (lock) {
-            Log.i("CXC","%%%%%%ExerciseScore-stopScore()");
+//            Log.i("CXC","%%%%%%ExerciseScore-stopScore()");
             float score = getScore();
 //            totalScore += getScore();
 
             totalScore+=score;
             bar.setScore(score+perfect_cool_score);
-            Log.i("CXC", "bar score:---" +bar.getScore());
+//            Log.i("CXC", "bar score:---" +bar.getScore());
 //            segments.clear();
         }
         //归“0”

@@ -356,7 +356,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     @Override
     public void showPerfectCool(String message) {
-        //perfectCoolTextView.setText(msg);
         AlphaAnimation perfect_cool_anim = new AlphaAnimation(1.0f, 0.0f);
         perfect_cool_anim.setDuration(1000);//1000ms
 
@@ -423,15 +422,12 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
                     @Override
                     public void onDataReceived(byte[] bytes, String message) {
-                        pressDataTextView.setText(bytes.toString());
+//                        pressDataTextView.setText(bytes.toString());
+                        Log.i("CXC", "&&&&&&&&&&&&onDataReceived"+bytes.toString());
                         if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
                                 && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
-                            Log.d("CXC", "&&&&&&&&&&&&onDataReceived");
                             shrink=true;
-                        }else{
-                            shrink=false;
                         }
-
                     }
                 });
             }
@@ -453,16 +449,14 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
             Bundle bundle=msg.getData();
             if(bundle.getBoolean(TEST_SIGNAL)){
-
-                Log.i("CXC","%%%%%%%%"+shrink);
                 if(shrink){//有挤压
                     ExerciseScoreCounter.getInstance().receiveSignal();
                 }else {//无挤压
 
                 }
-
-
             }
+            //重置信号标志
+            shrink=false;
         }
     }
 
@@ -483,27 +477,14 @@ class ExerciseProgressDialog extends ProgressDialog {
     @Override
     public void onStart() {
         super.onStart();
-        /*
-        *应该在这里进行游戏的初始化
-        *可是从这里初始化并开始游戏的话，
-        *会出现“前后错位”的情况
-        *
-        * */
-
-//        initGameHandler.sendEmptyMessage(0);
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        //在这里开始游戏
 
-//        initGameHandler.sendEmptyMessage(0);
     }
-
-
-
 }
 
 /**
@@ -515,19 +496,10 @@ class UpdateTextViewTextHandler extends android.os.Handler {
     public static final String PERFECT_COOL_TEXTVIEW_MESSAGE_KEY = "com.linkcube.skea.ui.exercise.UpdateTextViewTextHandler.message_key";
     private TextView perfectCoolTextView;
 
-    public UpdateTextViewTextHandler() {
-        super();
-    }
-
     public UpdateTextViewTextHandler(TextView tv) {
         super();
         this.perfectCoolTextView = tv;
     }
-
-    public UpdateTextViewTextHandler(Looper looper) {
-        super(looper);
-    }
-
 
     @Override
     public void handleMessage(Message msg) {
