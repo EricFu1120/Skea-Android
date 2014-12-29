@@ -1,9 +1,9 @@
 <resources>
 
-    <string name="last_result">Last Result</string>
+    <string name="last_result">Last Result: </string>
     <string name="level">Level</string>
     <string name="score">score</string>
     <string name="info">Info</string>
     <string name="records">Records</string>
-    <string name="settings">Settings</string>
+    <string name="me">Me</string>
 </resources>

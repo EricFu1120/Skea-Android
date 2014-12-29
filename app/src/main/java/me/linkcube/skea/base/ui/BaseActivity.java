@@ -3,11 +3,16 @@ package me.linkcube.skea.base.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 
 import java.util.Observable;
 import java.util.Observer;
 
 import custom.android.app.CustomActionBarActivity;
+import custom.android.app.util.ActivityUtils;
+import custom.android.util.PreferenceUtils;
+import me.linkcube.skea.SkeaConfig;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.UserManager;
 import me.linkcube.skea.ui.user.LoginActivity;
 
@@ -18,12 +23,27 @@ public abstract class BaseActivity extends CustomActionBarActivity implements Ob
 
     protected boolean isLogin;
 
+    protected boolean isFirstStart = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         configureActionBar();
+        loadLanguage();
         setContentView(getLayoutResourceId());
         UserManager.getInstance().getUserStateWatched().addObserver(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isFirstStart) {
+            isFirstStart = false;
+        } else {
+            if (SkeaConfig.IS_LANGUAGE_CHANGED) {
+                switchLanguage();
+            }
+        }
     }
 
     public abstract int getLayoutResourceId();
@@ -48,5 +68,19 @@ public abstract class BaseActivity extends CustomActionBarActivity implements Ob
     //TODO 开始登录流程，并在该Activity上屏蔽返回键，返回键只是退出程序
     protected void startLoginActivity() {
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    protected void loadLanguage() {
+        Log.d(this.getClass().toString(), "loadLanguage");
+        String language = PreferenceUtils.getString(this, KeyConst.KEY_LANGUAGE, KeyConst.Language.English);
+        ActivityUtils.switchLanguage(this, language);
+    }
+
+    protected void switchLanguage() {
+        Log.d(this.getClass().toString(), "switchLanguage");
+        String language = PreferenceUtils.getString(this, KeyConst.KEY_LANGUAGE, KeyConst.Language.English);
+        ActivityUtils.switchLanguage(this, language);
+        startActivity(new Intent(this, this.getClass()));
+        finish();
     }
 }

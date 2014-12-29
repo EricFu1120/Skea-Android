@@ -3,22 +3,42 @@
     style="@style/Group"
     tools:context="me.linkcube.skea.ui.MainActivity">
 
-    <TextView
-        android:id="@+id/lastResultTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/result_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:text="Last Result: 83%"
-        android:textColor="@color/text_light_blue"
-        android:textSize="28dp" />
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/last_result"
+            android:textColor="@color/text_light_blue"
+            android:textSize="28dp" />
+
+        <TextView
+            android:id="@+id/lastResultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="83%"
+            android:textColor="@color/text_light_blue"
+            android:textSize="28dp" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/levelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lastResultTextView"
+        android:layout_below="@+id/result_container"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Level 1"
@@ -63,7 +83,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_info"
             android:gravity="center"
-            android:text="Info"
+            android:text="@string/info"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -74,7 +94,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_records"
             android:gravity="center"
-            android:text="Record"
+            android:text="@string/records"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -85,7 +105,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_me"
             android:gravity="center"
-            android:text="Me"
+            android:text="@string/me"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 

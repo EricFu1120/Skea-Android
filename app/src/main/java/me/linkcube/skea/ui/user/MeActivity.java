@@ -73,4 +73,10 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
 
         }
     }
+
+    @Override
+    protected void switchLanguage() {
+        super.switchLanguage();
+
+    }
 }

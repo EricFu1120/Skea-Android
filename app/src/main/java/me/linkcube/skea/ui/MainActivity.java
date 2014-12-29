@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.SkeaConfig;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.UserManager;
 import me.linkcube.skea.ui.bluetooth.EasyBluetoothActivity;
@@ -126,4 +127,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void switchLanguage() {
+        super.switchLanguage();
+        SkeaConfig.IS_LANGUAGE_CHANGED = false;
+    }
 }
