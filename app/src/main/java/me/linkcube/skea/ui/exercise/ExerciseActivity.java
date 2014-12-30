@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
@@ -41,7 +40,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private static final String TAG = "ExerciseActivity";
 
-    public boolean isGameInited = true;
+    public boolean isGameInitialized = true;
     private LinearLayout frontGroup;
     private LinearLayout behindGroup;
     private ScrollView frontScrollView;
@@ -51,8 +50,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private TextView leftTimeTextView;
     private TextView scoreTextView;
     private TextView perfectCoolTextView;
-    //扩大访问范围
-    public boolean shrink;
+    private boolean shrink;
 
     //用于测试返回数据的TextView
     private TextView pressDataTextView;
@@ -65,7 +63,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private TestShrinkHandler testShrinkHandler;
 
-//    private
 
     /**
      * 用于标记ScorllView 是否可以滑动
@@ -85,25 +82,17 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         initGameHandler = new InitGameHandler();
 
 
-        testShrinkHandler=new TestShrinkHandler();
+        testShrinkHandler = new TestShrinkHandler();
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-//                Log.i("CXC","##############shrink:"+shrink);
-                //使用Handler发送消息，以更新UI
-
+                //使用Handler发送消息，以检测当前是否有挤压
                 Message msg = new Message();
                 Bundle bundle = new Bundle();
                 bundle.putBoolean(TestShrinkHandler.TEST_SIGNAL, true);
                 msg.setData(bundle);
                 testShrinkHandler.sendMessage(msg);
-
-                if (shrink) {
-                    //shrink的状态不能反应真实用户的挤压－－－换Bluetooth测试吧
-//                    ExerciseScoreCounter.getInstance().receiveSignal();
-                }
-
             }
         }, 1000, 15);//1000ms 以后每隔15ms执行一次
 
@@ -136,30 +125,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 shrink = isChecked;
-            }
-        });
-
-        pressDataTextView = (TextView) findViewById(R.id.press_data);
-        receiveBtn = (Button) findViewById(R.id.receive_data_button);
-        receiveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
-                    @Override
-                    public void onDataReceived(byte[] bytes, String message) {
-                        pressDataTextView.setText(bytes.toString());
-                        Log.i("CXC","$$$$$$$$$$bytes:"+bytes);
-                        if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
-                                && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
-                            Log.i("CXC", "onDataReceived");
-
-                            shrink=true;
-
-                        }else {
-                            shrink=false;
-                        }
-                    }
-                });
             }
         });
     }
@@ -195,9 +160,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void onResume() {
         super.onResume();
-
-
-        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this,initGameHandler);
+        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this, initGameHandler);
         progressDialog.setTitle("Note");
         progressDialog.setMessage("Game is loading...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -211,6 +174,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
                 //初始化Bar－－－调用 controller.init(getApplicationContext(), frontGroup, behindGroup);
                 initGameHandler.sendEmptyMessage(0);
+
+                //进入游戏后，倒计时5秒钟开始
                 while (timeCount < 100) {
                     try {
                         Thread.sleep(50);
@@ -221,6 +186,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                     timeCount++;
                 }
                 progressDialog.dismiss();
+
                 //启动游戏－－－调用 controller.prepare(getApplicationContext(), frontScrollView, behindScrollView); 和controller.start();
                 initGameHandler.sendEmptyMessage(0);
 
@@ -409,37 +375,41 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         startActivity(showResultIntent);
     }
 
-    class InitGameHandler extends  Handler {
+    class InitGameHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (isGameInited) {
+            if (isGameInitialized) {
                 controller.init(getApplicationContext(), frontGroup, behindGroup);
-                isGameInited = false;
+                isGameInitialized = false;
             } else {
                 controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
                 controller.start();
+                //游戏开始后，手机便开始接收信号
                 EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
                     @Override
                     public void onDataReceived(byte[] bytes, String message) {
 //                        pressDataTextView.setText(bytes.toString());
-                        Log.i("CXC", "&&&&&&&&&&&&onDataReceived"+bytes.toString());
+                        Log.i("CXC", "&&&&&&&&&&&&onDataReceived：" + bytes.toString());
                         if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
                                 && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
-                            shrink=true;
+                            shrink = true;
                         }
                     }
                 });
+
+                isGameInitialized =false;
             }
         }
     }
 
     /**
-     *Timer定时给UI发送消息，让UI Thread 去检测是否有挤压
-     * */
-    class TestShrinkHandler extends Handler{
-        public static final String TEST_SIGNAL="com.linkcube.skea.ui.excise.test_signal";
-        public  TestShrinkHandler(){
+     * Timer定时给UI发送消息，让UI Thread 去检测是否有挤压
+     */
+    class TestShrinkHandler extends Handler {
+        public static final String TEST_SIGNAL = "com.linkcube.skea.ui.excise.test_signal";
+
+        public TestShrinkHandler() {
             super();
         }
 
@@ -447,16 +417,16 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            Bundle bundle=msg.getData();
-            if(bundle.getBoolean(TEST_SIGNAL)){
-                if(shrink){//有挤压
+            Bundle bundle = msg.getData();
+            if (bundle.getBoolean(TEST_SIGNAL)) {//接收到Timer定时发送来的消息，检测此时是否有“挤压”
+                if (shrink) {//有挤压
                     ExerciseScoreCounter.getInstance().receiveSignal();
-                }else {//无挤压
+                } else {//无挤压
 
                 }
             }
-            //重置信号标志
-            shrink=false;
+            //重置信号标志－－－这一点很重要
+            shrink = false;
         }
     }
 
@@ -468,10 +438,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 class ExerciseProgressDialog extends ProgressDialog {
     private Context context;
     private ExerciseActivity.InitGameHandler initGameHandler;
-    public ExerciseProgressDialog(Context context,ExerciseActivity.InitGameHandler initGameHandler) {
+
+    public ExerciseProgressDialog(Context context, ExerciseActivity.InitGameHandler initGameHandler) {
         super(context);
         this.context = context;
-        this.initGameHandler=initGameHandler;
+        this.initGameHandler = initGameHandler;
     }
 
     @Override
@@ -489,7 +460,7 @@ class ExerciseProgressDialog extends ProgressDialog {
 
 /**
  * 用于更新TextView中文字的Handler
- * 游戏中Perfect,Cool,Miss 点文字提示
+ * 游戏中Perfect,Cool,Miss 等文字提示
  */
 class UpdateTextViewTextHandler extends android.os.Handler {
 

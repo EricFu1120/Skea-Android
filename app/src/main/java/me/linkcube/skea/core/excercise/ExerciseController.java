@@ -69,20 +69,6 @@ public class ExerciseController {
     public void prepare(Context context, ScrollView frontScrollView, ScrollView behindScrollView) {
         BarGroupManager.getInstance().prepare(context, frontScrollView, behindScrollView);
     }
-
-
-    /**
-     * 开始计算分数
-     */
-    public void shrink() {
-
-    }
-
-    public void relax() {
-
-    }
-
-
     public void checkActivePosition() {
         //确定激活的Bar
 //        Log.i("CXC","====activePosition:"+activePosition);
