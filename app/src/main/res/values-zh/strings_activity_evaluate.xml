@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string name="test_excercise_once">Test Excercise Once</string>
+    <string name="success_rate">成功率(%)</string>
+    <string name="score">分数</string>
+    <string name="duration">时长</string>
+    <string name="duration_with_measurement">时长(s)</string>
+
+</resources>
