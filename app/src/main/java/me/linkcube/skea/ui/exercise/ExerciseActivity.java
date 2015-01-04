@@ -15,8 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -49,10 +49,10 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private ToggleButton shrinkButton;
     private TextView leftTimeTextView;
     private TextView scoreTextView;
-    private TextView perfectCoolTextView;
+    private ImageView perfectCoolImageView;
     private boolean shrink;
 
-    public UpdateTextViewTextHandler updateTextViewTextHandler;
+    public UpdateImageViewPicHandler updateTextViewTextHandler;
 
     private InitGameHandler initGameHandler;
 
@@ -77,7 +77,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         initViews();
 
 
-        updateTextViewTextHandler = new UpdateTextViewTextHandler(perfectCoolTextView);
+        updateTextViewTextHandler = new UpdateImageViewPicHandler(perfectCoolImageView);
         initGameHandler = new InitGameHandler();
 
 
@@ -110,7 +110,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
 
         //显示perfect cool 文字特效
-        perfectCoolTextView = (TextView) findViewById(R.id.perfect_cool_tv);
+        perfectCoolImageView = (ImageView) findViewById(R.id.perfect_cool_iv);
 
 
         controller = new ExerciseController(this);
@@ -289,18 +289,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void stopScore() {
         final int score = ExerciseScoreCounter.getInstance().stopScore();
-//        if(score<previousScore){
-//        //有加分
-//
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    scoreTextView.setText(score + "");
-//                }
-//            });
-////            previousScore=score;
-//
-//        }
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -335,7 +323,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     }
 
     @Override
-    public void showPerfectCool(String message) {
+    public void showPerfectCool(int imgID) {
         AlphaAnimation perfect_cool_anim = new AlphaAnimation(1.0f, 0.0f);
         perfect_cool_anim.setDuration(1000);//1000ms
 
@@ -343,13 +331,13 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         perfect_cool_anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                perfectCoolTextView.setVisibility(View.INVISIBLE);
+                perfectCoolImageView.setVisibility(View.INVISIBLE);
 
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                perfectCoolTextView.setVisibility(View.GONE);
+                perfectCoolImageView.setVisibility(View.GONE);
             }
 
             @Override
@@ -362,11 +350,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         //使用Handler发送消息，以更新UI
         Message msg = new Message();
         Bundle bundle = new Bundle();
-        bundle.putString(UpdateTextViewTextHandler.PERFECT_COOL_TEXTVIEW_MESSAGE_KEY, message);
+        bundle.putInt(UpdateImageViewPicHandler.PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY, imgID);
         msg.setData(bundle);
         updateTextViewTextHandler.sendMessage(msg);
         //注册动画
-        perfectCoolTextView.setAnimation(perfect_cool_anim);
+        perfectCoolImageView.setAnimation(perfect_cool_anim);
 
     }
 
@@ -473,17 +461,17 @@ class ExerciseProgressDialog extends ProgressDialog {
 }
 
 /**
- * 用于更新TextView中文字的Handler
- * 游戏中Perfect,Cool,Miss 等文字提示
+ * 用于更新ImageView中文图片的Handler
+ * 游戏中Perfect,Cool,Miss 等特效的显示
  */
-class UpdateTextViewTextHandler extends android.os.Handler {
+class UpdateImageViewPicHandler extends android.os.Handler {
 
-    public static final String PERFECT_COOL_TEXTVIEW_MESSAGE_KEY = "com.linkcube.skea.ui.exercise.UpdateTextViewTextHandler.message_key";
-    private TextView perfectCoolTextView;
+    public static final String PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY = "com.linkcube.skea.ui.exercise.UpdateImageViewPicHandler.message_key";
+    private ImageView perfectCoolImageView;
 
-    public UpdateTextViewTextHandler(TextView tv) {
+    public UpdateImageViewPicHandler(ImageView iv) {
         super();
-        this.perfectCoolTextView = tv;
+        this.perfectCoolImageView = iv;
     }
 
     @Override
@@ -491,8 +479,8 @@ class UpdateTextViewTextHandler extends android.os.Handler {
         super.handleMessage(msg);
         //得到传递的参数
         Bundle bundle = msg.getData();
-        String text = bundle.getString(PERFECT_COOL_TEXTVIEW_MESSAGE_KEY);
-        this.perfectCoolTextView.setText(text);
+        int imgID  = bundle.getInt(PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY);
+        this.perfectCoolImageView.setImageResource(imgID);
     }
 }
 

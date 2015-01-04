@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import me.linkcube.skea.R;
+
 /**
  * Created by Ervin on 14/11/2.
  */
@@ -85,7 +87,7 @@ public class ExerciseController {
                         callback.startCoolScore(bar);
                     }
                     if(cool_active){
-                        callback.showPerfectCool("Cool");
+                        callback.showPerfectCool(R.drawable.text_cool);
                         callback.tickCoolScore();
                     }
 
@@ -100,7 +102,7 @@ public class ExerciseController {
                         callback.startPerfectScore(bar);
                     }
                     if(perfect_active){
-                        callback.showPerfectCool("Perfect");
+                        callback.showPerfectCool(R.drawable.text_perfect);
                         callback.tickPerfectScore();
                     }
                 } else {
@@ -223,7 +225,7 @@ public class ExerciseController {
         void stopPerfectScore();
 
 
-        void showPerfectCool(String msg);
+        void showPerfectCool(int imgID);
 
         void showExerciseResult(List<Bar> list);
 
