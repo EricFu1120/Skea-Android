@@ -83,14 +83,9 @@ public class ExerciseScoreCounter {
     public int stopScore() {
 
         if (lock) {
-//            Log.i("CXC","%%%%%%ExerciseScore-stopScore()");
             float score = getScore();
-//            totalScore += getScore();
-
             totalScore+=score;
             bar.setScore(score+perfect_cool_score);
-//            Log.i("CXC", "bar score:---" +bar.getScore());
-//            segments.clear();
         }
         //归“0”
         perfect_lock=false;
@@ -98,32 +93,29 @@ public class ExerciseScoreCounter {
         lock = false;
 
         game_count = 0;
+        perfect_cool_score=0;
         return totalScore;
     }
 
     public int stopCoolScore() {
 
+        if (cool_count > 0) {
+            perfect_cool_score=30;
+            totalScore += 30;
+            Log.i("CXC", "Cool ++++30");
+
+        }
         cool_lock = false;
 
-        return 0;
+        return totalScore;
 
     }
 
     public int stopPerfectScore() {
-        if (cool_count > 0) {
-            perfect_cool_score=30;
-            totalScore += 30;
-//            Log.i("CXC", "Cool ++++30");
-
-        } else if (perfect_count > 0) {
-            perfect_cool_score=30;
+        if (cool_count<=0 && perfect_count > 0) {
+            perfect_cool_score=50;
             totalScore += 50;
-//            Log.i("CXC", "perfect +++50");
-
-
-        } else {
-
-            totalScore += 0;
+            Log.i("CXC", "perfect +++50");
         }
         perfect_count = 0;
         cool_count = 0;

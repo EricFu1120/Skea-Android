@@ -14,7 +14,6 @@ import java.util.TimerTask;
  */
 public class ExerciseController {
 
-//    private final int UNIT_TIME = 50;
     private Timer timer;
     private int offset = 0;
 
@@ -70,9 +69,6 @@ public class ExerciseController {
         BarGroupManager.getInstance().prepare(context, frontScrollView, behindScrollView);
     }
     public void checkActivePosition() {
-        //确定激活的Bar
-//        Log.i("CXC","====activePosition:"+activePosition);
-//        count++;
         second++;
         if (activePosition < list.size()) {
             Bar bar = list.get(activePosition);
@@ -95,7 +91,6 @@ public class ExerciseController {
 
                 } else if (bar.getBeginActiveOffset() + 32 <= offset && offset < bar.getRealBeginActiveOffset()) {
 //                    //Perfect
-//                    Log.i("CXC","@@@@@@Perfect");
                     if(cool_active){
                         callback.stopCoolScore();
                         cool_active=false;

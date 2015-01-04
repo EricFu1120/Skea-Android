@@ -52,16 +52,15 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private TextView perfectCoolTextView;
     private boolean shrink;
 
-    //用于测试返回数据的TextView
-    private TextView pressDataTextView;
-    private Button receiveBtn;
-
-
     public UpdateTextViewTextHandler updateTextViewTextHandler;
 
     private InitGameHandler initGameHandler;
 
     private TestShrinkHandler testShrinkHandler;
+
+
+
+//    private int previousScore=0;
 
 
     /**
@@ -290,7 +289,18 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void stopScore() {
         final int score = ExerciseScoreCounter.getInstance().stopScore();
-        Log.d("stopScore ", "" + score);
+//        if(score<previousScore){
+//        //有加分
+//
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    scoreTextView.setText(score + "");
+//                }
+//            });
+////            previousScore=score;
+//
+//        }
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -302,7 +312,13 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     @Override
     public void stopCoolScore() {
-        final int coolScore = ExerciseScoreCounter.getInstance().stopCoolScore();
+        final int score = ExerciseScoreCounter.getInstance().stopCoolScore();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                scoreTextView.setText(score + "");
+            }
+        });
 
     }
 
@@ -316,8 +332,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 scoreTextView.setText(score + "");
             }
         });
-
-
     }
 
     @Override
