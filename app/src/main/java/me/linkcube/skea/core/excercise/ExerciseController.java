@@ -142,6 +142,7 @@ public class ExerciseController {
 
             } else {
                 //offset<bar.getBeginActiveOffset();
+                //Miss
                 if(callback!=null){
                     callback.stopScore();
                     game_active =false;

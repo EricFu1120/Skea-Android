@@ -53,13 +53,18 @@ public class ExerciseScoreCounter {
         perfect_lock = true;
     }
 
-    public void tickScore() {
+    public boolean tickScore() {
         if (lock) {
             //TODO 可能出现锁问题
             Segment segment = new Segment(game_count);
             segments.add(segment);
+            game_count=0;
+            return segment.isAvailable();
         }
-        game_count = 0;
+        else {
+            game_count = 0;
+            return false;
+        }
     }
 
     public void tickCoolScore() {
