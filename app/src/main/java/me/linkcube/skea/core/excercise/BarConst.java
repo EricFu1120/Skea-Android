@@ -31,6 +31,8 @@ public class BarConst {
         public final static int SHORT_FULL_SCORE=125;
         public final static int MEDIUM_FULL_SCORE=186;
         public final static int LONG_FULL_SCORE=474;
+        public final static int COOL_SCORE=30;
+        public final static int PERFECT_SCORE=50;
     }
 
     public static class VIEW {
