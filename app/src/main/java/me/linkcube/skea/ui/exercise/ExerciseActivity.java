@@ -31,6 +31,7 @@ import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.excercise.Bar;
+import me.linkcube.skea.core.excercise.BarConst;
 import me.linkcube.skea.core.excercise.ExerciseController;
 import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
 import me.linkcube.skea.ui.evaluation.RecordActivity;
@@ -60,7 +61,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
 
 
-//    private int previousScore=0;
+    private int previousScore=0;
 
 
     /**
@@ -296,6 +297,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             }
         });
         //TODO 更新UI分数
+        previousScore=score;
     }
 
     @Override
@@ -307,6 +309,10 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 scoreTextView.setText(score + "");
             }
         });
+        if(score==previousScore+BarConst.SCORE.COOL_SCORE){
+            previousScore=score;
+            showPerfectCool(R.drawable.text_cool);
+        }
 
     }
 
@@ -320,6 +326,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 scoreTextView.setText(score + "");
             }
         });
+        if(score==previousScore+ BarConst.SCORE.PERFECT_SCORE){
+            previousScore=score;
+            showPerfectCool(R.drawable.text_perfect);
+
+        }
     }
 
     @Override

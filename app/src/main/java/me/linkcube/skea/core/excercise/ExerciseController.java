@@ -87,7 +87,7 @@ public class ExerciseController {
                         callback.startCoolScore(bar);
                     }
                     if(cool_active){
-                        callback.showPerfectCool(R.drawable.text_cool);
+//                        callback.showPerfectCool(R.drawable.text_cool);
                         callback.tickCoolScore();
                     }
 
@@ -95,6 +95,7 @@ public class ExerciseController {
 //                    //Perfect
                     if(cool_active){
                         callback.stopCoolScore();
+
                         cool_active=false;
                     }
                     if(!perfect_active && callback !=null){
@@ -102,13 +103,12 @@ public class ExerciseController {
                         callback.startPerfectScore(bar);
                     }
                     if(perfect_active){
-                        callback.showPerfectCool(R.drawable.text_perfect);
+//                        callback.showPerfectCool(R.drawable.text_perfect);
                         callback.tickPerfectScore();
                     }
                 } else {
                     // bar.getRealBeginActiveOffset() <= offset && offset <= bar.getRealEndActiveOffset()
                     //Game time
-//                    Log.i("CXC","@@@@@@Game");
 
                     if(perfect_active){
                         callback.stopPerfectScore();
@@ -142,7 +142,6 @@ public class ExerciseController {
 
             } else {
                 //offset<bar.getBeginActiveOffset();
-                //do nothing
                 if(callback!=null){
                     callback.stopScore();
                     game_active =false;
@@ -168,9 +167,6 @@ public class ExerciseController {
              * 启动运动记录Activity，并传入当前游戏用户的数据，以便显示
              **/
             callback.showExerciseResult(list);
-
-
-
         }
     }
 

@@ -38,7 +38,6 @@ public class ExerciseScoreCounter {
     }
 
     public void startScore(Bar bar) {
-        Log.i("CXC","%%%%%%ExerciseScore-startScore()");
         this.bar = bar;
         lock = true;
     }
@@ -58,7 +57,6 @@ public class ExerciseScoreCounter {
         if (lock) {
             //TODO 可能出现锁问题
             Segment segment = new Segment(game_count);
-//            Log.i("CXC","&&&&&&&game_count:"+game_count);
             segments.add(segment);
         }
         game_count = 0;
@@ -100,8 +98,8 @@ public class ExerciseScoreCounter {
     public int stopCoolScore() {
 
         if (cool_count > 0) {
-            perfect_cool_score=30;
-            totalScore += 30;
+            perfect_cool_score=BarConst.SCORE.COOL_SCORE;
+            totalScore += perfect_cool_score;
             Log.i("CXC", "Cool ++++30");
 
         }
@@ -113,8 +111,8 @@ public class ExerciseScoreCounter {
 
     public int stopPerfectScore() {
         if (cool_count<=0 && perfect_count > 0) {
-            perfect_cool_score=50;
-            totalScore += 50;
+            perfect_cool_score=BarConst.SCORE.PERFECT_SCORE;
+            totalScore += perfect_cool_score;
             Log.i("CXC", "perfect +++50");
         }
         perfect_count = 0;
