@@ -22,7 +22,7 @@ public class BarConst {
         /**
          * 每种类型和上面的TYPE是对应的
          */
-        public static final int[] BAR_TIME = new int[]{2, 7, 12, 1, 2, 3};
+        public static final int[] BAR_TIME = new int[]{2+1, 7+1, 12+1, 1-1, 2-1, 3-1};
 
 
     }
@@ -31,6 +31,8 @@ public class BarConst {
         public final static int SHORT_FULL_SCORE=125;
         public final static int MEDIUM_FULL_SCORE=186;
         public final static int LONG_FULL_SCORE=474;
+        public final static int COOL_SCORE=30;
+        public final static int PERFECT_SCORE=50;
     }
 
     public static class VIEW {
@@ -46,7 +48,7 @@ public class BarConst {
 
         public static final int UNIT_SPEED = 4;//SPEED * UNIT_TIME/1000
 
-        public static final int UNIT_WIDTH = 70;
+        public static final int UNIT_WIDTH = 70;//
     }
 
     public static class LEVEL {
@@ -61,7 +63,6 @@ public class BarConst {
 
 
     }
-
     public static int ACTIVE_BEGIN_OFFSET_MARGIN = 52;//52px
-    public static int ACTIVE_END_OFFSET_MARGIN = 18;//18px
+    public static int ACTIVE_END_OFFSET_MARGIN = 28;//28px
 }

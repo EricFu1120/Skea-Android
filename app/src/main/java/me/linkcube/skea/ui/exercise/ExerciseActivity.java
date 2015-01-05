@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
@@ -16,8 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -32,6 +31,7 @@ import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.excercise.Bar;
+import me.linkcube.skea.core.excercise.BarConst;
 import me.linkcube.skea.core.excercise.ExerciseController;
 import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
 import me.linkcube.skea.ui.evaluation.RecordActivity;
@@ -41,7 +41,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private static final String TAG = "ExerciseActivity";
 
-    public boolean isGameInited = true;
+    public boolean isGameInitialized = true;
     private LinearLayout frontGroup;
     private LinearLayout behindGroup;
     private ScrollView frontScrollView;
@@ -50,19 +50,19 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private ToggleButton shrinkButton;
     private TextView leftTimeTextView;
     private TextView scoreTextView;
-    private TextView perfectCoolTextView;
+    private ImageView perfectCoolImageView;
     private boolean shrink;
 
-    //用于测试返回数据的TextView
-    private TextView pressDataTextView;
-    private Button receiveBtn;
-
-
-    public UpdateTextViewTextHandler updateTextViewTextHandler;
+    public UpdateImageViewPicHandler updateTextViewTextHandler;
 
     private InitGameHandler initGameHandler;
 
-//    private
+    private TestShrinkHandler testShrinkHandler;
+
+
+
+    private int previousScore=0;
+
 
     /**
      * 用于标记ScorllView 是否可以滑动
@@ -78,18 +78,21 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         initViews();
 
 
-        updateTextViewTextHandler = new UpdateTextViewTextHandler(perfectCoolTextView);
+        updateTextViewTextHandler = new UpdateImageViewPicHandler(perfectCoolImageView);
         initGameHandler = new InitGameHandler();
+
+
+        testShrinkHandler = new TestShrinkHandler();
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-//                Log.i("CXC","##############shrink:"+shrink);
-                if (shrink) {
-                    //shrink的状态不能反应真实用户的挤压－－－换Bluetooth测试吧
-                    ExerciseScoreCounter.getInstance().receiveSignal();
-                }
-
+                //使用Handler发送消息，以检测当前是否有挤压
+                Message msg = new Message();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(TestShrinkHandler.TEST_SIGNAL, true);
+                msg.setData(bundle);
+                testShrinkHandler.sendMessage(msg);
             }
         }, 1000, 15);//1000ms 以后每隔15ms执行一次
 
@@ -108,7 +111,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
 
         //显示perfect cool 文字特效
-        perfectCoolTextView = (TextView) findViewById(R.id.perfect_cool_tv);
+        perfectCoolImageView = (ImageView) findViewById(R.id.perfect_cool_iv);
 
 
         controller = new ExerciseController(this);
@@ -122,30 +125,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 shrink = isChecked;
-            }
-        });
-
-        pressDataTextView = (TextView) findViewById(R.id.press_data);
-        receiveBtn = (Button) findViewById(R.id.receive_data_button);
-        receiveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
-                    @Override
-                    public void onDataReceived(byte[] bytes, String message) {
-                        pressDataTextView.setText(bytes.toString());
-                        Log.i("CXC","$$$$$$$$$$bytes:"+bytes);
-                        if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
-                                && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
-                            Log.i("CXC", "onDataReceived");
-
-                            shrink=true;
-
-                        }else {
-                            shrink=false;
-                        }
-                    }
-                });
             }
         });
     }
@@ -181,9 +160,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void onResume() {
         super.onResume();
-
-
-        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this,initGameHandler);
+        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this, initGameHandler);
         progressDialog.setTitle("Note");
         progressDialog.setMessage("Game is loading...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -197,6 +174,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
                 //初始化Bar－－－调用 controller.init(getApplicationContext(), frontGroup, behindGroup);
                 initGameHandler.sendEmptyMessage(0);
+
+                //进入游戏后，倒计时5秒钟开始
                 while (timeCount < 100) {
                     try {
                         Thread.sleep(50);
@@ -207,6 +186,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                     timeCount++;
                 }
                 progressDialog.dismiss();
+
                 //启动游戏－－－调用 controller.prepare(getApplicationContext(), frontScrollView, behindScrollView); 和controller.start();
                 initGameHandler.sendEmptyMessage(0);
 
@@ -310,7 +290,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void stopScore() {
         final int score = ExerciseScoreCounter.getInstance().stopScore();
-        Log.d("stopScore ", "" + score);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -318,11 +297,22 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             }
         });
         //TODO 更新UI分数
+        previousScore=score;
     }
 
     @Override
     public void stopCoolScore() {
-        final int coolScore = ExerciseScoreCounter.getInstance().stopCoolScore();
+        final int score = ExerciseScoreCounter.getInstance().stopCoolScore();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                scoreTextView.setText(score + "");
+            }
+        });
+        if(score==previousScore+BarConst.SCORE.COOL_SCORE){
+            previousScore=score;
+            showPerfectCool(R.drawable.text_cool);
+        }
 
     }
 
@@ -336,13 +326,15 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 scoreTextView.setText(score + "");
             }
         });
+        if(score==previousScore+ BarConst.SCORE.PERFECT_SCORE){
+            previousScore=score;
+            showPerfectCool(R.drawable.text_perfect);
 
-
+        }
     }
 
     @Override
-    public void showPerfectCool(String message) {
-        //perfectCoolTextView.setText(msg);
+    public void showPerfectCool(int imgID) {
         AlphaAnimation perfect_cool_anim = new AlphaAnimation(1.0f, 0.0f);
         perfect_cool_anim.setDuration(1000);//1000ms
 
@@ -350,13 +342,13 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         perfect_cool_anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                perfectCoolTextView.setVisibility(View.INVISIBLE);
+                perfectCoolImageView.setVisibility(View.INVISIBLE);
 
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                perfectCoolTextView.setVisibility(View.GONE);
+                perfectCoolImageView.setVisibility(View.GONE);
             }
 
             @Override
@@ -369,11 +361,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         //使用Handler发送消息，以更新UI
         Message msg = new Message();
         Bundle bundle = new Bundle();
-        bundle.putString(UpdateTextViewTextHandler.PERFECT_COOL_TEXTVIEW_MESSAGE_KEY, message);
+        bundle.putInt(UpdateImageViewPicHandler.PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY, imgID);
         msg.setData(bundle);
         updateTextViewTextHandler.sendMessage(msg);
         //注册动画
-        perfectCoolTextView.setAnimation(perfect_cool_anim);
+        perfectCoolImageView.setAnimation(perfect_cool_anim);
 
     }
 
@@ -396,32 +388,58 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         startActivity(showResultIntent);
     }
 
-    class InitGameHandler extends  Handler
-    {
+    class InitGameHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (isGameInited) {
+            if (isGameInitialized) {
                 controller.init(getApplicationContext(), frontGroup, behindGroup);
-                isGameInited = false;
+                isGameInitialized = false;
             } else {
                 controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
                 controller.start();
+                //游戏开始后，手机便开始接收信号
                 EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
                     @Override
                     public void onDataReceived(byte[] bytes, String message) {
-                        pressDataTextView.setText(bytes.toString());
+//                        pressDataTextView.setText(bytes.toString());
+                        Log.i("CXC", "&&&&&&&&&&&&onDataReceived：" + bytes.toString());
                         if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
                                 && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
-                            Log.d("CXC", "&&&&&&&&&&&&onDataReceived");
-                            shrink=true;
-                        }else{
-                            shrink=false;
+                            shrink = true;
                         }
-
                     }
                 });
+
+                isGameInitialized =false;
             }
+        }
+    }
+
+    /**
+     * Timer定时给UI发送消息，让UI Thread 去检测是否有挤压
+     */
+    class TestShrinkHandler extends Handler {
+        public static final String TEST_SIGNAL = "com.linkcube.skea.ui.excise.test_signal";
+
+        public TestShrinkHandler() {
+            super();
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            Bundle bundle = msg.getData();
+            if (bundle.getBoolean(TEST_SIGNAL)) {//接收到Timer定时发送来的消息，检测此时是否有“挤压”
+                if (shrink) {//有挤压
+                    ExerciseScoreCounter.getInstance().receiveSignal();
+                } else {//无挤压
+
+                }
+            }
+            //重置信号标志－－－这一点很重要
+            shrink = false;
         }
     }
 
@@ -433,67 +451,47 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 class ExerciseProgressDialog extends ProgressDialog {
     private Context context;
     private ExerciseActivity.InitGameHandler initGameHandler;
-    public ExerciseProgressDialog(Context context,ExerciseActivity.InitGameHandler initGameHandler) {
+
+    public ExerciseProgressDialog(Context context, ExerciseActivity.InitGameHandler initGameHandler) {
         super(context);
         this.context = context;
-        this.initGameHandler=initGameHandler;
+        this.initGameHandler = initGameHandler;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        /*
-        *应该在这里进行游戏的初始化
-        *可是从这里初始化并开始游戏的话，
-        *会出现“前后错位”的情况
-        *
-        * */
-
-//        initGameHandler.sendEmptyMessage(0);
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        //在这里开始游戏
 
-//        initGameHandler.sendEmptyMessage(0);
     }
-
-
 }
 
 /**
- * 用于更新TextView中文字的Handler
- * 游戏中Perfect,Cool,Miss 点文字提示
+ * 用于更新ImageView中文图片的Handler
+ * 游戏中Perfect,Cool,Miss 等特效的显示
  */
-class UpdateTextViewTextHandler extends android.os.Handler {
+class UpdateImageViewPicHandler extends android.os.Handler {
 
-    public static final String PERFECT_COOL_TEXTVIEW_MESSAGE_KEY = "com.linkcube.skea.ui.exercise.UpdateTextViewTextHandler.message_key";
-    private TextView perfectCoolTextView;
+    public static final String PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY = "com.linkcube.skea.ui.exercise.UpdateImageViewPicHandler.message_key";
+    private ImageView perfectCoolImageView;
 
-    public UpdateTextViewTextHandler() {
+    public UpdateImageViewPicHandler(ImageView iv) {
         super();
+        this.perfectCoolImageView = iv;
     }
-
-    public UpdateTextViewTextHandler(TextView tv) {
-        super();
-        this.perfectCoolTextView = tv;
-    }
-
-    public UpdateTextViewTextHandler(Looper looper) {
-        super(looper);
-    }
-
 
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
         //得到传递的参数
         Bundle bundle = msg.getData();
-        String text = bundle.getString(PERFECT_COOL_TEXTVIEW_MESSAGE_KEY);
-        this.perfectCoolTextView.setText(text);
+        int imgID  = bundle.getInt(PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY);
+        this.perfectCoolImageView.setImageResource(imgID);
     }
 }
 

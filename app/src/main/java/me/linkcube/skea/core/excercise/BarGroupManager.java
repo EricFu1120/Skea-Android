@@ -122,6 +122,10 @@ public class BarGroupManager {
         ViewGroup frontParent = (ViewGroup) frontGroup.getParent();
         ViewGroup behindParent = (ViewGroup) behindGroup.getParent();
 
+        //清空View,以防用户第一次进入游戏时，未连接蓝牙。退出之后，连接蓝牙，再次进入“位置”错位
+        frontGroup.removeAllViews();
+        behindGroup.removeAllViews();
+
         frontGroup.addView(getHeaderOrFooterView(frontParent, true));
         behindGroup.addView(getHeaderOrFooterView(behindParent, false));
 

@@ -38,7 +38,6 @@ public class ExerciseScoreCounter {
     }
 
     public void startScore(Bar bar) {
-        Log.i("CXC","%%%%%%ExerciseScore-startScore()");
         this.bar = bar;
         lock = true;
     }
@@ -58,7 +57,6 @@ public class ExerciseScoreCounter {
         if (lock) {
             //TODO 可能出现锁问题
             Segment segment = new Segment(game_count);
-            Log.i("CXC","&&&&&&&game_count:"+game_count);
             segments.add(segment);
         }
         game_count = 0;
@@ -83,14 +81,9 @@ public class ExerciseScoreCounter {
     public int stopScore() {
 
         if (lock) {
-            Log.i("CXC","%%%%%%ExerciseScore-stopScore()");
             float score = getScore();
-//            totalScore += getScore();
-
             totalScore+=score;
             bar.setScore(score+perfect_cool_score);
-            Log.i("CXC", "bar score:---" +bar.getScore());
-//            segments.clear();
         }
         //归“0”
         perfect_lock=false;
@@ -98,32 +91,29 @@ public class ExerciseScoreCounter {
         lock = false;
 
         game_count = 0;
+        perfect_cool_score=0;
         return totalScore;
     }
 
     public int stopCoolScore() {
 
+        if (cool_count > 0) {
+            perfect_cool_score=BarConst.SCORE.COOL_SCORE;
+            totalScore += perfect_cool_score;
+            Log.i("CXC", "Cool ++++30");
+
+        }
         cool_lock = false;
 
-        return 0;
+        return totalScore;
 
     }
 
     public int stopPerfectScore() {
-        if (cool_count > 0) {
-            perfect_cool_score=30;
-            totalScore += 30;
-//            Log.i("CXC", "Cool ++++30");
-
-        } else if (perfect_count > 0) {
-            perfect_cool_score=30;
-            totalScore += 50;
-//            Log.i("CXC", "perfect +++50");
-
-
-        } else {
-
-            totalScore += 0;
+        if (cool_count<=0 && perfect_count > 0) {
+            perfect_cool_score=BarConst.SCORE.PERFECT_SCORE;
+            totalScore += perfect_cool_score;
+            Log.i("CXC", "perfect +++50");
         }
         perfect_count = 0;
         cool_count = 0;

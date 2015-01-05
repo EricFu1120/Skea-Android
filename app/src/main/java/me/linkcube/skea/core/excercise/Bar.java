@@ -11,6 +11,7 @@ public class Bar {
 
     private float score;
 
+    //height什么时候初始化的???
     private int height;
 
     private int beginActiveOffset;

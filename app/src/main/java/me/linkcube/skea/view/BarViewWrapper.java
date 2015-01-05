@@ -46,6 +46,7 @@ public class BarViewWrapper {
 
     private void initVarViewAttrs(int type, boolean glow) {
         Log.i("CXC", "type:" + type);
+        //
         switch (type) {
             case BarConst.TYPE.LONG:
                 height = BarConst.TYPE.BAR_TIME[BarConst.TYPE.LONG] * BarConst.VIEW.SPEED;

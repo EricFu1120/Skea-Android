@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import me.linkcube.skea.R;
+
 /**
  * Created by Ervin on 14/11/2.
  */
 public class ExerciseController {
 
-//    private final int UNIT_TIME = 50;
     private Timer timer;
     private int offset = 0;
 
@@ -69,24 +70,7 @@ public class ExerciseController {
     public void prepare(Context context, ScrollView frontScrollView, ScrollView behindScrollView) {
         BarGroupManager.getInstance().prepare(context, frontScrollView, behindScrollView);
     }
-
-
-    /**
-     * 开始计算分数
-     */
-    public void shrink() {
-
-    }
-
-    public void relax() {
-
-    }
-
-
     public void checkActivePosition() {
-        //确定激活的Bar
-//        Log.i("CXC","====activePosition:"+activePosition);
-//        count++;
         second++;
         if (activePosition < list.size()) {
             Bar bar = list.get(activePosition);
@@ -103,15 +87,15 @@ public class ExerciseController {
                         callback.startCoolScore(bar);
                     }
                     if(cool_active){
-                        callback.showPerfectCool("Cool");
+//                        callback.showPerfectCool(R.drawable.text_cool);
                         callback.tickCoolScore();
                     }
 
                 } else if (bar.getBeginActiveOffset() + 32 <= offset && offset < bar.getRealBeginActiveOffset()) {
 //                    //Perfect
-//                    Log.i("CXC","@@@@@@Perfect");
                     if(cool_active){
                         callback.stopCoolScore();
+
                         cool_active=false;
                     }
                     if(!perfect_active && callback !=null){
@@ -119,13 +103,12 @@ public class ExerciseController {
                         callback.startPerfectScore(bar);
                     }
                     if(perfect_active){
-                        callback.showPerfectCool("Perfect");
+//                        callback.showPerfectCool(R.drawable.text_perfect);
                         callback.tickPerfectScore();
                     }
                 } else {
                     // bar.getRealBeginActiveOffset() <= offset && offset <= bar.getRealEndActiveOffset()
                     //Game time
-//                    Log.i("CXC","@@@@@@Game");
 
                     if(perfect_active){
                         callback.stopPerfectScore();
@@ -159,7 +142,6 @@ public class ExerciseController {
 
             } else {
                 //offset<bar.getBeginActiveOffset();
-                //do nothing
                 if(callback!=null){
                     callback.stopScore();
                     game_active =false;
@@ -185,9 +167,6 @@ public class ExerciseController {
              * 启动运动记录Activity，并传入当前游戏用户的数据，以便显示
              **/
             callback.showExerciseResult(list);
-
-
-
         }
     }
 
@@ -242,7 +221,7 @@ public class ExerciseController {
         void stopPerfectScore();
 
 
-        void showPerfectCool(String msg);
+        void showPerfectCool(int imgID);
 
         void showExerciseResult(List<Bar> list);
 
