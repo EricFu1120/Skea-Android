@@ -47,7 +47,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private ScrollView frontScrollView;
     private ScrollView behindScrollView;
     private ExerciseController controller;
-    private ToggleButton shrinkButton;
+//    private ToggleButton shrinkButton;
     private TextView leftTimeTextView;
     private TextView scoreTextView;
     private ImageView perfectCoolImageView;
@@ -108,7 +108,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         behindScrollView = (ScrollView) findViewById(R.id.behind_scrollView);
         behindGroup = (LinearLayout) findViewById(R.id.behind_group);
         frontGroup = (LinearLayout) findViewById(R.id.exercise_group);
-        shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
+//        shrinkButton = (ToggleButton) findViewById(R.id.shrink_button);
 
         //显示perfect cool 文字特效
         perfectCoolImageView = (ImageView) findViewById(R.id.perfect_cool_iv);
@@ -121,12 +121,12 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         behindScrollView.setOnTouchListener(mScorllViewOnTouchListener);
 
 
-        shrinkButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                shrink = isChecked;
-            }
-        });
+//        shrinkButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                shrink = isChecked;
+//            }
+//        });
     }
 
     /**
