@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import me.linkcube.skea.R;
-
 /**
  * Created by Ervin on 14/11/2.
  */
@@ -117,13 +115,14 @@ public class ExerciseController {
 
                     if(!game_active &&callback !=null){
                         game_active =true;
-                        callback.startScore(bar);
+                        callback.startGameScore(bar);
+
                         count=0;
                     }
                     if(game_active){
                         count++;
                         if (count != 0 && count % 10 == 0) {
-                            callback.tickScore();
+                            callback.tickGameScore();
                             //开始下一个0.5s
                             count = 0;
                         }
@@ -135,7 +134,7 @@ public class ExerciseController {
                 //当前条结束
                 Log.i("CXC","----- Score &&& next");
                 if(game_active){
-                    callback.stopScore();
+                    callback.stopGameScore();
                     game_active = false;
                 }
                 activePosition+=2;
@@ -144,7 +143,7 @@ public class ExerciseController {
                 //offset<bar.getBeginActiveOffset();
                 //Miss
                 if(callback!=null){
-                    callback.stopScore();
+                    callback.stopGameScore();
                     game_active =false;
                 }
             }
@@ -203,13 +202,13 @@ public class ExerciseController {
 
     public interface ExerciseScoreCallback {
 
-        void startScore(Bar bar);
+        void startGameScore(Bar bar);
 
         void startCoolScore(Bar bar);
 
         void startPerfectScore(Bar bar);
 
-        void tickScore();
+        void tickGameScore();
 
         void tickCoolScore();
 
@@ -217,7 +216,7 @@ public class ExerciseController {
 
         void tickSecond(int leftTime);
 
-        void stopScore();
+        void stopGameScore();
         void stopCoolScore();
         void stopPerfectScore();
 

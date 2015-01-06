@@ -15,14 +15,16 @@ public class ExerciseScoreCounter {
     private int game_count = 0;
     private int cool_count = 0;
     private int perfect_count = 0;
+    private int miss_count=0;
 
     private Bar bar;
 
     private List<Segment> segments;
 
-    private boolean lock = false;
+    private boolean game_lock = false;
     private boolean cool_lock = false;
     private boolean perfect_lock = false;
+    private boolean miss_lock=false;
 
     private int totalScore;
     private int perfect_cool_score=0;
@@ -37,9 +39,9 @@ public class ExerciseScoreCounter {
         return instance;
     }
 
-    public void startScore(Bar bar) {
+    public void startGameScore(Bar bar) {
         this.bar = bar;
-        lock = true;
+        game_lock = true;
     }
 
     public void startCoolScore(Bar bar) {
@@ -53,8 +55,8 @@ public class ExerciseScoreCounter {
         perfect_lock = true;
     }
 
-    public boolean tickScore() {
-        if (lock) {
+    public boolean tickGameScore() {
+        if (game_lock) {
             //TODO 可能出现锁问题
             Segment segment = new Segment(game_count);
             segments.add(segment);
@@ -83,17 +85,17 @@ public class ExerciseScoreCounter {
     /**
      * 计算当前游戏得分
      */
-    public int stopScore() {
+    public int stopGameScore() {
 
-        if (lock) {
-            float score = getScore();
+        if (game_lock) {
+            float score = getGameScore();
             totalScore+=score;
             bar.setScore(score+perfect_cool_score);
         }
         //归“0”
         perfect_lock=false;
         cool_lock=false;
-        lock = false;
+        game_lock = false;
 
         game_count = 0;
         perfect_cool_score=0;
@@ -137,12 +139,15 @@ public class ExerciseScoreCounter {
             perfect_count++;
         }
 
-        if (lock) {
+        if (game_lock) {
             game_count++;
+        }
+        if(miss_lock){
+            miss_count++;
         }
     }
 
-    private float getScore() {
+    private float getGameScore() {
         float segmentScore = 0.0f;
         float duration = 0.0f;
         int counter = 0;

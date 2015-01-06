@@ -15,12 +15,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import java.util.List;
 import java.util.Timer;
@@ -160,7 +158,10 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void onResume() {
         super.onResume();
-        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this, initGameHandler);
+        //可以将Game的初始化放在ExerciseProgressDialog的onStart(),和onStop()方法中。
+        //但是现在放进去会出现“错位”，有空调整之
+//        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this,initGameHandler);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Note");
         progressDialog.setMessage("Game is loading...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -242,9 +243,9 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     }
 
     @Override
-    public void startScore(Bar bar) {
+    public void startGameScore(Bar bar) {
         Log.d("startScore", "bar type = " + bar.getType());
-        ExerciseScoreCounter.getInstance().startScore(bar);
+        ExerciseScoreCounter.getInstance().startGameScore(bar);
     }
 
     @Override
@@ -258,8 +259,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     }
 
     @Override
-    public void tickScore() {
-        if(ExerciseScoreCounter.getInstance().tickScore()){
+    public void tickGameScore() {
+        if(ExerciseScoreCounter.getInstance().tickGameScore()){
             showPerfectCool(R.drawable.text_stars);
         }
     }
@@ -290,8 +291,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     }
 
     @Override
-    public void stopScore() {
-        final int score = ExerciseScoreCounter.getInstance().stopScore();
+    public void stopGameScore() {
+        final int score = ExerciseScoreCounter.getInstance().stopGameScore();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -447,6 +448,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
 }
 
+
 /**
  * 进入游戏时默认倒计时5s后开始游戏
  */
@@ -464,11 +466,13 @@ class ExerciseProgressDialog extends ProgressDialog {
     public void onStart() {
         super.onStart();
 
+//        initGameHandler.sendEmptyMessage(0);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+//        initGameHandler.sendEmptyMessage(0);
 
     }
 }
