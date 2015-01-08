@@ -261,7 +261,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void tickGameScore() {
         if(ExerciseScoreCounter.getInstance().tickGameScore()){
-            showPerfectCool(R.drawable.text_stars);
+            showPerfectCool(R.drawable.text_starts);
         }
     }
 
