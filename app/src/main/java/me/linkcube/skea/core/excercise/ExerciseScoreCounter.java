@@ -55,6 +55,10 @@ public class ExerciseScoreCounter {
         perfect_lock = true;
     }
 
+    public void startMissScore(){
+        miss_lock=true;
+    }
+
     public boolean tickGameScore() {
         if (game_lock) {
             //TODO 可能出现锁问题
@@ -65,6 +69,18 @@ public class ExerciseScoreCounter {
         }
         else {
             game_count = 0;
+            return false;
+        }
+    }
+
+
+    public boolean tickMissScore(){
+        if (miss_lock && miss_count>0){
+
+            miss_count=0;
+            return true;
+        }else {
+            miss_count = 0;
             return false;
         }
     }
@@ -81,6 +97,8 @@ public class ExerciseScoreCounter {
             Log.i("CXC", "----perfect ++++");
         }
     }
+
+
 
     /**
      * 计算当前游戏得分
@@ -129,6 +147,11 @@ public class ExerciseScoreCounter {
         return totalScore;
     }
 
+    public void stopMissScore(){
+        miss_lock=false;
+        miss_count=0;
+        segments.clear();
+    }
     public void receiveSignal() {
 
         if (cool_lock) {

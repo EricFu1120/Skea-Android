@@ -373,6 +373,27 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     }
 
     @Override
+    public void startMissScore() {
+
+        ExerciseScoreCounter.getInstance().startMissScore();
+
+    }
+
+    @Override
+    public void tickMissScore() {
+        if(ExerciseScoreCounter.getInstance().tickMissScore()){
+            showPerfectCool(R.drawable.text_miss);
+        }
+
+    }
+
+    @Override
+    public void stopMissScore() {
+        ExerciseScoreCounter.getInstance().stopMissScore();
+
+    }
+
+    @Override
     public void showExerciseResult(List<Bar> list) {
         Intent showResultIntent = new Intent(this, RecordActivity.class);
 

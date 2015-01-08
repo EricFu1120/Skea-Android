@@ -26,6 +26,7 @@ public class ExerciseController {
     private boolean game_active = false;
     private boolean cool_active=false;
     private boolean perfect_active=false;
+    private boolean miss_active=false;
 
     private int leftTime;
 
@@ -76,6 +77,10 @@ public class ExerciseController {
                 if (bar.getBeginActiveOffset() <= offset && offset < bar.getBeginActiveOffset() + 12) {
                     //cheat --防
 //                    Log.i("CXC","@@@@@@cheat");
+                    if(miss_active){
+                        miss_active=false;
+                        callback.stopMissScore();
+                    }
 
                 } else if (bar.getBeginActiveOffset() + 12 <= offset && offset < bar.getBeginActiveOffset() + 32) {
                     //Cool
@@ -142,6 +147,21 @@ public class ExerciseController {
             } else {
                 //offset<bar.getBeginActiveOffset();
                 //Miss
+
+                Log.i("CXC","@@@@@Miss");
+                if(!miss_active&&callback!= null){
+                    miss_active=true;
+                    callback.startMissScore();
+                    count=0;
+                }
+                if(miss_active){
+                    count++;
+                    if (count != 0) {
+                        callback.tickMissScore();
+                        count = 0;
+                    }
+                }
+
                 if(callback!=null){
                     callback.stopGameScore();
                     game_active =false;
@@ -208,17 +228,22 @@ public class ExerciseController {
 
         void startPerfectScore(Bar bar);
 
+        void startMissScore();
+
         void tickGameScore();
 
         void tickCoolScore();
 
         void tickPerfectScore();
 
+        void tickMissScore();
+
         void tickSecond(int leftTime);
 
         void stopGameScore();
         void stopCoolScore();
         void stopPerfectScore();
+        void stopMissScore();
 
 
         void showPerfectCool(int imgID);
