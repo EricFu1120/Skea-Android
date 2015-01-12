@@ -51,6 +51,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private ImageView perfectCoolImageView;
     private boolean shrink;
 
+    private Timer testSignalTimer;
+
     public UpdateImageViewPicHandler updateTextViewTextHandler;
 
     private InitGameHandler initGameHandler;
@@ -82,7 +84,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         testShrinkHandler = new TestShrinkHandler();
 
-        new Timer().schedule(new TimerTask() {
+        testSignalTimer=new Timer();
+        testSignalTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 //使用Handler发送消息，以检测当前是否有挤压
@@ -213,6 +216,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 isPaused = false;
                 gameAlertDialog();
 
+
             } else {
 //                controller.continueGame();
 //                isPaused = true;
@@ -228,7 +232,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {//退出游戏
                     public void onClick(DialogInterface dialog, int id) {
-                        ExerciseActivity.this.finish();
+                        ExerciseActivity.this.stopTheExercise();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {//继续游戏
@@ -410,6 +414,14 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         showResultIntent.putExtra(RecordActivity.EXERCISE_SCORE_KEY, barScore);
 
         startActivity(showResultIntent);
+    }
+
+    @Override
+    public void stopTheExercise() {
+
+
+        testSignalTimer.cancel();
+        this.finish();
     }
 
     class InitGameHandler extends Handler {

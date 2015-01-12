@@ -76,7 +76,7 @@ public class ExerciseController {
             if (bar.getBeginActiveOffset() <= offset && offset <= bar.getRealEndActiveOffset()) {
                 if (bar.getBeginActiveOffset() <= offset && offset < bar.getBeginActiveOffset() + 12) {
                     //cheat --防
-//                    Log.i("CXC","@@@@@@cheat");
+                    Log.i("CXC","@@@@@@cheat");
                     if(miss_active){
                         miss_active=false;
                         callback.stopMissScore();
@@ -84,7 +84,7 @@ public class ExerciseController {
 
                 } else if (bar.getBeginActiveOffset() + 12 <= offset && offset < bar.getBeginActiveOffset() + 32) {
                     //Cool
-//                    Log.i("CXC","@@@@@@Cool");
+                    Log.i("CXC","@@@@@@Cool");
                     if(!cool_active && callback !=null){
                         cool_active=true;
                         callback.startCoolScore(bar);
@@ -181,11 +181,15 @@ public class ExerciseController {
         //以总时间倒计时来控制整个游戏
         if (leftTime <= 0) {
             timer.cancel();
+
             //游戏结束之后，显示本次游戏成绩－－跳转到运动记录界面进行显示
 
             /**
              * 启动运动记录Activity，并传入当前游戏用户的数据，以便显示
              **/
+
+
+            callback.stopTheExercise();
             callback.showExerciseResult(list);
         }
     }
@@ -250,6 +254,8 @@ public class ExerciseController {
 
         void showExerciseResult(List<Bar> list);
 
+
+        void stopTheExercise();
     }
 
 }
