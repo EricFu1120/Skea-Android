@@ -89,12 +89,14 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         testSignalTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                //使用Handler发送消息，以检测当前是否有挤压
-                Message msg = new Message();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean(TestShrinkHandler.TEST_SIGNAL, true);
-                msg.setData(bundle);
-                testShrinkHandler.sendMessage(msg);
+//                //使用Handler发送消息，以检测当前是否有挤压
+//                Message msg = new Message();
+//                Bundle bundle = new Bundle();
+//                bundle.putBoolean(TestShrinkHandler.TEST_SIGNAL, true);
+//                msg.setData(bundle);
+//                testShrinkHandler.sendMessage(msg);
+
+                sendMessage_to_handler(testShrinkHandler,TestShrinkHandler.TEST_SIGNAL,TestShrinkHandler.TEST_SHRINK_YES_OR_NOT);
             }
         }, 1000, 15);//1000ms 以后每隔15ms执行一次
 
@@ -438,6 +440,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         handler.sendMessage(msg);
     }
 
+
+    public int handlerMessage_from_handler(Message msg ,String key){
+
+        return msg.getData().getInt(key);
+    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -500,6 +507,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
      */
     class TestShrinkHandler extends Handler {
         public static final String TEST_SIGNAL = "com.linkcube.skea.ui.excise.test_signal";
+        public static final int TEST_SHRINK_YES_OR_NOT=2000001;
 
         public TestShrinkHandler() {
             super();
@@ -509,42 +517,46 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            Bundle bundle = msg.getData();
-            if (bundle.getBoolean(TEST_SIGNAL)) {//接收到Timer定时发送来的消息，检测此时是否有“挤压”
-                if (shrink) {//有挤压
-                    ExerciseScoreCounter.getInstance().receiveSignal();
-                } else {//无挤压
-
-                }
+            //接收到Timer定时发送来的消息，检测此时是否有“挤压”
+            switch ( handlerMessage_from_handler(msg,TEST_SIGNAL)){
+                case TEST_SHRINK_YES_OR_NOT:
+                    if (shrink) {//有挤压
+                        ExerciseScoreCounter.getInstance().receiveSignal();
+                    }
+                    break;
+                default:
+                    break;
             }
+
             //重置信号标志－－－这一点很重要
             shrink = false;
         }
     }
 
-}
+    /**
+     * 用于更新ImageView中文图片的Handler
+     * 游戏中Perfect,Cool,Miss 等特效的显示
+     */
+    class UpdateImageViewPicHandler extends android.os.Handler {
 
-/**
- * 用于更新ImageView中文图片的Handler
- * 游戏中Perfect,Cool,Miss 等特效的显示
- */
-class UpdateImageViewPicHandler extends android.os.Handler {
+        public static final String PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY = "com.linkcube.skea.ui.exercise.UpdateImageViewPicHandler.message_key";
+        private ImageView perfectCoolImageView;
 
-    public static final String PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY = "com.linkcube.skea.ui.exercise.UpdateImageViewPicHandler.message_key";
-    private ImageView perfectCoolImageView;
+        public UpdateImageViewPicHandler(ImageView iv) {
+            super();
+            this.perfectCoolImageView = iv;
+        }
 
-    public UpdateImageViewPicHandler(ImageView iv) {
-        super();
-        this.perfectCoolImageView = iv;
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            //得到传递的参数
+            int imgID =handlerMessage_from_handler(msg,PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY);
+            this.perfectCoolImageView.setImageResource(imgID);
+        }
     }
 
-    @Override
-    public void handleMessage(Message msg) {
-        super.handleMessage(msg);
-        //得到传递的参数
-        Bundle bundle = msg.getData();
-        int imgID  = bundle.getInt(PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY);
-        this.perfectCoolImageView.setImageResource(imgID);
-    }
 }
+
+
 
