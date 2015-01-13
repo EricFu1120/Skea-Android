@@ -34,8 +34,11 @@ public class ExerciseScoreCounter {
     }
 
     public static ExerciseScoreCounter getInstance() {
-        if (instance == null)
+        if (instance == null){
             instance = new ExerciseScoreCounter();
+
+        }
+
         return instance;
     }
 
@@ -151,6 +154,11 @@ public class ExerciseScoreCounter {
         miss_lock=false;
         miss_count=0;
         segments.clear();
+    }
+
+    public void stopScoreCounter(){
+        //this.totalScore=0;
+        instance=null;
     }
     public void receiveSignal() {
 

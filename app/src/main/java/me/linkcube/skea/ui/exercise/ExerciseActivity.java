@@ -419,6 +419,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         testSignalTimer.cancel();
         sendMessage_to_handler(initGameHandler, InitGameHandler.INIT_GAME_HANDLER_EXERCISE_KEY, InitGameHandler.STOP_EXERCISE);
+        ExerciseScoreCounter.getInstance().stopScoreCounter();
         this.finish();
     }
 
@@ -520,37 +521,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             shrink = false;
         }
     }
-
-}
-
-
-/**
- * 进入游戏时默认倒计时5s后开始游戏
- */
-class ExerciseProgressDialog extends ProgressDialog {
-    private Context context;
-    private ExerciseActivity.InitGameHandler initGameHandler;
-
-    public ExerciseProgressDialog(Context context, ExerciseActivity.InitGameHandler initGameHandler) {
-        super(context);
-        this.context = context;
-        this.initGameHandler = initGameHandler;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-//        initGameHandler.sendEmptyMessage(0);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-//        initGameHandler.sendEmptyMessage(0);
-
-    }
-
 
 }
 
