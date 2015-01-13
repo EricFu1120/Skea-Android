@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -177,7 +178,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             public void run() {
 
                 //初始化Bar－－－调用 controller.init(getApplicationContext(), frontGroup, behindGroup);
-                initGameHandler.sendEmptyMessage(0);
+                sendMessage_to_handler(initGameHandler,InitGameHandler.INIT_GAME_HANDLER_EXERCISE_KEY,InitGameHandler.INIT_EXERCISE);
 
                 //进入游戏后，倒计时5秒钟开始
                 while (timeCount < 100) {
@@ -192,7 +193,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 progressDialog.dismiss();
 
                 //启动游戏－－－调用 controller.prepare(getApplicationContext(), frontScrollView, behindScrollView); 和controller.start();
-                initGameHandler.sendEmptyMessage(0);
+                sendMessage_to_handler(initGameHandler,InitGameHandler.INIT_GAME_HANDLER_EXERCISE_KEY,InitGameHandler.PREPARE_EXERCISE);
 
             }
         }).start();
@@ -366,11 +367,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
 
         //使用Handler发送消息，以更新UI
-        Message msg = new Message();
-        Bundle bundle = new Bundle();
-        bundle.putInt(UpdateImageViewPicHandler.PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY, imgID);
-        msg.setData(bundle);
-        updateTextViewTextHandler.sendMessage(msg);
+        sendMessage_to_handler(updateTextViewTextHandler,UpdateImageViewPicHandler.PERFECT_COOL_IMAGEVIEW_PIC_MESSAGE_KEY,imgID);
         //注册动画
         perfectCoolImageView.setAnimation(perfect_cool_anim);
 
@@ -421,36 +418,81 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
 
         testSignalTimer.cancel();
+        sendMessage_to_handler(initGameHandler, InitGameHandler.INIT_GAME_HANDLER_EXERCISE_KEY, InitGameHandler.STOP_EXERCISE);
         this.finish();
     }
 
+
+    /**
+     * @param handler:发送消息的Handler(或子类)
+     * @param key:发送数据和接收数据时用到的key
+     * @param value:key所对应的value
+     * */
+    public void sendMessage_to_handler(Handler handler, String key, int value){
+        //使用Handler发送消息
+        Message msg = new Message();
+        Bundle bundle = new Bundle();
+        bundle.putInt(key,value);
+        msg.setData(bundle);
+        handler.sendMessage(msg);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode==KeyEvent.KEYCODE_BACK&&event.getRepeatCount()==0){
+            //重写物理“返回键”事件，以防止用户通过它退出游戏时，再次进入节奏变快
+            Log.i("CXC","*****back----out");
+            stopTheExercise();
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     class InitGameHandler extends Handler {
+        public static final String INIT_GAME_HANDLER_EXERCISE_KEY="com.linkcube.skea.ui.excise.init_game_handler";
+        public static final int INIT_EXERCISE=10000001;
+
+
+        public static final int PREPARE_EXERCISE=10000002;
+        public static final int STOP_EXERCISE=10000003;
+
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (isGameInitialized) {
-                controller.init(getApplicationContext(), frontGroup, behindGroup);
-                isGameInitialized = false;
-            } else {
-                controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
-                controller.start();
-                //游戏开始后，手机便开始接收信号
-                EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
-                    @Override
-                    public void onDataReceived(byte[] bytes, String message) {
-//                        pressDataTextView.setText(bytes.toString());
-                        Log.i("CXC", "&&&&&&&&&&&&onDataReceived：" + bytes.toString());
-                        if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
-                                && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
-                            shrink = true;
-                        }
-                    }
-                });
 
-                isGameInitialized =false;
+
+            switch ( msg.getData().getInt(this.INIT_GAME_HANDLER_EXERCISE_KEY)){
+                case INIT_EXERCISE:
+                    controller.init(getApplicationContext(), frontGroup, behindGroup);
+                    break;
+                case PREPARE_EXERCISE:
+                    controller.prepare(getApplicationContext(), frontScrollView, behindScrollView);
+                    controller.start();
+                    //游戏开始后，手机便开始接收信号
+                    EasyBluetooth.getInstance().setOnDataReceivedListener(new EasyBluetooth.OnDataReceivedListener() {
+                        @Override
+                        public void onDataReceived(byte[] bytes, String message) {
+//                        pressDataTextView.setText(bytes.toString());
+                            Log.i("CXC", "&&&&&&&&&&&&onDataReceived：" + bytes.toString());
+                            if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
+                                    && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
+                                shrink = true;
+                            }
+                        }
+                    });
+                    break;
+                case STOP_EXERCISE:
+                    controller.stop();
+                    break;
+                default:
+                    break;
             }
         }
     }
+
+
 
     /**
      * Timer定时给UI发送消息，让UI Thread 去检测是否有挤压
@@ -508,6 +550,8 @@ class ExerciseProgressDialog extends ProgressDialog {
 //        initGameHandler.sendEmptyMessage(0);
 
     }
+
+
 }
 
 /**
