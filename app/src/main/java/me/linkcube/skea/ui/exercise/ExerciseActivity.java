@@ -102,6 +102,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     }
 
+
+
     /**
      * 初始化控件及变量，注册事件
      */
@@ -212,20 +214,26 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_pause) {
-            if (isPaused) {
-                controller.pause();
-                isPaused = false;
-                gameAlertDialog();
+//        int id = item.getItemId();
+        switch (item.getItemId()){
+            case R.id.action_pause:
+                if (isPaused) {
+                    controller.pause();
+                    isPaused = false;
+                    gameAlertDialog();
+                    return true;
+                }
+                break;
+            case android.R.id.home:
+                stopTheExercise();
+                return true;
 
-
-            } else {
-//                controller.continueGame();
-//                isPaused = true;
-            }
-            return true;
+//                break;
+            default:
+//                stopTheExercise();
+                break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
