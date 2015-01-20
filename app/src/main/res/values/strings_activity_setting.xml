@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="setting_language">Language</string>
+    <string name="setting_update">App Update</string>
+    <string name="setting_feedback">Contact Us </string>
+    <string name="setting_about_us">About Us</string>
+
+</resources>

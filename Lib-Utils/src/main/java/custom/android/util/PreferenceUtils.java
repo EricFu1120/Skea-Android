@@ -3,6 +3,7 @@ package custom.android.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 /**
  * @author Ervin
@@ -61,7 +62,9 @@ public class PreferenceUtils {
 
     public static String getString(Context context, String key, String def) {
         if (key == null || key.equals("")) {
+            Log.i("CXC","+++++++++def**************");
             return def;
+
         }
         return getSharedPreference(context).getString(key, def);
     }

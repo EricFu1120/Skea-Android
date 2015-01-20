@@ -7,7 +7,7 @@
         android:id="@+id/language"
         style="@style/Preference.Item"
         android:drawableRight="@drawable/menu_action_right"
-        android:text="Language" />
+        android:text="@string/setting_language" />
 
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:id="@+id/update"
             style="@style/Preference.Item"
             android:drawableRight="@drawable/menu_action_right"
-            android:text="Update" />
+            android:text="@string/setting_update" />
 
 
         <View style="@style/DividerWithMargin" />
@@ -31,7 +31,7 @@
             android:id="@+id/feedback"
             style="@style/Preference.Item"
             android:drawableRight="@drawable/menu_action_right"
-            android:text="Feedback" />
+            android:text="@string/setting_feedback" />
 
         <View style="@style/DividerWithMargin" />
 
@@ -39,7 +39,7 @@
             android:id="@+id/aboutus"
             style="@style/Preference.Item"
             android:drawableRight="@drawable/menu_action_right"
-            android:text="About us" />
+            android:text="@string/setting_about_us" />
 
 
     </LinearLayout>
