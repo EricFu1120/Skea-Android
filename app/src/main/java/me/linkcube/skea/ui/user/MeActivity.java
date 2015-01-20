@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import me.linkcube.skea.R;
+import me.linkcube.skea.SkeaConfig;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.ui.evaluation.EvaluateResultActivity;
 import me.linkcube.skea.ui.setting.SettingActivity;
@@ -77,6 +78,8 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void switchLanguage() {
         super.switchLanguage();
+        //此处不能将标志置为false,否则MeActivity的上一级Activity感觉不到变化，也就不会进行中英文切换了
+//        SkeaConfig.IS_LANGUAGE_CHANGED = false;
 
     }
 }

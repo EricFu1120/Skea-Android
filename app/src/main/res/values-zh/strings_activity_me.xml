@@ -1,0 +1,8 @@
+<resources>
+    <string name="me_nickname">昵称</string>
+    <string name="me_test_pelvic_muscle">盆底肌健康测试</string>
+    <string name="me_skea_setting">Skea参数调节 </string>
+    <string name="me_purchase_product">购买Skea产品</string>
+    <string name="me_software_settings">设置</string>
+    <string name="me_sign_out">退出登录</string>
+</resources>

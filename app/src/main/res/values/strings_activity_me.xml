@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="me_nickname">Nickname</string>
+    <string name="me_test_pelvic_muscle">Pelvic Health Evaluation</string>
+    <string name="me_skea_setting">Device Setting</string>
+    <string name="me_purchase_product">Buy Skea</string>
+    <string name="me_software_settings">General Settings</string>
+    <string name="me_sign_out">Log out</string>
+</resources>
