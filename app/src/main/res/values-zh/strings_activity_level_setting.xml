@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="level_setting_one">Level 1</string>
+    <string name="level_setting_two">Level 2</string>
+    <string name="level_setting_three">Level 3</string>
+    <string name="level_setting_four">Level 4( 推荐 )</string>
+    <string name="level_setting_five">Level 5</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="skea_setting_pressure">压力敏感度</string>
+    <string name="skea_setting_insensitive">不敏感</string>
+    <string name="skea_setting_sensitive">敏感</string>
+    <string name="skea_setting_feedback">反馈感动强度</string>
+    <string name="skea_setting_weak">弱</string>
+    <string name="skea_setting_strong">强</string>
+</resources>

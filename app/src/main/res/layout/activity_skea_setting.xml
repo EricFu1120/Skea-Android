@@ -14,7 +14,7 @@
         android:background="@drawable/bg_title"
         android:gravity="center_vertical|left"
         android:paddingLeft="25dp"
-        android:text="Pressure Sensitivity"
+        android:text="@string/skea_setting_pressure"
         android:textColor="#000000"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -38,7 +38,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/feedback_sensitive_sb"
             android:layout_marginTop="30dp"
-            android:text="insensitive"
+            android:text="@string/skea_setting_insensitive"
             android:textColor="@color/text_light_gray"
             android:textSize="15sp" />
 
@@ -48,7 +48,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/feedback_sensitive_sb"
             android:layout_marginTop="30dp"
-            android:text="sensitive"
+            android:text="@string/skea_setting_sensitive"
             android:textColor="@color/text_light_gray"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -61,7 +61,7 @@
         android:background="@drawable/bg_title"
         android:gravity="center_vertical|left"
         android:paddingLeft="25dp"
-        android:text="Feedback Strength"
+        android:text="@string/skea_setting_feedback"
         android:textColor="#000000"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -85,7 +85,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/press_sensitive_sb"
             android:layout_marginTop="30dp"
-            android:text="Weak"
+            android:text="@string/skea_setting_weak"
             android:textColor="@color/text_light_gray"
             android:textSize="15sp" />
 
@@ -95,7 +95,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/press_sensitive_sb"
             android:layout_marginTop="30dp"
-            android:text="Strong"
+            android:text="@string/skea_setting_strong"
             android:textSize="15sp" />
     </RelativeLayout>
 

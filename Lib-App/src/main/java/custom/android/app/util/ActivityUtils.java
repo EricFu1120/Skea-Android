@@ -41,6 +41,8 @@ public class ActivityUtils {
             config.locale = Locale.ENGLISH;
         } else if (language.equals("English")) {
             config.locale = Locale.CHINA;
+        }else {
+            config.locale=Locale.ENGLISH;
         }
         resources.updateConfiguration(config, dm);
     }

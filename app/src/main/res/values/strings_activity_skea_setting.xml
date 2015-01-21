@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="skea_setting_pressure">Pressure Sensitivity</string>
+    <string name="skea_setting_insensitive">Less sensitive</string>
+    <string name="skea_setting_sensitive">More sensitive</string>
+    <string name="skea_setting_feedback">Feedback Vib Intensity</string>
+    <string name="skea_setting_weak">Weaker</string>
+    <string name="skea_setting_strong">Stronger</string>
+</resources>
