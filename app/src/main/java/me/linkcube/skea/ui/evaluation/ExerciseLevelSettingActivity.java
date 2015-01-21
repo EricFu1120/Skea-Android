@@ -75,19 +75,19 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.level1_rb:
-                        exerciseLevelIndex = 1;
+                        exerciseLevelIndex = 0;
                         break;
                     case R.id.level2_rb:
-                        exerciseLevelIndex = 2;
+                        exerciseLevelIndex = 1;
                         break;
                     case R.id.level3_rb:
-                        exerciseLevelIndex = 3;
+                        exerciseLevelIndex = 2;
                         break;
                     case R.id.level4_rb:
-                        exerciseLevelIndex = 4;
+                        exerciseLevelIndex = 3;
                         break;
                     case R.id.level5_rb:
-                        exerciseLevelIndex = 5;
+                        exerciseLevelIndex = 4;
                         break;
                     default:
 

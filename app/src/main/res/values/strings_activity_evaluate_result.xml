@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="evaluate_pelvic_floor_muscle">Pelvic floor muscle</string>
+    <string name="evaluate_risk_factor">risk factor</string>
+    <string name="evaluate_suggestions">Suggestions</string>
+    <string name="evaluate_suggestions_low">
+        Congratulations! You face low risks of pelvic floor muscle related problems. However, doing Kegel Exercise can still further improve your pelvic floor health!
+    </string>
+    <string name="evaluate_suggestions_medium">
+        You face medium risks of pelvic floor muscle related problems. Regular Kegel Exercises will be good for your pelvic floor health!
+    </string>
+    <string name="evaluate_suggestions_average">
+        You face high risks of pelvic floor muscle related problems. Frequent Kegel Exercises are recommended and you may improve your pelvic health significantly, please keep it up!
+    </string>
+    <string name="evaluate_suggestions_high">
+        You face very high risks of pelvic floor muscle related problems. Daily exercise of 30 minutes is recommended to improve your pelvic floor health. Please also consult doctors for more info about your conditions and Kegel Exercises.
+    </string>
+    <string name="evaluate_exercise">Exercise</string>
+    <string name="evaluate_level_one">Level 1</string>
+    <string name="evaluate_level_two">Level 2</string>
+    <string name="evaluate_level_three">Level 3</string>
+    <string name="evaluate_level_four">Level 4</string>
+    <string name="evaluate_level_five">Level 5</string>
+    <string name="evaluate_reevaluate">Re-evaluate</string>
+    <string name="evaluate_notice_title">Notice</string>
+    <string name="evaluate_notice_yes">Yes</string>
+    <string name="evaluate_notice_no">No</string>
+    <string name="evaluate_notice_message">Re-evaluate? Previous results will be erased .</string>
+</resources>

@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="evaluate_pelvic_floor_muscle">盆底肌健康</string>
+    <string name="evaluate_risk_factor">风险</string>
+    <string name="evaluate_suggestions">建议</string>
+    <string name="evaluate_suggestions_low">
+        恭喜您，您的盆底肌面临的健康风险较低。不过，多做凯格尔运动仍然能进一步增强您的盆底健康！
+    </string>
+    <string name="evaluate_suggestions_medium">
+        您的盆底肌面临的健康风险一般，经常做凯格尔运动，会增强您的盆底健康。
+    </string>
+    <string name="evaluate_suggestions_average">
+        您的盆底肌健康面临着较大风险，需要多多做凯格尔运动，能有效增进盆底健康哦，坚持每天锻炼吧！
+    </string>
+    <string name="evaluate_suggestions_high">
+        您的盆底肌健康面临着很大风险。建议每天进行30分钟的凯格尔锻炼来增强盆底健康。建议咨询医生以获得更多的专业意见。
+    </string>
+    <string name="evaluate_exercise">强度</string>
+    <string name="evaluate_level_one">Level 1</string>
+    <string name="evaluate_level_two">Level 2</string>
+    <string name="evaluate_level_three">Level 3</string>
+    <string name="evaluate_level_four">Level 4</string>
+    <string name="evaluate_level_five">Level 5</string>
+    <string name="evaluate_reevaluate">重新测试</string>
+    <string name="evaluate_notice_title">提示</string>
+    <string name="evaluate_notice_yes">确定</string>
+    <string name="evaluate_notice_no">取消</string>
+    <string name="evaluate_notice_message">是否重新测试 ？你之前的评估结果将不会被保留。 </string>
+</resources>

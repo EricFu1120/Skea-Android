@@ -239,6 +239,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private void gameAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Notice");
         builder.setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {//退出游戏
