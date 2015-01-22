@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
@@ -102,6 +103,9 @@ public class EasyBluetoothActivity extends BaseActivity implements EasyBluetooth
         }
 
     }
+
+
+
 
 
     private void showProgressDialog(int res) {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -44,6 +45,14 @@ public abstract class BaseActivity extends CustomActionBarActivity implements Ob
                 switchLanguage();
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public abstract int getLayoutResourceId();

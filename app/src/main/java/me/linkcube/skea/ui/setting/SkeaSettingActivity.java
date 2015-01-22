@@ -105,15 +105,4 @@ public class SkeaSettingActivity extends BaseActivity {
         feedback_sensitive_sb.setOnSeekBarChangeListener(onSkeaConfigSeekBarChangeListener);
         press_sensitive_sb.setOnSeekBarChangeListener(onSkeaConfigSeekBarChangeListener);
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 }

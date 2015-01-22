@@ -440,14 +440,17 @@ public class RecordActivity extends BaseActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_date) {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    RecordActivity.this, myDateSetListener, mYear, mMonth,
-                    mDays);
-            datePickerDialog.show();
-            Log.i("CXC", "++++date_record");
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_date://日期选择
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        RecordActivity.this, myDateSetListener, mYear, mMonth,
+                        mDays);
+                datePickerDialog.show();
+                Log.i("CXC", "++++date_record");
+                return true;
+//            break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
