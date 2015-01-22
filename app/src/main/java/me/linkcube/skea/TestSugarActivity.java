@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import custom.android.app.CustomActionBarActivity;
-import me.linkcube.skea.ui.evaluation.EvaluateActivity;
+import me.linkcube.skea.ui.evaluation.ReEvaluateActivity;
 
 
 public class TestSugarActivity extends CustomActionBarActivity implements View.OnClickListener {
@@ -80,7 +80,7 @@ public class TestSugarActivity extends CustomActionBarActivity implements View.O
     }
 
     private void evaluate() {
-        startActivityForResult(new Intent(this, EvaluateActivity.class), TEST_REQUEST_CODE);
+        startActivityForResult(new Intent(this, ReEvaluateActivity.class), TEST_REQUEST_CODE);
     }
 
     @Override

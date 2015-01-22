@@ -75,7 +75,7 @@
                 android:value=".ui.user.MeActivity" />
         </activity>
         <activity
-            android:name=".ui.evaluation.EvaluateActivity"
+            android:name=".ui.evaluation.ReEvaluateActivity"
             android:label="@string/title_activity_re_evaluation"
             android:parentActivityName=".ui.evaluation.EvaluateResultActivity">
             <meta-data

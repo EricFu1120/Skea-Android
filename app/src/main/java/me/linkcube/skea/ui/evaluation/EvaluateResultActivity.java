@@ -77,7 +77,7 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
                     riskRactorView.setImageResource(RISK_FACTOR_IMG_RES[riskFactor]);
                     suggestions_tv.setText(SUGGESTIONS_TEXT_ID[riskFactor]);
 
-                    Log.i(TAG, "onActivityResult - risk factor = " + data.getIntExtra(KEY_RISK_FACTOR, 4));
+                    Log.i(TAG, "onActivityResult - risk factor = " + data.getIntExtra(KEY_RISK_FACTOR, 0));
                 }
                 break;
             default:
@@ -102,7 +102,7 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
                         .setPositiveButton(getResources().getString(R.string.evaluate_notice_yes), new DialogInterface.OnClickListener() {//重新评估
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent();
-                                intent.setClass(getApplicationContext(), EvaluateActivity.class);
+                                intent.setClass(getApplicationContext(), ReEvaluateActivity.class);
                                 startActivityForResult(intent, REQUEST_CODE_EVALUATE);
                             }
                         })
