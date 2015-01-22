@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="reevaluate_note">Please fill in the questionnaire in order that we can evaluation the health risk of your pelvic floor muscle.</string>
+
+    <string name="reevaluate_basic_information">Basic Information</string>
+
+    <!--Basic information-->
+    <string name="reevaluate_basic_information_birthday">Date Of Birth</string>
+    <string name="reevaluate_basic_information_height">Body Height</string>
+    <string name="reevaluate_basic_information_weight">Body Weight</string>
+
+    <string name="reevaluate_health_information">Health Information</string>
+
+    <!-- Menopausal status text-->
+    <string name="reevaluate_health_information_menopausal_title">Menopausal Status</string>
+    <string name="reevaluate_health_information_menopausal_yes">(Pre)menopausal</string>
+    <string name="reevaluate_health_information_menopausal_no">Postmenopausal</string>
+    <string name="reevaluate_health_information_menopausal_introduction">Menopausal status is a key factor related to the pelvic floor health.</string>
+
+
+    <!-- Children text-->
+    <string name="reevaluate_health_information_children_title">Children</string>
+    <string name="reevaluate_health_information_children_level1">0</string>
+    <string name="reevaluate_health_information_children_level2">1</string>
+    <string name="reevaluate_health_information_children_level3">2</string>
+    <string name="reevaluate_health_information_children_level4"> >=3 </string>
+    <string name="reevaluate_health_information_children_introduction">Number of pregnancies is a key factor related to the pelvic floor health.</string>
+
+
+
+    <!-- Smoking text-->
+    <string name="reevaluate_health_information_smoking_title">Smoking</string>
+    <string name="reevaluate_health_information_smoking_yes">Yes</string>
+    <string name="reevaluate_health_information_smoking_no">No</string>
+    <string name="reevaluate_health_information_smoking_introduction">Smoking is a key factor related to the pelvic floor health.</string>
+
+
+    <!-- Pelvic Floor Surgery text-->
+    <string name="reevaluate_health_information_surgery_title">Pelvic Floor Surgery</string>
+    <string name="reevaluate_health_information_surgery_yes">Yes</string>
+    <string name="reevaluate_health_information_surgery_no">No</string>
+    <string name="reevaluate_health_information_surgery_introduction">Pelvic floor surgery is a key factor related to the pelvic floor health.</string>
+
+
+
+
+    <!-- Current Heavy Work text-->
+    <string name="reevaluate_health_information_heavy_title">Current Heavy Work</string>
+    <string name="reevaluate_health_information_heavy_yes">Yes</string>
+    <string name="reevaluate_health_information_heavy_no">No</string>
+    <string name="reevaluate_health_information_heavy_introduction">Current heavy work is a key factor related to the pelvic floor health.</string>
+
+
+
+    <!-- Pelvic Floor Problems (POP or UI) text-->
+    <string name="reevaluate_health_information_problem_title">Pelvic Floor Problems (POP or UI) during Gestation</string>
+    <string name="reevaluate_health_information_problem_yes">Yes</string>
+    <string name="reevaluate_health_information_problem_no">No</string>
+    <string name="reevaluate_health_information_problem_introduction">Experienced any pelvic floor problems during pregnancy? E.g. Pelvic Organ Prolapse or Urinary Incontinence.</string>
+
+
+
+    <!-- Mother with POP or UI text-->
+    <string name="reevaluate_health_information_mother_title">Mother with POP or UI</string>
+    <string name="reevaluate_health_information_mother_yes">Yes</string>
+    <string name="reevaluate_health_information_mother_no">No</string>
+    <string name="reevaluate_health_information_mother_introduction">Does/did your mother have Pelvic Organ Prolapse or Urinary Incontinence?</string>
+
+
+    <!-- Seeing/Feeling Bulge-->
+    <string name="reevaluate_health_information_bulge_title">Seeing/Feeling Bulge</string>
+    <string name="reevaluate_health_information_bulge_yes">Yes</string>
+    <string name="reevaluate_health_information_bulge_no">No</string>
+    <string name="reevaluate_health_information_bulge_introduction">Seeing or feeling bulge in vagina is a key factor related to the pelvic floor health.</string>
+
+
+    <!--Submit-->
+    <string name="reevaluate_submit">Submit</string>
+
+</resources>

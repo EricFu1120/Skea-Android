@@ -23,7 +23,7 @@
                 android:background="@color/white"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-                android:text="Please fill in the questionnaire in order that we can evaluation the health risk of your pelvic floor muscle "
+                android:text="@string/reevaluate_note"
                 android:textColor="@color/text_light_blue"
                 android:textSize="@dimen/TextSize.Large" />
 
@@ -35,7 +35,7 @@
                 android:background="@drawable/bg_title"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="25dp"
-                android:text="Basic Information"
+                android:text="@string/reevaluate_basic_information"
                 android:textColor="#000000"
                 android:textSize="@dimen/TextSize.Super"
                 android:textStyle="bold" />
@@ -54,7 +54,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
-                    android:text="Birthday"
+                    android:text="@string/reevaluate_basic_information_birthday"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
@@ -84,7 +84,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Height"
+                    android:text="@string/reevaluate_basic_information_height"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
@@ -123,7 +123,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Weight"
+                    android:text="@string/reevaluate_basic_information_weight"
                     android:textColor="@color/text_dark_gray"
                     android:textSize="@dimen/TextSize.Large" />
 
@@ -172,9 +172,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:no="Postmenopausal"
-                    app:radio_title="Menopausal Status"
-                    app:yes="(Pre)menopausal" />
+                    app:no="@string/reevaluate_health_information_menopausal_no"
+                    app:radio_title="@string/reevaluate_health_information_menopausal_title"
+                    app:radio_introduction="@string/reevaluate_health_information_menopausal_introduction"
+                    app:yes="@string/reevaluate_health_information_menopausal_yes"/>
 
 
                 <me.linkcube.skea.view.LevelRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
@@ -182,12 +183,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:level1="0"
-                    app:level2="1"
-                    app:level3="2"
-                    app:level4=">=3"
-                    app:radio_introduction="Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction."
-                    app:radio_title="Children" />
+                    app:level1="@string/reevaluate_health_information_children_level1"
+                    app:level2="@string/reevaluate_health_information_children_level2"
+                    app:level3="@string/reevaluate_health_information_children_level3"
+                    app:level4="@string/reevaluate_health_information_children_level4"
+                    app:radio_introduction="@string/reevaluate_health_information_children_introduction"
+                    app:radio_title="@string/reevaluate_health_information_children_title" />
 
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
@@ -195,49 +196,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:no="no"
-                    app:radio_title="Smoking"
-                    app:yes="yes" />
+                    app:no="@string/reevaluate_health_information_smoking_no"
+                    app:radio_title="@string/reevaluate_health_information_smoking_title"
+                    app:radio_introduction="@string/reevaluate_health_information_smoking_introduction"
+                    app:yes="@string/reevaluate_health_information_smoking_yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
                     android:id="@+id/surgery_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    app:radio_title="Pelvic Floor Surgery"
-                    app:yes="yes" />
+                    app:no="@string/reevaluate_health_information_surgery_no"
+                    app:radio_introduction="@string/reevaluate_health_information_surgery_introduction"
+                    app:radio_title="@string/reevaluate_health_information_surgery_title"
+                    app:yes="@string/reevaluate_health_information_surgery_yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
                     android:id="@+id/work_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    app:radio_title="Current Heavy Work"
-                    app:yes="yes" />
+                    app:no="@string/reevaluate_health_information_heavy_no"
+                    app:radio_introduction="@string/reevaluate_health_information_heavy_introduction"
+                    app:radio_title="@string/reevaluate_health_information_heavy_title"
+                    app:yes="@string/reevaluate_health_information_heavy_yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
                     android:id="@+id/problems_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    app:radio_title="Pelvic Floor Problems (POP or UI) during Gestation"
-                    app:yes="yes" />
+                    app:no="@string/reevaluate_health_information_problem_no"
+                    app:radio_introduction="@string/reevaluate_health_information_problem_introduction"
+                    app:radio_title="@string/reevaluate_health_information_problem_title"
+                    app:yes="@string/reevaluate_health_information_problem_yes" />
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
                     android:id="@+id/pop_radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    app:radio_title="Mother with POP or UI"
-                    app:yes="yes" />
+                    app:no="@string/reevaluate_health_information_mother_no"
+                    app:radio_introduction="@string/reevaluate_health_information_mother_introduction"
+                    app:radio_title="@string/reevaluate_health_information_mother_title"
+                    app:yes="@string/reevaluate_health_information_mother_yes" />
 
 
                 <me.linkcube.skea.view.TwoWayRadioGroup xmlns:app="http://schemas.android.com/apk/res/me.linkcube.skea"
@@ -245,10 +247,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:no="no"
-                    app:radio_introduction="Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction"
-                    app:radio_title="Seeing/Feeling Bulge"
-                    app:yes="yes" />
+                    app:no="@string/reevaluate_health_information_bulge_no"
+                    app:radio_introduction="@string/reevaluate_health_information_bulge_introduction"
+                    app:radio_title="@string/reevaluate_health_information_bulge_title"
+                    app:yes="@string/reevaluate_health_information_bulge_yes" />
 
 
             </LinearLayout>
@@ -264,7 +266,7 @@
         android:layout_height="@dimen/activity_preference_item_height"
         android:layout_margin="16dp"
         android:background="@drawable/btn_blue"
-        android:text="Submit"
+        android:text="@string/reevaluate_submit"
         android:textSize="@dimen/TextSize.Large" />
 
 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="reevaluate_note">请填写问卷以帮助评估您盆底肌的健康风险。</string>
+
+    <string name="reevaluate_basic_information">基本信息</string>
+
+    <!--Basic information-->
+    <string name="reevaluate_basic_information_birthday">生日</string>
+    <string name="reevaluate_basic_information_height">身高</string>
+    <string name="reevaluate_basic_information_weight">体重</string>
+
+    <string name="reevaluate_health_information">健康信息</string>
+
+    <!-- Menopausal status text-->
+    <string name="reevaluate_health_information_menopausal_title">目前绝经状态</string>
+    <string name="reevaluate_health_information_menopausal_yes">已绝经或停经1年</string>
+    <string name="reevaluate_health_information_menopausal_no">未绝经</string>
+    <string name="reevaluate_health_information_menopausal_introduction">目前绝经状态，是评估盆底健康的重要相关信息。</string>
+
+
+    <!-- Children text-->
+    <string name="reevaluate_health_information_children_title">生育数量</string>
+    <string name="reevaluate_health_information_children_level1">0</string>
+    <string name="reevaluate_health_information_children_level2">1</string>
+    <string name="reevaluate_health_information_children_level3">2</string>
+    <string name="reevaluate_health_information_children_level4"> >=3 </string>
+    <string name="reevaluate_health_information_children_introduction">生育孩子的数量，是评估盆底健康的重要相关信息。</string>
+
+
+
+    <!-- Smoking text-->
+    <string name="reevaluate_health_information_smoking_title">是否吸烟</string>
+    <string name="reevaluate_health_information_smoking_yes">Yes</string>
+    <string name="reevaluate_health_information_smoking_no">No</string>
+    <string name="reevaluate_health_information_smoking_introduction">是否吸烟，是评估盆底健康的重要相关信息。</string>
+
+
+    <!-- Pelvic Floor Surgery text-->
+    <string name="reevaluate_health_information_surgery_title">是否经历过盆地手术</string>
+    <string name="reevaluate_health_information_surgery_yes">Yes</string>
+    <string name="reevaluate_health_information_surgery_no">No</string>
+    <string name="reevaluate_health_information_surgery_introduction">是否经历过盆底手术，是评估盆底健康的重要相关信息。</string>
+
+
+
+
+    <!-- Current Heavy Work text-->
+    <string name="reevaluate_health_information_heavy_title">目前从事重体力劳动</string>
+    <string name="reevaluate_health_information_heavy_yes">Yes</string>
+    <string name="reevaluate_health_information_heavy_no">No</string>
+    <string name="reevaluate_health_information_heavy_introduction">是否目前从事重体力劳动，是评估盆底健康的重要相关信息。</string>
+
+
+
+    <!-- Pelvic Floor Problems (POP or UI) text-->
+    <string name="reevaluate_health_information_problem_title">孕期有过盆底疾病</string>
+    <string name="reevaluate_health_information_problem_yes">Yes</string>
+    <string name="reevaluate_health_information_problem_no">No</string>
+    <string name="reevaluate_health_information_problem_introduction">是否在孕期有过盆底疾病？例如盆底器官脱垂或尿失禁。</string>
+
+
+
+    <!-- Mother with POP or UI text-->
+    <string name="reevaluate_health_information_mother_title">母亲有过盆底疾病</string>
+    <string name="reevaluate_health_information_mother_yes">Yes</string>
+    <string name="reevaluate_health_information_mother_no">No</string>
+    <string name="reevaluate_health_information_mother_introduction">您的母亲是否有或有过盆底器官脱垂或尿失禁 ？</string>
+
+
+    <!-- Seeing/Feeling Bulge-->
+    <string name="reevaluate_health_information_bulge_title">看到或感到阴道有肿物脱出</string>
+    <string name="reevaluate_health_information_bulge_yes">Yes</string>
+    <string name="reevaluate_health_information_bulge_no">No</string>
+    <string name="reevaluate_health_information_bulge_introduction">看到或感到阴道有肿物脱出，是评估盆底健康的重要相关信息。</string>
+
+
+    <!--Submit-->
+    <string name="reevaluate_submit">提交</string>
+
+</resources>
