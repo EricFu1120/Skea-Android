@@ -19,7 +19,7 @@ public class SettingNicknameActivity extends BaseActivity {
     /**
      * Nickname 本地持久化文件名
      */
-    private static final String NICKNAME_CONFIG_XML_FILE = "Nickname_Config_XML_File";
+    public static final String NICKNAME_CONFIG_XML_FILE = "Nickname_Config_XML_File";
 
     /**
      * Nickname 本地持久化Key
