@@ -1,6 +1,8 @@
 package me.linkcube.skea.ui.user;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -23,6 +25,19 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
     private static final int SETTING_NICKNAME_REQUEST_CODE=50001;
 
     private TextView username_tv;
+
+    public static final String ME_NICKNAME_KEY="me.linkcube.skea.ui.setting.MeActivity.nickname_key";
+
+    private SharedPreferences msharedPreferences=null;
+    /**
+     * Nickname 本地持久化文件名
+     */
+    private static final String ME_NICKNAME_CONFIG_XML_FILE = "Me_Nickname_Config_XML_File";
+
+    /**
+     * Nickname 本地持久化Key
+     */
+    public static final String ME_SHARED_PREFERENCE_NICKNAME_KEY="me.linkcube.skea.ui.setting.MeActivity.shared_preference_nickname_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +62,12 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.purchase_product).setOnClickListener(this);
         findViewById(R.id.software_settings).setOnClickListener(this);
         findViewById(R.id.logout_button).setOnClickListener(this);
+
+        //读取本地持久化的信息
+        msharedPreferences=getSharedPreferences(ME_NICKNAME_CONFIG_XML_FILE, Activity.MODE_PRIVATE);
+        if(msharedPreferences!=null){
+            this.username_tv.setText(msharedPreferences.getString(ME_NICKNAME_KEY,getResources().getString(R.string.me_nickname)));
+        }
     }
 
     @Override
@@ -94,7 +115,10 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
         switch (requestCode){
             case SETTING_NICKNAME_REQUEST_CODE:
                 if(resultCode==RESULT_OK){//得到用户设置的NickName
-                    username_tv.setText(data.getStringExtra(SettingNicknameActivity.NICKNAME_KEY));
+                    String tempNickname=data.getStringExtra(SettingNicknameActivity.NICKNAME_KEY);
+                    username_tv.setText(tempNickname);
+                    //本地化
+                    msharedPreferences.edit().putString(ME_NICKNAME_KEY,tempNickname).commit();
                 }
                 break;
             default:
