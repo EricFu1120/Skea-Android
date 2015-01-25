@@ -22,6 +22,6 @@
     <string name="action_pause">Pause</string>
     <string name="title_activity_test_http">TestHttpActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_store_username">保存</string>
 
 </resources>

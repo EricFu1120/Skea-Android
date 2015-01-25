@@ -1,10 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="me.linkcube.skea.TestSugarActivity">
-    <item
-        android:id="@+id/action_settings"
+    tools:context="me.linkcube.skea.ui.setting.SettingNicknameActivity">
+    <item android:id="@+id/action_store_username"
+        android:title="@string/nickname_store"
         android:orderInCategory="100"
-        android:title="@string/action_store_username"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>
