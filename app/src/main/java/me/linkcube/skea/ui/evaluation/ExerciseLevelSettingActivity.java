@@ -2,6 +2,7 @@ package me.linkcube.skea.ui.evaluation;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,12 +16,10 @@ import me.linkcube.skea.base.ui.BaseActivity;
 public class ExerciseLevelSettingActivity extends BaseActivity {
 
     private static final String TAG = "ExerciseLevelSettingActivity";
-
     /**
      * Exercise Level Key
      */
     private static final String SKEA_EXERCISE_LEVEL_KEY = "Setting_Exercise_Level_Key";
-
     //训练强度
     private int exerciseLevelIndex = 4;
     //控件声明

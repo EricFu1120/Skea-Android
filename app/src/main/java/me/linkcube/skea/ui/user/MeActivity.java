@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.SkeaConfig;
 import me.linkcube.skea.base.ui.BaseActivity;
@@ -24,8 +25,6 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
     private final String urlString = "http://www.linkcube.me";
     private static final int SETTING_NICKNAME_REQUEST_CODE=50001;
     private TextView username_tv;
-    private SharedPreferences msharedPreferences=null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +50,10 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.software_settings).setOnClickListener(this);
         findViewById(R.id.logout_button).setOnClickListener(this);
 
-        //读取SettingNickNameActivity本地持久化的Nickname信息
-        msharedPreferences=getSharedPreferences(SettingNicknameActivity.NICKNAME_CONFIG_XML_FILE, Activity.MODE_PRIVATE);
-        if(msharedPreferences!=null){
-            this.username_tv.setText(msharedPreferences.getString(SettingNicknameActivity.SHARED_PREFERENCE_NICKNAME_KEY,getResources().getString(R.string.me_nickname)));
-        }
+        //得到本地化的数据
+        String str = PreferenceUtils.getString(this, SettingNicknameActivity.SHARED_PREFERENCE_NICKNAME_KEY, getResources().getString(R.string.nickname_nickname));
+        this.username_tv.setText(str);
+
     }
 
     @Override
