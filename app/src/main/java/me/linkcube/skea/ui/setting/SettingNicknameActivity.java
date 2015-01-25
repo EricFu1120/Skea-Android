@@ -1,9 +1,10 @@
 package me.linkcube.skea.ui.setting;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +16,19 @@ import me.linkcube.skea.base.ui.BaseActivity;
 public class SettingNicknameActivity extends BaseActivity {
 
     public static final String NICKNAME_KEY="me.linkcube.skea.ui.setting.SettingNicknameActivity.nickname_key";
+    /**
+     * Nickname 本地持久化文件名
+     */
+    private static final String NICKNAME_CONFIG_XML_FILE = "Nickname_Config_XML_File";
+
+    /**
+     * Nickname 本地持久化Key
+     */
+    public static final String SHARED_PREFERENCE_NICKNAME_KEY="me.linkcube.skea.ui.setting.SettingNicknameActivity.shared_preference_nickname_key";
     private EditText username_et;
+
+    private SharedPreferences msharedPreferences=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +39,11 @@ public class SettingNicknameActivity extends BaseActivity {
     }
     private void initViews(){
         username_et=(EditText)findViewById(R.id.username_et);
+        msharedPreferences=getSharedPreferences(NICKNAME_CONFIG_XML_FILE,Activity.MODE_PRIVATE);
+        if(msharedPreferences!=null){
+
+            this.username_et.setText(msharedPreferences.getString(SHARED_PREFERENCE_NICKNAME_KEY,"Nickname"));
+        }
     }
 
 
@@ -78,6 +96,9 @@ public class SettingNicknameActivity extends BaseActivity {
             builder.create().show();
         }else {
             resultIntent.putExtra(NICKNAME_KEY,nickname);
+            //本地化
+            msharedPreferences.edit().putString(SHARED_PREFERENCE_NICKNAME_KEY,nickname).commit();
+
             setResult(RESULT_OK,resultIntent);
             this.finish();
         }

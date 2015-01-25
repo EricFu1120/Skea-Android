@@ -1,9 +1,10 @@
 <resources>
 
-    <string name="nickname_username_hint">请输入你的昵称...</string>
+    <string name="nickname_username_hint">请输入你的昵称(1~16个字符)...</string>
 
     <string name="nickname_store">保存</string>
     <string name="nickname_notice_title">提示</string>
     <string name="nickname_notice_message">昵称不能为空</string>
     <string name="nickname_notice_ok">知道了</string>
+    <string name="nickname_nickname">昵称</string>
 </resources>

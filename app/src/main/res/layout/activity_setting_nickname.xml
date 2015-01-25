@@ -10,6 +10,7 @@
         android:id="@+id/username_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nickname_username_hint"/>
+        android:hint="@string/nickname_username_hint"
+        android:maxLength="16"/>
 
 </RelativeLayout>

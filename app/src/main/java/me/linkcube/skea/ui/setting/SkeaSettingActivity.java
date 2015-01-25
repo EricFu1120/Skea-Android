@@ -40,7 +40,7 @@ public class SkeaSettingActivity extends BaseActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
 
-            mSharedPreferences = getSharedPreferences(SKEA_CONFIG_XML_FILE, Activity.MODE_PRIVATE);
+//            mSharedPreferences = getSharedPreferences(SKEA_CONFIG_XML_FILE, Activity.MODE_PRIVATE);
             mEditor = mSharedPreferences.edit();
 
             switch (seekBar.getId()) {
