@@ -19,7 +19,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     /**
      * Exercise Level Key
      */
-    private static final String SKEA_EXERCISE_LEVEL_KEY = "Setting_Exercise_Level_Key";
+    public  static final String SKEA_EXERCISE_LEVEL_KEY = "Setting_Exercise_Level_Key";
     //训练强度
     private int exerciseLevelIndex = 4;
     //控件声明
@@ -39,16 +39,17 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        super.onPause();
         PreferenceUtils.setInt(this, SKEA_EXERCISE_LEVEL_KEY, exerciseLevelIndex);
     }
+
 
     private void initViews() {
         exerciseLevel = (RadioGroup) findViewById(R.id.exercise_level);
         int level = PreferenceUtils.getInt(this, SKEA_EXERCISE_LEVEL_KEY, 4);
         int id;
-        switch (level) {
+        switch (level+1) {
             case 1:
                 id = R.id.level1_rb;
                 break;
@@ -110,7 +111,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             finishWithMessage();
-            return true;
+//            return true;
         }
         return super.onOptionsItemSelected(item);
 

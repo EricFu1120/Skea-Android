@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 
@@ -56,7 +57,9 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
         suggestions_tv =(TextView) findViewById(R.id.suggestions);
         exerciseLevel = (TextView) findViewById(R.id.level);
         evaluateBtn = (Button) findViewById(R.id.reevaluate);
+        exerciseLevel.setText(EXERCISE_LEVEL_TEXT_ID[PreferenceUtils.getInt(this,ExerciseLevelSettingActivity.SKEA_EXERCISE_LEVEL_KEY,3)]);
         exerciseLevel.setOnClickListener(this);
+
         evaluateBtn.setOnClickListener(this);
     }
 
@@ -67,7 +70,7 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
             case REQUEST_CODE_SETTING_LEVEL:
                 //得到训练强度值
                 if (resultCode == RESULT_OK) {
-                    exerciseLevel.setText(EXERCISE_LEVEL_TEXT_ID[data.getIntExtra(KEY_EXERCISE_LEVEL, 4)]);
+                    exerciseLevel.setText(EXERCISE_LEVEL_TEXT_ID[data.getIntExtra(KEY_EXERCISE_LEVEL, 3)]);
 //                    Log.i(TAG, "onActivityResult - exercise level = " + );
                 }
                 break;
