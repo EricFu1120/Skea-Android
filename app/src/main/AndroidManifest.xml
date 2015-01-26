@@ -109,6 +109,7 @@
         </activity>
         <activity
             android:name=".ui.setting.LanguageSettingActivity"
+            android:label="@string/title_activity_language_setting"
             android:parentActivityName=".ui.setting.SettingActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -150,6 +151,9 @@
         <activity
             android:name=".ui.setting.SettingNicknameActivity"
             android:label="@string/title_activity_setting_nickname" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.user.MeActivity" />
         </activity>
     </application>
 

@@ -239,15 +239,15 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private void gameAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Notice");
-        builder.setMessage("Are you sure you want to exit?")
+        builder.setTitle(getString(R.string.exercise_notice_title));
+        builder.setMessage(getString(R.string.exercise_notice_message))
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {//退出游戏
+                .setPositiveButton(getString(R.string.exercise_notice_yes), new DialogInterface.OnClickListener() {//退出游戏
                     public void onClick(DialogInterface dialog, int id) {
                         ExerciseActivity.this.stopTheExercise();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {//继续游戏
+                .setNegativeButton(getString(R.string.exercise_notice_no), new DialogInterface.OnClickListener() {//继续游戏
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         controller.continueGame();

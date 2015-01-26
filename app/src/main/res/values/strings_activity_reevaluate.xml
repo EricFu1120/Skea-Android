@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="title_activity_re_evaluation">Re-evaluation</string>
     <string name="reevaluate_note">Please fill in the questionnaire in order that we can evaluation the health risk of your pelvic floor muscle.</string>
 
     <string name="reevaluate_basic_information">Basic Information</string>

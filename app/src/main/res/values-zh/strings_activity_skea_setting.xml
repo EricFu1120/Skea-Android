@@ -1,5 +1,6 @@
 <resources>
 
+    <string name="title_activity_config_skea">Skea参数调节</string>
     <string name="skea_setting_pressure">压力敏感度</string>
     <string name="skea_setting_insensitive">不敏感</string>
     <string name="skea_setting_sensitive">敏感</string>

@@ -1,5 +1,6 @@
 <resources>
 
+    <string name="title_activity_setting_exercise_level">设置锻炼Level</string>
     <string name="level_setting_one">Level 1</string>
     <string name="level_setting_two">Level 2</string>
     <string name="level_setting_three">Level 3</string>

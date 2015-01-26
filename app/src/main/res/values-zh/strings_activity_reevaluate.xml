@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="title_activity_re_evaluation">盆底肌健康测试</string>
     <string name="reevaluate_note">请填写问卷以帮助评估您盆底肌的健康风险。</string>
 
     <string name="reevaluate_basic_information">基本信息</string>

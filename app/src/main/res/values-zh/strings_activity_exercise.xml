@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_activity_exercise">锻炼</string>
+    <string name="exercise_left_time">剩余时间</string>
+    <string name="exercise_score">得分</string>
+    <string name="exercise_notice_title">提示</string>
+    <string name="exercise_notice_message">你确定要离开吗？</string>
+    <string name="exercise_notice_yes">是</string>
+    <string name="exercise_notice_no">否</string>
+</resources>

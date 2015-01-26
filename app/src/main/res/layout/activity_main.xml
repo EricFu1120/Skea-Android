@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/last_result"
+            android:text="@string/main_last_result"
             android:textColor="@color/text_light_blue"
             android:textSize="28dp" />
 
@@ -83,7 +83,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_info"
             android:gravity="center"
-            android:text="@string/info"
+            android:text="@string/main_info"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -94,7 +94,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_records"
             android:gravity="center"
-            android:text="@string/records"
+            android:text="@string/main_records"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -105,7 +105,7 @@
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/icon_me"
             android:gravity="center"
-            android:text="@string/me"
+            android:text="@string/main_me"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 

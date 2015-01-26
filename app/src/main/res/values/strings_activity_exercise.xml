@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_activity_exercise">Exercise</string>
+    <string name="exercise_left_time">Time Left</string>
+    <string name="exercise_score">Score</string>
+    <string name="exercise_notice_title">Notice</string>
+    <string name="exercise_notice_message">Are you sure you want to exit ?</string>
+    <string name="exercise_notice_yes">Yes</string>
+    <string name="exercise_notice_no">No</string>
+</resources>

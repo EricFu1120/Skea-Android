@@ -1,5 +1,6 @@
 <resources>
 
+    <string name="title_activity_setting">设置</string>
     <string name="setting_language">语言</string>
     <string name="setting_update">软件更新</string>
     <string name="setting_feedback">联系我们</string>

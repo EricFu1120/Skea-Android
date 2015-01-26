@@ -1,9 +1,10 @@
 <resources>
 
-    <string name="last_result">Last Result: </string>
-    <string name="level">Level</string>
-    <string name="score">score</string>
-    <string name="info">Info</string>
-    <string name="records">Records</string>
-    <string name="me">Me</string>
+    <string name="title_activity_main">Skea</string>
+    <string name="main_last_result">Last Result: </string>
+    <string name="main_level">Level</string>
+    <string name="main_score">score</string>
+    <string name="main_info">Info</string>
+    <string name="main_records">Records</string>
+    <string name="main_me">Me</string>
 </resources>

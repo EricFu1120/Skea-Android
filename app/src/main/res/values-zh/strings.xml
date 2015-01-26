@@ -2,26 +2,22 @@
 <resources>
 
     <string name="app_name">Skea</string>
-    <string name="title_activity_main">Skea</string>
-    <!-- 分隔符 -->
     <string name="title_activity_register">RegisterActivity</string>
-    <string name="title_activity_me">Me</string>
+
     <string name="title_activity_record">Results</string>
-    <string name="title_activity_exercise">Exercise Activity</string>
-    <string name="title_activity_test_pelvic_muscle_result">TestPelvicMuscleResult</string>
-    <string name="title_activity_config_skea">Exercise Strength</string>
-    <string name="title_activity_re_evaluation">ReEvaluationActivity</string>
-    <string name="title_activity_setting_exercise_level">SettingExerciseLevel</string>
+
+
+
+
     <string name="title_activity_setting_exercise_cycle">SettingExerciseCycle</string>
-    <string name="title_activity_setting">Settings</string>
-    <string name="title_activity_information">Information</string>
-    <string name="title_activity_language_setting">LanguageSettingActivity</string>
+
+
+
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_guide">GuideActivity</string>
     <string name="action_date">Select Date</string>
     <string name="action_pause">Pause</string>
     <string name="title_activity_test_http">TestHttpActivity</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_store_username">保存</string>
 
 </resources>

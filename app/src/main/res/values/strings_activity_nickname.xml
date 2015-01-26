@@ -1,8 +1,9 @@
 <resources>
 
+    <string name="title_activity_setting_nickname">Nickname</string>
     <string name="nickname_username_hint">Please input your nickname(1~16 characters) ...</string>
 
-    <string name="nickname_store">OK</string>
+    <string name="nickname_store">Done</string>
     <string name="nickname_notice_title">Notice</string>
     <string name="nickname_notice_message">Nickname can not be empty .</string>
     <string name="nickname_notice_ok">OK</string>

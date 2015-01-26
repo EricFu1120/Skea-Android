@@ -67,7 +67,7 @@
                     android:id="@+id/time_left_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Time Left"
+                    android:text="@string/exercise_left_time"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 
@@ -110,7 +110,7 @@
                     android:id="@+id/score_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Score"
+                    android:text="@string/exercise_score"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 
@@ -149,17 +149,6 @@
 
         </ScrollView>
 
-        <!--<ToggleButton-->
-            <!--android:id="@+id/shrink_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:text="Shrink"-->
-            <!--android:textOff="relax"-->
-            <!--android:textOn="shrink"-->
-            <!--android:visibility="visible" />-->
 
         <ImageView
             android:id="@+id/perfect_cool_iv"
