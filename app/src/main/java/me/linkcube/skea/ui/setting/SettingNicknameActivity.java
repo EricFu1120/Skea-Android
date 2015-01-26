@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -59,6 +61,18 @@ public class SettingNicknameActivity extends BaseActivity {
 
             return true;
         }
+        switch(id){
+            case android.R.id.home:
+                finishWithMessage();
+                return true;
+//                break;
+            case R.id.action_store_username:
+                finishWithMessage();
+                return true;
+//                break;
+            default:
+                break;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -95,6 +109,17 @@ public class SettingNicknameActivity extends BaseActivity {
         super.onDestroy();
         //本地化
         PreferenceUtils.setString(this,SHARED_PREFERENCE_NICKNAME_KEY,username_et.getText().toString());
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode==KeyEvent.KEYCODE_BACK&&event.getRepeatCount()==0){
+            //重写物理“返回键”事件，以防止用户通过它退出“Nickname”时，而使Nickname 为空
+            Log.i("CXC", "*****back----out");
+
+            finishWithMessage();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
 
