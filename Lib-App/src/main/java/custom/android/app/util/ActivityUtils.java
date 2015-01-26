@@ -38,9 +38,9 @@ public class ActivityUtils {
         Resources resources = context.getResources();// 获得res资源对象
         DisplayMetrics dm = resources.getDisplayMetrics();// 获得屏幕参数：主要是分辨率，像素等。
         if (language.equals("Chinese")) {
-            config.locale = Locale.ENGLISH;
-        } else if (language.equals("English")) {
             config.locale = Locale.CHINA;
+        } else if (language.equals("English")) {
+            config.locale = Locale.ENGLISH;
         }else {
             config.locale=Locale.ENGLISH;
         }
