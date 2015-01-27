@@ -10,17 +10,12 @@ import android.widget.SeekBar;
 import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 
 public class SkeaSettingActivity extends BaseActivity {
-    /**
-     * Feedback Sensitivity Key
-     */
-    private static final String SKEA_CONFIG_FEEDBACK_KEY = "Feedback_Strength";
+
     private int feedback_value=50;
-    /**
-     * Pressure Sensitivity key
-     */
-    private static final String SKEA_CONFIG_PRESSURE_KEY = "Pressure_Sensitivity";
+
     private int pressure_value=50;
 
 
@@ -82,8 +77,8 @@ public class SkeaSettingActivity extends BaseActivity {
         press_sensitive_sb = (SeekBar) findViewById(R.id.press_sensitive_sb);
 
         //得到之前存储值，并设置SeekBar
-        feedback_sensitive_sb.setProgress(PreferenceUtils.getInt(this,SKEA_CONFIG_FEEDBACK_KEY, feedback_value));
-        press_sensitive_sb.setProgress(PreferenceUtils.getInt(this,SKEA_CONFIG_PRESSURE_KEY, pressure_value));
+        feedback_sensitive_sb.setProgress(PreferenceUtils.getInt(this, KeyConst.SKEA_CONFIG_FEEDBACK_KEY, feedback_value));
+        press_sensitive_sb.setProgress(PreferenceUtils.getInt(this,KeyConst.SKEA_CONFIG_PRESSURE_KEY, pressure_value));
 
         //注册事件
         feedback_sensitive_sb.setOnSeekBarChangeListener(onSkeaConfigSeekBarChangeListener);
@@ -93,8 +88,8 @@ public class SkeaSettingActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        PreferenceUtils.setInt(getApplicationContext(),SKEA_CONFIG_FEEDBACK_KEY,feedback_value);
-        PreferenceUtils.setInt(getApplicationContext(),SKEA_CONFIG_PRESSURE_KEY,pressure_value);
+        PreferenceUtils.setInt(getApplicationContext(),KeyConst.SKEA_CONFIG_FEEDBACK_KEY,feedback_value);
+        PreferenceUtils.setInt(getApplicationContext(),KeyConst.SKEA_CONFIG_PRESSURE_KEY,pressure_value);
 
     }
 }

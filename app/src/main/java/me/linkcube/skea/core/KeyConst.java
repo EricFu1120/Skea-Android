@@ -10,6 +10,20 @@ public class KeyConst {
     public static final String KEY_AUTO_LOGIN = "AUTO_LOGIN";
 
     public static final String KEY_LANGUAGE = "Language";
+    /**
+     * Nickname本地化时，key值
+     * */
+    public static final String SHARED_PREFERENCE_NICKNAME_KEY="me.linkcube.skea.core.shared_preference_nickname_key";
+
+    /**
+     * Feedback Sensitivity 本地化Key值
+     */
+    public static final String SKEA_CONFIG_FEEDBACK_KEY = "me.linkcube.skea.core.Feedback_Strength";
+
+    /**
+     * Pressure Sensitivity 本地化Key值
+     */
+    public static final String SKEA_CONFIG_PRESSURE_KEY = "Pressure_Sensitivity";
 
     public static class Language {
 

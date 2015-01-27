@@ -15,6 +15,7 @@ import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.SkeaConfig;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.ui.evaluation.EvaluateResultActivity;
 import me.linkcube.skea.ui.setting.SettingActivity;
 import me.linkcube.skea.ui.setting.SettingNicknameActivity;
@@ -51,7 +52,7 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.logout_button).setOnClickListener(this);
 
         //得到本地化的数据
-        String str = PreferenceUtils.getString(this, SettingNicknameActivity.SHARED_PREFERENCE_NICKNAME_KEY, getResources().getString(R.string.nickname_nickname));
+        String str = PreferenceUtils.getString(this, KeyConst.SHARED_PREFERENCE_NICKNAME_KEY, getResources().getString(R.string.nickname_nickname));
         this.username_tv.setText(str);
 
     }

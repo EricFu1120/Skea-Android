@@ -13,12 +13,13 @@ import android.widget.EditText;
 import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 
 public class SettingNicknameActivity extends BaseActivity {
 
     public static final String NICKNAME_KEY="me.linkcube.skea.ui.setting.SettingNicknameActivity.nickname_key";
 
-    public static final String SHARED_PREFERENCE_NICKNAME_KEY="me.linkcube.skea.ui.setting.SettingNicknameActivity.shared_preference_nickname_key";
+
     private EditText username_et;
 
 
@@ -32,7 +33,7 @@ public class SettingNicknameActivity extends BaseActivity {
     private void initViews(){
         username_et=(EditText)findViewById(R.id.username_et);
         //得到本地化的数据
-        String str =PreferenceUtils.getString(this,SHARED_PREFERENCE_NICKNAME_KEY,getResources().getString(R.string.nickname_nickname));
+        String str =PreferenceUtils.getString(this, KeyConst.SHARED_PREFERENCE_NICKNAME_KEY,getResources().getString(R.string.nickname_nickname));
 
         this.username_et.setText(str);
 
@@ -108,15 +109,13 @@ public class SettingNicknameActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         //本地化
-        PreferenceUtils.setString(this,SHARED_PREFERENCE_NICKNAME_KEY,username_et.getText().toString());
+        PreferenceUtils.setString(this,KeyConst.SHARED_PREFERENCE_NICKNAME_KEY,username_et.getText().toString());
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if(keyCode==KeyEvent.KEYCODE_BACK&&event.getRepeatCount()==0){
             //重写物理“返回键”事件，以防止用户通过它退出“Nickname”时，而使Nickname 为空
-            Log.i("CXC", "*****back----out");
-
             finishWithMessage();
         }
         return super.onKeyDown(keyCode, event);
