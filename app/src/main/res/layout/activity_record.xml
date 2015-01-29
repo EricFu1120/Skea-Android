@@ -1,60 +1,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Group"
-    android:paddingTop="0dp"
     android:paddingBottom="0dp"
+    android:paddingTop="0dp"
     tools:context="me.linkcube.skea.ui.evaluation.RecordActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@color/bg_dark_gray"
+        android:orientation="horizontal"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <RelativeLayout
-            android:layout_weight="3"
             android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
 
-            <LinearLayout
-                android:id="@+id/level_container"
+            <TextView
+                android:id="@+id/date_level_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginRight="10dp"
+                android:text="29/1"
+                android:textColor="@color/text_white"
+                android:textSize="20dp" />
 
 
-                <TextView
-                    android:id="@+id/date"
-                    android:text="Today"
-                    android:textColor="@color/text_white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:textSize="20dp"/>
-
-
-                <TextView
-                    android:id="@+id/level_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:text="Level 4 "
-                    android:textColor="@color/text_white"
-                    android:textSize="20dp" />
-
-            </LinearLayout>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="改变图表"
-                android:visibility="gone"
-                android:onClick="changeChart" />
+            <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="改变图表"-->
+            <!--android:visibility="visible"-->
+            <!--android:onClick="changeChart" />-->
 
 
             <TextView
@@ -62,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/level_container"
+                android:layout_below="@id/date_level_tv"
                 android:layout_marginTop="10dp"
                 android:text="Good !"
                 android:textColor="@color/text_white"
@@ -84,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/explosive_force_tv"
+                android:layout_below="@id/explosive_force_tv"
                 android:layout_marginTop="10dp"
                 android:text="Persistance: Fair"
                 android:textColor="@color/text_white"
@@ -92,15 +73,16 @@
         </RelativeLayout>
 
 
+        <!--progress circle-->
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:layout_weight="2">
 
             <me.linkcube.skea.view.NumberCircleProgressBar xmlns:npb="http://schemas.android.com/apk/res/me.linkcube.skea"
-                android:id="@+id/numbercircleprogress_bar"
+                android:id="@+id/number_circle_progress_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -109,10 +91,10 @@
                 npb:max="100"
                 npb:progress="0"
                 npb:progress_circle_radius="90px"
-                npb:progress_ring_width="2dp"
-                npb:progress_ring_color="@color/bg_light_gray"
                 npb:progress_fill_mode="rising_water"
                 npb:progress_reached_color="@color/light_blue2"
+                npb:progress_ring_color="@color/bg_light_gray"
+                npb:progress_ring_width="2dp"
                 npb:progress_text_color="@color/bg_light_gray"
                 npb:progress_text_size="30sp"
                 npb:progress_text_visibility="visible"
@@ -122,10 +104,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/numbercircleprogress_bar"
-                android:layout_marginTop="10dp"
+                android:layout_below="@id/number_circle_progress_bar"
                 android:layout_centerHorizontal="true"
-                android:text="Correct Rate"
+                android:layout_marginTop="10dp"
+                android:text="@string/record_success_rate"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -137,80 +119,46 @@
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:gravity="clip_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="clip_vertical"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin">
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <!--Score-->
+            <TextView
+                android:id="@+id/score_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/icon_score"
+                android:drawablePadding="10dp"
                 android:gravity="center_vertical"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:padding="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/icon_score"
-                    android:drawablePadding="10dp"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:text="@string/score_with_colon" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:id="@+id/score_tv"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left|center_vertical"
-                    android:text="1573" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal"
+                android:padding="2dp"
+                android:text="@string/record_score_with_colon"
+                android:textStyle="bold" />
+            <!--Duration-->
+            <TextView
+                android:id="@+id/duration_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/icon_duration"
+                android:drawablePadding="10dp"
                 android:gravity="center_vertical"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:padding="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/icon_duration"
-                    android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/duration_with_colon" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:id="@+id/duration_tv"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left|center_vertical"
-                    android:text="23s" />
-
-
-            </LinearLayout>
-
+                android:padding="2dp"
+                android:text="@string/record_duration_with_colon"
+                android:textStyle="bold" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 

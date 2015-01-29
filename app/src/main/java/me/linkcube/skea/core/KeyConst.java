@@ -24,6 +24,10 @@ public class KeyConst {
      * Pressure Sensitivity 本地化Key值
      */
     public static final String SKEA_CONFIG_PRESSURE_KEY = "Pressure_Sensitivity";
+    /**
+     * Level
+     * */
+    public  static final String SKEA_EXERCISE_LEVEL_KEY = "Setting_Exercise_Level_Key";
 
     public static class Language {
 

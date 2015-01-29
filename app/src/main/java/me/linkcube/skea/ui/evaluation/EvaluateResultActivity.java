@@ -13,6 +13,7 @@ import android.widget.TextView;
 import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 
 public class EvaluateResultActivity extends BaseActivity implements View.OnClickListener {
 
@@ -57,7 +58,7 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
         suggestions_tv =(TextView) findViewById(R.id.suggestions);
         exerciseLevel = (TextView) findViewById(R.id.level);
         evaluateBtn = (Button) findViewById(R.id.reevaluate);
-        exerciseLevel.setText(EXERCISE_LEVEL_TEXT_ID[PreferenceUtils.getInt(this,ExerciseLevelSettingActivity.SKEA_EXERCISE_LEVEL_KEY,3)]);
+        exerciseLevel.setText(EXERCISE_LEVEL_TEXT_ID[PreferenceUtils.getInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY,3)]);
         exerciseLevel.setOnClickListener(this);
 
         evaluateBtn.setOnClickListener(this);

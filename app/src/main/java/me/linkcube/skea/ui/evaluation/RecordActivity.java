@@ -26,8 +26,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 
+import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.evaluation.CombinedChart;
 import me.linkcube.skea.core.excercise.BarConst;
 import me.linkcube.skea.view.NumberCircleProgressBar;
@@ -41,7 +43,7 @@ public class RecordActivity extends BaseActivity {
     //记数
     int count = 0;
     //声明控件
-    private TextView level_tv;
+    private TextView date_level_tv;
     private TextView evaluate_tv;
     private TextView explosive_force_tv;
     private TextView persistance_tv;
@@ -50,9 +52,6 @@ public class RecordActivity extends BaseActivity {
     private SpannableString mSpanableString;
     private GraphicalView mCombinedChartView;
     private GraphicalView mScatterChartView;
-//    private XYSeriesRenderer renderer;
-//    private XYSeries series;
-
 
     //总得分
     private double current_total_score = 0.0;
@@ -127,7 +126,7 @@ public class RecordActivity extends BaseActivity {
 
     public void setTheNumberProgressBar(int correct_rate) {
 
-        final NumberCircleProgressBar bnp = (NumberCircleProgressBar) findViewById(R.id.numbercircleprogress_bar);
+        final NumberCircleProgressBar bnp = (NumberCircleProgressBar) findViewById(R.id.number_circle_progress_bar);
         bnp.setProgress(correct_rate);
 
         setEvaluateTextView(correct_rate);
@@ -193,13 +192,16 @@ public class RecordActivity extends BaseActivity {
         light_blue= getResources().getColor(R.color.text_light_blue);
 
         //得到控件
-        level_tv = (TextView) findViewById(R.id.level_tv);
+        date_level_tv =(TextView) findViewById(R.id.date_level_tv);
+        date_level_tv = (TextView) findViewById(R.id.date_level_tv);
         evaluate_tv = (TextView) findViewById(R.id.evaluate_tv);
         explosive_force_tv = (TextView) findViewById(R.id.explosive_force_tv);
         persistance_tv = (TextView) findViewById(R.id.persistance_tv);
         score_tv = (TextView) findViewById(R.id.score_tv);
         duration_tv = (TextView) findViewById(R.id.duration_tv);
         chart = (LinearLayout) findViewById(R.id.chart);
+
+        setDateAndLevelTextView("2015-1-22", PreferenceUtils.getInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY,-1)+"");
 
     }
 
@@ -240,73 +242,69 @@ public class RecordActivity extends BaseActivity {
         tv.setText(mSpanableString);
     }
 
+    private void setDateAndLevelTextView(String dateString,String levelString){
+        setTextViewTextWithSpannableString(dateString+"    ","Level"+levelString,Color.WHITE,Color.WHITE,1.0f,1.0f, date_level_tv);
+    }
 
     private void setScoreTextView(int score){
-        setTextViewTextWithSpannableString("Score :", String.valueOf(score), Color.BLACK, light_blue, 1.0f, 1.2f, score_tv);
+        setTextViewTextWithSpannableString(getString(R.string.record_score_with_colon), String.valueOf(score), Color.BLACK, light_blue, 1.0f, 1.2f, score_tv);
     }
     private void setTimeTextView(String timeString){
 
-        setTextViewTextWithSpannableString("Time :", timeString+" Sec", Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
-    }
-
-    private void setLevelTextView(String levelString){
-
-        setTextViewTextWithSpannableString("Today(Level "+levelString+" )", "", Color.WHITE, Color.BLUE, 1.5f, 1.0f, level_tv);
+        setTextViewTextWithSpannableString(getString(R.string.record_duration_with_colon), timeString, Color.BLACK, light_blue, 1.0f, 1.2f, duration_tv);
     }
 
     private void setEvaluateTextView( int correct_rate){
 
-        String evaluateString="";
+        int evaluateStringID=0;
         if(correct_rate<40){//虚弱
 
-            evaluateString="Weak";
+            evaluateStringID=R.string.record_weak;
         }else if(correct_rate<80){//普通
 
-            evaluateString="OK";
+            evaluateStringID=R.string.record_good;
         }else if(correct_rate<95){//优异
-            evaluateString="Great";
+            evaluateStringID=R.string.record_cool;
 
         }else {//真棒
 
-            evaluateString="Perfect";
+            evaluateStringID=R.string.record_perfect;
         }
-        setTextViewTextWithSpannableString("", evaluateString+" !", Color.WHITE, getResources().getColor(R.color.light_yellow), 1.0f, 2.5f, evaluate_tv);
+        setTextViewTextWithSpannableString("", getString(evaluateStringID), Color.WHITE, getResources().getColor(R.color.light_yellow), 1.0f, 2.5f, evaluate_tv);
     }
 
     private void setExplosiveTextView(int correct_rate){
-        String evaluateString="";
+        int evaluateStringID=-1;
         if(correct_rate<40){//虚弱
 
-            evaluateString="Weak";
+            evaluateStringID=R.string.record_weak;
         }else if(correct_rate<80){//普通
 
-            evaluateString="OK";
+            evaluateStringID=R.string.record_good;
         }else if(correct_rate<95){//优异
-            evaluateString="Great";
-
+            evaluateStringID=R.string.record_cool;
         }else {//真棒
-
-            evaluateString="Perfect";
+            evaluateStringID=R.string.record_perfect;
         }
-        setTextViewTextWithSpannableString("Explosive force :", evaluateString, Color.WHITE, light_blue, 1.0f, 1.2f, explosive_force_tv);
+        setTextViewTextWithSpannableString(getString(R.string.record_explosive_force), getString(evaluateStringID), Color.WHITE, light_blue, 1.0f, 1.2f, explosive_force_tv);
     }
 
     private void setPersistanceTextView(int correct_rate){
-        String evaluateString="";
+        int evaluateStringID=-1;
         if(correct_rate<40){//虚弱
 
-            evaluateString="Weak";
+            evaluateStringID=R.string.record_weak;
         }else if(correct_rate<80){//普通
 
-            evaluateString="OK";
+            evaluateStringID=R.string.record_good;
         }else if(correct_rate<95){//优异
-            evaluateString="Great";
+            evaluateStringID=R.string.record_cool;
 
         }else {//真棒
 
-            evaluateString="Perfect";
+            evaluateStringID=R.string.record_perfect;
         }
-        setTextViewTextWithSpannableString("Persistance :", evaluateString, Color.WHITE, light_blue, 1.0f, 1.2f, persistance_tv);
+        setTextViewTextWithSpannableString(getString(R.string.record_persistance_force), getString(evaluateStringID), Color.WHITE, light_blue, 1.0f, 1.2f, persistance_tv);
     }
 
 
@@ -363,7 +361,7 @@ public class RecordActivity extends BaseActivity {
 
         explosive_correct_rate=(int)Math.rint(100*current_explosive_total_score/full_total_explosive_score);
 
-        setLevelTextView(String.valueOf(1));
+
         //评诂的各个指标计算，其中总体评诂放在setTheNumberProgressBar()中进行了
 
         setExplosiveTextView(explosive_correct_rate);

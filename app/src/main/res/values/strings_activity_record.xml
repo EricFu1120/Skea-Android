@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_record">Results</string>
+
+    <string name="record_test_once">Test Exercise Once</string>
+
+    <string name="record_explosive_force">Explosive force:</string>
+    <string name="record_persistance_force">Persistance:</string>
+    <string name="record_success_rate">Success Rate</string>
+    <string name="record_score_with_colon">Score:</string>
+
+    <string name="record_duration_with_colon">Duration(s):</string>
+    <string name="record_duration_with_measurement">Duration(s)</string>
+    <string name="record_perfect">Perfect</string>
+    <string name="record_cool">Cool</string>
+    <string name="record_good">Good</string>
+    <string name="record_weak">Weak</string>
+
+</resources>

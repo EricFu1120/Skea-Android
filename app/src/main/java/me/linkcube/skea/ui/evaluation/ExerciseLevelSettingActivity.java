@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
+import me.linkcube.skea.core.KeyConst;
 
 
 public class ExerciseLevelSettingActivity extends BaseActivity {
@@ -19,7 +20,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     /**
      * Exercise Level Key
      */
-    public  static final String SKEA_EXERCISE_LEVEL_KEY = "Setting_Exercise_Level_Key";
+
     //训练强度
     private int exerciseLevelIndex = 4;
     //控件声明
@@ -41,13 +42,13 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     @Override
     public void onPause() {
         super.onPause();
-        PreferenceUtils.setInt(this, SKEA_EXERCISE_LEVEL_KEY, exerciseLevelIndex);
+        PreferenceUtils.setInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY, exerciseLevelIndex);
     }
 
 
     private void initViews() {
         exerciseLevel = (RadioGroup) findViewById(R.id.exercise_level);
-        int level = PreferenceUtils.getInt(this, SKEA_EXERCISE_LEVEL_KEY, 4);
+        int level = PreferenceUtils.getInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 4);
         int id;
         switch (level+1) {
             case 1:

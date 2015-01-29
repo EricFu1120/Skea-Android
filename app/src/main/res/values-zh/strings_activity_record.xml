@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_record">成绩</string>
+    <string name="record_test_once">请至少做一组测试</string>
+    <string name="record_explosive_force">爆发力:</string>
+    <string name="record_persistance_force">持久力:</string>
+    <string name="record_success_rate">成功率</string>
+    <string name="record_score_with_colon">分数:</string>
+    <string name="record_duration_with_colon">时长(s):</string>
+    <string name="record_duration_with_measurement">时长(s)</string>
+    <string name="record_perfect">真棒</string>
+    <string name="record_cool">优异</string>
+    <string name="record_good">普通</string>
+    <string name="record_weak">虚弱</string>
+</resources>
