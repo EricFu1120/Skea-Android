@@ -33,6 +33,7 @@ import me.linkcube.skea.core.excercise.Bar;
 import me.linkcube.skea.core.excercise.BarConst;
 import me.linkcube.skea.core.excercise.ExerciseController;
 import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
+import me.linkcube.skea.db.DayRecord;
 import me.linkcube.skea.ui.evaluation.RecordActivity;
 
 
@@ -40,7 +41,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private static final String TAG = "ExerciseActivity";
 
-    public boolean isGameInitialized = true;
+//    public boolean isGameInitialized = true;
     private LinearLayout frontGroup;
     private LinearLayout behindGroup;
     private ScrollView frontScrollView;
@@ -64,7 +65,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     private int previousScore=0;
 
-
     /**
      * 用于标记ScorllView 是否可以滑动
      * 此处是不允许滑动的
@@ -81,9 +81,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         updateTextViewTextHandler = new UpdateImageViewPicHandler(perfectCoolImageView);
         initGameHandler = new InitGameHandler();
-
-
         testShrinkHandler = new TestShrinkHandler();
+
 
         testSignalTimer=new Timer();
         testSignalTimer.schedule(new TimerTask() {
@@ -261,35 +260,35 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void startGameScore(Bar bar) {
         Log.d("startScore", "bar type = " + bar.getType());
-        ExerciseScoreCounter.getInstance().startGameScore(bar);
+        ExerciseScoreCounter.getInstance(this).startGameScore(bar);
     }
 
     @Override
     public void startCoolScore(Bar bar) {
-        ExerciseScoreCounter.getInstance().startCoolScore(bar);
+        ExerciseScoreCounter.getInstance(this).startCoolScore(bar);
     }
 
     @Override
     public void startPerfectScore(Bar bar) {
-        ExerciseScoreCounter.getInstance().startPerfectScore(bar);
+        ExerciseScoreCounter.getInstance(this).startPerfectScore(bar);
     }
 
     @Override
     public void tickGameScore() {
-        if(ExerciseScoreCounter.getInstance().tickGameScore()){
+        if(ExerciseScoreCounter.getInstance(this).tickGameScore()){
             showPerfectCool(R.drawable.text_starts);
         }
     }
 
     @Override
     public void tickCoolScore() {
-        ExerciseScoreCounter.getInstance().tickCoolScore();
+        ExerciseScoreCounter.getInstance(this).tickCoolScore();
 
     }
 
     @Override
     public void tickPerfectScore() {
-        ExerciseScoreCounter.getInstance().tickPerfectScore();
+        ExerciseScoreCounter.getInstance(this).tickPerfectScore();
 
     }
 
@@ -308,7 +307,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     @Override
     public void stopGameScore() {
-        final int score = ExerciseScoreCounter.getInstance().stopGameScore();
+        final int score = ExerciseScoreCounter.getInstance(this).stopGameScore();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -321,7 +320,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     @Override
     public void stopCoolScore() {
-        final int score = ExerciseScoreCounter.getInstance().stopCoolScore();
+        final int score = ExerciseScoreCounter.getInstance(this).stopCoolScore();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -331,6 +330,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         if(score==previousScore+BarConst.SCORE.COOL_SCORE){
             previousScore=score;
             showPerfectCool(R.drawable.text_cool);
+
         }
 
     }
@@ -338,7 +338,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void stopPerfectScore() {
 
-        final int score = ExerciseScoreCounter.getInstance().stopPerfectScore();
+        final int score = ExerciseScoreCounter.getInstance(this).stopPerfectScore();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -387,13 +387,13 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void startMissScore() {
 
-        ExerciseScoreCounter.getInstance().startMissScore();
+        ExerciseScoreCounter.getInstance(this).startMissScore();
 
     }
 
     @Override
     public void tickMissScore() {
-        if(ExerciseScoreCounter.getInstance().tickMissScore()){
+        if(ExerciseScoreCounter.getInstance(this).tickMissScore()){
             showPerfectCool(R.drawable.text_miss);
         }
 
@@ -401,7 +401,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     @Override
     public void stopMissScore() {
-        ExerciseScoreCounter.getInstance().stopMissScore();
+        ExerciseScoreCounter.getInstance(this).stopMissScore();
 
     }
 
@@ -410,12 +410,13 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         Intent showResultIntent = new Intent(this, RecordActivity.class);
 
         //保存Score
-        double[] barScore = new double[list.size()];
+        double[] barScore = new double[(list.size()+1)/2];
         //保存Type
-        int[] barType = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            barScore[i] = (double) (list.get(i).getScore());
-            barType[i] = list.get(i).getType();
+        int[] barType = new int[(list.size()+1)/2];
+
+        for (int i = 0; i < (list.size()+1)/2; i++) {//将中间“休息”间隔去除掉，以便数据处理
+            barScore[i] = (double) (list.get(i*2).getScore());
+            barType[i] = list.get(i*2).getType();
         }
 
         showResultIntent.putExtra(RecordActivity.EXERCISE_TYPE_KEY, barType);
@@ -430,7 +431,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         testSignalTimer.cancel();
         sendMessage_to_handler(initGameHandler, InitGameHandler.INIT_GAME_HANDLER_EXERCISE_KEY, InitGameHandler.STOP_EXERCISE);
-        ExerciseScoreCounter.getInstance().stopScoreCounter();
+        ExerciseScoreCounter.getInstance(this).stopScoreCounter();
         this.finish();
     }
 
@@ -530,7 +531,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             switch ( handlerMessage_from_handler(msg,TEST_SIGNAL)){
                 case TEST_SHRINK_YES_OR_NOT:
                     if (shrink) {//有挤压
-                        ExerciseScoreCounter.getInstance().receiveSignal();
+                        ExerciseScoreCounter.getInstance(getApplicationContext()).receiveSignal();
                     }
                     break;
                 default:

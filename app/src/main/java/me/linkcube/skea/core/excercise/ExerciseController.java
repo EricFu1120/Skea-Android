@@ -190,6 +190,7 @@ public class ExerciseController {
 
 
             callback.stopTheExercise();
+            //将数据存入数据库
             callback.showExerciseResult(list);
         }
     }

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import org.achartengine.GraphicalView;
 import org.achartengine.model.XYSeries;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,11 +28,13 @@ import java.util.List;
 import java.util.Timer;
 
 import custom.android.util.PreferenceUtils;
+import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.core.evaluation.CombinedChart;
 import me.linkcube.skea.core.excercise.BarConst;
+import me.linkcube.skea.db.DayRecord;
 import me.linkcube.skea.view.NumberCircleProgressBar;
 
 public class RecordActivity extends BaseActivity {
@@ -68,11 +71,6 @@ public class RecordActivity extends BaseActivity {
     private double current_explosive_total_score=0.0;
     private int full_total_explosive_score=0;
     private int explosive_correct_rate=0;
-
-
-    private int current_total_time = 0;
-    private int current_level = 0;
-
 
     private double barScore[];
     private int barType[];
@@ -112,7 +110,7 @@ public class RecordActivity extends BaseActivity {
             mYear = year;
             mMonth = monthOfYear;
             mDays = dayOfMonth;
-            Log.i("CXC", "year-month-day:" + year + "-" + monthOfYear + "-" + dayOfMonth);
+//            Log.i("CXC", "year-month-day:" + year + "-" + monthOfYear + "-" + dayOfMonth);
 
             /***
              *
@@ -156,9 +154,10 @@ public class RecordActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getDate();
         initViews();
 
-        getDate();
+
 
         //得到Game数据
         Intent intent = getIntent();
@@ -169,6 +168,7 @@ public class RecordActivity extends BaseActivity {
         } else {//获取ExerciseActivity传递的数据有问题，，，提示用户“出错了”
             //to-do
 
+            //获取“当天”的运动数据，若没有相关记录的话，则提示无相关数据。
             //test
             barType = new int[]{1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 2};
             barScore = new double[]{92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4, 75.1, 65.6, 90.3, 97.2, 93.9, 92.3, 72.5, 83.8, 96.8, 83.4, 74.4, 81.4,
@@ -201,7 +201,7 @@ public class RecordActivity extends BaseActivity {
         duration_tv = (TextView) findViewById(R.id.duration_tv);
         chart = (LinearLayout) findViewById(R.id.chart);
 
-        setDateAndLevelTextView("2015-1-22", PreferenceUtils.getInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY,-1)+"");
+        setDateAndLevelTextView(mYear+"-"+(mMonth+1)+"-"+mDays, PreferenceUtils.getInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY,4)+"");
 
     }
 
@@ -243,7 +243,7 @@ public class RecordActivity extends BaseActivity {
     }
 
     private void setDateAndLevelTextView(String dateString,String levelString){
-        setTextViewTextWithSpannableString(dateString+"    ","Level"+levelString,Color.WHITE,Color.WHITE,1.0f,1.0f, date_level_tv);
+        setTextViewTextWithSpannableString(dateString+"    ","Level "+levelString,Color.WHITE,Color.WHITE,1.0f,1.0f, date_level_tv);
     }
 
     private void setScoreTextView(int score){
@@ -316,7 +316,7 @@ public class RecordActivity extends BaseActivity {
 
 
     private void calculateExerciseResult() {
-        countNum = barType.length / 2 + 1;
+        countNum = barType.length;
         xx = new double[countNum];
         yy = new double[countNum];
         zz = new double[countNum];
@@ -324,33 +324,31 @@ public class RecordActivity extends BaseActivity {
 
         for (int i = 0; i < countNum; i++) {
             xx[i] = (double) i;
-            current_total_score += barScore[2 * i];
+            current_total_score += barScore[i];
 
-            switch (barType[2 * i]) {
+            switch (barType[i]) {
                 case BarConst.TYPE.SHORT:
-                    yy[i] = 100 * barScore[2 * i] / BarConst.SCORE.SHORT_FULL_SCORE;
+                    yy[i] = 100 * barScore[i] / BarConst.SCORE.SHORT_FULL_SCORE;
                     full_total_score += BarConst.SCORE.SHORT_FULL_SCORE;
-                    current_explosive_total_score+=barScore[2*i];
+                    current_explosive_total_score+=barScore[i];
                     full_total_explosive_score+= BarConst.SCORE.LONG_FULL_SCORE;
                     zz[i] = 30.0;
                     break;
                 case BarConst.TYPE.MEDIUM:
-                    yy[i] = 100 * barScore[2 * i] / BarConst.SCORE.MEDIUM_FULL_SCORE;
+                    yy[i] = 100 * barScore[i] / BarConst.SCORE.MEDIUM_FULL_SCORE;
                     full_total_score += BarConst.SCORE.MEDIUM_FULL_SCORE;
                     zz[i] = 60.0;
                     break;
                 case BarConst.TYPE.LONG:
-                    yy[i] = 100 * barScore[2 * i] / BarConst.SCORE.LONG_FULL_SCORE;
+                    yy[i] = 100 * barScore[i] / BarConst.SCORE.LONG_FULL_SCORE;
                     full_total_score += BarConst.SCORE.LONG_FULL_SCORE;
-                    current_persistance_total_score+=barScore[2*i];
+                    current_persistance_total_score+=barScore[i];
                     full_total_persistance_score+= BarConst.SCORE.LONG_FULL_SCORE;
                     zz[i] = 90.0;
                     break;
                 default:
                     break;
             }
-
-
             waterSeries.add(i, zz[i]);
 
         }
@@ -444,7 +442,7 @@ public class RecordActivity extends BaseActivity {
                         RecordActivity.this, myDateSetListener, mYear, mMonth,
                         mDays);
                 datePickerDialog.show();
-                Log.i("CXC", "++++date_record");
+//                Log.i("CXC", "++++date_record");
                 return true;
 //            break;
             default:
@@ -490,8 +488,30 @@ public class RecordActivity extends BaseActivity {
      * 包括 Level,"Good",Explosive force ,Persistance,Correct Rate ，等
      */
     private void loadRecord(int mYear, int mMonth, int mDays) {
+        String selectDateString=new SimpleDateFormat("yyyy-MM-dd").format(new Date(mYear-1900,mMonth,mDays));
+        List<DayRecord> dayRecords=DayRecord.find(DayRecord.class,"today=?",selectDateString);
+        if(dayRecords.size()<=0){//无选定日期的运动记录
+            //弹框提示之
+            Toaster.showShort(this,"无相关记录");
 
+        }else{//存在相关的运动记录－－展示最新的数据（即：选中日期当天的最后一次的）
+            DayRecord dayRecord=dayRecords.get(dayRecords.size()-1);
+            setDateAndLevelTextView(dayRecord.getToday(),dayRecord.getLevel()+"");
+            if(dayRecord.getRecord().size()<=0){
+                //弹框提示之
+                Toaster.showShort(this,"相关记录不完整！！！");
 
+            }else {
+                barType=new int[dayRecord.getRecord().size()];
+                barScore=new double[dayRecord.getRecord().size()];
+                for(int i=0;i<dayRecord.getRecord().size();i++){
+                    barType[i]=dayRecord.getRecord().get(i).getType();
+                    barScore[i]=dayRecord.getRecord().get(i).getScore();
+                }
+//                calculateExerciseResult();
+                addConbinedChart();
+            }
+        }
     }
 
 }

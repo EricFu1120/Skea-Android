@@ -1,9 +1,17 @@
 package me.linkcube.skea.core.excercise;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import custom.android.util.PreferenceUtils;
+import me.linkcube.skea.core.KeyConst;
+import me.linkcube.skea.db.BarScore;
+import me.linkcube.skea.db.DayRecord;
+import me.linkcube.skea.db.SegmentScore;
+import me.linkcube.skea.ui.evaluation.ExerciseLevelSettingActivity;
 
 /**
  * Created by Ervin on 14/11/1.
@@ -29,14 +37,18 @@ public class ExerciseScoreCounter {
     private int totalScore;
     private int perfect_cool_score=0;
 
-    private ExerciseScoreCounter() {
+    //DB
+    private DayRecord dayRecord;
+    private BarScore barScore;
+//    private List<BarScore> record;
+    private ExerciseScoreCounter(Context context) {
         segments = new ArrayList<Segment>();
+        dayRecord=new DayRecord(PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 4));
     }
 
-    public static ExerciseScoreCounter getInstance() {
+    public static ExerciseScoreCounter getInstance(Context context) {
         if (instance == null){
-            instance = new ExerciseScoreCounter();
-
+            instance = new ExerciseScoreCounter(context);
         }
 
         return instance;
@@ -50,6 +62,7 @@ public class ExerciseScoreCounter {
     public void startCoolScore(Bar bar) {
         this.bar = bar;
         cool_lock = true;
+        barScore=new BarScore(bar.getType());
 
     }
 
@@ -66,6 +79,11 @@ public class ExerciseScoreCounter {
         if (game_lock) {
             //TODO 可能出现锁问题
             Segment segment = new Segment(game_count);
+            //DB
+            SegmentScore segmentScore=new SegmentScore(game_count);
+            segmentScore.save();
+            barScore.getBar().add(segmentScore);
+
             segments.add(segment);
             game_count=0;
             return segment.isAvailable();
@@ -79,7 +97,7 @@ public class ExerciseScoreCounter {
 
     public boolean tickMissScore(){
         if (miss_lock && miss_count>0){
-
+            barScore.setPerfectCool(0);
             miss_count=0;
             return true;
         }else {
@@ -90,14 +108,14 @@ public class ExerciseScoreCounter {
 
     public void tickCoolScore() {
         if (cool_lock) {
-            Log.i("CXC", "----Cool ++++");
+//            Log.i("CXC", "----Cool ++++");
 
         }
     }
 
     public void tickPerfectScore() {
         if (perfect_lock) {
-            Log.i("CXC", "----perfect ++++");
+//            Log.i("CXC", "----perfect ++++");
         }
     }
 
@@ -112,6 +130,9 @@ public class ExerciseScoreCounter {
             float score = getGameScore();
             totalScore+=score;
             bar.setScore(score+perfect_cool_score);
+            barScore.setScore(score);
+            barScore.save();
+            dayRecord.getRecord().add(barScore);
         }
         //归“0”
         perfect_lock=false;
@@ -129,6 +150,7 @@ public class ExerciseScoreCounter {
             perfect_cool_score=BarConst.SCORE.COOL_SCORE;
             totalScore += perfect_cool_score;
             Log.i("CXC", "Cool ++++30");
+            barScore.setPerfectCool(1);//miss 0,cool 1,perfect 2;
 
         }
         cool_lock = false;
@@ -142,6 +164,7 @@ public class ExerciseScoreCounter {
             perfect_cool_score=BarConst.SCORE.PERFECT_SCORE;
             totalScore += perfect_cool_score;
             Log.i("CXC", "perfect +++50");
+            barScore.setPerfectCool(2);
         }
         perfect_count = 0;
         cool_count = 0;
@@ -158,6 +181,8 @@ public class ExerciseScoreCounter {
 
     public void stopScoreCounter(){
         //this.totalScore=0;
+//        dayRecord.getRecord().add(barScore)
+        dayRecord.save();
         instance=null;
     }
     public void receiveSignal() {
