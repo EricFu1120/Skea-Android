@@ -36,7 +36,7 @@ public class BarScore extends SugarRecord<BarScore> {
                 break;
         }
 //        bar=new SegmentScore[count];
-        bar=new ArrayList<>(count);
+        bar=new ArrayList<SegmentScore>(count);
 
     }
 
