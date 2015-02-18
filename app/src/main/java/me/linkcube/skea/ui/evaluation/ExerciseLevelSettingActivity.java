@@ -22,7 +22,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
      */
 
     //训练强度
-    private int exerciseLevelIndex = 4;
+    private int exerciseLevelIndex = 3;//index 为3 ，实际level为3＋1＝4
     //控件声明
     private RadioGroup exerciseLevel;
 
@@ -48,22 +48,22 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
 
     private void initViews() {
         exerciseLevel = (RadioGroup) findViewById(R.id.exercise_level);
-        int level = PreferenceUtils.getInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 4);
+        int level = PreferenceUtils.getInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 3);
         int id;
-        switch (level+1) {
-            case 1:
+        switch (level) {
+            case 0:
                 id = R.id.level1_rb;
                 break;
-            case 2:
+            case 1:
                 id = R.id.level2_rb;
                 break;
-            case 3:
+            case 2:
                 id = R.id.level3_rb;
                 break;
-            case 4:
+            case 3:
                 id = R.id.level4_rb;
                 break;
-            case 5:
+            case 4:
                 id = R.id.level5_rb;
                 break;
             default:
@@ -99,6 +99,8 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     }
 
     private void finishWithMessage() {
+        //本地化Level值
+//        PreferenceUtils.setInt(this,KeyConst.SKEA_EXERCISE_LEVEL_KEY,exerciseLevelIndex);
         //返回用户设置的训练强度
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EvaluateResultActivity.KEY_EXERCISE_LEVEL, exerciseLevelIndex);

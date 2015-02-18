@@ -48,7 +48,7 @@ public class DayRecord extends SugarRecord<DayRecord>{
                 break;
         }
 //        record=new BarScore[count*BarConst.TYPE.BAR_TIME.length/2];//每组3种Bar
-        record=new ArrayList<>(count * BarConst.TYPE.BAR_TIME.length/2);
+        record=new ArrayList<BarScore>(count * BarConst.TYPE.BAR_TIME.length/2);
     }
 
     public String getToday() {

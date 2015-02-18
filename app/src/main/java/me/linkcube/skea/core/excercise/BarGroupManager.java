@@ -10,7 +10,9 @@ import android.widget.ScrollView;
 import java.util.List;
 
 import custom.android.util.DensityUtils;
+import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
+import me.linkcube.skea.core.KeyConst;
 import me.linkcube.skea.view.BarViewWrapper;
 
 /**
@@ -25,16 +27,14 @@ public class BarGroupManager {
     private ScrollView frontScrollView;
     private ScrollView behindScrollView;
 
-    private BarGroupManager() {
+    private BarGroupManager(Context context) {
         //TODO 获取level
-
-
-        list = BarGenerator.getInstance().getBars();
+        list = BarGenerator.getInstance(context).getBars();
     }
 
-    public static BarGroupManager getInstance() {
+    public static BarGroupManager getInstance(Context context) {
         if (instance == null)
-            instance = new BarGroupManager();
+            instance = new BarGroupManager(context);
         return instance;
     }
 
@@ -44,9 +44,9 @@ public class BarGroupManager {
 //        {
 //
 //        }
-        int level = 1;
+        int level = PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY,3);
         int barUnitNum = 0;
-        switch (level) {
+        switch (level+1) {
             case BarConst.LEVEL.LEVEL_ONE:
                 barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_ONE];
                 break;

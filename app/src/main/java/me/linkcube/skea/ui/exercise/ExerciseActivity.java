@@ -249,7 +249,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 .setNegativeButton(getString(R.string.exercise_notice_no), new DialogInterface.OnClickListener() {//继续游戏
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-                        controller.continueGame();
+                        controller.continueGame(getApplicationContext());
                         isPaused = true;
                     }
                 });

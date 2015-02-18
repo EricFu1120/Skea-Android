@@ -39,16 +39,16 @@ public class ExerciseController {
 
     private int second = 0;
 
-    public ExerciseController(Context context) {
+    public ExerciseController(final Context context) {
         //TODO get user's level
 
-        list = BarGenerator.getInstance().getBars();
+        list = BarGenerator.getInstance(context).getBars();
 
         timer = new Timer();
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                BarGroupManager.getInstance().scrollBy(-BarConst.VIEW.UNIT_SPEED);
+                BarGroupManager.getInstance(context).scrollBy(-BarConst.VIEW.UNIT_SPEED);
                 offset = offset + BarConst.VIEW.UNIT_SPEED;
 //                Log.i("CXC", "@@@@offset:" + offset);
                 checkActivePosition();
@@ -58,16 +58,16 @@ public class ExerciseController {
     }
 
     public void init(Context context, LinearLayout frontGroup, LinearLayout behindGroup) {
-        BarGroupManager.getInstance().initBarGroup(context, frontGroup, behindGroup);
+        BarGroupManager.getInstance(context).initBarGroup(context, frontGroup, behindGroup);
         //将leftTime的计算从构造函数移到这里，是因为，getBlankHeight中返回的height只有在getHeaderOrFooterView执行过之后才是真正的高度，否则为未赋值的默认值0
         //进行向上取值
-        leftTime = (int) Math.ceil(BarGroupManager.getInstance().getBarGroupHeight(context, true) / (double) BarConst.VIEW.SPEED);
+        leftTime = (int) Math.ceil(BarGroupManager.getInstance(context).getBarGroupHeight(context, true) / (double) BarConst.VIEW.SPEED);
 
         Log.i("CXC", "leftTime----" + leftTime);
     }
 
     public void prepare(Context context, ScrollView frontScrollView, ScrollView behindScrollView) {
-        BarGroupManager.getInstance().prepare(context, frontScrollView, behindScrollView);
+        BarGroupManager.getInstance(context).prepare(context, frontScrollView, behindScrollView);
     }
     public void checkActivePosition() {
         second++;
@@ -207,11 +207,11 @@ public class ExerciseController {
     public void stop(){
         timer.cancel();
     }
-    public void continueGame() {
+    public void continueGame(final Context context) {
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                BarGroupManager.getInstance().scrollBy(-BarConst.VIEW.UNIT_SPEED);
+                BarGroupManager.getInstance(context).scrollBy(-BarConst.VIEW.UNIT_SPEED);
                 offset = offset + BarConst.VIEW.UNIT_SPEED;
 //                Log.i("CXC", "@@@@offset:" + offset);
                 checkActivePosition();

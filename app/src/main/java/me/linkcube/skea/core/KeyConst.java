@@ -26,6 +26,7 @@ public class KeyConst {
     public static final String SKEA_CONFIG_PRESSURE_KEY = "Pressure_Sensitivity";
     /**
      * Level
+     * 比如Level为4，则实际保存的值为3
      * */
     public  static final String SKEA_EXERCISE_LEVEL_KEY = "Setting_Exercise_Level_Key";
 
