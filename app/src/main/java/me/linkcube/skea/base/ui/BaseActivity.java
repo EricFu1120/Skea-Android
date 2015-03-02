@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.umeng.analytics.MobclickAgent;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -38,6 +40,7 @@ public abstract class BaseActivity extends CustomActionBarActivity implements Ob
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         if (isFirstStart) {
             isFirstStart = false;
         } else {
@@ -45,6 +48,12 @@ public abstract class BaseActivity extends CustomActionBarActivity implements Ob
                 switchLanguage();
             }
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
