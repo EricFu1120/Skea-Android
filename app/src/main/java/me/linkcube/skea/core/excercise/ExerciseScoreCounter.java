@@ -40,10 +40,14 @@ public class ExerciseScoreCounter {
     //DB
     private DayRecord dayRecord;
     private BarScore barScore;
-//    private List<BarScore> record;
+    private List<BarScore> record;
+
+
     private ExerciseScoreCounter(Context context) {
         segments = new ArrayList<Segment>();
-        dayRecord=new DayRecord(PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 4));
+        dayRecord=new DayRecord(PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 3)+1);//本地持久化时，level 为4 时，实际存储为3
+
+//        record=new ArrayList<BarScore>();
     }
 
     public static ExerciseScoreCounter getInstance(Context context) {
@@ -54,9 +58,9 @@ public class ExerciseScoreCounter {
         return instance;
     }
 
-    public void startGameScore(Bar bar) {
-        this.bar = bar;
-        game_lock = true;
+
+    public void startMissScore(){
+        miss_lock=true;
     }
 
     public void startCoolScore(Bar bar) {
@@ -71,27 +75,9 @@ public class ExerciseScoreCounter {
         perfect_lock = true;
     }
 
-    public void startMissScore(){
-        miss_lock=true;
-    }
-
-    public boolean tickGameScore() {
-        if (game_lock) {
-            //TODO 可能出现锁问题
-            Segment segment = new Segment(game_count);
-            //DB
-            SegmentScore segmentScore=new SegmentScore(game_count);
-            segmentScore.save();
-            barScore.getBar().add(segmentScore);
-
-            segments.add(segment);
-            game_count=0;
-            return segment.isAvailable();
-        }
-        else {
-            game_count = 0;
-            return false;
-        }
+    public void startGameScore(Bar bar) {
+        this.bar = bar;
+        game_lock = true;
     }
 
 
@@ -119,7 +105,24 @@ public class ExerciseScoreCounter {
         }
     }
 
-
+    public boolean tickGameScore() {
+        if (game_lock) {
+            //TODO 可能出现锁问题
+            Segment segment = new Segment(game_count);
+            //DB
+            SegmentScore segmentScore=new SegmentScore(game_count);
+            segmentScore.save();
+//            db_bar.add(segmentScore);
+            segments.add(segment);
+            barScore.getBar().add(segmentScore);
+            game_count=0;
+            return segment.isAvailable();
+        }
+        else {
+            game_count = 0;
+            return false;
+        }
+    }
 
     /**
      * 计算当前游戏得分
@@ -131,8 +134,19 @@ public class ExerciseScoreCounter {
             totalScore+=score;
             bar.setScore(score+perfect_cool_score);
             barScore.setScore(score);
-            barScore.save();
-            dayRecord.getRecord().add(barScore);
+
+//            dayRecord.getRecord().add(barScore);
+
+            BarScore temp_bar=new BarScore(barScore.getType());
+            temp_bar.setScore(barScore.getScore());
+            temp_bar.setType(barScore.getType());
+            temp_bar.setPerfectCool(barScore.getPerfectCool());
+            temp_bar.setBar(barScore.getBar());
+
+            temp_bar.save();
+
+//            record.add(temp_bar);
+            dayRecord.getRecord().add(temp_bar);
         }
         //归“0”
         perfect_lock=false;
@@ -145,6 +159,7 @@ public class ExerciseScoreCounter {
     }
 
     public int stopCoolScore() {
+
 
         if (cool_count > 0) {
             perfect_cool_score=BarConst.SCORE.COOL_SCORE;
@@ -163,7 +178,7 @@ public class ExerciseScoreCounter {
         if (cool_count<=0 && perfect_count > 0) {
             perfect_cool_score=BarConst.SCORE.PERFECT_SCORE;
             totalScore += perfect_cool_score;
-            Log.i("CXC", "perfect +++50");
+//            Log.i("CXC", "perfect +++50");
             barScore.setPerfectCool(2);
         }
         perfect_count = 0;
@@ -181,7 +196,7 @@ public class ExerciseScoreCounter {
 
     public void stopScoreCounter(){
         //this.totalScore=0;
-//        dayRecord.getRecord().add(barScore)
+//        dayRecord.setRecord(record);
         dayRecord.save();
         instance=null;
     }

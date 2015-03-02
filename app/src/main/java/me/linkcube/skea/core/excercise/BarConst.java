@@ -57,9 +57,9 @@ public class BarConst {
         public static final int LEVEL_TWO=2;
         public static final int LEVEL_THREE=3;
         public static final int LEVEL_FOUR=4;
-//        public static final int LEVEL_FIVE=5;
+        public static final int LEVEL_FIVE=5;
 
-        public static final int[] BAR_UNIT_NUM = new int[]{0, 15, 20, 30, 40};
+        public static final int[] BAR_UNIT_NUM = new int[]{0, 15, 20, 30, 40,50};
 
 
 

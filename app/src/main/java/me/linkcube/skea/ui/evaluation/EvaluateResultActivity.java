@@ -37,7 +37,7 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
 
     private Button evaluateBtn;
 
-    private ImageView riskRactorView;
+    private ImageView riskFactorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
      * 得到相关控件，注册事件
      */
     private void initViews() {
-        riskRactorView = (ImageView) findViewById(R.id.risk_factor);
+        riskFactorView = (ImageView) findViewById(R.id.risk_factor);
         suggestions_tv =(TextView) findViewById(R.id.suggestions);
         exerciseLevel = (TextView) findViewById(R.id.level);
         evaluateBtn = (Button) findViewById(R.id.reevaluate);
@@ -78,7 +78,7 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
             case REQUEST_CODE_EVALUATE:
                 if (resultCode == RESULT_OK) {
                     int riskFactor = data.getIntExtra(KEY_RISK_FACTOR, 0);
-                    riskRactorView.setImageResource(RISK_FACTOR_IMG_RES[riskFactor]);
+                    riskFactorView.setImageResource(RISK_FACTOR_IMG_RES[riskFactor]);
                     suggestions_tv.setText(SUGGESTIONS_TEXT_ID[riskFactor]);
 
                     Log.i(TAG, "onActivityResult - risk factor = " + data.getIntExtra(KEY_RISK_FACTOR, 0));

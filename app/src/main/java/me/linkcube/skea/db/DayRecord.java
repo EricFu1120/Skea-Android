@@ -17,6 +17,7 @@ import me.linkcube.skea.core.excercise.BarConst;
 public class DayRecord extends SugarRecord<DayRecord>{
     private String today;
     private int level;
+    private float success_rate;
 //    private BarScore[] record;
     private List<BarScore> record;
     //Note: Please retain the default constructor.
@@ -44,7 +45,11 @@ public class DayRecord extends SugarRecord<DayRecord>{
             case BarConst.LEVEL.LEVEL_FOUR:
                 count=BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_FOUR];
                 break;
-            default:
+            case BarConst.LEVEL.LEVEL_FIVE:
+                count=BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_FIVE];
+                break;
+            default://level 4
+                count=BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_FOUR];
                 break;
         }
 //        record=new BarScore[count*BarConst.TYPE.BAR_TIME.length/2];//每组3种Bar
@@ -73,5 +78,13 @@ public class DayRecord extends SugarRecord<DayRecord>{
 
     public void setRecord(List<BarScore> record) {
         this.record = record;
+    }
+
+    public float getSuccess_rate() {
+        return success_rate;
+    }
+
+    public void setSuccess_rate(float success_rate) {
+        this.success_rate = success_rate;
     }
 }

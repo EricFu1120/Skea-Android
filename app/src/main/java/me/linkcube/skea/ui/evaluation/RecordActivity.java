@@ -497,20 +497,24 @@ public class RecordActivity extends BaseActivity {
         }else{//存在相关的运动记录－－展示最新的数据（即：选中日期当天的最后一次的）
             DayRecord dayRecord=dayRecords.get(dayRecords.size()-1);
             setDateAndLevelTextView(dayRecord.getToday(),dayRecord.getLevel()+"");
-            if(dayRecord.getRecord().size()<=0){
-                //弹框提示之
-                Toaster.showShort(this,"相关记录不完整！！！");
+           try{
+               if(dayRecord.getRecord().size()<=0){//为什么写入的锻炼数据只有“record”为空呢？？？！！！
+                   //弹框提示之
+                   Toaster.showShort(this,"相关记录不完整！！！");
 
-            }else {
-                barType=new int[dayRecord.getRecord().size()];
-                barScore=new double[dayRecord.getRecord().size()];
-                for(int i=0;i<dayRecord.getRecord().size();i++){
-                    barType[i]=dayRecord.getRecord().get(i).getType();
-                    barScore[i]=dayRecord.getRecord().get(i).getScore();
-                }
+               }else {
+                   barType=new int[dayRecord.getRecord().size()];
+                   barScore=new double[dayRecord.getRecord().size()];
+                   for(int i=0;i<dayRecord.getRecord().size();i++){
+                       barType[i]=dayRecord.getRecord().get(i).getType();
+                       barScore[i]=dayRecord.getRecord().get(i).getScore();
+                   }
 //                calculateExerciseResult();
-                addConbinedChart();
-            }
+                   addConbinedChart();
+               }
+           }catch (NullPointerException exception){
+               Toaster.showShort(this,"数据读取失败！！！");
+           }
         }
     }
 
