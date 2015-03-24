@@ -23,6 +23,7 @@ public class DayRecord extends SugarRecord<DayRecord>{
     private int mDuration;
     //Bars info ---Json format
     private String mBarsJSONInfo;
+    private float success_rate;
     //Note: Please retain the default constructor.
     public DayRecord(){
 
@@ -62,6 +63,7 @@ public class DayRecord extends SugarRecord<DayRecord>{
 
     public void setmLevel(int mLevel) {
         this.mLevel = mLevel;
+
     }
 
     public int getmDuration() {
@@ -86,5 +88,13 @@ public class DayRecord extends SugarRecord<DayRecord>{
 
     public void setmBarsJSONInfo(String mBarsJSONInfo) {
         this.mBarsJSONInfo = mBarsJSONInfo;
+    }
+
+    public float getSuccess_rate() {
+        return success_rate;
+    }
+
+    public void setSuccess_rate(float success_rate) {
+        this.success_rate = success_rate;
     }
 }

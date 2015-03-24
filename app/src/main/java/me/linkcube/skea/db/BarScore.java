@@ -21,6 +21,7 @@ public class BarScore extends SugarRecord<BarScore> {
 
     }
     public BarScore(int type){
+        this.type=type;
         int count=0;
         switch (type){
             case BarConst.TYPE.SHORT:

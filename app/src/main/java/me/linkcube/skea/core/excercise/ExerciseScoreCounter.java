@@ -43,21 +43,18 @@ public class ExerciseScoreCounter {
     private DayRecord dayRecord;
     private JSONObject jsonBarInfos;
     private JSONArray jsonBarArray;
-//    private BarScore barScore;
-//    private List<BarScore> record;
+
 
 
     private ExerciseScoreCounter(Context context) {
         segments = new ArrayList<Segment>();
         int level=PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 3);
         dayRecord=new DayRecord(level+1);//本地持久化时，level 为4 时，实际存储为3
-//        dayRecord.setmLevel(level+1);
 
         //init
         jsonBarInfos=new JSONObject();
         jsonBarArray =new JSONArray();
 
-//        record=new ArrayList<BarScore>();
     }
 
     public static ExerciseScoreCounter getInstance(Context context) {
@@ -133,7 +130,6 @@ public class ExerciseScoreCounter {
     public void tickSecond(){
         game_duration++;
     }
-
     /**
      * 计算当前游戏得分
      */
@@ -155,7 +151,6 @@ public class ExerciseScoreCounter {
             }catch (JSONException e){
                 Log.i("CXC","org.json.JSONException -----");
             }
-
 
         }
         //归“0”
@@ -188,7 +183,6 @@ public class ExerciseScoreCounter {
             perfect_cool_score=BarConst.SCORE.PERFECT_SCORE;
             totalScore += perfect_cool_score;
 //            Log.i("CXC", "perfect +++50");
-
         }
         perfect_count = 0;
         cool_count = 0;

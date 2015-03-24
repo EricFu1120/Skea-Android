@@ -528,6 +528,7 @@ public class RecordActivity extends BaseActivity {
             }catch (JSONException e){
                 Toaster.showShort(this,getResources().getString(R.string.record_data_error));
             }
+
         }
     }
 
