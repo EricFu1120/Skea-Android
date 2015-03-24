@@ -16,4 +16,7 @@
     <string name="record_good">Good</string>
     <string name="record_weak">Weak</string>
 
+    <string name="record_no_data">No Data</string>
+    <string name="record_data_error">Data Error</string>
+
 </resources>

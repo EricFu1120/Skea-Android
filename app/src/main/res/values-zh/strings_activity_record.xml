@@ -13,4 +13,7 @@
     <string name="record_cool">优异</string>
     <string name="record_good">普通</string>
     <string name="record_weak">虚弱</string>
+
+    <string name="record_no_data">无相关锻炼数据</string>
+    <string name="record_data_error">数据解析错误</string>
 </resources>

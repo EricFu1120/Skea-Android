@@ -7,4 +7,7 @@
     <string name="main_info">Info</string>
     <string name="main_records">Records</string>
     <string name="main_me">Me</string>
+    <string name="main_note_no_data">NO Data</string>
+    <string name="main_data_error">Data Error</string>
+
 </resources>

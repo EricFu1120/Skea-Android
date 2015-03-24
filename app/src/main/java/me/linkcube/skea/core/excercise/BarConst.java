@@ -57,13 +57,19 @@ public class BarConst {
         public static final int LEVEL_TWO=2;
         public static final int LEVEL_THREE=3;
         public static final int LEVEL_FOUR=4;
-//        public static final int LEVEL_FIVE=5;
+        public static final int LEVEL_FIVE=5;
 
-        public static final int[] BAR_UNIT_NUM = new int[]{0, 15, 20, 30, 40};
+        public static final int[] BAR_UNIT_NUM = new int[]{0, 15, 20, 30, 40,50};
 
 
 
     }
     public static int ACTIVE_BEGIN_OFFSET_MARGIN = 52;//52px
     public static int ACTIVE_END_OFFSET_MARGIN = 28;//28px
+
+    public static class JSONConst{
+        public static final String KEY_TYPE="type";
+        public static final String KEY_SCORE ="score";
+        public static final String KEY_INFO="barInfo";
+    }
 }

@@ -1,6 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Group"
+    android:id="@+id/root"
+    android:orientation="vertical"
     android:paddingBottom="0dp"
     android:paddingTop="0dp"
     tools:context="me.linkcube.skea.ui.evaluation.RecordActivity">
@@ -45,7 +47,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/date_level_tv"
                 android:layout_marginTop="10dp"
-                android:text="Good !"
+                android:text="NUll"
                 android:textColor="@color/text_white"
                 android:textSize="20sp" />
 
@@ -114,6 +116,37 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <!--Score-->
+        <TextView
+            android:id="@+id/score_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/icon_score"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="2dp"
+            android:text="@string/record_score_with_colon"
+            android:textStyle="bold" />
+        <!--Duration-->
+        <TextView
+            android:id="@+id/duration_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/icon_duration"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="2dp"
+            android:text="@string/record_duration_with_colon"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/chart"
@@ -127,38 +160,6 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <!--Score-->
-            <TextView
-                android:id="@+id/score_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/icon_score"
-                android:drawablePadding="10dp"
-                android:gravity="center_vertical"
-                android:padding="2dp"
-                android:text="@string/record_score_with_colon"
-                android:textStyle="bold" />
-            <!--Duration-->
-            <TextView
-                android:id="@+id/duration_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/icon_duration"
-                android:drawablePadding="10dp"
-                android:gravity="center_vertical"
-                android:padding="2dp"
-                android:text="@string/record_duration_with_colon"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
     </LinearLayout>
 

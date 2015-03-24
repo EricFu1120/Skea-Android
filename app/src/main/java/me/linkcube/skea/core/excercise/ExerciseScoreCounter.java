@@ -3,15 +3,16 @@ package me.linkcube.skea.core.excercise;
 import android.content.Context;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.core.KeyConst;
-import me.linkcube.skea.db.BarScore;
 import me.linkcube.skea.db.DayRecord;
-import me.linkcube.skea.db.SegmentScore;
-import me.linkcube.skea.ui.evaluation.ExerciseLevelSettingActivity;
 
 /**
  * Created by Ervin on 14/11/1.
@@ -34,16 +35,29 @@ public class ExerciseScoreCounter {
     private boolean perfect_lock = false;
     private boolean miss_lock=false;
 
-    private int totalScore;
+    private int totalScore=0;
     private int perfect_cool_score=0;
+    private int game_duration=0;
 
     //DB
     private DayRecord dayRecord;
-    private BarScore barScore;
+    private JSONObject jsonBarInfos;
+    private JSONArray jsonBarArray;
+//    private BarScore barScore;
 //    private List<BarScore> record;
+
+
     private ExerciseScoreCounter(Context context) {
         segments = new ArrayList<Segment>();
-        dayRecord=new DayRecord(PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 4));
+        int level=PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 3);
+        dayRecord=new DayRecord(level+1);//本地持久化时，level 为4 时，实际存储为3
+//        dayRecord.setmLevel(level+1);
+
+        //init
+        jsonBarInfos=new JSONObject();
+        jsonBarArray =new JSONArray();
+
+//        record=new ArrayList<BarScore>();
     }
 
     public static ExerciseScoreCounter getInstance(Context context) {
@@ -54,15 +68,15 @@ public class ExerciseScoreCounter {
         return instance;
     }
 
-    public void startGameScore(Bar bar) {
-        this.bar = bar;
-        game_lock = true;
+
+    public void startMissScore(){
+        miss_lock=true;
     }
 
     public void startCoolScore(Bar bar) {
         this.bar = bar;
         cool_lock = true;
-        barScore=new BarScore(bar.getType());
+//        barScore=new BarScore(bar.getType());
 
     }
 
@@ -71,33 +85,15 @@ public class ExerciseScoreCounter {
         perfect_lock = true;
     }
 
-    public void startMissScore(){
-        miss_lock=true;
-    }
-
-    public boolean tickGameScore() {
-        if (game_lock) {
-            //TODO 可能出现锁问题
-            Segment segment = new Segment(game_count);
-            //DB
-            SegmentScore segmentScore=new SegmentScore(game_count);
-            segmentScore.save();
-            barScore.getBar().add(segmentScore);
-
-            segments.add(segment);
-            game_count=0;
-            return segment.isAvailable();
-        }
-        else {
-            game_count = 0;
-            return false;
-        }
+    public void startGameScore(Bar bar) {
+        this.bar = bar;
+        game_lock = true;
     }
 
 
     public boolean tickMissScore(){
         if (miss_lock && miss_count>0){
-            barScore.setPerfectCool(0);
+
             miss_count=0;
             return true;
         }else {
@@ -119,7 +115,24 @@ public class ExerciseScoreCounter {
         }
     }
 
+    public boolean tickGameScore() {
+        if (game_lock) {
+            //TODO 可能出现锁问题
+            Segment segment = new Segment(game_count);
+            segments.add(segment);
 
+            game_count=0;
+            return segment.isAvailable();
+        }
+        else {
+            game_count = 0;
+            return false;
+        }
+    }
+
+    public void tickSecond(){
+        game_duration++;
+    }
 
     /**
      * 计算当前游戏得分
@@ -128,11 +141,22 @@ public class ExerciseScoreCounter {
 
         if (game_lock) {
             float score = getGameScore();
+            Log.i("CXC","##################"+score+"@@@@@@@"+totalScore);
             totalScore+=score;
             bar.setScore(score+perfect_cool_score);
-            barScore.setScore(score);
-            barScore.save();
-            dayRecord.getRecord().add(barScore);
+
+            try{
+                JSONObject tempObj=new JSONObject();
+                tempObj.put(BarConst.JSONConst.KEY_TYPE,bar.getType());
+                tempObj.put(BarConst.JSONConst.KEY_SCORE,bar.getScore());
+                jsonBarArray.put(tempObj);
+
+
+            }catch (JSONException e){
+                Log.i("CXC","org.json.JSONException -----");
+            }
+
+
         }
         //归“0”
         perfect_lock=false;
@@ -146,12 +170,12 @@ public class ExerciseScoreCounter {
 
     public int stopCoolScore() {
 
+
         if (cool_count > 0) {
             perfect_cool_score=BarConst.SCORE.COOL_SCORE;
             totalScore += perfect_cool_score;
             Log.i("CXC", "Cool ++++30");
-            barScore.setPerfectCool(1);//miss 0,cool 1,perfect 2;
-
+//            barScore.setPerfectCool(1);//miss 0,cool 1,perfect 2;
         }
         cool_lock = false;
 
@@ -163,8 +187,8 @@ public class ExerciseScoreCounter {
         if (cool_count<=0 && perfect_count > 0) {
             perfect_cool_score=BarConst.SCORE.PERFECT_SCORE;
             totalScore += perfect_cool_score;
-            Log.i("CXC", "perfect +++50");
-            barScore.setPerfectCool(2);
+//            Log.i("CXC", "perfect +++50");
+
         }
         perfect_count = 0;
         cool_count = 0;
@@ -181,7 +205,15 @@ public class ExerciseScoreCounter {
 
     public void stopScoreCounter(){
         //this.totalScore=0;
-//        dayRecord.getRecord().add(barScore)
+//        dayRecord.setRecord(record);
+        try{
+            jsonBarInfos.put(BarConst.JSONConst.KEY_INFO,jsonBarArray);
+        }catch (JSONException e){
+            Log.i("CXC","org.json.JSONException ++++");
+        }
+        dayRecord.setmBarsJSONInfo(jsonBarInfos.toString());
+        //Duration
+        dayRecord.setmDuration(game_duration);
         dayRecord.save();
         instance=null;
     }
@@ -207,7 +239,7 @@ public class ExerciseScoreCounter {
         float segmentScore = 0.0f;
         float duration = 0.0f;
         int counter = 0;
-        Log.d("getScore", "segments size = " + segments.size());
+//        Log.d("getScore", "segments size = " + segments.size());
         for (int i = 0; i < segments.size(); i++) {
             if (segments.get(i).isAvailable()) {
                 counter = counter + 1;

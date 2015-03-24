@@ -40,14 +40,11 @@ import me.linkcube.skea.ui.evaluation.RecordActivity;
 public class ExerciseActivity extends BaseActivity implements ExerciseController.ExerciseScoreCallback {
 
     private static final String TAG = "ExerciseActivity";
-
-//    public boolean isGameInitialized = true;
     private LinearLayout frontGroup;
     private LinearLayout behindGroup;
     private ScrollView frontScrollView;
     private ScrollView behindScrollView;
     private ExerciseController controller;
-//    private ToggleButton shrinkButton;
     private TextView leftTimeTextView;
     private TextView scoreTextView;
     private ImageView perfectCoolImageView;
@@ -78,7 +75,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         initViews();
 
-
         updateTextViewTextHandler = new UpdateImageViewPicHandler(perfectCoolImageView);
         initGameHandler = new InitGameHandler();
         testShrinkHandler = new TestShrinkHandler();
@@ -89,12 +85,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             @Override
             public void run() {
 //                //使用Handler发送消息，以检测当前是否有挤压
-//                Message msg = new Message();
-//                Bundle bundle = new Bundle();
-//                bundle.putBoolean(TestShrinkHandler.TEST_SIGNAL, true);
-//                msg.setData(bundle);
-//                testShrinkHandler.sendMessage(msg);
-
                 sendMessage_to_handler(testShrinkHandler,TestShrinkHandler.TEST_SIGNAL,TestShrinkHandler.TEST_SHRINK_YES_OR_NOT);
             }
         }, 1000, 15);//1000ms 以后每隔15ms执行一次
@@ -295,6 +285,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     @Override
     public void tickSecond(final int leftTime) {
         Log.d("tickSecond ", "" + leftTime);
+        ExerciseScoreCounter.getInstance(this).tickSecond();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -409,18 +400,18 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     public void showExerciseResult(List<Bar> list) {
         Intent showResultIntent = new Intent(this, RecordActivity.class);
 
-        //保存Score
-        double[] barScore = new double[(list.size()+1)/2];
-        //保存Type
-        int[] barType = new int[(list.size()+1)/2];
-
-        for (int i = 0; i < (list.size()+1)/2; i++) {//将中间“休息”间隔去除掉，以便数据处理
-            barScore[i] = (double) (list.get(i*2).getScore());
-            barType[i] = list.get(i*2).getType();
-        }
-
-        showResultIntent.putExtra(RecordActivity.EXERCISE_TYPE_KEY, barType);
-        showResultIntent.putExtra(RecordActivity.EXERCISE_SCORE_KEY, barScore);
+//        //保存Score
+//        double[] barScore = new double[(list.size()+1)/2];
+//        //保存Type
+//        int[] barType = new int[(list.size()+1)/2];
+//
+//        for (int i = 0; i < (list.size()+1)/2; i++) {//将中间“休息”间隔去除掉，以便数据处理
+//            barScore[i] = (double) (list.get(i*2).getScore());
+//            barType[i] = list.get(i*2).getType();
+//        }
+//
+//        showResultIntent.putExtra(RecordActivity.EXERCISE_TYPE_KEY, barType);
+//        showResultIntent.putExtra(RecordActivity.EXERCISE_SCORE_KEY, barScore);
 
         startActivity(showResultIntent);
     }
@@ -493,7 +484,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                         @Override
                         public void onDataReceived(byte[] bytes, String message) {
 //                        pressDataTextView.setText(bytes.toString());
-                            Log.i("CXC", "&&&&&&&&&&&&onDataReceived：" + bytes.toString());
+//                            Log.i("CXC", "&&&&&&&&&&&&onDataReceived：" + bytes.toString());
                             if (bytes[0] == KeyConst.GameFrame.PRESS_FRAME[0]
                                     && bytes[1] == KeyConst.GameFrame.PRESS_FRAME[1]) {
                                 shrink = true;
@@ -537,7 +528,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 default:
                     break;
             }
-
             //重置信号标志－－－这一点很重要
             shrink = false;
         }

@@ -7,4 +7,6 @@
     <string name="main_info">说明</string>
     <string name="main_records">记录</string>
     <string name="main_me">我</string>
+    <string name="main_note_no_data">你还没有进行任何锻炼</string>
+    <string name="main_data_error">数据解析错误</string>
 </resources>
