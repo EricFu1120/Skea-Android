@@ -15,4 +15,6 @@
     <string name="title_activity_test_http">TestHttpActivity</string>
     <string name="action_store_username">保存</string>
 
+    <string name="title_activity_about_us">关于我们</string>
+
 </resources>

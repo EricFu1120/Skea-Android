@@ -115,9 +115,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.setting.SettingActivity" />
         </activity>
+        <!--
         <activity
             android:name=".ui.init.SplashActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        -->
+        <activity
+            android:name=".ui.init.SplashActivity"
+            android:theme="@style/Theme.AppCompat" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -154,6 +166,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.user.MeActivity" />
+        </activity>
+        <activity
+            android:name=".ui.setting.AboutUsActivity"
+            android:label="@string/title_activity_about_us"
+            android:parentActivityName=".base.ui.BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.linkcube.skea.base.ui.BaseActivity" />
         </activity>
     </application>
 

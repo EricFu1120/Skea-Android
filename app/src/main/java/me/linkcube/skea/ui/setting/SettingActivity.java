@@ -13,6 +13,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         findViewById(R.id.language).setOnClickListener(this);
+        findViewById(R.id.aboutus).setOnClickListener(this);
     }
 
     @Override
@@ -27,11 +28,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             case R.id.language:
                 startActivity(new Intent(this, LanguageSettingActivity.class));
                 break;
-            case R.id.update:
-                break;
-            case R.id.feedback:
-                break;
             case R.id.aboutus:
+                startActivity(new Intent(this, AboutUsActivity.class));
                 break;
             default:
                 break;

@@ -23,7 +23,7 @@ import me.linkcube.skea.ui.setting.SkeaSettingActivity;
 
 public class MeActivity extends BaseActivity implements View.OnClickListener {
 
-    private final String urlString = "http://www.linkcube.me";
+//    private final String urlString = "http://www.linkcube.me";
     private static final int SETTING_NICKNAME_REQUEST_CODE=50001;
     private TextView username_tv;
 
@@ -47,7 +47,7 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
 
         findViewById(R.id.test_pelvic_muscle).setOnClickListener(this);
         findViewById(R.id.skea_settings).setOnClickListener(this);
-        findViewById(R.id.purchase_product).setOnClickListener(this);
+//        findViewById(R.id.purchase_product).setOnClickListener(this);
         findViewById(R.id.software_settings).setOnClickListener(this);
         findViewById(R.id.logout_button).setOnClickListener(this);
 
@@ -71,11 +71,11 @@ public class MeActivity extends BaseActivity implements View.OnClickListener {
             case R.id.skea_settings://Skea参数设置
                 startActivity(new Intent().setClass(getApplicationContext(), SkeaSettingActivity.class));
                 break;
-            case R.id.purchase_product://购买Skea产品
-                Uri uri = Uri.parse(urlString);//网址要加http
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-                break;
+//            case R.id.purchase_product://购买Skea产品
+//                Uri uri = Uri.parse(urlString);//网址要加http
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                startActivity(intent);
+//                break;
             case R.id.software_settings: //设置
                 startActivity(new Intent().setClass(getApplicationContext(), SettingActivity.class));
                 break;
