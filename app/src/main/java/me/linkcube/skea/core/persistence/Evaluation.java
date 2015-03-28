@@ -8,6 +8,9 @@ import com.orm.SugarRecord;
  */
 public class Evaluation extends SugarRecord<Evaluation> {
 
+
+    String email;
+
     String evalationDate;
 
     String birthday;
@@ -189,6 +192,13 @@ public class Evaluation extends SugarRecord<Evaluation> {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 

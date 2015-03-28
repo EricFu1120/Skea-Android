@@ -168,6 +168,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:src="@drawable/laser_active" />
+        android:src="@drawable/laser_inactive" />
 
 </RelativeLayout>

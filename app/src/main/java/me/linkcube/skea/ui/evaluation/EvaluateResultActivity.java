@@ -10,10 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.KeyConst;
+import me.linkcube.skea.core.UserManager;
+import me.linkcube.skea.core.persistence.Evaluation;
+import me.linkcube.skea.core.persistence.User;
 
 public class EvaluateResultActivity extends BaseActivity implements View.OnClickListener {
 
@@ -62,6 +67,26 @@ public class EvaluateResultActivity extends BaseActivity implements View.OnClick
         exerciseLevel.setOnClickListener(this);
 
         evaluateBtn.setOnClickListener(this);
+
+//        User user= UserManager.getInstance().getUser(this);
+//        if(user !=null){
+//            List<Evaluation> evaluations=Evaluation.find(Evaluation.class,"email=?",user.getEmail());
+//            if(evaluations!=null && evaluations.size()>0){//找到该ID下的最后一条数据，以最新的为准
+//                int riskLeve=evaluations.get(evaluations.size()-1).getLevel();
+//                riskFactorView.setImageResource(RISK_FACTOR_IMG_RES[riskLeve]);
+//                suggestions_tv.setText(SUGGESTIONS_TEXT_ID[riskLeve]);
+//
+//            }
+//        }
+        List<Evaluation> evaluations=Evaluation.listAll(Evaluation.class);
+        if(evaluations!=null && evaluations.size()>0){
+            Evaluation evaluation=evaluations.get(evaluations.size()-1);
+            int riskLevel=evaluation.getLevel();
+
+            riskFactorView.setImageResource(RISK_FACTOR_IMG_RES[riskLevel]);
+            suggestions_tv.setText(SUGGESTIONS_TEXT_ID[riskLevel]);
+        }
+
     }
 
     @Override

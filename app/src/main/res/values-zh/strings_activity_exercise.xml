@@ -6,4 +6,6 @@
     <string name="exercise_notice_message">你确定要离开吗？</string>
     <string name="exercise_notice_yes">是</string>
     <string name="exercise_notice_no">否</string>
+    <string name="exercise_load_title">提示</string>
+    <string name="exercise_load_message">游戏加载中...</string>
 </resources>

@@ -6,4 +6,6 @@
     <string name="exercise_notice_message">Are you sure you want to exit ?</string>
     <string name="exercise_notice_yes">Yes</string>
     <string name="exercise_notice_no">No</string>
+    <string name="exercise_load_title">Note</string>
+    <string name="exercise_load_message">Game is loading...</string>
 </resources>

@@ -197,6 +197,13 @@ public class ReEvaluateActivity extends BaseActivity implements TwoWayRadioGroup
         evaluation.setScoreTotal(scoreTotal);
         riskLevel = EvaluationScore.getRiskLevel(scoreTotal);
         evaluation.setLevel(riskLevel);
+        //set User
+        User user=UserManager.getInstance().getUser(this);
+        if(user != null){
+            evaluation.setUser(user);
+            evaluation.setEmail(user.getEmail());
+
+        }
         evaluation.save();
     }
 

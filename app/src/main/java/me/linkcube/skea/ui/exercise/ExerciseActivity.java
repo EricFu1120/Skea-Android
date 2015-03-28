@@ -49,6 +49,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     private TextView leftTimeTextView;
     private TextView scoreTextView;
     private ImageView perfectCoolImageView;
+    private ImageView laser_iv;
     private boolean shrink;
 
     private Timer testSignalTimer;
@@ -78,7 +79,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         updateTextViewTextHandler = new UpdateImageViewPicHandler(perfectCoolImageView);
         initGameHandler = new InitGameHandler();
-        testShrinkHandler = new TestShrinkHandler();
+        testShrinkHandler = new TestShrinkHandler(laser_iv);
 
 
         testSignalTimer=new Timer();
@@ -108,6 +109,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
         //显示perfect cool 文字特效
         perfectCoolImageView = (ImageView) findViewById(R.id.perfect_cool_iv);
+
+        laser_iv=(ImageView) findViewById(R.id.laser);
 
 
         controller = new ExerciseController(this);
@@ -160,8 +163,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         //但是现在放进去会出现“错位”，有空调整之
 //        final ExerciseProgressDialog progressDialog = new ExerciseProgressDialog(this,initGameHandler);
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Note");
-        progressDialog.setMessage("Game is loading...");
+        progressDialog.setTitle(getResources().getString(R.string.exercise_load_title));
+        progressDialog.setMessage(getResources().getString(R.string.exercise_load_message));
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setMax(100);
         progressDialog.show();
@@ -507,6 +510,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     }
 
 
+    private int countTime=0;
+    private boolean is_active=false;
 
     /**
      * Timer定时给UI发送消息，让UI Thread 去检测是否有挤压
@@ -514,9 +519,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
     class TestShrinkHandler extends Handler {
         public static final String TEST_SIGNAL = "com.linkcube.skea.ui.excise.test_signal";
         public static final int TEST_SHRINK_YES_OR_NOT=2000001;
+        private ImageView laser_iv;
 
-        public TestShrinkHandler() {
+        public TestShrinkHandler(ImageView iv) {
             super();
+            this.laser_iv=iv;
         }
 
         @Override
@@ -528,6 +535,17 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
                 case TEST_SHRINK_YES_OR_NOT:
                     if (shrink) {//有挤压
                         ExerciseScoreCounter.getInstance(getApplicationContext()).receiveSignal();
+                        //当前接收到了信号，显示“黄线”
+                        if(is_active==false){
+                            laser_iv.setImageResource(R.drawable.laser_active);
+                            is_active=true;
+                            countTime=0;
+                        }
+
+                    }
+                    else {
+//                        is_active=false;
+                        countTime++;//记数
                     }
                     break;
                 default:
@@ -535,6 +553,11 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             }
             //重置信号标志－－－这一点很重要
             shrink = false;
+            if(countTime>=5  ){//超过50msX5=250ms,即0.25s，变为“灰线”
+                laser_iv.setImageResource(R.drawable.laser_inactive);
+                countTime=0;
+                is_active=false;
+            }
         }
     }
 
@@ -560,9 +583,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             this.perfectCoolImageView.setImageResource(imgID);
         }
     }
-
-
-
 }
 
 

@@ -17,7 +17,7 @@
     <string name="toast_connect_toy_success">连接玩具成功!</string>
     <string name="toast_connect_toy_failure">连接玩具失败，请确认玩具是否打开!</string>
     <string name="toast_bond_toy_success">玩具配对成功!</string>
-    <string name="toast_toy_disconnect_pls_set">玩具未连接，请点击右上角设置</string>
+    <string name="toast_toy_disconnect_pls_set">玩具未连接</string><!--玩具未连接，请点击右上角设置-->
 
     <!-- 蓝牙设置 -->
     <string name="search_toy">搜索玩具</string>
