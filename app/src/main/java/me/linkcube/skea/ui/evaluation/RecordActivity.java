@@ -86,6 +86,7 @@ public class RecordActivity extends BaseActivity {
 
 
 
+    private XYSeries waterSeries ;
     /**
      * 得当前的年月日,以便初始化日历
      */
@@ -184,6 +185,8 @@ public class RecordActivity extends BaseActivity {
 
 //        setDateAndLevelTextView(mYear+"-"+(mMonth+1)+"-"+mDays, 1+PreferenceUtils.getInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY,4)+"");
 
+        String barType_str=getResources().getString(R.string.record_chart_barType);
+        waterSeries=new XYSeries(barType_str);
     }
 
     /**
@@ -292,7 +295,9 @@ public class RecordActivity extends BaseActivity {
     private int countNum = 0;
     private double[] xx, yy, zz;
     //柱形图
-    private XYSeries waterSeries = new XYSeries(" Type ");
+//    private XYSeries waterSeries = new XYSeries(" Type ");
+
+
 
 
     private void clearData(){
@@ -385,7 +390,10 @@ public class RecordActivity extends BaseActivity {
      */
     private void addConbinedChart() {
         calculateExerciseResult();
-        String[] titles = new String[]{"  Rate  "};
+        //线图
+        String correct_rate_str=getResources().getString(R.string.record_chart_correctRate);
+//        String[] titles = new String[]{"  Rate  "};
+        String[] titles = new String[]{correct_rate_str};
         // 横轴
         List<double[]> x = new ArrayList<double[]>();
         x.add(xx);

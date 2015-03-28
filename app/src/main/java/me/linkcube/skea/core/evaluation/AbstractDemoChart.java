@@ -98,7 +98,7 @@ public abstract class AbstractDemoChart {
         // 放大，缩小按钮是否显示
         renderer.setZoomButtonsVisible(false);
         // this order: top, left, bottom, right
-        renderer.setMargins(new int[]{60, 50, 0, 30});//60,50,80,30
+        renderer.setMargins(new int[]{50, 28, 10, 25});//60,50,80,30
         // // 设置空白边缘颜色
         // renderer.setMarginsColor(color.transparent);
 

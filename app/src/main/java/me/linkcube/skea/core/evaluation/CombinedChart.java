@@ -43,7 +43,18 @@ public class CombinedChart extends AbstractDemoChart {
         }
 
         //初次显示时，显示的个数
-        setChartSettings(renderer, "Score Details", "Excise", "Score", 0.0,50.0, 0.0, 110.0, Color.LTGRAY, Color.LTGRAY,values.get(0).length);
+//        setChartSettings(renderer, "Score Details", "Excise", "Score", 0.0,50.0, 0.0, 110.0, Color.LTGRAY, Color.LTGRAY,values.get(0).length);
+        setChartSettings(renderer,
+                context.getResources().getString(R.string.record_chart_title),
+                "",
+                "",
+                0.0,
+                50.0,
+                0.0,
+                105.0,
+                Color.LTGRAY,
+                Color.LTGRAY,
+                values.get(0).length);
 
         //柱状图
         XYSeriesRenderer waterRenderer = new XYSeriesRenderer();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="title_activity_record">成绩</string>
+    <string name="title_activity_record">记录</string>
     <string name="record_test_once">请至少做一组测试</string>
     <string name="record_explosive_force">爆发力:</string>
     <string name="record_persistance_force">持久力:</string>
@@ -16,4 +16,7 @@
 
     <string name="record_no_data">无相关锻炼数据</string>
     <string name="record_data_error">数据解析错误</string>
+    <string name="record_chart_title">得分细节</string>
+    <string name="record_chart_barType">类型</string>
+    <string name="record_chart_correctRate">正确率</string>
 </resources>

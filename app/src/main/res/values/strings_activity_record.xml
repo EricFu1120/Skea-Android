@@ -18,5 +18,8 @@
 
     <string name="record_no_data">No Data</string>
     <string name="record_data_error">Data Error</string>
+    <string name="record_chart_title">Record Details</string>
+    <string name="record_chart_barType">Type</string>
+    <string name="record_chart_correctRate">Correct Rate</string>
 
 </resources>
