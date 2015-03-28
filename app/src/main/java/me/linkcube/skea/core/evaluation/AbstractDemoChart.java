@@ -159,7 +159,7 @@ public abstract class AbstractDemoChart {
         //这里设置为一个参数是为了根据训练数据来动态更改
         //因为每个等级的训练个数是不一样的。
         renderer.setPanLimits(new double[]{0, xMaxPanLimit, 0, 105});
-        renderer.setBarSpacing(0.5);
+        renderer.setBarSpacing(0.3);//0.5->>>0.3
     }
 
 }
