@@ -35,6 +35,7 @@ import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.evaluation.CombinedChart;
 import me.linkcube.skea.core.excercise.BarConst;
 import me.linkcube.skea.db.DayRecord;
+import me.linkcube.skea.util.TimeUtils;
 import me.linkcube.skea.view.NumberCircleProgressBar;
 
 public class RecordActivity extends BaseActivity {
@@ -378,8 +379,10 @@ public class RecordActivity extends BaseActivity {
         //显示Score
         setScoreTextView((int)Math.rint(current_total_score));
 
-        //Duration---- 如何更改？？？
-        setTimeTextView(String.valueOf(duration));
+        //显示Duration
+//        setTimeTextView(String.valueOf(duration));
+        //Duratin 显示为"Min:Sec"形式
+        setTimeTextView(TimeUtils.formatSec2Min_Sec(duration));
         //显示correct rate---四舍五入取整
         setTheNumberProgressBar(current_correct_rate);//百分比
 //        setTheNumberProgressBar(39);
