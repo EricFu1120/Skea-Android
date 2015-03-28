@@ -35,6 +35,7 @@ import me.linkcube.skea.core.excercise.ExerciseController;
 import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
 import me.linkcube.skea.db.DayRecord;
 import me.linkcube.skea.ui.evaluation.RecordActivity;
+import me.linkcube.skea.util.TimeUtils;
 
 
 public class ExerciseActivity extends BaseActivity implements ExerciseController.ExerciseScoreCallback {
@@ -282,14 +283,18 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     }
 
+//    String temp_time;
     @Override
     public void tickSecond(final int leftTime) {
         Log.d("tickSecond ", "" + leftTime);
+        //记录已运动时间
         ExerciseScoreCounter.getInstance(this).tickSecond();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                leftTimeTextView.setText(leftTime + "");
+
+//                leftTimeTextView.setText(leftTime + "");
+                leftTimeTextView.setText(TimeUtils.formatSec2Min_Sec(leftTime));
             }
         });
 
@@ -555,6 +560,8 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
             this.perfectCoolImageView.setImageResource(imgID);
         }
     }
+
+
 
 }
 
