@@ -7,7 +7,7 @@
     <string name="record_persistance_force">持久力:</string>
     <string name="record_success_rate">成功率</string>
     <string name="record_score_with_colon">分数:</string>
-    <string name="record_duration_with_colon">时长(s):</string>
+    <string name="record_duration_with_colon">时长:</string>
     <string name="record_duration_with_measurement">时长(s)</string>
     <string name="record_perfect">真棒</string>
     <string name="record_cool">优异</string>

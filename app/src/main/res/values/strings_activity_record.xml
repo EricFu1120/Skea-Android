@@ -9,7 +9,7 @@
     <string name="record_success_rate">Success Rate</string>
     <string name="record_score_with_colon">Score:</string>
 
-    <string name="record_duration_with_colon">Duration(s):</string>
+    <string name="record_duration_with_colon">Duration:</string>
     <string name="record_duration_with_measurement">Duration(s)</string>
     <string name="record_perfect">Perfect</string>
     <string name="record_cool">Cool</string>
