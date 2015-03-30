@@ -5,10 +5,27 @@
     android:layout_height="match_parent"
     tools:context="me.linkcube.skea.ui.info.InformationActivity">
 
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitStart"
-        android:src="@drawable/info_chinese" />
+        android:scaleType="fitXY"
+        android:src="@drawable/info_part1" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/info_part2" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/info_part3" />
+    </LinearLayout>
+
 
 </ScrollView>

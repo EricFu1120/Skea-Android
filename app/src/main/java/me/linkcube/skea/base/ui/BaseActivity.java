@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import com.umeng.analytics.MobclickAgent;
 
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -90,13 +91,22 @@ public abstract class BaseActivity extends CustomActionBarActivity implements Ob
 
     protected void loadLanguage() {
         Log.d(this.getClass().toString(), "loadLanguage");
-        String language = PreferenceUtils.getString(this, KeyConst.KEY_LANGUAGE, KeyConst.Language.English);
-        ActivityUtils.switchLanguage(this, language);
+//        String language = PreferenceUtils.getString(this, KeyConst.KEY_LANGUAGE, KeyConst.Language.English);
+//        String language = PreferenceUtils.getString(this, KeyConst.KEY_LANGUAGE, KeyConst.Language.Chinese);
+//        ActivityUtils.switchLanguage(this, language);
+        //根据手机当前语言环境来选择App的语系
+        Locale locale_language=getResources().getConfiguration().locale;
+        if(locale_language.getLanguage().endsWith("zh")){//中文
+            ActivityUtils.switchLanguage(this,KeyConst.Language.Chinese );
+        }else {//非中文，显示为英语
+            ActivityUtils.switchLanguage(this,KeyConst.Language.English );
+        }
     }
 
     protected void switchLanguage() {
         Log.d(this.getClass().toString(), "switchLanguage");
-        String language = PreferenceUtils.getString(this, KeyConst.KEY_LANGUAGE, KeyConst.Language.English);
+//        String language = PreferenceUtils.getString(this, KeyConst.KEY_LANGUAGE, KeyConst.Language.English);
+        String language = PreferenceUtils.getString(this, KeyConst.KEY_LANGUAGE, KeyConst.Language.Chinese);
         ActivityUtils.switchLanguage(this, language);
         startActivity(new Intent(this, this.getClass()));
         finish();

@@ -42,6 +42,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     @Override
     public void onPause() {
         super.onPause();
+        //本地化Level值
         PreferenceUtils.setInt(this, KeyConst.SKEA_EXERCISE_LEVEL_KEY, exerciseLevelIndex);
     }
 
@@ -104,7 +105,7 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
         //返回用户设置的训练强度
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EvaluateResultActivity.KEY_EXERCISE_LEVEL, exerciseLevelIndex);
-        Log.i(TAG, "---level:" + exerciseLevelIndex);
+//        Log.i(TAG, "---level:" + exerciseLevelIndex);
         setResult(RESULT_OK, resultIntent);
         this.finish();
     }
