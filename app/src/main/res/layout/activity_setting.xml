@@ -3,7 +3,10 @@
     style="@style/Group"
     tools:context="me.linkcube.skea.ui.user.MeActivity">
 
+    <!--将语言设置入口先封掉，以后有必要再打开-->
+    <!--
     <TextView
+        android:visibility="gone"
         android:id="@+id/language"
         style="@style/Preference.Item"
         android:drawableRight="@drawable/menu_action_right"
@@ -17,7 +20,6 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <!--
         <TextView
             android:id="@+id/update"
             style="@style/Preference.Item"
@@ -30,7 +32,6 @@
             android:drawableRight="@drawable/menu_action_right"
             android:text="@string/setting_feedback" />
              <View style="@style/DividerWithMargin" />
-          -->
 
         <TextView
             android:id="@+id/aboutus"
@@ -40,5 +41,11 @@
 
 
     </LinearLayout>
+    -->
+    <TextView
+        android:id="@+id/aboutus"
+        style="@style/Preference.Item"
+        android:drawableRight="@drawable/menu_action_right"
+        android:text="@string/setting_about_us" />
 
 </LinearLayout>
