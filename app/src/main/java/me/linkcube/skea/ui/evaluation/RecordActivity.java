@@ -518,10 +518,13 @@ public class RecordActivity extends BaseActivity {
         if(dayRecords==null || dayRecords.size()<=0){//无选定日期的运动记录
             //弹框提示之
 
-//            root.removeAllViews();
+            root.setVisibility(View.GONE);
             Toaster.showShort(this,getResources().getString(R.string.record_no_data));
 
+
         }else{//存在相关的运动记录－－展示最新的数据（即：选中日期当天的最后一次的）
+            root.setVisibility(View.VISIBLE);
+
             DayRecord dayRecord=dayRecords.get(dayRecords.size()-1);
             setDateAndLevelTextView(dayRecord.getToday(),dayRecord.getmLevel()+"");
             duration=dayRecord.getmDuration();
