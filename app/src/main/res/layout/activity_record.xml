@@ -91,7 +91,7 @@
                 android:layout_centerInParent="true"
                 android:padding="10dp"
                 npb:max="100"
-                npb:progress="0"
+                npb:progress="23"
                 npb:progress_circle_radius="90px"
                 npb:progress_fill_mode="rising_water"
                 npb:progress_reached_color="@color/light_blue2"

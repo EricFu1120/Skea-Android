@@ -29,6 +29,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import custom.android.util.Timber;
 import custom.android.widget.Toaster;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
@@ -125,29 +129,8 @@ public class RecordActivity extends BaseActivity {
 
         final NumberCircleProgressBar bnp = (NumberCircleProgressBar) findViewById(R.id.number_circle_progress_bar);
         bnp.setProgress(correct_rate);
-
         setEvaluateTextView(correct_rate);
-//        timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                            if(!bnp.isFinished()){
-//                                bnp.incrementProgressBy(2);
-//                                Log.i("CXC","----progress:"+bnp.getProgress());
-//                                Log.i("CXC","----ProgressMax:"+bnp.getMax());
-//
-//                            }else {
-//                                timer.cancel();
-//                            }
-//
-//                    }
-//                });
-//            }
-//        }, 1000, 100);
+
     }
 
     @Override
@@ -381,11 +364,10 @@ public class RecordActivity extends BaseActivity {
 
         //显示Duration
 //        setTimeTextView(String.valueOf(duration));
-        //Duratin 显示为"Min:Sec"形式
+        //Duration 显示为"Min:Sec"形式
         setTimeTextView(TimeUtils.formatSec2Min_Sec(duration));
         //显示correct rate---四舍五入取整
         setTheNumberProgressBar(current_correct_rate);//百分比
-//        setTheNumberProgressBar(39);
     }
 
     /**
@@ -519,7 +501,7 @@ public class RecordActivity extends BaseActivity {
             //弹框提示之
 
             root.setVisibility(View.GONE);
-            Toaster.showShort(this,getResources().getString(R.string.record_no_data));
+            Toaster.showShort(this, getResources().getString(R.string.record_no_data));
 
 
         }else{//存在相关的运动记录－－展示最新的数据（即：选中日期当天的最后一次的）
