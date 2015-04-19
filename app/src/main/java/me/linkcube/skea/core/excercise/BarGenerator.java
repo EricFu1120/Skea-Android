@@ -1,6 +1,7 @@
 package me.linkcube.skea.core.excercise;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class BarGenerator {
         //TODO 获取level值
 //        level= PreferenceUtils.getInt(,4);
         level=PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY,3);
+        Log.i("CXC", "-----BarGenerator---PreferenceUtils--Level:"+level);
         initBarNum(level);
         initBarArray();
         bars = new ArrayList<Bar>();
@@ -31,9 +33,19 @@ public class BarGenerator {
     }
 
     public static BarGenerator getInstance(Context context) {
-        if (instance == null)
+        if (instance == null) {
+            Log.i("CXC","---------new instance of BarGenerator------");
             instance = new BarGenerator(context);
+        }
         return instance;
+    }
+
+
+    /*
+    *改变Level时，要根据设置后的值重新生成锻炼数据
+    */
+    public static void reset2null(){
+        instance=null;
     }
 
     private void create() {
@@ -66,6 +78,8 @@ public class BarGenerator {
 
     private void initBarArray() {
         barNum = barUnitNum * 3;
+
+        Log.i("CXC","---initBarArray()--barNum:"+barNum);
         barArray = new int[barNum];
         for (int i = 0; i < barUnitNum; i++) {
             barArray[i] = BarConst.TYPE.LONG;
@@ -91,10 +105,13 @@ public class BarGenerator {
                 break;
             case BarConst.LEVEL.LEVEL_FOUR:
                 barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_FOUR];
+            case BarConst.LEVEL.LEVEL_FIVE:
+                barUnitNum =BarConst.LEVEL.BAR_UNIT_NUM [BarConst.LEVEL.LEVEL_FIVE];
             default:
                 barUnitNum = BarConst.LEVEL.BAR_UNIT_NUM[BarConst.LEVEL.LEVEL_FOUR];
                 break;
         }
+        Log.i("CXC", "-----initBarNum(int level)---barUnitNum:"+barUnitNum);
     }
 
     private Bar getRandomBarType(int boundary) {

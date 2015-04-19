@@ -119,13 +119,6 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
         frontScrollView.setOnTouchListener(mScorllViewOnTouchListener);
         behindScrollView.setOnTouchListener(mScorllViewOnTouchListener);
 
-
-//        shrinkButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                shrink = isChecked;
-//            }
-//        });
     }
 
     /**
@@ -253,7 +246,7 @@ public class ExerciseActivity extends BaseActivity implements ExerciseController
 
     @Override
     public void startGameScore(Bar bar) {
-        Log.d("startScore", "bar type = " + bar.getType());
+//        Log.d("startScore", "bar type = " + bar.getType());
         ExerciseScoreCounter.getInstance(this).startGameScore(bar);
     }
 

@@ -33,17 +33,19 @@ public class BarGroupManager {
     }
 
     public static BarGroupManager getInstance(Context context) {
-        if (instance == null)
+        if (instance == null) {
+            Log.i("CXC","+++++++++++new instance of BarGroupManager+++++++++");
             instance = new BarGroupManager(context);
+        }
         return instance;
+    }
+
+    public static void reset2null(){
+        instance=null;
     }
 
     public int getBarGroupHeight(Context context, boolean front) {
         //TODO 获取level
-//        switch (level)
-//        {
-//
-//        }
         int level = PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY,3);
         int barUnitNum = 0;
         switch (level+1) {
@@ -133,7 +135,7 @@ public class BarGroupManager {
         for (int i = list.size() - 1; i >= 0; i--) {
             frontGroup.addView(new BarViewWrapper().getImageView(context, list.get(i).getType(), false));
             behindGroup.addView(new BarViewWrapper().getImageView(context, list.get(i).getType(), true));
-            Log.i("CXC", "i" + i + "--type:" + list.get(i).getType());
+//            Log.i("CXC", "i" + i + "--type:" + list.get(i).getType());
         }
 
         frontGroup.addView(getHeaderOrFooterView(frontParent, true));
@@ -145,13 +147,13 @@ public class BarGroupManager {
             if (i == 0) {
                 bar.setBeginActiveOffset(getBlankHeight(true));
 
-                Log.d("test activeOffset", "" + bar.getBeginActiveOffset());
+//                Log.d("test activeOffset", "" + bar.getBeginActiveOffset());
                 bar.setEndActiveOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
             } else {
                 bar.setBeginActiveOffset(list.get(i - 1).getEndActiveOffset());
                 bar.setEndActiveOffset(bar.getBeginActiveOffset() + bar.getHeight(context));
             }
-            Log.i("CXC", "---" + bar.getBeginActiveOffset() + "---" + bar.getEndActiveOffset());
+//            Log.i("CXC", "---" + bar.getBeginActiveOffset() + "---" + bar.getEndActiveOffset());
         }
 
     }
@@ -171,10 +173,10 @@ public class BarGroupManager {
         if (front) {
             frontBlankHeight = height;
 
-            Log.i("CXC", "****front Height:" + height);
+//            Log.i("CXC", "****front Height:" + height);
         } else {
             behindBlankHeight = height;
-            Log.i("CXC", "****behind Height:" + height);
+//            Log.i("CXC", "****behind Height:" + height);
         }
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, height);

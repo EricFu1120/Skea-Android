@@ -24,7 +24,7 @@ public class ExerciseScoreCounter {
     private int game_count = 0;
     private int cool_count = 0;
     private int perfect_count = 0;
-    private int miss_count=0;
+    private int miss_count = 0;
 
     private Bar bar;
 
@@ -33,11 +33,11 @@ public class ExerciseScoreCounter {
     private boolean game_lock = false;
     private boolean cool_lock = false;
     private boolean perfect_lock = false;
-    private boolean miss_lock=false;
+    private boolean miss_lock = false;
 
-    private int totalScore=0;
-    private int perfect_cool_score=0;
-    private int game_duration=0;
+    private int totalScore = 0;
+    private int perfect_cool_score = 0;
+    private int game_duration = 0;
 
     //DB
     private DayRecord dayRecord;
@@ -45,29 +45,33 @@ public class ExerciseScoreCounter {
     private JSONArray jsonBarArray;
 
 
-
     private ExerciseScoreCounter(Context context) {
         segments = new ArrayList<Segment>();
-        int level=PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 3);
-        dayRecord=new DayRecord(level+1);//本地持久化时，level 为4 时，实际存储为3
+        int level = PreferenceUtils.getInt(context, KeyConst.SKEA_EXERCISE_LEVEL_KEY, 3);
+        dayRecord = new DayRecord(level + 1);//本地持久化时，level 为4 时，实际存储为3
 
         //init
-        jsonBarInfos=new JSONObject();
-        jsonBarArray =new JSONArray();
+        jsonBarInfos = new JSONObject();
+        jsonBarArray = new JSONArray();
 
     }
 
     public static ExerciseScoreCounter getInstance(Context context) {
-        if (instance == null){
+        if (instance == null) {
+            Log.i("CXC", "##############new instance of ExerciseScoreCounter##########");
             instance = new ExerciseScoreCounter(context);
         }
 
         return instance;
     }
 
+    public static void reset2null(){
+        instance=null;
+    }
 
-    public void startMissScore(){
-        miss_lock=true;
+
+    public void startMissScore() {
+        miss_lock = true;
     }
 
     public void startCoolScore(Bar bar) {
@@ -88,12 +92,12 @@ public class ExerciseScoreCounter {
     }
 
 
-    public boolean tickMissScore(){
-        if (miss_lock && miss_count>0){
+    public boolean tickMissScore() {
+        if (miss_lock && miss_count > 0) {
 
-            miss_count=0;
+            miss_count = 0;
             return true;
-        }else {
+        } else {
             miss_count = 0;
             return false;
         }
@@ -118,18 +122,18 @@ public class ExerciseScoreCounter {
             Segment segment = new Segment(game_count);
             segments.add(segment);
 
-            game_count=0;
+            game_count = 0;
             return segment.isAvailable();
-        }
-        else {
+        } else {
             game_count = 0;
             return false;
         }
     }
 
-    public void tickSecond(){
+    public void tickSecond() {
         game_duration++;
     }
+
     /**
      * 计算当前游戏得分
      */
@@ -137,29 +141,29 @@ public class ExerciseScoreCounter {
 
         if (game_lock) {
             float score = getGameScore();
-            Log.i("CXC","##################"+score+"@@@@@@@"+totalScore);
-            totalScore+=score;
-            bar.setScore(score+perfect_cool_score);
+            Log.i("CXC", "##################" + score + "@@@@@@@" + totalScore);
+            totalScore += score;
+            bar.setScore(score + perfect_cool_score);
 
-            try{
-                JSONObject tempObj=new JSONObject();
-                tempObj.put(BarConst.JSONConst.KEY_TYPE,bar.getType());
-                tempObj.put(BarConst.JSONConst.KEY_SCORE,bar.getScore());
+            try {
+                JSONObject tempObj = new JSONObject();
+                tempObj.put(BarConst.JSONConst.KEY_TYPE, bar.getType());
+                tempObj.put(BarConst.JSONConst.KEY_SCORE, bar.getScore());
                 jsonBarArray.put(tempObj);
 
 
-            }catch (JSONException e){
-                Log.i("CXC","org.json.JSONException -----");
+            } catch (JSONException e) {
+                Log.i("CXC", "org.json.JSONException -----");
             }
 
         }
         //归“0”
-        perfect_lock=false;
-        cool_lock=false;
+        perfect_lock = false;
+        cool_lock = false;
         game_lock = false;
 
         game_count = 0;
-        perfect_cool_score=0;
+        perfect_cool_score = 0;
         return totalScore;
     }
 
@@ -167,7 +171,7 @@ public class ExerciseScoreCounter {
 
 
         if (cool_count > 0) {
-            perfect_cool_score=BarConst.SCORE.COOL_SCORE;
+            perfect_cool_score = BarConst.SCORE.COOL_SCORE;
             totalScore += perfect_cool_score;
             Log.i("CXC", "Cool ++++30");
 //            barScore.setPerfectCool(1);//miss 0,cool 1,perfect 2;
@@ -179,8 +183,8 @@ public class ExerciseScoreCounter {
     }
 
     public int stopPerfectScore() {
-        if (cool_count<=0 && perfect_count > 0) {
-            perfect_cool_score=BarConst.SCORE.PERFECT_SCORE;
+        if (cool_count <= 0 && perfect_count > 0) {
+            perfect_cool_score = BarConst.SCORE.PERFECT_SCORE;
             totalScore += perfect_cool_score;
 //            Log.i("CXC", "perfect +++50");
         }
@@ -191,26 +195,27 @@ public class ExerciseScoreCounter {
         return totalScore;
     }
 
-    public void stopMissScore(){
-        miss_lock=false;
-        miss_count=0;
+    public void stopMissScore() {
+        miss_lock = false;
+        miss_count = 0;
         segments.clear();
     }
 
-    public void stopScoreCounter(){
+    public void stopScoreCounter() {
         //this.totalScore=0;
 //        dayRecord.setRecord(record);
-        try{
-            jsonBarInfos.put(BarConst.JSONConst.KEY_INFO,jsonBarArray);
-        }catch (JSONException e){
-            Log.i("CXC","org.json.JSONException ++++");
+        try {
+            jsonBarInfos.put(BarConst.JSONConst.KEY_INFO, jsonBarArray);
+        } catch (JSONException e) {
+            Log.i("CXC", "org.json.JSONException ++++");
         }
         dayRecord.setmBarsJSONInfo(jsonBarInfos.toString());
         //Duration
         dayRecord.setmDuration(game_duration);
         dayRecord.save();
-        instance=null;
+        instance = null;
     }
+
     public void receiveSignal() {
 
         if (cool_lock) {
@@ -224,7 +229,7 @@ public class ExerciseScoreCounter {
         if (game_lock) {
             game_count++;
         }
-        if(miss_lock){
+        if (miss_lock) {
             miss_count++;
         }
     }
