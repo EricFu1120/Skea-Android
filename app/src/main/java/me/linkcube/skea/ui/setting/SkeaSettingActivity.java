@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.SeekBar;
 
+import cn.ervin.bluetooth.EasyBluetooth;
 import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
@@ -37,12 +38,13 @@ public class SkeaSettingActivity extends BaseActivity {
                     //Feedback Strength
                     //todo  ----XXXX----更改设备参数，保存设备参数
 
+                    //在这里给Skea发送数据－－更改配置
                     feedback_value=seekBar.getProgress();
+//                    EasyBluetooth.getInstance()
                     break;
                 case R.id.press_sensitive_sb:
                     //Pressure Sensitivity
                     //todo  ----XXXX----更改设备参数，保存设备参数
-
                     pressure_value=seekBar.getProgress();
                     break;
                 default:
@@ -92,4 +94,6 @@ public class SkeaSettingActivity extends BaseActivity {
         PreferenceUtils.setInt(getApplicationContext(),KeyConst.SKEA_CONFIG_PRESSURE_KEY,pressure_value);
 
     }
+
+
 }

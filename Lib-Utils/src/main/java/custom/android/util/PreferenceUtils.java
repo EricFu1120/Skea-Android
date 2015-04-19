@@ -62,7 +62,6 @@ public class PreferenceUtils {
 
     public static String getString(Context context, String key, String def) {
         if (key == null || key.equals("")) {
-            Log.i("CXC","+++++++++def**************");
             return def;
 
         }

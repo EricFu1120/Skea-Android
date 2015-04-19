@@ -2,9 +2,7 @@ package me.linkcube.skea.ui.evaluation;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
 
@@ -12,6 +10,9 @@ import custom.android.util.PreferenceUtils;
 import me.linkcube.skea.R;
 import me.linkcube.skea.base.ui.BaseActivity;
 import me.linkcube.skea.core.KeyConst;
+import me.linkcube.skea.core.excercise.BarGenerator;
+import me.linkcube.skea.core.excercise.BarGroupManager;
+import me.linkcube.skea.core.excercise.ExerciseScoreCounter;
 
 
 public class ExerciseLevelSettingActivity extends BaseActivity {
@@ -100,13 +101,17 @@ public class ExerciseLevelSettingActivity extends BaseActivity {
     }
 
     private void finishWithMessage() {
-        //本地化Level值
-//        PreferenceUtils.setInt(this,KeyConst.SKEA_EXERCISE_LEVEL_KEY,exerciseLevelIndex);
-        //返回用户设置的训练强度
+
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EvaluateResultActivity.KEY_EXERCISE_LEVEL, exerciseLevelIndex);
 //        Log.i(TAG, "---level:" + exerciseLevelIndex);
         setResult(RESULT_OK, resultIntent);
+
+        //清空数据－－－－－以便根据最新Level重新生成锻炼数据
+        BarGenerator.reset2null();
+        BarGroupManager.reset2null();
+        ExerciseScoreCounter.reset2null();
+
         this.finish();
     }
 
